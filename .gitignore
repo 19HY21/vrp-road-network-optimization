@@ -206,3 +206,7 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 notebooks/cache/
+
+# Project data artifacts
+cache/
+data/raw/road_network/*.graphml
