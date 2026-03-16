@@ -20,6 +20,8 @@
 - シナリオ分析
 を統合した **実務PoCレベルの最適化パイプライン** を構築します。
 
+---
+
 # 背景
 物流業界では配送効率の向上が重要な課題となっています。
 
@@ -30,6 +32,8 @@
 
 これらの問題に対し、数理最適化を利用することで配送ルートの効率化が可能になります。
 本プロジェクトでは**実道路ネットワークを利用したVRP最適化**を実装し、配送計画最適化のPoCを構築します。
+
+---
 
 # システムアーキテクチャ
 ※後で図を追加予定
@@ -52,258 +56,270 @@ Visualization
 将来的には以下のようなアーキテクチャ図を追加予定です。
 （ここに図を追加予定）
 
+---
+
 # プロジェクト構成
 ```
 vrp-road-network-optimization/
 
-README.md
-LICENSE
-CONTRIBUTING.md
+github/
+      workflows/
 
-docs/
-    00_problem_definition.md
-    01_business_requirements.md
-    02_data_definition.md
-    03_network_design.md
-    04_math_model.md
-    05_algorithm_design.md
-    06_experiment_design.md
-    07_results.md
-    architecture.md
+.vscode/
+      setting.json
 
-src/
-    vrp_optimization/
-        __init__.py
-        cli.py
-        config/
-        data_generation/
-        network/
-        distance_matrix/
-        solver/
-        simulation/
-        evaluation/
-        visualization/
-        app/
+archive/
 
 config/
-    default.yaml
-    logging.yaml
-
-notebooks/
+      default.yaml
+      logging.yaml
 
 data/
-    README.md
     raw/
     processed/
+    README.md
+
+docs/
+      archives/
+      assumptions/
+            modeling_assumptions.md
+      brainstrorming/
+            001_001_osm_prefecture_preload_architecture_v1.md
+      data_dictionary/
+            customer_schema.md
+            distance_matrix_schema.md
+            network_schema.md
+            vehicle_shcem.md
+      decision_log
+      design/
+            00_problem_definition.md
+            01_business_requirements.md
+            02_data_definition.md
+            03_network_design.md
+            04_math_model.md
+            05_algorithm_design.md
+            06_experiment_design.md
+      feasibility/
+            01_osm_network_feasibility.md
+      result/
+            01_experiment_results.md
+            02_performance_analysis.md
+            03_scenario_analysis.md
+      architecture.md
 
 experiments/
-
-outputs/
-    routes/
-    metrics/
-    figures/
+      exp001_base_case
 
 logs/
 
-tests/
+notebooks/
+      archive/
+      001_osm_perfecture_network_check.ipynb
+      002_prefecture_batch_network_check.ipynb
+
+outputs/
+    figures/
+    metrics/
+    routes/
 
 scripts/
+      run_pipline.py
 
-.github/workflows/
+
+src/
+      vrp_optimization/
+            app/
+            config/
+            data_generation/
+            distance_matrix/
+            evaluation/
+            network/
+            simulation/
+            solver/
+            visualization/
+            __init__.py
+            cli.py
+
+tests/
+
+.env.example
+
+.gitnore
+
+LICENSE
+
+Makefile
+
+pyproject.toml
+
+REAMDE.md
 
 requirements.txt
-pyproject.toml
-.env.example
-.gitignore
-Makefile
+
 ```
 
-# 各ディレクトリの役割
-このセクションでは 生成AIおよび開発者がプロジェクト構造を理解できるようにすべてのディレクトリの役割を説明します。
+---
 
-## docs
-プロジェクトの設計ドキュメントを格納します。
-このディレクトリは プロジェクト設計フェーズの成果物です。
-### 00_problem_definition.md
-解決する業務課題を定義します。
-内容例
-- 問題の背景
-- 対象業務
-- 解決する課題
-- 成功指標
+# ディレクトリ構造と役割
 
-### 01_business_requirements.md
-業務要件を定義します。
-内容例
-- 配送車両数
-- 配送時間制約
-- 車両容量
-- 配送先数
-- 配送拠点
+## `.github/`
 
-### 02_data_definition.md
-データ構造を定義します。
-内容例
-- 配送地点データ
-- 車両データ
-- 道路ネットワーク
-- 距離行列
+GitHub のリポジトリ運用に関する設定を管理するディレクトリです。
+主に GitHub Actions などの CI/CD ワークフローを格納します。
 
-### 03_network_design.md
-道路ネットワーク取得方法を設計します。
-内容例
-- OpenStreetMapデータ取得
-- OSMnx利用方法
-- グラフ構造
-- 道路ネットワーク前処理
 
-### 04_math_model.md
-VRPの数理モデルを記述します。
-内容例
-- 目的関数
-- 制約条件
-- 数理式
-- 変数定義
+## `.vscode/`
 
-### 05_algorithm_design.md
-最適化アルゴリズム設計を記述します。
-内容例
-- OR-Tools設定
-- Solver構成
-- 初期解生成
-- ヒューリスティック
+Visual Studio Code 用の開発環境設定を管理するディレクトリです。
+エディタ設定、Python 実行環境、フォーマッタ設定などを保存します。
 
-### 06_experiment_design.md
-実験設計を記述します。
-内容例
-- シナリオ設定
-- 評価指標
-- 比較方法
 
-### 07_results.md
+## `archive/`
 
-実験結果をまとめます。
-内容例
-- 配送距離
-- 計算時間
-- シナリオ比較
+過去の実験結果、旧バージョンのコード、廃止された設計資料などを保存するディレクトリです。
+現在は使用しないが履歴として残しておく資料を保管します。
 
-### architecture.md
-システムアーキテクチャ図を格納します。
 
-## src
-最適化システムの実装コードを格納します。
-このディレクトリは プロジェクトのコア実装です。
+## `config/`
 
-### vrp_optimization
-Pythonパッケージとして実装します。
+アプリケーションや実験設定を管理するディレクトリです。
+モデル設定、実験パラメータ、ログ設定などの YAML ファイルを配置します。
 
-#### cli.py
-コマンドラインインターフェース。
-例
-python -m vrp_optimization.cli
 
-#### network
-道路ネットワーク取得処理。
-内容
-- OSMnxによる地図取得
-- NetworkXグラフ生成
+## `data/`
 
-#### distance_matrix
-距離行列生成。
-内容
-- 最短経路計算
-- travel time計算
+プロジェクトで使用するデータを格納するディレクトリです。
+主に以下の2種類のデータを管理します。
 
-#### solver
-VRP最適化ソルバー。
-内容
-- OR-Tools
-- RoutingModel
-- 制約設定
+* **raw**：外部から取得した未加工データ
+* **processed**：前処理済みデータ
 
-#### data_generation
-配送地点データ生成。
-内容
-- ランダム配送地点
-- サンプル配送データ
+データの取得方法や管理ルールは `data/README.md` に記載します。
 
-#### simulation
-シナリオシミュレーション。
-内容
-- 配送件数変化
-- 車両数変化
 
-#### evaluation
-最適化結果の評価。
-内容
-- 総距離
-- 計算時間
-- 車両使用数
+## `docs/`
 
-#### visualization
-地図可視化。
-内容
-- Folium
-- ルート描画
+プロジェクト設計・検討・分析結果などのドキュメントを管理するディレクトリです。
 
-#### app
-Streamlitアプリ。
+主な内容
 
-## config
-設定ファイルを格納します。
+* 問題定義
+* 数理モデル設計
+* アルゴリズム設計
+* 実験設計
+* 技術検証
+* 結果分析
+* データ定義
+* 設計判断ログ
 
-### default.yaml
-実験設定
-例
-- 車両数
-- 容量
-- Solver時間
+最適化プロジェクトの設計・分析ドキュメントを体系的に整理するためのディレクトリです。
 
-### logging.yaml
-ログ設定。
 
-## data
+## `experiments/`
 
-プロジェクトで使用するデータ。
-- raw
-- processed
+実験単位の設定や結果を管理するディレクトリです。
+各実験ごとにサブフォルダを作成し、以下の情報を管理します。
 
-### raw
-外部データ
+* 実験設定
+* 実験ログ
+* 評価結果
+* 実験用データ
 
-### processed
-前処理済みデータ
 
-## notebooks
-探索的分析。
-例
-- ネットワーク確認
-- 距離行列テスト
+## `logs/`
 
-## experiments
-実験設定と結果。
-例
-- experiment_01
-- experiment_02
+プログラム実行時に出力されるログファイルを保存するディレクトリです。
+デバッグや実験の再現性確認に利用します。
 
-## outputs
-最適化結果。
-- routes
-- metrics
-- figures
 
-## logs
-ログファイル。
+## `notebooks/`
 
-## tests
-ユニットテスト。
+Jupyter Notebook を用いた分析や検証を行うディレクトリです。
 
-## scripts
-パイプライン実行。
-例
-run_pipeline.py
+主な用途
 
+* データ探索（EDA）
+* ネットワーク確認
+* 距離計算検証
+* モデル挙動確認
+
+
+## `outputs/`
+
+プログラム実行結果を保存するディレクトリです。
+
+主な内容
+
+* ルート結果
+* 評価指標
+* 可視化図
+
+
+## `scripts/`
+
+パイプライン実行やデータ処理を行うスクリプトを格納するディレクトリです。
+主に CLI から実行するスクリプトを配置します。
+
+
+## `src/`
+
+アプリケーションのメイン実装コードを格納するディレクトリです。
+
+主な内容
+
+* 最適化ロジック
+* ネットワーク処理
+* 距離行列生成
+* シミュレーション
+* 可視化
+
+プロジェクトのコアロジックを実装するディレクトリです。
+
+
+## `tests/`
+
+ユニットテストや統合テストを格納するディレクトリです。
+各モジュールの動作確認と品質保証を目的として使用します。
+
+
+## `.env.example`
+
+環境変数設定のテンプレートファイルです。
+実際の `.env` ファイル作成時のサンプルとして使用します。
+
+
+## `.gitignore`
+
+Git 管理対象外にするファイルやディレクトリを定義する設定ファイルです。
+
+
+## `LICENSE`
+
+プロジェクトのライセンスを定義するファイルです。
+
+
+## `Makefile`
+
+開発用コマンドをまとめたファイルです。
+ビルド・テスト・実行などのコマンドを簡略化するために使用します。
+
+
+## `pyproject.toml`
+
+Python プロジェクトの設定ファイルです。
+パッケージ管理やビルド設定を定義します。
+
+
+## `README.md`
+
+プロジェクトの概要、使い方、構成などを説明するドキュメントです。
+
+
+## `requirements.txt`
+
+プロジェクトで使用する Python ライブラリの依存関係を定義するファイルです。
+
+---
 
 # 技術スタック
 Python
@@ -317,17 +333,22 @@ Python
 - Folium
 - Streamlit
 
+---
+
 
 # 数理モデル概要
 ※後で追記予定
 
 詳細はdocs/04_math_model.md参照。
 
+---
 
 # 実験設計
 ※後で追記予定
 
 docs/06_experiment_design.md参照。
+
+---
 
 # 実行方法
 ※実装後に追記
@@ -339,22 +360,34 @@ docs/06_experiment_design.md参照。
 または
 - python scripts/run_pipeline.py
 
+---
+
 # 実験結果
 ※実装後に追記予定
+
+---
 
 # 可視化結果
 ※実装後に追記予定
 
+---
+
 # パフォーマンス評価
 ※実装後に追記予定
 
+---
+
 # 再現方法
 ※後で追記予定
+
+---
 
 # 想定ユースケース
 - 配送ルート最適化
 - 物流ネットワーク分析
 - 配送計画シミュレーション
+
+---
 
 # ライセンス
 MIT License
