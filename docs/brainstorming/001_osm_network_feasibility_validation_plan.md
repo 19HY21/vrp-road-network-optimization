@@ -221,19 +221,40 @@ author: Hayato Yamada
 
 成果物
 
-- 都道府県一括取得グラフ
-- 基本メトリクス
+- 都道府県一括取得グラフ: `data/raw/road_network/kanagawa_drive.graphml`
+- 基本メトリクス: `outputs/metrics/kanagawa_drive_network_metrics.csv`
 
 検証結果
 
 - OSMnx を用いて神奈川県全体の `drive` ネットワークを一括取得できた
-- 取得結果は `data/raw/road_network/kanagawa_drive.graphml` に保存した
-- 基本メトリクスは `outputs/metrics/kanagawa_drive_network_metrics.csv` に保存した
 - ノード数は `223,850`、エッジ数は `608,205`、ファイルサイズは `259.52 MB`、取得時間は `296.38` 秒だった
 - 保存後の再読込でもノード数、エッジ数は一致し、一括取得と保存再利用が成立することを確認した
-- 現時点では行政区単位の分割取得には進まず、都道府県一括取得データに対する後処理検証を先行実施した
-- 後処理では最大弱連結成分の確認、属性削減、`travel_time` 付与、保存、再読込差分確認を実施した
-- 後処理済みメトリクスは `data/processed/kanagawa_drive_step3/kanagawa_drive_processed_metrics.csv` に保存し、再読込差分は `0` 件だった
+
+## Step 2.5 一括取得版の後処理検証
+
+- 一括取得した都道府県全体グラフを、後続の経路探索や VRP 前処理に使いやすい形へ整える
+- 最大弱連結成分の確認、属性削減、`travel_time` 付与を行う
+- 後処理後の保存、再読込、差分確認を行う
+
+実施理由
+
+- 一括取得できることと、後続の routing や VRP 前処理に耐えることは別論点であるため
+- 属性整理や `travel_time` 付与が、後続ステップの前処理として成立するかを先に確認するため
+- 保存と再読込を経ても差分が出ないことを確認し、再利用可能な中間成果物にできるかを見るため
+
+成果物
+
+- 後処理ロジック: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step3-network-postprocess` セル
+- 後処理済みメトリクス: `data/processed/kanagawa_drive_step3/kanagawa_drive_processed_metrics.csv`
+- 実行ログ: `logs/001_osm_network_feasibility_validation_plan_step3_<timestamp>.log`
+
+検証結果
+
+- 一括取得版に対して最大弱連結成分の確認、属性削減、`travel_time` 付与、保存、再読込差分確認を実施した
+- 今回の神奈川県 `drive` ネットワークでは、弱連結成分数は処理前後とも `1` であり、削除対象となる小成分はなかった
+- 再読込差分は `0` 件であり、後処理済みネットワークを再利用可能な形で保存できることを確認した
+- GraphML サイズは属性削減後でも `travel_time` 追加の影響により増加し、軽量化そのものの効果は限定的だった
+- この結果から、一括取得版は後処理を加えても一貫して利用可能であり、以降の比較基準となる正本候補として扱えると判断した
 
 ## Step 3. 行政区分割取得
 
@@ -243,18 +264,17 @@ author: Hayato Yamada
 
 成果物
 
-- 行政区単位グラフ群
-- 取得ログ
+- 行政区一覧: `data/raw/admin_units/kanagawa_municipalities.csv`
+- 行政区単位グラフ群: `data/raw/road_network/kanagawa_municipalities/`
+- 取得結果メトリクス: `outputs/metrics/kanagawa_municipalities/kanagawa_municipality_fetch_metrics_latest.csv`
+- 失敗行政区一覧: `outputs/metrics/kanagawa_municipalities/kanagawa_municipality_failures_latest.csv`
+- 取得ログ: `logs/001_osm_network_feasibility_validation_plan_step3_fetch_20260318_111723.log`
 
 検証結果
 
 - 神奈川県の市区町村 33 件を対象に `drive` ネットワークの分割取得を実施した
-- 行政区一覧は `data/raw/admin_units/kanagawa_municipalities.csv` を入力として利用した
-- 分割取得した GraphML は `data/raw/road_network/kanagawa_municipalities/` に保存した
-- 取得結果メトリクスは `outputs/metrics/kanagawa_municipalities/kanagawa_municipality_fetch_metrics_latest.csv` に保存した
-- 実行ログは `logs/001_osm_network_feasibility_validation_plan_step3_fetch_20260318_111723.log` に保存した
 - 33 件中 33 件が成功し、エラーは 0 件だった
-- 失敗行政区一覧は `outputs/metrics/kanagawa_municipalities/kanagawa_municipality_failures_latest.csv` に出力し、今回は空だった
+- 失敗行政区一覧は空だった
 - 最大ファイルは横浜市の `90.96 MB` で、分割取得データ全体の合計サイズは約 `257.44 MB` だった
 - 行政区単位での安定取得と、失敗分のみ再実行できる運用方針を確認できた
 
@@ -266,9 +286,75 @@ author: Hayato Yamada
 
 成果物
 
-- 結合グラフ
-- 結合ロジック
-- 結合結果メモ
+- 結合グラフ: `data/processed/kanagawa_municipality_merged.graphml`
+- 結合ロジック: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step4-merge-municipality-graphs` セル
+- 結合結果メトリクス: `outputs/metrics/kanagawa_municipality_merged_metrics.csv`
+- 経路疎通確認結果: `outputs/metrics/kanagawa_municipality_merged_route_checks.csv`
+- 成分分析結果: `outputs/metrics/kanagawa_municipality_merged_component_analysis.csv`
+- 成分別ルート地点分析: `outputs/metrics/kanagawa_municipality_merged_component_route_points.csv`
+- 境界補完候補: `outputs/metrics/kanagawa_municipality_boundary_bridge_candidates.csv`
+- 境界補完試行結果: `outputs/metrics/kanagawa_municipality_boundary_bridge_results.csv`
+- 補完候補診断: `outputs/metrics/kanagawa_municipality_boundary_bridge_diagnosis.csv`
+- 補完候補診断サンプル: `outputs/metrics/kanagawa_municipality_boundary_bridge_diagnosis_samples.csv`
+- 一括取得版比較: `outputs/metrics/kanagawa_batch_vs_split_route_checks.csv`
+
+検証結果
+
+- 市区町村単位で個別取得した 33 件の GraphML を単純結合した
+- 結合後グラフのノード数は `223,152`、エッジ数は `604,442` で、一括取得版に対してノード `-698`、エッジ `-3,763` の差分があった
+- 結合後グラフの弱連結成分数は `21` であり、県全体の道路ネットワークとして一続きにはなっていなかった
+- 有名地点を用いた経路疎通確認では、`Kawasaki Station -> Great Buddha of Kamakura` は取得できた一方、`Yokohama Station -> Odawara Station` と `Fujisawa Station -> Hakone-Yumoto Station` は `No path` となった
+- 一括取得版では同一の 3 経路すべてで経路取得できたため、問題は分割取得後の単純結合方式に起因すると判断した
+- 原因分析の結果、`Yokohama Station` は `component 1`、`Odawara Station` は `component 6`、`Hakone-Yumoto Station` は `component 14` に属しており、異なる component 間で経路が分断されていた
+- 境界補完接続も試行したが、`component 1-6` および `component 1-14` の候補ノード対は `10m, 20m, 30m, 50m` のいずれの閾値でも近接候補が 0 件であり、後付けの近接接続では解消できなかった
+- 以上より、「自治体ごとに独立取得したグラフを後から単純結合する方式」は、県全体 routing を前提とする基盤としては不適と判断した
+
+PoC レベルの判断基準
+
+- `graph_from_place` による自治体別個別取得は、各自治体を独立した place polygon として別々に取得するため、県全体で共通の node / edge 集合を前提としていない
+- そのため、後から単純結合しても一括取得版と同じ node 一致が起きず、県全体 routing に必要な道路接続が欠落しうる
+- 実際に今回の検証では、ノード差分 `-698`、エッジ差分 `-3,763`、`weak component = 21`、`No path` 発生を確認しており、PoC 基盤としては不採用とする
+- 分割運用のメリットは、1 ファイルあたりのサイズ低減、地域単位の再取得、失敗時の再実行、限定エリアの更新がしやすい点にある
+- 一方で、最初から自治体単位で独立取得する方式は、境界整合性が崩れると県全体 routing の成立性を失うため、PoC ではデメリットがメリットを上回る
+- このため、社内 PoC の標準仕様としては「自治体単位で初回取得して後から結合する方式」は採用しない
+
+## Step 4.5 親グラフ分割方式の追加検証
+
+- 都道府県一括取得版を親グラフとして用意する
+- 自治体ポリゴンを用いて、親グラフから自治体単位に切り出す
+- 切り出した自治体グラフを保存する
+- 必要に応じて再結合し、一括取得版との整合性を確認する
+- 分割後も行政区跨ぎの経路探索が成立するかを確認する
+
+成果物
+
+- 親グラフ基準の自治体切り出しグラフ群: `data/processed/kanagawa_municipalities_from_master/`
+- 切り出しロジック: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step45-master-split-and-merge` セル
+- 再結合グラフ: `data/processed/kanagawa_municipality_merged_from_master.graphml`
+- 切り出し結果メトリクス: `outputs/metrics/kanagawa_municipalities_from_master_metrics.csv`
+- 一括取得版との比較結果: `outputs/metrics/kanagawa_municipalities_from_master_compare_metrics.csv`
+- 経路疎通確認結果: `outputs/metrics/kanagawa_municipalities_from_master_route_checks.csv`
+- 実行ログ: `logs/001_osm_network_feasibility_validation_plan_step45_20260319_143215.log`
+
+検証結果
+
+- 神奈川県一括取得版を親グラフとして用い、自治体ポリゴンごとに切り出す方式を実施した
+- 33 件中 33 件の自治体切り出しが成功し、エラーは 0 件だった
+- 再結合後グラフは、一括取得版に対してノード差分 `0`、エッジ差分 `0`、欠損ノード `0`、欠損エッジ `0` だった
+- 再結合後グラフの弱連結成分数は `1` であり、県全体の道路ネットワークとして一続きの状態を保てた
+- 有名地点を用いた経路疎通確認では、`Kawasaki Station -> Great Buddha of Kamakura`、`Yokohama Station -> Odawara Station`、`Fujisawa Station -> Hakone-Yumoto Station` の 3 経路すべてで道のり距離を取得できた
+- 以上より、「一括取得した親グラフを正本として自治体単位に切り出し、必要に応じて再結合する方式」は、県全体 routing を維持したまま分割運用する方式として成立すると判断した
+
+PoC レベルの判断基準
+
+- 一括取得版を正本として分割する方式は、そもそも 1 枚の県全体道路ネットワークを分割しているため、再結合時に元の node / edge 接続を保ちやすい
+- 実際に今回の検証では、再結合後にノード差分 `0`、エッジ差分 `0`、`weak component = 1`、代表 3 経路すべて成功を確認できた
+- 分割運用のメリットは、必要な自治体だけを利用用キャッシュとして保持できること、再取得ではなく再切り出しで済むこと、限定エリアの検証や更新がしやすいことにある
+- 一方で、神奈川県内だけを対象とする社内 PoC では、一括取得版だけでも技術成立性は十分確認できるため、分割は必須ではない
+- 複数都県や広域配送へ拡張する場合も、東京都と神奈川県を別々に独立取得して後からつなぐのではなく、それらを含む広域親グラフを先に取得し、必要単位へ切り出す方が道路接続を保ちやすい
+- したがって、都県跨ぎ routing を将来扱う場合は、跨ぎ対象を最初から含む広域親グラフを正本として保持することを前提とする
+- したがって PoC では、まず「一括取得版を正本として利用する」ことを基本方針とし、運用上の都合で分割が必要な場合のみ「親グラフからの切り出し方式」を採用する
+- 採用条件は、一括取得版に対してノード差分 `0`、エッジ差分 `0`、`weak component = 1`、代表的な行政区跨ぎ経路で `No path` が発生しないこととする
 
 ## Step 5. 経路探索検証
 
@@ -279,8 +365,34 @@ author: Hayato Yamada
 
 成果物
 
-- OD サンプル一覧
-- 経路探索結果
+- OD 候補一覧: `data/raw/route_validation/kanagawa_od_point_candidates.csv`
+- `001` 地点 OD 一覧: `outputs/metrics/kanagawa_step5_od_pairs.csv`
+- `001` 地点経路探索結果: `outputs/metrics/kanagawa_step5_route_results.csv`
+- `001` 地点差分結果: `outputs/metrics/kanagawa_step5_route_differences.csv`
+- 全地点 OD 一覧: `outputs/metrics/kanagawa_step5_all_od_pairs.csv`
+- 全地点経路探索結果: `outputs/metrics/kanagawa_step5_all_route_results.csv`
+- 全地点差分結果: `outputs/metrics/kanagawa_step5_all_route_differences.csv`
+- `001` 地点経路探索ロジック: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step5-route-validation` セル
+- 全地点経路探索ロジック: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step5-all-route-validation` セル
+- `001` 地点実行ログ: `logs/001_osm_network_feasibility_validation_plan_step5_<timestamp>.log`
+- 全地点実行ログ: `logs/001_osm_network_feasibility_validation_plan_step5_all_<timestamp>.log`
+
+検証結果
+
+- `point_id` の末尾が `001` の 6 地点を対象に、同一点を除く総当たり `30 OD` を作成して検証した
+- `30 OD` では、一括取得版と親グラフ分割版の双方で `30/30` 件の経路探索に成功した
+- `30 OD` では、距離差 `0`、所要時間差 `0`、ノード数差 `0`、`status_match = True` を全件で確認した
+- 地点候補 CSV に登録した全 12 地点を対象に、同一点を除く総当たり `132 OD` を作成して追加検証した
+- `132 OD` では、一括取得版と親グラフ分割版の双方で `132/132` 件の経路探索に成功した
+- `132 OD` でも、距離差 `0`、所要時間差 `0`、ノード数差 `0`、`status_match = True` を全件で確認した
+- 以上より、今回検証した地点候補集合では、一括取得版と親グラフ分割版の道のり距離・所要時間・経路ノード数の整合性は `100%` 一致した
+- この結果から、親グラフ分割版は一括取得版と同等の経路探索結果を返せると判断した
+
+PoC レベルの判断基準
+
+- 社内 PoC で採用する分割運用方式は、一括取得版に対して距離、所要時間、経路ノード数の差分が実務上許容可能であることを条件とする
+- 今回の検証範囲では `30 OD` と `132 OD` の両方で差分 `0` を確認したため、神奈川県内 PoC においては親グラフ分割版を一括取得版と同等の経路基盤として扱ってよい
+- 今後、地点候補や対象範囲を広げる場合も、同様に総当たりまたは代表 OD 群で差分確認を行うことを継続条件とする
 
 ## Step 6. 妥当性確認
 

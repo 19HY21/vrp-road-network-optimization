@@ -1,0 +1,31 @@
+﻿od_id,from_point_id,from_point_name,from_municipality_name_en,from_latitude,from_longitude,to_point_id,to_point_name,to_municipality_name_en,to_latitude,to_longitude
+kanagawa_fujisawa_001__kanagawa_hakone_001,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_fujisawa_001__kanagawa_kamakura_001,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_fujisawa_001__kanagawa_kawasaki_001,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_fujisawa_001__kanagawa_odawara_001,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_fujisawa_001__kanagawa_yokohama_001,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_hakone_001__kanagawa_fujisawa_001,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_hakone_001__kanagawa_kamakura_001,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_hakone_001__kanagawa_kawasaki_001,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_hakone_001__kanagawa_odawara_001,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_hakone_001__kanagawa_yokohama_001,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_kamakura_001__kanagawa_fujisawa_001,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_kamakura_001__kanagawa_hakone_001,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_kamakura_001__kanagawa_kawasaki_001,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_kamakura_001__kanagawa_odawara_001,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_kamakura_001__kanagawa_yokohama_001,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_kawasaki_001__kanagawa_fujisawa_001,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_kawasaki_001__kanagawa_hakone_001,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_kawasaki_001__kanagawa_kamakura_001,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_kawasaki_001__kanagawa_odawara_001,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_kawasaki_001__kanagawa_yokohama_001,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_odawara_001__kanagawa_fujisawa_001,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_odawara_001__kanagawa_hakone_001,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_odawara_001__kanagawa_kamakura_001,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_odawara_001__kanagawa_kawasaki_001,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_odawara_001__kanagawa_yokohama_001,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_yokohama_001__kanagawa_fujisawa_001,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_yokohama_001__kanagawa_hakone_001,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_yokohama_001__kanagawa_kamakura_001,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_yokohama_001__kanagawa_kawasaki_001,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_yokohama_001__kanagawa_odawara_001,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
