@@ -1,0 +1,13 @@
+point_id,prefecture_name,municipality_name_en,municipality_name_ja,point_name,point_type,address_or_area,latitude,longitude,selection_priority,notes
+kanagawa_kawasaki_001,Kanagawa,Kawasaki,川崎市,Kawasaki Station,station,Kawasaki Ward,35.5314,139.6969,high,Step4 route validation point
+kanagawa_kawasaki_002,Kanagawa,Kawasaki,川崎市,Kawasaki Daishi,landmark,Kawasaki Ward,35.5329,139.7224,medium,Representative landmark in eastern Kawasaki
+kanagawa_yokohama_001,Kanagawa,Yokohama,横浜市,Yokohama Station,station,Nishi Ward,35.4662,139.6227,high,Step4 route validation point
+kanagawa_yokohama_002,Kanagawa,Yokohama,横浜市,Yokohama Red Brick Warehouse,landmark,Naka Ward,35.4526,139.6425,medium,Representative waterfront landmark
+kanagawa_kamakura_001,Kanagawa,Kamakura,鎌倉市,Great Buddha of Kamakura,landmark,Hase,35.3167,139.5354,high,Step4 route validation point
+kanagawa_kamakura_002,Kanagawa,Kamakura,鎌倉市,Tsurugaoka Hachimangu,landmark,Yukinoshita,35.3259,139.5560,medium,Representative landmark in central Kamakura
+kanagawa_fujisawa_001,Kanagawa,Fujisawa,藤沢市,Fujisawa Station,station,Minamifujisawa,35.3388,139.4876,high,Step4 route validation point
+kanagawa_fujisawa_002,Kanagawa,Fujisawa,藤沢市,Enoshima,landmark,Enoshima,35.3006,139.4807,medium,Representative tourist area
+kanagawa_odawara_001,Kanagawa,Odawara,小田原市,Odawara Station,station,Sakaecho,35.2556,139.1597,high,Step4 route validation point
+kanagawa_odawara_002,Kanagawa,Odawara,小田原市,Odawara Castle,landmark,Jonai,35.2518,139.1548,medium,Representative landmark in western Kanagawa
+kanagawa_hakone_001,Kanagawa,Hakone,箱根町,Hakone-Yumoto Station,station,Yumoto,35.2323,139.1069,high,Step4 route validation point
+kanagawa_hakone_002,Kanagawa,Hakone,箱根町,Owakudani,landmark,Sengokuhara,35.2457,139.0228,medium,Representative mountain landmark
