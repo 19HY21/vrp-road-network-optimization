@@ -224,6 +224,17 @@ author: Hayato Yamada
 - 都道府県一括取得グラフ
 - 基本メトリクス
 
+検証結果
+
+- OSMnx を用いて神奈川県全体の `drive` ネットワークを一括取得できた
+- 取得結果は `data/raw/road_network/kanagawa_drive.graphml` に保存した
+- 基本メトリクスは `outputs/metrics/kanagawa_drive_network_metrics.csv` に保存した
+- ノード数は `223,850`、エッジ数は `608,205`、ファイルサイズは `259.52 MB`、取得時間は `296.38` 秒だった
+- 保存後の再読込でもノード数、エッジ数は一致し、一括取得と保存再利用が成立することを確認した
+- 現時点では行政区単位の分割取得には進まず、都道府県一括取得データに対する後処理検証を先行実施した
+- 後処理では最大弱連結成分の確認、属性削減、`travel_time` 付与、保存、再読込差分確認を実施した
+- 後処理済みメトリクスは `data/processed/kanagawa_drive_step3/kanagawa_drive_processed_metrics.csv` に保存し、再読込差分は `0` 件だった
+
 ## Step 3. 行政区分割取得
 
 - 同一都道府県を行政区単位で順次取得する
@@ -234,6 +245,18 @@ author: Hayato Yamada
 
 - 行政区単位グラフ群
 - 取得ログ
+
+検証結果
+
+- 神奈川県の市区町村 33 件を対象に `drive` ネットワークの分割取得を実施した
+- 行政区一覧は `data/raw/admin_units/kanagawa_municipalities.csv` を入力として利用した
+- 分割取得した GraphML は `data/raw/road_network/kanagawa_municipalities/` に保存した
+- 取得結果メトリクスは `outputs/metrics/kanagawa_municipalities/kanagawa_municipality_fetch_metrics_latest.csv` に保存した
+- 実行ログは `logs/001_osm_network_feasibility_validation_plan_step3_fetch_20260318_111723.log` に保存した
+- 33 件中 33 件が成功し、エラーは 0 件だった
+- 失敗行政区一覧は `outputs/metrics/kanagawa_municipalities/kanagawa_municipality_failures_latest.csv` に出力し、今回は空だった
+- 最大ファイルは横浜市の `90.96 MB` で、分割取得データ全体の合計サイズは約 `257.44 MB` だった
+- 行政区単位での安定取得と、失敗分のみ再実行できる運用方針を確認できた
 
 ## Step 4. 分割データ結合
 
