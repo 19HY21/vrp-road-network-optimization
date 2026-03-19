@@ -1,0 +1,9 @@
+﻿threshold_m,base_component_id,target_component_id,distance_only_candidates,compatible_candidates,highway_mismatch,oneway_mismatch,maxspeed_mismatch,distance_over_threshold,evaluated_pairs
+10,1,6,0,0,0,0,0,31505,31505
+10,1,14,0,0,0,0,0,5195,5195
+20,1,6,0,0,0,0,0,31505,31505
+20,1,14,0,0,0,0,0,5195,5195
+30,1,6,0,0,0,0,0,31505,31505
+30,1,14,0,0,0,0,0,5195,5195
+50,1,6,0,0,0,0,0,31505,31505
+50,1,14,0,0,0,0,0,5195,5195

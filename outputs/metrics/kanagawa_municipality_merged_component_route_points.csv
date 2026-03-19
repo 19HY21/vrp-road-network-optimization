@@ -1,0 +1,7 @@
+﻿route_name,point_type,point_name,nearest_node,component_id,lon,lat
+Kawasaki Station to Great Buddha of Kamakura,start,Kawasaki Station,1657620639,1,139.6969,35.5314
+Kawasaki Station to Great Buddha of Kamakura,end,Great Buddha of Kamakura,298025891,1,139.5354,35.3167
+Yokohama Station to Odawara Station,start,Yokohama Station,8120975721,1,139.6227,35.4662
+Yokohama Station to Odawara Station,end,Odawara Station,2451183506,6,139.1597,35.2556
+Fujisawa Station to Hakone-Yumoto Station,start,Fujisawa Station,2398078142,1,139.4876,35.3388
+Fujisawa Station to Hakone-Yumoto Station,end,Hakone-Yumoto Station,6138273291,14,139.1069,35.2323

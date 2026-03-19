@@ -1,0 +1,13 @@
+﻿threshold_m,route_name,status,route_length_km,path_node_count,bridge_edge_pairs_added,error_message
+10,Kawasaki Station to Great Buddha of Kamakura,success,33.87,373,0,
+10,Yokohama Station to Odawara Station,error,,,0,No path between 8120975721 and 2451183506.
+10,Fujisawa Station to Hakone-Yumoto Station,error,,,0,No path between 2398078142 and 6138273291.
+20,Kawasaki Station to Great Buddha of Kamakura,success,33.87,373,0,
+20,Yokohama Station to Odawara Station,error,,,0,No path between 8120975721 and 2451183506.
+20,Fujisawa Station to Hakone-Yumoto Station,error,,,0,No path between 2398078142 and 6138273291.
+30,Kawasaki Station to Great Buddha of Kamakura,success,33.87,373,0,
+30,Yokohama Station to Odawara Station,error,,,0,No path between 8120975721 and 2451183506.
+30,Fujisawa Station to Hakone-Yumoto Station,error,,,0,No path between 2398078142 and 6138273291.
+50,Kawasaki Station to Great Buddha of Kamakura,success,33.87,373,0,
+50,Yokohama Station to Odawara Station,error,,,0,No path between 8120975721 and 2451183506.
+50,Fujisawa Station to Hakone-Yumoto Station,error,,,0,No path between 2398078142 and 6138273291.

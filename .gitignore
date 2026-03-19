@@ -210,4 +210,5 @@ notebooks/cache/
 # Project data artifacts
 cache/
 data/raw/road_network/*.graphml
+data/raw/road_network/**/*.graphml
 data/processed/**/*.graphml
