@@ -400,8 +400,46 @@ PoC レベルの判断基準
 
 成果物
 
-- 比較表
-- 差分メモ
+- Google Maps 比較元データ `30 OD`: `data/raw/route_validation/kanagawa_step6_google_maps_30od.csv`
+- Google Maps 比較元データ `全地点`: `data/raw/route_validation/kanagawa_step6_google_maps_all.csv`
+- 比較準備テンプレート `30 OD`: `data/raw/route_validation/kanagawa_step6_google_maps_30od_template.csv`
+- 比較準備テンプレート `全地点`: `data/raw/route_validation/kanagawa_step6_google_maps_all_template.csv`
+- 緯度経度付き比較ファイル `30 OD`: `outputs/metrics/kanagawa_step5_route_results_with_coords.csv`
+- 緯度経度付き比較ファイル `全地点`: `outputs/metrics/kanagawa_step5_all_route_results_with_coords.csv`
+- Step 6 セットアップ: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step6-setup` セル
+- 記述統計: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step6-descriptive-stats` セル
+- Wilcoxon 検定: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step6-wilcoxon` セル
+- 効果量: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step6-effect-size` セル
+- 実務閾値判定: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step6-threshold-judgement` セル
+- 順位一致率: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step6-ranking-agreement` セル
+- Step 6 比較基礎データ: `outputs/validation/step6/kanagawa_step6_30od_base_comparison.csv`
+- Step 6 記述統計: `outputs/validation/step6/kanagawa_step6_30od_descriptive_stats.csv`
+- Step 6 Wilcoxon 結果: `outputs/validation/step6/kanagawa_step6_30od_wilcoxon.csv`
+- Step 6 効果量: `outputs/validation/step6/kanagawa_step6_30od_effect_size.csv`
+- Step 6 実務閾値判定: `outputs/validation/step6/kanagawa_step6_30od_threshold_judgement.csv`
+- Step 6 順位一致詳細: `outputs/validation/step6/kanagawa_step6_30od_ranking_detail.csv`
+- Step 6 順位一致要約: `outputs/validation/step6/kanagawa_step6_30od_ranking_summary.csv`
+
+検証結果
+
+- `30 OD` を対象に、OSMnx と Google Maps の距離・時間差分、誤差率、順位一致を比較した
+- 距離差は平均 `-3.89 km`、平均誤差率 `10.01%`、`p95 = 22.35%`、最大誤差率 `23.74%` だった
+- 時間差は平均 `-8.76 分`、平均誤差率 `22.57%`、`p95 = 51.02%`、最大誤差率 `55.58%` だった
+- Wilcoxon 符号付順位検定では、距離 `p = 0.000006`、時間 `p = 0.000001` であり、いずれも統計的に一貫した差が確認された
+- 効果量は距離 `d = -1.17`、時間 `d = -1.27` であり、いずれも大きい差と判定された
+- 実務閾値判定では、距離は平均誤差率と `p95` が閾値をわずかに超過し、時間は平均、`p95`、最大のすべてで閾値を超過した
+- 順位一致では、距離の Top1 一致率 `100%`、平均 Spearman 相関 `0.983`、時間の Top1 一致率 `100%`、平均 Spearman 相関 `0.933` を確認した
+- この結果から、OSMnx は Google Maps に対して距離・時間を一貫して短めに見積もる傾向があるが、候補順位の整合性は高いと判断した
+- 距離については完全一致ではないものの、VRP の経路候補順位を大きく崩すほどの差ではなかった
+- 時間については Google Maps の実交通反映値と比べて差が大きく、補正なしにそのまま業務制約へ使うのは危険と判断した
+
+PoC レベルの判断基準
+
+- 距離は「OSM 実道路ネットワーク上の最短経路距離」として利用し、Google Maps と完全一致を求めるのではなく、候補順位を崩さない範囲で許容する
+- 社内 PoC の目的関数は、現時点では距離最小を第一候補とし、時間は参考値または補正前提の制約値として扱う
+- 時間を最適化対象や厳密な制約条件に使う場合は、地域別または時間帯別の補正係数を別途設計することを前提とする
+- OSMnx と Google Maps の比較で、距離の Top1 一致率が高く、順位相関が高い場合は、距離ベースの VRP PoC には十分利用可能とみなす
+- 一方で、時間の平均誤差率や `p95` が閾値を超過する場合は、補正なしの travel time をそのまま採用しない
 
 ## Step 7. 所要時間と拡張性確認
 
@@ -411,8 +449,38 @@ PoC レベルの判断基準
 
 成果物
 
-- 所要時間試算メモ
-- 属性確認メモ
+- 所要時間ロジック確認: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step7-travel-time-logic` セル
+- 所要時間深掘り比較: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step7-travel-time-deep-dive` セル
+- 属性棚卸し: `notebooks/001_osm_network_feasibility_validation_plan.ipynb` の `step7-attribute-inventory` セル
+- エッジ属性要約: `outputs/validation/step7/kanagawa_travel_time_edge_attr_summary.csv`
+- 道路種別別所要時間要約: `outputs/validation/step7/kanagawa_travel_time_highway_summary.csv`
+- 代表エッジ確認: `outputs/validation/step7/kanagawa_travel_time_sample_edges.csv`
+- 速度推定ソース要約: `outputs/validation/step7/kanagawa_travel_time_speed_source_summary.csv`
+- 道路種別別速度ソース要約: `outputs/validation/step7/kanagawa_travel_time_highway_source_summary.csv`
+- 距離最短 / 時間最短ルート比較: `outputs/validation/step7/kanagawa_travel_time_route_objective_comparison.csv`
+- エッジ属性棚卸し: `outputs/validation/step7/kanagawa_attribute_inventory_edges.csv`
+- ノード属性棚卸し: `outputs/validation/step7/kanagawa_attribute_inventory_nodes.csv`
+- 属性利用性評価: `outputs/validation/step7/kanagawa_attribute_inventory_assessment.csv`
+
+検証結果
+
+- 生の `kanagawa_drive.graphml` には `speed_kph` と `travel_time` は含まれておらず、これらは `OSMnx` の `add_edge_speeds` と `add_edge_travel_times` により付与される派生属性であることを確認した
+- `speed_kph` の付与元を確認した結果、`83.40%` が `inferred_or_default`、`16.56%` が `matches_maxspeed`、`0.04%` が `adjusted_from_maxspeed` だった。神奈川県全体の所要時間推定の大半は、明示的な速度制限値ではなく、道路種別ベースの補完速度に依存している
+- 道路種別別の平均速度は、`residential` が約 `30 km/h`、`tertiary` が約 `35.7 km/h`、`secondary` が約 `38.9 km/h`、`primary` が約 `41.3 km/h`、`trunk` が約 `46.7 km/h`、`motorway` が約 `73-74 km/h` で、道路階層に応じた静的速度ロジックになっていた
+- 距離最短ルートと時間最短ルートを `30 OD` で比較した結果、同一経路だったのは `2/30` 件のみで、`28/30` 件は異なる経路になった。時間最短ルートに切り替えると、平均で `5.93 分` 短縮する一方、平均 `2.88 km` の距離増加が発生した。最大では `15.33 分` の短縮と `12.36 km` の距離増加が確認された
+- この結果から、`travel_time` は「距離最短ルートに付随する参考時間」ではなく、重みとして使うとルート構造そのものを大きく変える指標であることを確認した。ただし、その時間は実交通を反映した動的時間ではなく、静的な推定時間である
+- 属性棚卸しでは、`highway`、`oneway`、`length` はほぼ全面的に利用可能で、`maxspeed` は一部利用可能、`access`、`lanes`、`width`、`est_width`、`bridge`、`tunnel` は補助的に利用可能だった。ノード側では `x`、`y`、`street_count` は十分に使え、`node.highway` や `junction` は信号機そのものではなく交差点複雑性の proxy として使うのが現実的だった
+- 車種別制約や通行可否制約に関しては、`highway`、`access`、`oneway`、`lanes`、`width/est_width`、`bridge`、`tunnel` を組み合わせれば PoC レベルの粗い制約条件は設計可能だが、幅員や一部制限系の欠損が多いため、厳密な実務制約をそのまま再現できる水準ではない
+- 以上より、`OSMnx` の `travel_time` は「実交通時間」ではなく「道路種別と速度仮定に基づく静的基準所要時間」として扱うのが適切であり、そのまま動的時間最適化の目的関数へ入れるのは不適切と判断した
+
+PoC レベルの判断基準
+
+- 神奈川県単一エリア、`人数 = 台数`、`1 人が 1 台を担当する配送` を前提とした VRP PoC では、目的関数を `総コスト = 車両固定費 × 台数 + 距離単価 × 総走行距離` として定義する
+- 距離は `OSM` 実道路ネットワーク上の最短経路距離として採用し、PoC の主目的関数に使用する。これは `Step 6` で Google Maps と比較した際に、距離の順位一致率が高く、ルート選択の妥当性が相対的に高かったためである
+- `travel_time` は補正なしのまま目的関数には採用せず、制約条件または参考値としてのみ扱う。勤務時間上限や配送時間帯制約に組み込む場合も、そのまま実時間と見なさず、補正前提の静的基準時間として扱う
+- 時間補正の方法は将来課題として整理し、PoC 段階では `時間帯別係数` や `教師学習による補正` を候補とする。ただし本 Step では補正モデルの実装までは行わず、`OSM travel_time` をそのまま動的時間として採用しないことを判断基準とする
+- 属性拡張性の観点では、`highway`、`oneway`、`access`、`lanes`、`maxspeed`、`width/est_width`、`bridge`、`tunnel`、`street_count` 等を用いれば、車種別制約、一方通行制約、速度制限制約、道路幅制約、交差点複雑性を考慮した拡張の余地がある。ただし欠損の多い属性は PoC では補助情報として扱い、厳密制約は今後のデータ補完または外部データ連携を前提とする
+- 以上から、社内 PoC としては「距離中心の最適化モデルを先に成立させ、時間は補正付き制約として段階的に導入する」方針を採用する。これにより、最適化モデルの説明可能性と再現性を維持しつつ、後続で時間補正や教師学習へ発展可能な構成とする
 
 ## Step 8. Go / No-Go 判定
 
@@ -421,8 +489,50 @@ PoC レベルの判断基準
 
 成果物
 
-- 判定メモ
-- 次フェーズ方針
+- Go / No-Go 判定メモ
+- PoC 採用構成メモ
+- 次フェーズ着手タスク一覧
+- 将来課題一覧
+
+検証結果
+
+- 神奈川県全体の道路ネットワークは OSMnx で一括取得でき、保存・再読込も安定して実施できた
+- 神奈川県全体の一括取得版を親グラフとして自治体単位に切り出し、再結合した場合は、一括取得版との差分が `0` であり、`weak component = 1` を維持できた
+- 自治体ごとに独立取得したグラフを後から単純結合する方式では、ノード数・エッジ数の差分が発生し、`No path` が出る OD が確認されたため、県全体 routing 用の基盤としては不採用と判断した
+- `Step 5` の OD 検証では、一括取得版と親グラフ切り出し版で `30 OD` および `132 OD` の全件一致を確認した
+- `Step 6` の Google Maps 比較では、距離は相対的に近く順位一致率も高かった一方、所要時間は Google Maps より短く出る傾向が確認された
+- `Step 7` の検証では、`travel_time` は道路種別ベースの静的推定値に大きく依存しており、そのまま動的時間最適化の目的関数に使うには不適切と判断した
+- 以上より、神奈川県単一エリアを対象とした社内 PoC では、距離中心の最適化を採用する構成が最も妥当である
+
+PoC レベルの判断基準
+
+- 判定: `Go`
+- 対象範囲は神奈川県単一エリアとする
+- ネットワークの正本は神奈川県全体の一括取得版とする
+- 分割運用が必要な場合は、親グラフから自治体単位に切り出す方式のみ採用する
+- 自治体ごとの独立取得グラフを後から結合する方式は採用しない
+- `人数 = 台数`、`1 人が 1 台を担当する配送` を前提とする
+- 目的関数は `総コスト = 車両固定費 × 台数 + 距離単価 × 総走行距離` とする
+- 距離は OSM 実道路ネットワーク上の最短経路距離を採用する
+- 所要時間は補正前提の静的推定時間として扱い、目的関数には入れず、制約条件または参考値として利用する
+- 車種別制約、一方通行、通行可否、速度制限、道路幅などは、OSM 属性を使って PoC レベルの粗い制約として拡張可能とする
+
+次フェーズで行うこと
+
+- `docs/design/` 配下の `.md` を順に埋め、PoC の設計を具体化する
+- デポ、配送先、需要量、車両台数上限などの入力条件を整理する
+- 距離中心の目的関数と制約条件を設計書に落とし込む
+- OR-Tools 等で神奈川県単一エリアの VRP PoC を実装する
+- 必要に応じて親グラフ切り出し方式を前提としたデータ更新運用を整理する
+
+将来課題
+
+- 所要時間の精度向上
+- 時間帯別係数や教師学習による所要時間補正
+- Google Maps など外部動的データを用いた時間モデル改善
+- 複数都道府県や広域配送への拡張
+- 都道府県間の大距離移送を含むネットワーク設計
+- 車種別制約や業務ルールを含む高度制約の追加
 
 ---
 
