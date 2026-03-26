@@ -1,0 +1,7 @@
+﻿from_point_id,from_point_name,from_municipality_name_en,candidate_count,distance_exact_match,distance_top1_match,distance_spearman,time_exact_match,time_top1_match,time_spearman
+kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,5,True,True,0.9999999999999999,False,True,0.8999999999999998
+kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,5,True,True,0.9999999999999999,True,True,0.9999999999999999
+kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,5,False,True,0.8999999999999998,False,True,0.8999999999999998
+kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,5,True,True,0.9999999999999999,False,True,0.8999999999999998
+kanagawa_odawara_001,Odawara Station,Odawara,5,True,True,0.9999999999999999,True,True,0.9999999999999999
+kanagawa_yokohama_001,Yokohama Station,Yokohama,5,True,True,0.9999999999999999,False,True,0.8999999999999998

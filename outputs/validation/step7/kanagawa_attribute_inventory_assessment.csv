@@ -1,0 +1,7 @@
+﻿constraint_topic,candidate_attributes,current_assessment,notes
+vehicle_type,"highway, access, width, est_width, bridge, tunnel",partial,車種別制約に使える可能性はあるが、width 系は欠損が多い可能性が高い
+oneway,"oneway, reversed",usable,一方通行制約にはそのまま使いやすい
+speed_limit,"maxspeed, speed_kph, travel_time",usable_with_caution,静的推定時間としては利用可能だが、動的時間としては補正前提
+road_width,"width, est_width, lanes",partial,幅員そのものは欠損が多い可能性があり、lane 数との併用が必要
+traffic_signal_proxy,"node.highway, node.junction, street_count",partial,信号機そのものより、交差点複雑性の proxy として使う方が現実的
+access_control,"access, highway",usable_with_caution,通行可否の粗い判定には使えるが、業務ルールとの追加整合が必要

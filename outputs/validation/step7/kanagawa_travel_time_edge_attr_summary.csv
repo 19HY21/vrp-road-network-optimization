@@ -1,0 +1,9 @@
+﻿attribute,exists,non_null_count,null_rate_pct,example
+highway,True,608205,0.0,tertiary
+length,True,608205,0.0,8.534361813392804
+maxspeed,True,100956,83.4,50
+speed_kph,True,608205,0.0,35.676314136591685
+travel_time,True,608205,0.0,0.8611792801964957
+oneway,True,608205,0.0,False
+access,True,6636,98.91,yes
+lanes,True,80680,86.73,2
