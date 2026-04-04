@@ -1,393 +1,130 @@
-# 概要
-本プロジェクトは OpenStreetMap の実道路ネットワークを利用した **Vehicle Routing Problem（VRP）配送ルート最適化システム** を構築するプロジェクトです。
+# VRP Road Network Optimization
 
-物流配送では以下の要素を考慮した配送計画が必要になります。
-- 配送先
-- 車両数
-- 車両容量
-- 道路ネットワーク
-- 配送距離
-- 配送時間
+OpenStreetMap の実道路ネットワークを用いて、配送計画における必要台数と配送コストを最適化する VRP PoC プロジェクトです。  
+直線距離や概算距離ではなく、実道路に基づく距離・ルート・制約を前提に、業務要件の整理から最適化モデル設計、評価までを一貫して設計・実装することを目的としています。
 
-これらの制約条件のもとで、配送コストを最小化するルートを求める問題は **Vehicle Routing Problem（VRP）** と呼ばれます。
+## 目的
 
-本プロジェクトでは
-- 実道路ネットワーク
-- 最短経路
-- 距離行列
-- VRP最適化
-- 可視化
-- シナリオ分析
-を統合した **実務PoCレベルの最適化パイプライン** を構築します。
+このリポジトリは、単に「最適化を使ったことがある」ことを示すためのものではありません。  
+以下を、業務課題起点で PoC レベルまで落とし込めることを示すことを狙っています。
 
----
+- 業務課題を整理し、PoC として解くべき問題へ定義できる
+- 実道路ネットワークを取得し、再現可能な入力基盤を作れる
+- VRP に必要な前処理、制約条件、目的関数を整理できる
+- 結果を可視化し、業務上説明可能な形で評価できる
 
-# 背景
-物流業界では配送効率の向上が重要な課題となっています。
+## 課題
 
-例えば以下の問題があります。
-- 配送ルートが経験則に依存している
-- 配送距離・配送時間の最適化が難しい
-- 複数車両のルート設計が複雑
+本 PoC は、次のような配送計画上の課題に対する価値提供を意図しています。
 
-これらの問題に対し、数理最適化を利用することで配送ルートの効率化が可能になります。
-本プロジェクトでは**実道路ネットワークを利用したVRP最適化**を実装し、配送計画最適化のPoCを構築します。
+- 実道路に即した配送計画を作りにくい
+- 配送計画作成に時間と人手がかかる
+- 配送計画が属人化しやすく再現性が低い
+- 計画根拠やコスト妥当性を説明しにくい
+- 複数案の比較や改善余地を把握しにくい
 
----
+これに対して、必要台数、配送順序、概算コスト、ルート可視化、代替案比較を返す PoC を構築します。
 
-# システムアーキテクチャ
-※後で図を追加予定
-本システムは以下の処理パイプラインで構成されます。
-```
-OpenStreetMap
-      ↓
-Road Network Extraction
-      ↓
-Shortest Path Computation
-      ↓
-Distance Matrix Generation
-      ↓
-VRP Solver
-      ↓
-Evaluation
-      ↓
-Visualization
-```
-将来的には以下のようなアーキテクチャ図を追加予定です。
-（ここに図を追加予定）
+## スコープ
 
----
+現時点で定義している対象は以下です。
 
-# プロジェクト構成
-```
-vrp-road-network-optimization/
+- 対象エリア：神奈川県
+- 配送形態：単一デポ、デポ出発・デポ帰着
+- 配送体制：`人数 = 台数`、1 人 1 台
+- 需要量単位：荷物個数
+- 使用台数：固定値ではなく、当日の稼働可能台数レンジ内で決定
+- 主目的：`総コスト = 使用台数 × 固定コスト + 総走行距離 × 距離比例コスト`
+- 時間制約：`午前 / 午後 / 時間指定なし` と `1 日 8 時間以内帰着` の粗い時間帯制約
+- 出力：必要台数、ルート案、概算コスト、各区間距離、各ルート総距離、可視化、代替案
 
-github/
-      workflows/
+## 特徴
 
-.vscode/
-      setting.json
+本プロジェクトでは、展示会や一般的な簡易配送計画で見かける「直線距離ベース」「概算距離ベース」のルート設計ではなく、OSM の実道路ネットワークを前提にしています。
 
-archive/
+そのため、以下を重視しています。
 
-config/
-      default.yaml
-      logging.yaml
+- 一方通行や道路接続を踏まえた実道路距離
+- 再現可能な道路ネットワーク取得と保存
+- 机上距離ではなく実道路ベースの配送計画
+- 最適化結果を現場や管理者へ説明できる出力設計
 
-data/
-    raw/
-    processed/
-    README.md
+## 進捗
 
-docs/
-      archives/
-      assumptions/
-            modeling_assumptions.md
-      brainstrorming/
-            001_001_osm_prefecture_preload_architecture_v1.md
-      data_dictionary/
-            customer_schema.md
-            distance_matrix_schema.md
-            network_schema.md
-            vehicle_shcem.md
-      decision_log
-      design/
-            00_problem_definition.md
-            01_business_requirements.md
-            02_data_definition.md
-            03_network_design.md
-            04_math_model.md
-            05_algorithm_design.md
-            06_experiment_design.md
-      feasibility/
-            01_osm_network_feasibility.md
-      result/
-            01_experiment_results.md
-            02_performance_analysis.md
-            03_scenario_analysis.md
-      architecture.md
+現時点で確認・整理が完了している主な内容は以下です。
 
-experiments/
-      exp001_base_case
+- 神奈川県全体の OSM `drive` ネットワークを安定取得できることを確認
+- 取得した道路グラフを保存・再読込し、再現可能に扱えることを確認
+- 実道路ネットワーク上で OD 間距離を安定算出できることを確認
+- 自治体別に独立取得したグラフの単純結合は routing 基盤として不適であることを確認
+- 一括取得した親グラフを切り出す方式であれば整合性を保てることを確認
+- Google Maps 比較を通じて、距離は PoC 利用可能、時間は補正前提と整理
+- 問題定義と業務要件をドキュメントとして整理
 
-logs/
+## 次工程
 
-notebooks/
-      archive/
-      001_osm_perfecture_network_check.ipynb
-      002_prefecture_batch_network_check.ipynb
+現在は、PoC の前半にあたる「問題定義」と「業務要件」の整理が完了し、後続のデータ定義・ネットワーク設計・数理モデル設計へ進む段階です。
 
-outputs/
-    figures/
-    metrics/
-    routes/
+完了済み
 
-scripts/
-      run_pipline.py
+- `docs/design/00_problem_definition.md`
+- `docs/design/01_business_requirements.md`
+- `docs/brainstorming/001_osm_network_feasibility_validation_plan.md`
 
+これから進める内容
 
-src/
-      vrp_optimization/
-            app/
-            config/
-            data_generation/
-            distance_matrix/
-            evaluation/
-            network/
-            simulation/
-            solver/
-            visualization/
-            __init__.py
-            cli.py
+- `docs/design/02_data_definition.md`
+- `docs/design/03_network_design.md`
+- `docs/design/04_math_model.md`
+- `docs/design/05_algorithm_design.md`
+- `docs/design/06_experiment_design.md`
+- 初版 VRP 実装
 
-tests/
+## ドキュメント
 
-.env.example
+- 問題定義：[docs/design/00_problem_definition.md](docs/design/00_problem_definition.md)
+- 業務要件：[docs/design/01_business_requirements.md](docs/design/01_business_requirements.md)
+- OSM 事前検証計画：[docs/brainstorming/001_osm_network_feasibility_validation_plan.md](docs/brainstorming/001_osm_network_feasibility_validation_plan.md)
+- アーキテクチャ概要：[docs/architecture.md](docs/architecture.md)
 
-.gitnore
+## パイプライン
 
-LICENSE
+この PoC では、概ね以下の流れで配送計画を生成します。
 
-Makefile
-
-pyproject.toml
-
-REAMDE.md
-
-requirements.txt
-
+```text
+配送対象データ
+    ↓
+住所正規化 / ジオコーディング
+    ↓
+道路ネットワークへの割当
+    ↓
+実道路距離計算
+    ↓
+VRP 最適化
+    ↓
+評価 / 可視化 / 比較
 ```
 
----
-
-# ディレクトリ構造と役割
-
-## `.github/`
-
-GitHub のリポジトリ運用に関する設定を管理するディレクトリです。
-主に GitHub Actions などの CI/CD ワークフローを格納します。
-
-
-## `.vscode/`
-
-Visual Studio Code 用の開発環境設定を管理するディレクトリです。
-エディタ設定、Python 実行環境、フォーマッタ設定などを保存します。
-
-
-## `archive/`
-
-過去の実験結果、旧バージョンのコード、廃止された設計資料などを保存するディレクトリです。
-現在は使用しないが履歴として残しておく資料を保管します。
-
-
-## `config/`
-
-アプリケーションや実験設定を管理するディレクトリです。
-モデル設定、実験パラメータ、ログ設定などの YAML ファイルを配置します。
-
-
-## `data/`
-
-プロジェクトで使用するデータを格納するディレクトリです。
-主に以下の2種類のデータを管理します。
-
-* **raw**：外部から取得した未加工データ
-* **processed**：前処理済みデータ
-
-データの取得方法や管理ルールは `data/README.md` に記載します。
-
-
-## `docs/`
-
-プロジェクト設計・検討・分析結果などのドキュメントを管理するディレクトリです。
-
-主な内容
-
-* 問題定義
-* 数理モデル設計
-* アルゴリズム設計
-* 実験設計
-* 技術検証
-* 結果分析
-* データ定義
-* 設計判断ログ
-
-最適化プロジェクトの設計・分析ドキュメントを体系的に整理するためのディレクトリです。
-
-
-## `experiments/`
-
-実験単位の設定や結果を管理するディレクトリです。
-各実験ごとにサブフォルダを作成し、以下の情報を管理します。
-
-* 実験設定
-* 実験ログ
-* 評価結果
-* 実験用データ
-
-
-## `logs/`
-
-プログラム実行時に出力されるログファイルを保存するディレクトリです。
-デバッグや実験の再現性確認に利用します。
-
-
-## `notebooks/`
-
-Jupyter Notebook を用いた分析や検証を行うディレクトリです。
-
-主な用途
-
-* データ探索（EDA）
-* ネットワーク確認
-* 距離計算検証
-* モデル挙動確認
-
-
-## `outputs/`
-
-プログラム実行結果を保存するディレクトリです。
-
-主な内容
-
-* ルート結果
-* 評価指標
-* 可視化図
-
-
-## `scripts/`
-
-パイプライン実行やデータ処理を行うスクリプトを格納するディレクトリです。
-主に CLI から実行するスクリプトを配置します。
-
-
-## `src/`
-
-アプリケーションのメイン実装コードを格納するディレクトリです。
-
-主な内容
-
-* 最適化ロジック
-* ネットワーク処理
-* 距離行列生成
-* シミュレーション
-* 可視化
-
-プロジェクトのコアロジックを実装するディレクトリです。
-
-
-## `tests/`
-
-ユニットテストや統合テストを格納するディレクトリです。
-各モジュールの動作確認と品質保証を目的として使用します。
-
-
-## `.env.example`
-
-環境変数設定のテンプレートファイルです。
-実際の `.env` ファイル作成時のサンプルとして使用します。
-
-
-## `.gitignore`
-
-Git 管理対象外にするファイルやディレクトリを定義する設定ファイルです。
-
-
-## `LICENSE`
-
-プロジェクトのライセンスを定義するファイルです。
-
-
-## `Makefile`
-
-開発用コマンドをまとめたファイルです。
-ビルド・テスト・実行などのコマンドを簡略化するために使用します。
-
-
-## `pyproject.toml`
-
-Python プロジェクトの設定ファイルです。
-パッケージ管理やビルド設定を定義します。
-
-
-## `README.md`
-
-プロジェクトの概要、使い方、構成などを説明するドキュメントです。
-
-
-## `requirements.txt`
-
-プロジェクトで使用する Python ライブラリの依存関係を定義するファイルです。
-
----
-
-# 技術スタック
-Python
-主要ライブラリ
-- OSMnx
-- NetworkX
-- OR-Tools
-- Pandas
-- NumPy
-- GeoPandas
-- Folium
-- Streamlit
-
----
-
-
-# 数理モデル概要
-※後で追記予定
-
-詳細はdocs/04_math_model.md参照。
-
----
-
-# 実験設計
-※後で追記予定
-
-docs/06_experiment_design.md参照。
-
----
-
-# 実行方法
-※実装後に追記
-- make network
-- make distance
-- make solve
-- make simulation
-
-または
-- python scripts/run_pipeline.py
-
----
-
-# 実験結果
-※実装後に追記予定
-
----
-
-# 可視化結果
-※実装後に追記予定
-
----
-
-# パフォーマンス評価
-※実装後に追記予定
-
----
-
-# 再現方法
-※後で追記予定
-
----
-
-# 想定ユースケース
-- 配送ルート最適化
-- 物流ネットワーク分析
-- 配送計画シミュレーション
-
----
-
-# ライセンス
-MIT License
+## 構成
+
+主要ディレクトリは以下です。
+
+```text
+.
+├── config/                  # 設定ファイル
+├── data/                    # raw / processed データ
+├── docs/                    # 設計・検証・結果ドキュメント
+├── experiments/             # 実験単位の設定と結果
+├── logs/                    # 実行ログ
+├── notebooks/               # Notebook による検証
+├── outputs/                 # 可視化・指標・ルート出力
+├── scripts/                 # 実行補助スクリプト
+├── src/vrp_optimization/    # 実装コード
+└── tests/                   # テスト
+```
+
+## 補足
+
+- 本リポジトリは本番システムではなく、社内 PoC レベルを想定したポートフォリオです。
+- 商用の動的交通情報を常時利用する構成は前提としていません。
+- 分単位の厳密な時間指定配送や複数デポ最適化は現時点の対象外です。
