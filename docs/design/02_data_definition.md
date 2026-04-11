@@ -356,7 +356,8 @@
 
 関係の考え方は以下のとおりである。
 
-- `network_assignment_result.network_node_id` をもとに、距離・時間計算対象のノード集合を構成する
+- 配送先については `network_assignment_result.network_node_id` をもとに、距離・時間計算対象のノード集合を構成する
+- デポについては `depot_master.depot_network_node_id` を出発地点および帰着地点のノードとして利用する
 - そのノード集合に対して、`plan_id` 単位で `od_matrix_result` を生成する
 
 ここで重要なのは、`od_matrix_result` が `transaction_id` 単位ではなく `plan_id` 単位で管理される点である。  
