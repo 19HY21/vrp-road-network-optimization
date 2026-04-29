@@ -225,6 +225,7 @@
 | 業務時間内帰着可否 | return_within_work_hours | 業務時間内帰着条件を満たすか | boolean | 必須 | なし | `1 日 8 時間以内帰着` の確認用 |
 | 時間帯制約充足可否 | time_window_feasible | 時間帯制約を満たすか | boolean | 必須 | なし | `午前 / 午後 / 時間指定なし` の確認用 |
 | 実行可能解フラグ | feasible_flag | 制約を満たす実行可能解か | boolean | 必須 | なし | 案の採用候補可否を表す |
+| 全件配送フラグ | all_deliveries_included | 指定された配送先全件が対象に含まれているか | boolean | 必須 | なし | `false` の場合は一部配送先を除外した暫定結果であることを示す |
 | 評価順位 | rank | システム評価上の順位 | integer | 必須 | なし | `1` が最上位候補 |
 | システム推奨フラグ | is_system_recommended | システム上の推奨案かどうか | boolean | 必須 | なし | 一覧上で強調表示する対象 |
 | 推奨理由 | recommendation_reason | 推奨案とした理由の要約 | string | 任意 | なし | 例: `最少台数かつ総コスト最小` |
