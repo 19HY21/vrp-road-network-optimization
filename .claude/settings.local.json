@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization status)",
+      "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization log --oneline -3)",
+      "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization add docs/design/02_data_definition.md docs/design/04_math_model.md docs/design/05_algorithm_design.md)",
+      "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization commit -m ' *)",
+      "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization push origin main)"
+    ]
+  }
+}
