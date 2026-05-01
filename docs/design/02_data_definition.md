@@ -120,9 +120,9 @@
 | 配送ID | delivery_id | 配送先を識別する ID | string | 必須 | PK | UUID により採番する |
 | 配送先名 | destination_name | 配送先の名称 | string | 任意 | なし | 表示用名称 |
 | 配送先住所 | destination_address | 配送先所在地の元住所情報 | string | 必須 | なし | 入力時点の住所を保持する |
-| 正規化後住所 | normalized_address | 同一配送先判定に用いる正規化後住所 | string | 任意 | なし | 前処理結果を反映する |
-| 緯度 | latitude | 配送先マスタで保持する配送先の緯度 | float | 任意 | なし | 新規配送先登録時に付与し、既存配送先では再利用する |
-| 経度 | longitude | 配送先マスタで保持する配送先の経度 | float | 任意 | なし | 新規配送先登録時に付与し、既存配送先では再利用する |
+| 正規化後住所 | normalized_destination_address | 同一配送先判定に用いる正規化後住所 | string | 任意 | なし | 前処理結果を反映する |
+| 緯度 | destination_latitude | 配送先マスタで保持する配送先の緯度 | float | 任意 | なし | 新規配送先登録時に付与し、既存配送先では再利用する |
+| 経度 | destination_longitude | 配送先マスタで保持する配送先の経度 | float | 任意 | なし | 新規配送先登録時に付与し、既存配送先では再利用する |
 | 登録日時 | created_at | 配送先マスタへ登録した日時 | datetime | 必須 | なし | 新規配送先登録時に記録する |
 | 更新日時 | updated_at | 配送先マスタの最終更新日時 | datetime | 任意 | なし | 住所修正時などに更新する |
 
