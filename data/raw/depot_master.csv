@@ -1,0 +1,2 @@
+depot_id,depot_name,depot_address,depot_latitude,depot_longitude,depot_network_node_id,depot_snap_status,depot_snap_distance,depot_osm_version,vehicle_count_min,vehicle_count_max,fixed_cost_per_vehicle,capacity_per_vehicle,work_start_time,work_end_time,distance_unit_cost
+DEPOT_001,横浜配送センター,神奈川県横浜市港北区新横浜2-100-45,,,,,,,2,5,15000,30,09:00,18:00,50.0

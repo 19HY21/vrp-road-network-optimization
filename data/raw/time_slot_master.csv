@@ -1,0 +1,4 @@
+time_slot_code,time_slot_name,slot_start_time,slot_end_time
+1,午前,09:00,13:00
+2,午後,13:00,18:00
+3,時間指定なし,,
