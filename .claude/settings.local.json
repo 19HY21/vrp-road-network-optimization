@@ -14,7 +14,8 @@
       "Bash(python -c \"import vrp_optimization; print\\('import OK'\\)\")",
       "Bash(python -m pytest --collect-only -q)",
       "Bash(git commit -m ' *)",
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(python -m vrp_optimization.data_generation.fetch_kanagawa_poi)"
     ]
   }
 }
