@@ -1,8 +1,27 @@
 """
-Overpass API (OSMnx) で神奈川県内の POI を取得し delivery_transaction.csv を生成する。
+【目的】
+    VRP パイプラインの開発・実験用サンプルデータとして、
+    data/raw/delivery_transaction.csv を生成するスクリプト。
 
-Usage:
-    python -m vrp_optimization.data_generation.fetch_kanagawa_poi
+【処理の流れ】
+    1. Overpass API（OSMnx 経由）で神奈川県内の POI（郵便局・薬局・コンビニ等）を取得する
+    2. OSM アドレスタグ（addr:full または各コンポーネント）から日本語住所を組み立てる
+    3. 住所が取得できた POI を対象に delivery_transaction レコードを生成する
+       - transaction_id : UUID ベースのランダム ID
+       - package_count  : 1〜5 個（乱数、再現性のため固定シード使用）
+       - delivery_time_slot_code : 1=午前 / 2=午後 / 3=時間指定なし（乱数）
+    4. data/raw/delivery_transaction.csv に上書き保存する
+
+【出力先】
+    data/raw/delivery_transaction.csv
+
+【注意事項】
+    - 実行時に Overpass API へのネットワークアクセスが発生する
+    - OSM の住所データが不完全な POI（丁目・番地なし等）は自動スキップされる
+    - 実クライアントデータではなく PoC 用疑似データとして使用する想定
+
+【実行方法】
+    python -m vrp_optimization.data_generation.delivery_transaction.fetch_kanagawa_poi
 """
 import random
 import uuid
@@ -22,7 +41,7 @@ DEPOT_ID = "DEPOT_001"
 DELIVERY_DATE = "2026-05-20"
 RANDOM_SEED = 42
 
-_ROOT = Path(__file__).parents[3]
+_ROOT = Path(__file__).parents[4]
 OUTPUT_PATH = _ROOT / "data" / "raw" / "delivery_transaction.csv"
 
 
