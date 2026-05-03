@@ -70,7 +70,7 @@ OpenStreetMap の実道路ネットワークを用いて、配送計画におけ
 
 ## 次工程
 
-現在は、PoC 前半の設計整理として「問題定義」「業務要件」「データ定義」「道路ネットワーク設計」「数理モデル設計」までが完了し、後続のアルゴリズム設計・実験設計・実装へ進む段階です。
+設計フェーズ（00〜06）が完了し、現在は実装フェーズへ移行する段階です。
 
 完了済み
 
@@ -79,13 +79,17 @@ OpenStreetMap の実道路ネットワークを用いて、配送計画におけ
 - `docs/design/02_data_definition.md`
 - `docs/design/03_network_design.md`
 - `docs/design/04_math_model.md`
+- `docs/design/05_algorithm_design.md`
+- `docs/design/06_experiment_design.md`
 - `docs/brainstorming/001_osm_network_feasibility_validation_plan.md`
 
 これから進める内容
 
-- `docs/design/05_algorithm_design.md`
-- `docs/design/06_experiment_design.md`
-- 初版 VRP 実装
+- 環境整備（pyproject.toml / requirements.txt）
+- データ前処理パイプライン
+- VRP ソルバー実装
+- 出力・可視化
+- CLI / パイプライン統合
 
 ## ドキュメント
 
@@ -94,6 +98,8 @@ OpenStreetMap の実道路ネットワークを用いて、配送計画におけ
 - データ定義：[docs/design/02_data_definition.md](docs/design/02_data_definition.md)
 - 道路ネットワーク設計：[docs/design/03_network_design.md](docs/design/03_network_design.md)
 - 数理モデル設計：[docs/design/04_math_model.md](docs/design/04_math_model.md)
+- アルゴリズム設計：[docs/design/05_algorithm_design.md](docs/design/05_algorithm_design.md)
+- 実験設計：[docs/design/06_experiment_design.md](docs/design/06_experiment_design.md)
 - OSM 事前検証計画：[docs/brainstorming/001_osm_network_feasibility_validation_plan.md](docs/brainstorming/001_osm_network_feasibility_validation_plan.md)
 - アーキテクチャ概要：[docs/architecture.md](docs/architecture.md)
 
@@ -117,20 +123,52 @@ VRP 最適化
 
 ## 構成
 
-主要ディレクトリは以下です。
+主要ディレクトリとファイルの配置は以下です。
 
 ```text
 .
-├── config/                  # 設定ファイル
-├── data/                    # raw / processed データ
-├── docs/                    # 設計・検証・結果ドキュメント
-├── experiments/             # 実験単位の設定と結果
-├── logs/                    # 実行ログ
-├── notebooks/               # Notebook による検証
-├── outputs/                 # 可視化・指標・ルート出力
-├── scripts/                 # 実行補助スクリプト
-├── src/vrp_optimization/    # 実装コード
-└── tests/                   # テスト
+├── config/
+│   ├── default.yaml             # ソルバータイムアウト・コスト係数等の実行時パラメータ
+│   └── logging.yaml             # ログ設定
+│
+├── data/
+│   ├── raw/                     # 入力 CSV（delivery_transaction, depot_master, time_slot_master）
+│   └── processed/               # ジオコーディング結果・ネットワーク割当結果（JSON）
+│
+├── docs/
+│   └── design/                  # 設計ドキュメント（00〜06）
+│
+├── experiments/
+│   └── exp001_base_case/        # 実験単位ごとの設定と結果
+│
+├── logs/                        # 実行ログ
+│
+├── notebooks/                   # Notebook による検証・実験結果の可視化
+│
+├── outputs/
+│   └── {plan_id}/               # 実行単位ごとの出力（plan_id はタイムスタンプ等）
+│       ├── preprocess/          # ジオコード・ネットワーク割当結果
+│       ├── distance/            # OD 距離行列
+│       └── output/
+│           ├── table/           # ルート一覧 CSV・候補案比較表
+│           └── image/           # ルートマップ HTML
+│
+├── scripts/
+│   └── run_pipeline.py          # パイプライン全体のオーケストレーション
+│
+├── src/vrp_optimization/
+│   ├── cli.py                   # CLI エントリポイント（app / run コマンド）
+│   ├── config/                  # 設定読み込み・バリデーション（depot_master パラメータ等）
+│   ├── network/                 # OSM グラフ取得・ロード・サブグラフ切り出し・ノード割当
+│   ├── distance_matrix/         # OD 距離行列の計算・キャッシュ
+│   ├── solver/                  # VRP ソルバー本体（OR-Tools）・制約実装・候補案生成
+│   ├── evaluation/              # 制約充足検証・ルート妥当性チェック
+│   ├── visualization/           # ルートマップ生成（Folium 等）・Excel 出力
+│   └── data_generation/         # 実験用テストケースデータ生成（規模別サンプル）
+│
+└── tests/
+    ├── unit/                    # 各モジュール単体テスト
+    └── integration/             # パイプライン結合テスト（小規模テストケースで E2E）
 ```
 
 ## 補足
