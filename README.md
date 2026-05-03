@@ -98,8 +98,6 @@ OpenStreetMap の実道路ネットワークを用いて、配送計画におけ
 - データ定義：[docs/design/02_data_definition.md](docs/design/02_data_definition.md)
 - 道路ネットワーク設計：[docs/design/03_network_design.md](docs/design/03_network_design.md)
 - 数理モデル設計：[docs/design/04_math_model.md](docs/design/04_math_model.md)
-- アルゴリズム設計：[docs/design/05_algorithm_design.md](docs/design/05_algorithm_design.md)
-- 実験設計：[docs/design/06_experiment_design.md](docs/design/06_experiment_design.md)
 - OSM 事前検証計画：[docs/brainstorming/001_osm_network_feasibility_validation_plan.md](docs/brainstorming/001_osm_network_feasibility_validation_plan.md)
 - アーキテクチャ概要：[docs/architecture.md](docs/architecture.md)
 

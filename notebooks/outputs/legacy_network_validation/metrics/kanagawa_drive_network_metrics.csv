@@ -1,0 +1,2 @@
+﻿prefecture_name,network_type,node_count,edge_count,elapsed_seconds,graph_path,file_size_mb,reload_node_count,reload_edge_count
+"Kanagawa, Japan",drive,223850,608205,296.38,C:\Users\LCCadmin\OneDrive - 株式会社　ロジクロス・コミュニケーション\ドキュメント\GitHub\vrp-road-network-optimization\data\raw\road_network\kanagawa_drive.graphml,259.52,223850,608205

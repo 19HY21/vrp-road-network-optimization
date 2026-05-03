@@ -1,0 +1,4 @@
+﻿graph_type,route_name,status,route_length_km,path_node_count,error_message
+master_split_merged,Kawasaki Station to Great Buddha of Kamakura,success,32.89,359,
+master_split_merged,Yokohama Station to Odawara Station,success,53.54,370,
+master_split_merged,Fujisawa Station to Hakone-Yumoto Station,success,38.88,250,

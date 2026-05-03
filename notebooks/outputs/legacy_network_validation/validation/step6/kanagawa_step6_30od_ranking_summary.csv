@@ -1,0 +1,2 @@
+﻿distance_exact_match_rate,distance_top1_match_rate,distance_mean_spearman,time_exact_match_rate,time_top1_match_rate,time_mean_spearman,distance_top1_pass,distance_spearman_pass,time_top1_pass,time_spearman_pass
+0.8333333333333334,1.0,0.9833333333333333,0.3333333333333333,1.0,0.9333333333333331,True,True,True,True

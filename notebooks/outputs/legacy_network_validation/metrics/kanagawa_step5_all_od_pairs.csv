@@ -1,0 +1,133 @@
+﻿od_id,from_point_id,from_point_name,from_municipality_name_en,from_latitude,from_longitude,to_point_id,to_point_name,to_municipality_name_en,to_latitude,to_longitude
+kanagawa_fujisawa_001__kanagawa_fujisawa_002,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_fujisawa_001__kanagawa_hakone_001,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_fujisawa_001__kanagawa_hakone_002,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_fujisawa_001__kanagawa_kamakura_001,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_fujisawa_001__kanagawa_kamakura_002,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_fujisawa_001__kanagawa_kawasaki_001,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_fujisawa_001__kanagawa_kawasaki_002,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_fujisawa_001__kanagawa_odawara_001,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_fujisawa_001__kanagawa_odawara_002,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_fujisawa_001__kanagawa_yokohama_001,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_fujisawa_001__kanagawa_yokohama_002,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_fujisawa_002__kanagawa_fujisawa_001,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_fujisawa_002__kanagawa_hakone_001,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_fujisawa_002__kanagawa_hakone_002,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_fujisawa_002__kanagawa_kamakura_001,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_fujisawa_002__kanagawa_kamakura_002,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_fujisawa_002__kanagawa_kawasaki_001,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_fujisawa_002__kanagawa_kawasaki_002,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_fujisawa_002__kanagawa_odawara_001,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_fujisawa_002__kanagawa_odawara_002,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_fujisawa_002__kanagawa_yokohama_001,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_fujisawa_002__kanagawa_yokohama_002,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_hakone_001__kanagawa_fujisawa_001,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_hakone_001__kanagawa_fujisawa_002,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_hakone_001__kanagawa_hakone_002,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_hakone_001__kanagawa_kamakura_001,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_hakone_001__kanagawa_kamakura_002,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_hakone_001__kanagawa_kawasaki_001,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_hakone_001__kanagawa_kawasaki_002,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_hakone_001__kanagawa_odawara_001,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_hakone_001__kanagawa_odawara_002,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_hakone_001__kanagawa_yokohama_001,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_hakone_001__kanagawa_yokohama_002,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_hakone_002__kanagawa_fujisawa_001,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_hakone_002__kanagawa_fujisawa_002,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_hakone_002__kanagawa_hakone_001,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_hakone_002__kanagawa_kamakura_001,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_hakone_002__kanagawa_kamakura_002,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_hakone_002__kanagawa_kawasaki_001,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_hakone_002__kanagawa_kawasaki_002,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_hakone_002__kanagawa_odawara_001,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_hakone_002__kanagawa_odawara_002,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_hakone_002__kanagawa_yokohama_001,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_hakone_002__kanagawa_yokohama_002,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_kamakura_001__kanagawa_fujisawa_001,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_kamakura_001__kanagawa_fujisawa_002,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_kamakura_001__kanagawa_hakone_001,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_kamakura_001__kanagawa_hakone_002,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_kamakura_001__kanagawa_kamakura_002,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_kamakura_001__kanagawa_kawasaki_001,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_kamakura_001__kanagawa_kawasaki_002,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_kamakura_001__kanagawa_odawara_001,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_kamakura_001__kanagawa_odawara_002,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_kamakura_001__kanagawa_yokohama_001,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_kamakura_001__kanagawa_yokohama_002,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_kamakura_002__kanagawa_fujisawa_001,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_kamakura_002__kanagawa_fujisawa_002,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_kamakura_002__kanagawa_hakone_001,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_kamakura_002__kanagawa_hakone_002,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_kamakura_002__kanagawa_kamakura_001,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_kamakura_002__kanagawa_kawasaki_001,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_kamakura_002__kanagawa_kawasaki_002,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_kamakura_002__kanagawa_odawara_001,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_kamakura_002__kanagawa_odawara_002,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_kamakura_002__kanagawa_yokohama_001,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_kamakura_002__kanagawa_yokohama_002,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_kawasaki_001__kanagawa_fujisawa_001,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_kawasaki_001__kanagawa_fujisawa_002,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_kawasaki_001__kanagawa_hakone_001,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_kawasaki_001__kanagawa_hakone_002,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_kawasaki_001__kanagawa_kamakura_001,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_kawasaki_001__kanagawa_kamakura_002,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_kawasaki_001__kanagawa_kawasaki_002,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_kawasaki_001__kanagawa_odawara_001,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_kawasaki_001__kanagawa_odawara_002,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_kawasaki_001__kanagawa_yokohama_001,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_kawasaki_001__kanagawa_yokohama_002,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_kawasaki_002__kanagawa_fujisawa_001,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_kawasaki_002__kanagawa_fujisawa_002,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_kawasaki_002__kanagawa_hakone_001,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_kawasaki_002__kanagawa_hakone_002,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_kawasaki_002__kanagawa_kamakura_001,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_kawasaki_002__kanagawa_kamakura_002,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_kawasaki_002__kanagawa_kawasaki_001,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_kawasaki_002__kanagawa_odawara_001,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_kawasaki_002__kanagawa_odawara_002,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_kawasaki_002__kanagawa_yokohama_001,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_kawasaki_002__kanagawa_yokohama_002,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_odawara_001__kanagawa_fujisawa_001,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_odawara_001__kanagawa_fujisawa_002,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_odawara_001__kanagawa_hakone_001,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_odawara_001__kanagawa_hakone_002,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_odawara_001__kanagawa_kamakura_001,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_odawara_001__kanagawa_kamakura_002,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_odawara_001__kanagawa_kawasaki_001,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_odawara_001__kanagawa_kawasaki_002,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_odawara_001__kanagawa_odawara_002,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_odawara_001__kanagawa_yokohama_001,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_odawara_001__kanagawa_yokohama_002,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_odawara_002__kanagawa_fujisawa_001,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_odawara_002__kanagawa_fujisawa_002,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_odawara_002__kanagawa_hakone_001,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_odawara_002__kanagawa_hakone_002,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_odawara_002__kanagawa_kamakura_001,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_odawara_002__kanagawa_kamakura_002,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_odawara_002__kanagawa_kawasaki_001,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_odawara_002__kanagawa_kawasaki_002,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_odawara_002__kanagawa_odawara_001,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_odawara_002__kanagawa_yokohama_001,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227
+kanagawa_odawara_002__kanagawa_yokohama_002,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_yokohama_001__kanagawa_fujisawa_001,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_yokohama_001__kanagawa_fujisawa_002,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_yokohama_001__kanagawa_hakone_001,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_yokohama_001__kanagawa_hakone_002,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_yokohama_001__kanagawa_kamakura_001,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_yokohama_001__kanagawa_kamakura_002,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_yokohama_001__kanagawa_kawasaki_001,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_yokohama_001__kanagawa_kawasaki_002,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_yokohama_001__kanagawa_odawara_001,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_yokohama_001__kanagawa_odawara_002,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_yokohama_001__kanagawa_yokohama_002,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425
+kanagawa_yokohama_002__kanagawa_fujisawa_001,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_fujisawa_001,Fujisawa Station,Fujisawa,35.3388,139.4876
+kanagawa_yokohama_002__kanagawa_fujisawa_002,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_fujisawa_002,Enoshima,Fujisawa,35.3006,139.4807
+kanagawa_yokohama_002__kanagawa_hakone_001,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_hakone_001,Hakone-Yumoto Station,Hakone,35.2323,139.1069
+kanagawa_yokohama_002__kanagawa_hakone_002,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_hakone_002,Owakudani,Hakone,35.2457,139.0228
+kanagawa_yokohama_002__kanagawa_kamakura_001,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_kamakura_001,Great Buddha of Kamakura,Kamakura,35.3167,139.5354
+kanagawa_yokohama_002__kanagawa_kamakura_002,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_kamakura_002,Tsurugaoka Hachimangu,Kamakura,35.3259,139.556
+kanagawa_yokohama_002__kanagawa_kawasaki_001,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_kawasaki_001,Kawasaki Station,Kawasaki,35.5314,139.6969
+kanagawa_yokohama_002__kanagawa_kawasaki_002,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_kawasaki_002,Kawasaki Daishi,Kawasaki,35.5329,139.7224
+kanagawa_yokohama_002__kanagawa_odawara_001,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_odawara_001,Odawara Station,Odawara,35.2556,139.1597
+kanagawa_yokohama_002__kanagawa_odawara_002,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_odawara_002,Odawara Castle,Odawara,35.2518,139.1548
+kanagawa_yokohama_002__kanagawa_yokohama_001,kanagawa_yokohama_002,Yokohama Red Brick Warehouse,Yokohama,35.4526,139.6425,kanagawa_yokohama_001,Yokohama Station,Yokohama,35.4662,139.6227

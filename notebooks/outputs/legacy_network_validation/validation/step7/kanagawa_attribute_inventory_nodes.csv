@@ -1,0 +1,9 @@
+﻿entity_type,attribute,exists,non_null_count,non_null_rate_pct,example
+node,x,True,223850,100.0,139.622636
+node,y,True,223850,100.0,35.3181268
+node,street_count,True,223850,100.0,3
+node,highway,True,9837,4.39,traffic_signals
+node,junction,True,1269,0.57,yes
+node,traffic_signals,False,0,0.0,
+node,ref,True,187,0.08,7
+node,railway,True,12,0.01,level_crossing

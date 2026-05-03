@@ -1,0 +1,16 @@
+﻿entity_type,attribute,exists,non_null_count,non_null_rate_pct,example
+edge,highway,True,608205,100.0,tertiary
+edge,oneway,True,608205,100.0,False
+edge,length,True,608205,100.0,8.534361813392804
+edge,maxspeed,True,100956,16.6,50
+edge,speed_kph,False,0,0.0,
+edge,travel_time,False,0,0.0,
+edge,access,True,6636,1.09,yes
+edge,lanes,True,80680,13.27,2
+edge,width,True,5151,0.85,4.5
+edge,est_width,True,27630,4.54,13.0m以上
+edge,bridge,True,10680,1.76,yes
+edge,tunnel,True,1837,0.3,yes
+edge,junction,True,58,0.01,roundabout
+edge,name,True,55005,9.04,東京環状
+edge,ref,True,43016,7.07,16

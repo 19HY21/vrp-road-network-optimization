@@ -1,0 +1,2 @@
+﻿raw_node_count,raw_edge_count,merged_node_count,merged_edge_count,delta_nodes_vs_raw,delta_edges_vs_raw,missing_nodes_vs_raw,extra_nodes_vs_raw,missing_edges_vs_raw,extra_edges_vs_raw,merged_weak_component_count,merged_graph_file_size_mb,successful_slice_count,error_slice_count
+223850,608205,223850,608205,0,0,0,0,0,0,1,259.52,33,0

@@ -1,0 +1,31 @@
+﻿od_id,from_point_name,to_point_name,distance_shortest_length_km,distance_shortest_time_min,time_shortest_length_km,time_shortest_time_min,time_saved_min,extra_distance_km,same_path
+kanagawa_fujisawa_001__kanagawa_hakone_001,Fujisawa Station,Hakone-Yumoto Station,38.88,47.14,41.09,40.68,6.46,2.2,False
+kanagawa_fujisawa_001__kanagawa_kamakura_001,Fujisawa Station,Great Buddha of Kamakura,5.83,8.88,5.83,8.88,0.0,0.0,True
+kanagawa_fujisawa_001__kanagawa_kawasaki_001,Fujisawa Station,Kawasaki Station,31.38,39.44,31.84,36.15,3.29,0.45,False
+kanagawa_fujisawa_001__kanagawa_odawara_001,Fujisawa Station,Odawara Station,32.69,37.34,34.87,34.85,2.49,2.18,False
+kanagawa_fujisawa_001__kanagawa_yokohama_001,Fujisawa Station,Yokohama Station,21.26,31.77,21.93,26.45,5.32,0.67,False
+kanagawa_hakone_001__kanagawa_fujisawa_001,Hakone-Yumoto Station,Fujisawa Station,38.96,46.69,41.38,41.49,5.2,2.41,False
+kanagawa_hakone_001__kanagawa_kamakura_001,Hakone-Yumoto Station,Great Buddha of Kamakura,44.09,54.44,44.62,47.12,7.32,0.53,False
+kanagawa_hakone_001__kanagawa_kawasaki_001,Hakone-Yumoto Station,Kawasaki Station,68.95,82.65,78.51,67.93,14.72,9.57,False
+kanagawa_hakone_001__kanagawa_odawara_001,Hakone-Yumoto Station,Odawara Station,6.74,10.88,6.81,10.29,0.59,0.07,False
+kanagawa_hakone_001__kanagawa_yokohama_001,Hakone-Yumoto Station,Yokohama Station,58.82,74.98,70.83,59.88,15.09,12.01,False
+kanagawa_kamakura_001__kanagawa_fujisawa_001,Great Buddha of Kamakura,Fujisawa Station,5.7,8.58,5.7,8.58,0.0,0.0,True
+kanagawa_kamakura_001__kanagawa_hakone_001,Great Buddha of Kamakura,Hakone-Yumoto Station,44.12,55.36,44.62,46.82,8.54,0.49,False
+kanagawa_kamakura_001__kanagawa_kawasaki_001,Great Buddha of Kamakura,Kawasaki Station,32.88,47.4,35.37,43.0,4.39,2.49,False
+kanagawa_kamakura_001__kanagawa_odawara_001,Great Buddha of Kamakura,Odawara Station,37.93,45.56,38.41,40.99,4.57,0.47,False
+kanagawa_kamakura_001__kanagawa_yokohama_001,Great Buddha of Kamakura,Yokohama Station,22.26,34.23,25.46,31.58,2.65,3.2,False
+kanagawa_kawasaki_001__kanagawa_fujisawa_001,Kawasaki Station,Fujisawa Station,31.31,38.97,31.66,35.85,3.12,0.35,False
+kanagawa_kawasaki_001__kanagawa_hakone_001,Kawasaki Station,Hakone-Yumoto Station,69.06,83.15,75.87,68.07,15.08,6.8,False
+kanagawa_kawasaki_001__kanagawa_kamakura_001,Kawasaki Station,Great Buddha of Kamakura,32.89,47.67,35.36,42.82,4.85,2.47,False
+kanagawa_kawasaki_001__kanagawa_odawara_001,Kawasaki Station,Odawara Station,62.87,73.35,69.92,63.99,9.36,7.04,False
+kanagawa_kawasaki_001__kanagawa_yokohama_001,Kawasaki Station,Yokohama Station,11.73,14.05,12.02,13.6,0.45,0.29,False
+kanagawa_odawara_001__kanagawa_fujisawa_001,Odawara Station,Fujisawa Station,32.65,36.99,35.22,34.95,2.05,2.57,False
+kanagawa_odawara_001__kanagawa_hakone_001,Odawara Station,Hakone-Yumoto Station,6.82,11.05,6.86,10.46,0.6,0.04,False
+kanagawa_odawara_001__kanagawa_kamakura_001,Odawara Station,Great Buddha of Kamakura,37.78,44.75,38.46,40.57,4.17,0.68,False
+kanagawa_odawara_001__kanagawa_kawasaki_001,Odawara Station,Kawasaki Station,62.63,72.95,72.55,63.05,9.9,9.92,False
+kanagawa_odawara_001__kanagawa_yokohama_001,Odawara Station,Yokohama Station,52.51,65.28,64.87,55.0,10.28,12.36,False
+kanagawa_yokohama_001__kanagawa_fujisawa_001,Yokohama Station,Fujisawa Station,21.98,31.62,22.51,25.23,6.39,0.52,False
+kanagawa_yokohama_001__kanagawa_hakone_001,Yokohama Station,Hakone-Yumoto Station,59.73,75.8,61.44,60.47,15.33,1.71,False
+kanagawa_yokohama_001__kanagawa_kamakura_001,Yokohama Station,Great Buddha of Kamakura,22.99,35.49,26.1,32.08,3.42,3.11,False
+kanagawa_yokohama_001__kanagawa_kawasaki_001,Yokohama Station,Kawasaki Station,10.74,13.69,10.99,12.64,1.05,0.25,False
+kanagawa_yokohama_001__kanagawa_odawara_001,Yokohama Station,Odawara Station,53.54,65.99,55.23,54.64,11.36,1.69,False

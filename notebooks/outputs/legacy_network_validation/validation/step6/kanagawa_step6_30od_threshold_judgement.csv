@@ -1,0 +1,3 @@
+﻿metric,mean_pct,p95_pct,max_pct,mean_threshold_pct,p95_threshold_pct,max_threshold_pct,mean_pass,p95_pass,max_pass,overall_pass
+distance_abs_error_rate,10.01485421048445,22.346643384133692,23.743254757171258,10.0,20.0,30.0,False,False,True,False
+time_abs_error_rate,22.570681143072154,51.016711044715926,55.57598702481601,20.0,30.0,40.0,False,False,False,False
