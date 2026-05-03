@@ -5,7 +5,16 @@
       "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization log --oneline -3)",
       "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization add docs/design/02_data_definition.md docs/design/04_math_model.md docs/design/05_algorithm_design.md)",
       "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization commit -m ' *)",
-      "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization push origin main)"
+      "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization push origin main)",
+      "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization diff docs/design/)",
+      "Bash(git add *)",
+      "Bash(git -C /Users/yamadahayato/Documents/GitHub/vrp-road-network-optimization log --oneline -5)",
+      "Bash(git push *)",
+      "Bash(pip show *)",
+      "Bash(python -c \"import vrp_optimization; print\\('import OK'\\)\")",
+      "Bash(python -m pytest --collect-only -q)",
+      "Bash(git commit -m ' *)",
+      "Bash(python -c ' *)"
     ]
   }
 }
