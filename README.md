@@ -84,6 +84,28 @@ source venv/bin/activate
 pip install -e .
 ```
 
+### 道路ネットワークの取得（初回のみ）
+
+GraphML ファイルはサイズが大きいためリポジトリに含まれていません。初回起動前に以下のコマンドで取得してください。Overpass API へのアクセスが発生するため、完了まで数分かかります。
+
+```bash
+python -m vrp_optimization.network.graph
+```
+
+取得完了後は `data/processed/osm_network/kanagawa_drive_latest.graphml` が生成されます。以降の実行ではキャッシュが再利用されます。
+
+#### 対象エリアを変更する場合
+
+神奈川県以外を対象にする場合は以下の3箇所を変更してください。
+
+| ファイル | 変数 | デフォルト値 | 変更例 |
+|---|---|---|---|
+| [src/vrp_optimization/network/graph.py](src/vrp_optimization/network/graph.py#L35) | `PLACE` | `"Kanagawa, Japan"` | `"Tokyo, Japan"` |
+| [src/vrp_optimization/network/graph.py](src/vrp_optimization/network/graph.py#L33) | `LATEST_PATH` | `kanagawa_drive_latest.graphml` | `tokyo_drive_latest.graphml` |
+| [src/vrp_optimization/visualization/map.py](src/vrp_optimization/visualization/map.py#L27) | `GRAPH_PATH` | `kanagawa_drive_latest.graphml` | `tokyo_drive_latest.graphml` |
+
+変更後、再度 `python -m vrp_optimization.network.graph` を実行すると新しいエリアのネットワークが取得されます。
+
 ### 起動
 
 ```bash
