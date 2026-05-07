@@ -22,6 +22,10 @@ dependencies = [
     "click>=8.1",
     "requests>=2.31",
     "japanize-matplotlib>=1.1",
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.29",
+    "python-multipart>=0.0.9",
+    "streamlit>=1.35",
 ]
 
 [project.optional-dependencies]

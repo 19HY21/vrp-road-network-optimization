@@ -49,14 +49,19 @@ def _latest_plan_id() -> str:
 
 
 def _best_k(summary_df: pd.DataFrame) -> int:
-    solved = summary_df[summary_df["solve_status"] == "success"]
-    return int(solved.sort_values("total_cost_yen").iloc[0]["num_vehicles_tried"])
+    solved = summary_df[summary_df["solve_status"].isin(["OPTIMAL", "FEASIBLE"])]
+    return int(solved.sort_values(["vehicles_used", "total_cost_yen", "num_vehicles_tried"]).iloc[0]["num_vehicles_tried"])
 
 
 def _check(name: str, passed: bool, detail: str = "") -> dict:
     status = "✅ PASS" if passed else "❌ FAIL"
     print(f"  {status}  {name}{('  ' + detail) if detail else ''}")
     return {"check": name, "status": "PASS" if passed else "FAIL", "detail": detail}
+
+
+def _skip(name: str, detail: str = "") -> dict:
+    print(f"  ⏭️ SKIP  {name}{('  ' + detail) if detail else ''}")
+    return {"check": name, "status": "SKIP", "detail": detail}
 
 
 def run_evaluation(plan_id: str) -> pd.DataFrame:
@@ -180,11 +185,10 @@ def run_evaluation(plan_id: str) -> pd.DataFrame:
         f"固定費 ¥{fixed_cost*vehicles_used:,.0f} + 距離費 ¥{dist_unit*total_dist:,.0f} = ¥{expected_cost:,.0f}"
     ))
 
-    # 11. 距離精度（Google Maps 比較は手動実施のためスキップ）
-    results.append(_check(
+    # 11. 距離精度（Google Maps との比較は手動実施のためスキップ）
+    results.append(_skip(
         "距離精度（Google Maps ±10%）",
-        True,
-        "※ 手動検証が必要（別途 Google Maps との比較を実施）"
+        "Google Maps との距離比較は手動検証が必要なため未実施"
     ))
 
     return pd.DataFrame(results)
@@ -197,7 +201,8 @@ def main(plan_id: str | None = None) -> None:
 
     pass_count = (results_df["status"] == "PASS").sum()
     fail_count = (results_df["status"] == "FAIL").sum()
-    print(f"\n結果: {pass_count} PASS / {fail_count} FAIL（全{len(results_df)}項目）")
+    skip_count = (results_df["status"] == "SKIP").sum()
+    print(f"\n結果: {pass_count} PASS / {fail_count} FAIL / {skip_count} SKIP（全{len(results_df)}項目）")
 
     out_dir = OUTPUTS_DIR / plan_id / "output" / "table"
     out_dir.mkdir(parents=True, exist_ok=True)

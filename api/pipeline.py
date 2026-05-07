@@ -1,0 +1,152 @@
+"""
+VRP パイプライン実行モジュール。
+別プロセス（subprocess）として起動され、ジョブ状態を一時ファイルで管理する。
+
+ステップ:
+    1. ジオコーディング
+    2. 道路ネットワークへのスナップ
+    3. OD 行列計算
+    4. VRP ソルバー実行
+    5. 評価
+    6. 可視化
+    7. 出力先への保存
+"""
+import json
+import shutil
+import sys
+import traceback
+from datetime import datetime
+from pathlib import Path
+from tempfile import gettempdir
+
+_ROOT = Path(__file__).parents[1]
+TRANSACTION_PATH = _ROOT / "data" / "raw" / "delivery_transaction.csv"
+OUTPUTS_DIR = _ROOT / "outputs"
+_JOBS_DIR = Path(gettempdir()) / "vrp_jobs"
+_JOBS_DIR.mkdir(exist_ok=True)
+
+
+# ── ジョブ状態（ファイルベース） ────────────────────────────
+
+def _job_path(job_id: str) -> Path:
+    return _JOBS_DIR / f"{job_id}.json"
+
+
+def init_job(job_id: str) -> None:
+    _job_path(job_id).write_text(json.dumps({
+        "status": "pending",
+        "step": "待機中",
+        "progress": 0.0,
+        "plan_id": None,
+        "output_path": None,
+        "error": None,
+    }), encoding="utf-8")
+
+
+def get_job(job_id: str) -> dict | None:
+    p = _job_path(job_id)
+    if not p.exists():
+        return None
+    return json.loads(p.read_text(encoding="utf-8"))
+
+
+def list_jobs() -> list[dict]:
+    result = []
+    for p in _JOBS_DIR.glob("*.json"):
+        job = json.loads(p.read_text(encoding="utf-8"))
+        result.append({"job_id": p.stem, **job})
+    return result
+
+
+def _update(job_id: str, **kwargs) -> None:
+    p = _job_path(job_id)
+    job = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+    job.update(kwargs)
+    p.write_text(json.dumps(job), encoding="utf-8")
+
+
+# ── パイプライン実行 ────────────────────────────────────────
+
+def run_pipeline(
+    job_id: str,
+    transaction_csv_path: Path,
+    output_dir: Path,
+    v_min: int,
+    v_max: int,
+) -> None:
+    sys.path.insert(0, str(_ROOT / "src"))
+    try:
+        _update(job_id, status="running", step="初期化中", progress=0.0)
+
+        TRANSACTION_PATH.write_bytes(transaction_csv_path.read_bytes())
+
+        # Step 1: ジオコーディング
+        _update(job_id, step="住所のジオコーディング中", progress=0.05)
+        from vrp_optimization.preprocessing.geocode import main as geocode_main
+        geocode_main()
+
+        # Step 2: 道路ネットワークへのスナップ
+        _update(job_id, step="道路ネットワークへのスナップ中", progress=0.20)
+        from vrp_optimization.network.snap import main as snap_main
+        snap_main()
+
+        # Step 3: OD 行列計算
+        _update(job_id, step="OD 行列計算中（数分かかります）", progress=0.35)
+        plan_id = f"PLAN_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        _update(job_id, plan_id=plan_id)
+        from vrp_optimization.distance_matrix.compute import main as compute_main
+        compute_main(plan_id=plan_id)
+
+        # Step 4: VRP ソルバー実行
+        _update(job_id, step="ルート最適化中...", progress=0.55)
+        from vrp_optimization.solver.vrp import main as vrp_main
+
+        k_total = v_max - v_min + 1
+
+        def solver_progress(k: int, k_done: int, k_total: int = k_total) -> None:
+            pct = 0.55 + 0.25 * (k_done / k_total)
+            _update(
+                job_id,
+                step=f"ルート最適化中 — {k} 台で探索中（{k_done + 1} / {k_total} パターン）",
+                progress=round(pct, 3),
+            )
+
+        vrp_main(plan_id=plan_id, v_min=v_min, v_max=v_max, progress_callback=solver_progress)
+
+        # Step 5: 評価
+        _update(job_id, step="制約・コスト評価中", progress=0.80)
+        from vrp_optimization.evaluation.evaluate import main as eval_main
+        eval_main(plan_id=plan_id)
+
+        # Step 6: 可視化
+        _update(job_id, step="ルートマップ生成中", progress=0.88)
+        from vrp_optimization.visualization.map import main as map_main
+        map_main(plan_id=plan_id)
+
+        # Step 7: 出力先フォルダへコピー
+        _update(job_id, step="出力先フォルダへ保存中", progress=0.97)
+        src = OUTPUTS_DIR / plan_id
+        dst = Path(output_dir) / plan_id
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        if dst.exists():
+            shutil.rmtree(dst)
+        shutil.copytree(src, dst)
+
+        _update(job_id, status="done", step="完了", progress=1.0, output_path=str(dst))
+
+    except Exception as e:
+        _update(
+            job_id,
+            status="error",
+            step="エラー発生",
+            error=str(e),
+            traceback=traceback.format_exc(),
+        )
+
+
+# ── サブプロセスとして直接実行 ──────────────────────────────
+
+if __name__ == "__main__":
+    # 引数: job_id csv_path output_dir v_min v_max
+    _, job_id, csv_path, output_dir, v_min, v_max = sys.argv
+    run_pipeline(job_id, Path(csv_path), Path(output_dir), int(v_min), int(v_max))

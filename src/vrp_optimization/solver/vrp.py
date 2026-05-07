@@ -1,12 +1,13 @@
 """
 【目的】
-    OD 行列・荷物個数・時間帯制約を OR-Tools に渡し、配送ルートを最適化する。
-    車両台数レンジ（min〜max）の各台数で候補プランを生成し結果を保存する。
+    OD 行列・荷物個数・時間帯制約を OR-Tools CP-SAT に渡し、配送ルートを最適化する。
+    車両台数レンジ（max〜min）の各台数で候補プランを生成し結果を保存する。
+    INFEASIBLE が確認された時点でそれ以下の台数のループを打ち切る。
 
 【処理の流れ】
     1. outputs/{plan_id}/distance/od_matrix.csv を読み込む
     2. delivery_transaction.csv と delivery_destination_master.json から需要・時間帯を収集する
-    3. 車両台数ごとに OR-Tools VRP ソルバーを実行する
+    3. 車両台数を max から min に向けて順次 CP-SAT で最適化する
     4. 解が得られた台数の中で最小コストプランを推奨とし結果を保存する
 
 【出力先】
@@ -15,11 +16,11 @@
 
 【最適化モデル】
     目的関数: 固定コスト × 使用台数 + 距離比例コスト × 総走行距離(km)
-    制約    : 積載上限 / 時間帯制約 / 業務時間（09:00〜18:00）
+    制約    : 全件訪問 / 積載上限 / 時間帯 / 業務時間（09:00〜18:00）/ 部分巡回防止
 
 【注意事項】
-    - 1 台あたり解探索時間は 30 秒（定数 SOLVE_TIME_LIMIT_SEC で変更可能）
-    - geocode_status / snap_status が success の配送先のみを対象とする
+    - 1 台あたり解探索時間は 30 秒（SOLVE_TIME_LIMIT_SEC で変更可能）
+    - snap_status が success の配送先のみを対象とする
     - 同一 delivery_id に複数トランザクションがある場合は荷物個数を合算する
 
 【実行方法】
@@ -31,7 +32,7 @@ import sys
 from pathlib import Path
 
 import pandas as pd
-from ortools.constraint_solver import pywrapcp, routing_enums_pb2
+from ortools.sat.python import cp_model
 
 _ROOT = Path(__file__).parents[3]
 TRANSACTION_PATH = _ROOT / "data" / "raw" / "delivery_transaction.csv"
@@ -118,71 +119,131 @@ def _load_data(plan_id: str) -> dict:
 
 
 def _solve_for_k(data: dict, k: int) -> dict:
-    """k 台で VRP を解いて結果辞書を返す。解なし時は status='no_solution'。"""
+    """k 台で VRP を OR-Tools CP-SAT で解いて結果辞書を返す。"""
     n = len(data["locations"])
-    manager = pywrapcp.RoutingIndexManager(n, k, 0)
-    routing = pywrapcp.RoutingModel(manager)
-
     dist_matrix = data["dist_matrix"]
+    time_matrix = data["time_matrix"]
+    demands = data["demands"]
+    time_windows = data["time_windows"]
 
-    def dist_cb(fi, ti):
-        return dist_matrix[manager.IndexToNode(fi)][manager.IndexToNode(ti)]
+    model = cp_model.CpModel()
 
-    transit_idx = routing.RegisterTransitCallback(dist_cb)
-    routing.SetArcCostEvaluatorOfAllVehicles(transit_idx)
+    # アーク変数: vehicle v が地点 i から j へ移動する (i != j)
+    arc = {
+        (v, i, j): model.new_bool_var(f"x_{v}_{i}_{j}")
+        for v in range(k) for i in range(n) for j in range(n) if i != j
+    }
+    # 自己ループ変数: 未使用車両・未訪問ノードを表現するために全ノードに必要
+    loop = {
+        (v, i): model.new_bool_var(f"lp_{v}_{i}")
+        for v in range(k) for i in range(n)
+    }
 
-    # 固定コストを距離換算で設定
-    fixed_cost_m = int(data["fixed_cost_yen"] / data["dist_unit_cost_yen_per_km"] * 1000)
+    # 車両ごとの巡回路制約（自己ループにより未使用車両を許容）
     for v in range(k):
-        routing.SetFixedCostOfVehicle(fixed_cost_m, v)
+        literals = [(i, j, arc[v, i, j]) for i in range(n) for j in range(n) if i != j]
+        literals += [(i, i, loop[v, i]) for i in range(n)]
+        model.add_circuit(literals)
+
+    # 各配送先をいずれか 1 台が訪問する（全件訪問制約）
+    for i in range(1, n):
+        model.add_exactly_one(arc[v, j, i] for v in range(k) for j in range(n) if j != i)
+
+    # visit[v, i]: 車両 v が配送先 i を訪問するか
+    visit = {
+        (v, i): model.new_bool_var(f"vi_{v}_{i}")
+        for v in range(k) for i in range(1, n)
+    }
+    for v in range(k):
+        for i in range(1, n):
+            model.add(sum(arc[v, j, i] for j in range(n) if j != i) == visit[v, i])
 
     # 積載制約
-    demands = data["demands"]
+    for v in range(k):
+        model.add(sum(demands[i] * visit[v, i] for i in range(1, n)) <= data["capacity"])
 
-    def demand_cb(fi):
-        return demands[manager.IndexToNode(fi)]
+    # 到着時刻変数
+    arrival = {
+        (v, i): model.new_int_var(0, WORK_MINUTES, f"t_{v}_{i}")
+        for v in range(k) for i in range(n)
+    }
+    for v in range(k):
+        model.add(arrival[v, 0] == 0)
 
-    demand_idx = routing.RegisterUnaryTransitCallback(demand_cb)
-    routing.AddDimensionWithVehicleCapacity(demand_idx, 0, [data["capacity"]] * k, True, "Capacity")
+    # 時刻伝播制約
+    for v in range(k):
+        for i in range(n):
+            for j in range(1, n):
+                if i != j:
+                    model.add(
+                        arrival[v, j] >= arrival[v, i] + time_matrix[i][j]
+                    ).only_enforce_if(arc[v, i, j])
 
-    # 時間窓制約
-    time_matrix = data["time_matrix"]
+    # 時間帯制約
+    for i in range(1, n):
+        tw_s, tw_e = time_windows[i]
+        for v in range(k):
+            model.add(arrival[v, i] >= tw_s).only_enforce_if(visit[v, i])
+            model.add(arrival[v, i] <= tw_e).only_enforce_if(visit[v, i])
 
-    def time_cb(fi, ti):
-        return time_matrix[manager.IndexToNode(fi)][manager.IndexToNode(ti)]
+    # 業務時間内帰着制約
+    for v in range(k):
+        for i in range(1, n):
+            model.add(
+                arrival[v, i] + time_matrix[i][0] <= WORK_MINUTES
+            ).only_enforce_if(arc[v, i, 0])
 
-    time_idx = routing.RegisterTransitCallback(time_cb)
-    routing.AddDimension(time_idx, 60, WORK_MINUTES, False, "Time")
-    time_dim = routing.GetDimensionOrDie("Time")
-    for i, (start, end) in enumerate(data["time_windows"]):
-        time_dim.CumulVar(manager.NodeToIndex(i)).SetRange(start, end)
+    # 使用台数を目的関数に含める: vehicle_active[v] = 1 iff v が 1 件以上訪問
+    vehicle_active = {v: model.new_bool_var(f"active_{v}") for v in range(k)}
+    for v in range(k):
+        model.add_max_equality(vehicle_active[v], [visit[v, i] for i in range(1, n)])
 
-    params = pywrapcp.DefaultRoutingSearchParameters()
-    params.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
-    params.local_search_metaheuristic = routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
-    params.time_limit.seconds = SOLVE_TIME_LIMIT_SEC
+    # 目的関数: fixed_cost * vehicles + dist_unit * dist_km
+    # CP-SAT は整数のみのため 1000 倍（ミリ円単位）に変換:
+    #   total_cost_milli_yen = fixed_cost * 1000 * active + dist_unit_per_km * dist_m
+    fixed_cost_mc = round(data["fixed_cost_yen"] * 1000)
+    dist_unit_mc = round(data["dist_unit_cost_yen_per_km"])
+    model.minimize(
+        sum(fixed_cost_mc * vehicle_active[v] for v in range(k))
+        + sum(
+            dist_unit_mc * dist_matrix[i][j] * arc[v, i, j]
+            for v in range(k) for i in range(n) for j in range(n) if i != j
+        )
+    )
 
-    solution = routing.SolveWithParameters(params)
-    if not solution:
-        return {"status": "no_solution", "num_vehicles": k}
+    solver = cp_model.CpSolver()
+    solver.parameters.max_time_in_seconds = SOLVE_TIME_LIMIT_SEC
+    solver.parameters.log_search_progress = False
+    solver.parameters.num_search_workers = 1  # macOS + Python 3.13 のスレッド問題を回避
 
-    # ルート抽出
+    status_code = solver.solve(model)
+    status_name = solver.status_name(status_code)
+
+    if status_code not in (cp_model.OPTIMAL, cp_model.FEASIBLE):
+        return {"status": status_name, "num_vehicles": k}
+
+    # ルート抽出: デポからアーク連鎖を追跡
     routes = []
     total_dist_m = 0
     vehicles_used = 0
     for v in range(k):
-        index = routing.Start(v)
-        stops = []
-        route_dist = 0
-        while not routing.IsEnd(index):
-            node = manager.IndexToNode(index)
-            arrival = solution.Value(time_dim.CumulVar(index))
-            stops.append({"node": node, "arrival_min": arrival})
-            next_index = solution.Value(routing.NextVar(index))
-            route_dist += dist_matrix[node][manager.IndexToNode(next_index)]
-            index = next_index
-        stops.append({"node": manager.IndexToNode(index), "arrival_min": solution.Value(time_dim.CumulVar(index))})
-        if len(stops) > 2:  # depot → depot のみは空ルート
+        current = 0
+        stops = [{"node": 0, "arrival_min": solver.value(arrival[v, 0])}]
+        for _ in range(n):
+            moved = False
+            for j in range(n):
+                if j != current and solver.value(arc[v, current, j]):
+                    stops.append({"node": j, "arrival_min": solver.value(arrival[v, j])})
+                    current = j
+                    moved = True
+                    break
+            if not moved or current == 0:
+                break
+        route_dist = sum(
+            dist_matrix[stops[s]["node"]][stops[s + 1]["node"]]
+            for s in range(len(stops) - 1)
+        )
+        if len(stops) > 2:
             vehicles_used += 1
             total_dist_m += route_dist
         routes.append(stops)
@@ -191,7 +252,7 @@ def _solve_for_k(data: dict, k: int) -> dict:
     total_cost = data["fixed_cost_yen"] * vehicles_used + data["dist_unit_cost_yen_per_km"] * total_dist_km
 
     return {
-        "status": "success",
+        "status": status_name,
         "num_vehicles": k,
         "vehicles_used": vehicles_used,
         "total_dist_km": total_dist_km,
@@ -214,7 +275,7 @@ def _build_output(data: dict, results: list[dict]) -> tuple[pd.DataFrame, pd.Dat
             "total_dist_km": res.get("total_dist_km", "-"),
             "total_cost_yen": res.get("total_cost_yen", "-"),
         })
-        if res["status"] != "success":
+        if res["status"] not in ("OPTIMAL", "FEASIBLE"):
             continue
         k = res["num_vehicles"]
         for v_idx, stops in enumerate(res["routes"]):
@@ -238,26 +299,46 @@ def _build_output(data: dict, results: list[dict]) -> tuple[pd.DataFrame, pd.Dat
     return pd.DataFrame(summary_rows), pd.DataFrame(detail_rows)
 
 
-def main(plan_id: str | None = None) -> None:
+def main(
+    plan_id: str | None = None,
+    v_min: int | None = None,
+    v_max: int | None = None,
+    progress_callback=None,
+) -> None:
     plan_id = plan_id or _latest_plan_id()
     print(f"=== VRP ソルバー実行 ===")
     print(f"plan_id: {plan_id}")
 
     data = _load_data(plan_id)
+    if v_min is not None:
+        data["vehicle_count_min"] = v_min
+    if v_max is not None:
+        data["vehicle_count_max"] = v_max
+
     n_dest = len(data["locations"]) - 1
     total_demand = sum(data["demands"])
     print(f"配送先: {n_dest} 件 / 総荷物: {total_demand} 個")
     print(f"車両台数レンジ: {data['vehicle_count_min']}〜{data['vehicle_count_max']} 台")
 
+    k_min = data["vehicle_count_min"]
+    k_max = data["vehicle_count_max"]
+    k_total = k_max - k_min + 1
+
     results = []
-    for k in range(data["vehicle_count_min"], data["vehicle_count_max"] + 1):
+    for k in range(k_max, k_min - 1, -1):
+        k_done = k_max - k
+        if progress_callback:
+            progress_callback(k, k_done, k_total)
         print(f"\n  [{k} 台] 最適化中...")
         res = _solve_for_k(data, k)
         results.append(res)
-        if res["status"] == "success":
-            print(f"  [{k} 台] 完了: 走行距離={res['total_dist_km']}km / コスト={res['total_cost_yen']:,.0f}円")
+        if res["status"] in ("OPTIMAL", "FEASIBLE"):
+            print(f"  [{k} 台] 完了 ({res['status']}): 走行距離={res['total_dist_km']}km / コスト={res['total_cost_yen']:,.0f}円")
         else:
-            print(f"  [{k} 台] 解なし")
+            print(f"  [{k} 台] 解なし ({res['status']})")
+            if res["status"] == "INFEASIBLE":
+                print(f"  → INFEASIBLE のためこれ以下の台数の探索を打ち切ります")
+                break
 
     summary_df, detail_df = _build_output(data, results)
 
@@ -266,7 +347,7 @@ def main(plan_id: str | None = None) -> None:
     summary_df.to_csv(out_dir / "route_summary.csv", index=False, encoding="utf-8-sig")
     detail_df.to_csv(out_dir / "route_detail.csv", index=False, encoding="utf-8-sig")
 
-    solved = [r for r in results if r["status"] == "success"]
+    solved = [r for r in results if r["status"] in ("OPTIMAL", "FEASIBLE")]
     if solved:
         best = min(solved, key=lambda r: r["total_cost_yen"])
         print(f"\n推奨プラン: {best['vehicles_used']} 台 / "

@@ -101,10 +101,10 @@ def compute_od_matrix(G: nx.MultiDiGraph, locations: list[tuple[str, str, int]])
     return pd.DataFrame(records)
 
 
-def main() -> None:
+def main(plan_id: str | None = None) -> None:
     print("=== OD 行列計算開始 ===")
 
-    plan_id = _generate_plan_id()
+    plan_id = plan_id or _generate_plan_id()
     print(f"plan_id: {plan_id}")
 
     locations = load_locations()
