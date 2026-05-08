@@ -40,16 +40,22 @@ MASTER_PATH = _ROOT / "data" / "processed" / "delivery_destination_master.json"
 DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
 OUTPUTS_DIR = _ROOT / "outputs"
 
-SOLVE_TIME_LIMIT_SEC = 30
-WORK_START_HOUR = 9   # 09:00 を 0 分の基準とする
-WORK_MINUTES = 540    # 09:00〜18:00 = 540 分
+SOLVE_TIME_LIMIT_SEC = 120
 
-# 時間帯コードごとの時間窓（分）: work_start からのオフセット
-TIME_WINDOWS = {
-    1: (0, 240),    # 午前: 09:00〜13:00
-    2: (240, 540),  # 午後: 13:00〜18:00
-    3: (0, 540),    # 時間指定なし
-}
+# 午前/午後の絶対時刻境界（分・勤務時間に依存しない固定値）
+_NOON_MIN = 13 * 60  # 13:00 を午前/午後の境界とする
+
+
+def _build_time_windows(work_start_hour: int, work_minutes: int) -> dict:
+    """work_start からの相対オフセット（分）で時間帯窓を返す。
+    午前: work_start〜13:00 / 午後: 13:00〜work_end / 指定なし: 全時間
+    """
+    ws = work_start_hour * 60
+    return {
+        1: (0, _NOON_MIN - ws),           # 午前: work_start〜13:00
+        2: (_NOON_MIN - ws, work_minutes), # 午後: 13:00〜work_end
+        3: (0, work_minutes),              # 指定なし
+    }
 
 
 def _latest_plan_id() -> str:
@@ -59,13 +65,21 @@ def _latest_plan_id() -> str:
     return plans[0].name
 
 
-def _load_data(plan_id: str) -> dict:
+def _load_data(plan_id: str, depot_id: str | None = None) -> dict:
     """VRP に必要なデータを収集して辞書で返す。"""
     od_path = OUTPUTS_DIR / plan_id / "distance" / "od_matrix.csv"
     od_df = pd.read_csv(od_path)
 
     depot_df = pd.read_csv(DEPOT_PATH)
-    depot_row = depot_df.iloc[0]
+    if depot_id:
+        depot_row = depot_df[depot_df["depot_id"] == depot_id].iloc[0]
+    else:
+        depot_row = depot_df.iloc[0]
+
+    work_start_hour = int(str(depot_row["work_start_time"]).split(":")[0])
+    work_end_hour   = int(str(depot_row["work_end_time"]).split(":")[0])
+    work_minutes    = (work_end_hour - work_start_hour) * 60
+    time_windows_map = _build_time_windows(work_start_hour, work_minutes)
 
     with open(MASTER_PATH, encoding="utf-8") as f:
         master_records = json.load(f)
@@ -82,8 +96,8 @@ def _load_data(plan_id: str) -> dict:
         rows = txn_df[txn_df["delivery_id"] == did]
         demands_by_id[did] = int(rows["package_count"].sum())
         codes = rows["delivery_time_slot_code"].unique().tolist()
-        starts = [TIME_WINDOWS[c][0] for c in codes]
-        ends = [TIME_WINDOWS[c][1] for c in codes]
+        starts = [time_windows_map[c][0] for c in codes]
+        ends = [time_windows_map[c][1] for c in codes]
         windows_by_id[did] = (min(starts), max(ends))
 
     # ロケーション順: [depot, dest1, dest2, ...]
@@ -102,7 +116,7 @@ def _load_data(plan_id: str) -> dict:
     time_matrix = [[time_lookup.get((loc_ids[i], loc_ids[j]), 0) for j in range(n)] for i in range(n)]
 
     demands = [0] + [demands_by_id.get(did, 0) for did, _ in locations[1:]]
-    time_windows = [(0, WORK_MINUTES)] + [windows_by_id.get(did, (0, WORK_MINUTES)) for did, _ in locations[1:]]
+    time_windows = [(0, work_minutes)] + [windows_by_id.get(did, (0, work_minutes)) for did, _ in locations[1:]]
 
     return {
         "locations": locations,
@@ -115,16 +129,19 @@ def _load_data(plan_id: str) -> dict:
         "dist_unit_cost_yen_per_km": float(depot_row["distance_unit_cost"]),
         "vehicle_count_min": int(depot_row["vehicle_count_min"]),
         "vehicle_count_max": int(depot_row["vehicle_count_max"]),
+        "work_start_hour": work_start_hour,
+        "work_minutes": work_minutes,
     }
 
 
-def _solve_for_k(data: dict, k: int) -> dict:
+def _solve_for_k(data: dict, k: int, solve_time_limit: int = SOLVE_TIME_LIMIT_SEC) -> dict:
     """k 台で VRP を OR-Tools CP-SAT で解いて結果辞書を返す。"""
     n = len(data["locations"])
     dist_matrix = data["dist_matrix"]
     time_matrix = data["time_matrix"]
     demands = data["demands"]
     time_windows = data["time_windows"]
+    work_minutes = data["work_minutes"]
 
     model = cp_model.CpModel()
 
@@ -164,7 +181,7 @@ def _solve_for_k(data: dict, k: int) -> dict:
 
     # 到着時刻変数
     arrival = {
-        (v, i): model.new_int_var(0, WORK_MINUTES, f"t_{v}_{i}")
+        (v, i): model.new_int_var(0, work_minutes, f"t_{v}_{i}")
         for v in range(k) for i in range(n)
     }
     for v in range(k):
@@ -190,7 +207,7 @@ def _solve_for_k(data: dict, k: int) -> dict:
     for v in range(k):
         for i in range(1, n):
             model.add(
-                arrival[v, i] + time_matrix[i][0] <= WORK_MINUTES
+                arrival[v, i] + time_matrix[i][0] <= work_minutes
             ).only_enforce_if(arc[v, i, 0])
 
     # 使用台数を目的関数に含める: vehicle_active[v] = 1 iff v が 1 件以上訪問
@@ -212,7 +229,7 @@ def _solve_for_k(data: dict, k: int) -> dict:
     )
 
     solver = cp_model.CpSolver()
-    solver.parameters.max_time_in_seconds = SOLVE_TIME_LIMIT_SEC
+    solver.parameters.max_time_in_seconds = solve_time_limit
     solver.parameters.log_search_progress = False
     solver.parameters.num_search_workers = 1  # macOS + Python 3.13 のスレッド問題を回避
 
@@ -292,7 +309,7 @@ def _build_output(data: dict, results: list[dict]) -> tuple[pd.DataFrame, pd.Dat
                     "location_id": loc_id,
                     "address": label,
                     "arrival_min": stop["arrival_min"],
-                    "arrival_time": f"{WORK_START_HOUR + stop['arrival_min'] // 60:02d}:{stop['arrival_min'] % 60:02d}",
+                    "arrival_time": f"{data['work_start_hour'] + stop['arrival_min'] // 60:02d}:{stop['arrival_min'] % 60:02d}",
                     "package_count": data["demands"][node],
                 })
 
@@ -303,13 +320,15 @@ def main(
     plan_id: str | None = None,
     v_min: int | None = None,
     v_max: int | None = None,
+    depot_id: str | None = None,
+    solve_time_limit: int = SOLVE_TIME_LIMIT_SEC,
     progress_callback=None,
 ) -> None:
     plan_id = plan_id or _latest_plan_id()
     print(f"=== VRP ソルバー実行 ===")
     print(f"plan_id: {plan_id}")
 
-    data = _load_data(plan_id)
+    data = _load_data(plan_id, depot_id=depot_id)
     if v_min is not None:
         data["vehicle_count_min"] = v_min
     if v_max is not None:
@@ -330,7 +349,7 @@ def main(
         if progress_callback:
             progress_callback(k, k_done, k_total)
         print(f"\n  [{k} 台] 最適化中...")
-        res = _solve_for_k(data, k)
+        res = _solve_for_k(data, k, solve_time_limit=solve_time_limit)
         results.append(res)
         if res["status"] in ("OPTIMAL", "FEASIBLE"):
             print(f"  [{k} 台] 完了 ({res['status']}): 走行距離={res['total_dist_km']}km / コスト={res['total_cost_yen']:,.0f}円")
@@ -338,6 +357,10 @@ def main(
             print(f"  [{k} 台] 解なし ({res['status']})")
             if res["status"] == "INFEASIBLE":
                 print(f"  → INFEASIBLE のためこれ以下の台数の探索を打ち切ります")
+                break
+            if k == k_max:
+                print(f"  → 最大台数 {k_max} 台で解なし ({res['status']}) のため探索を打ち切ります")
+                print(f"  → 解決策: ソルバー探索時間を延長するか、デポマスタの最大台数を増やしてください")
                 break
 
     summary_df, detail_df = _build_output(data, results)
