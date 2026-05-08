@@ -68,10 +68,10 @@ def _build_location_lookup() -> dict[str, dict]:
     return lookup
 
 
-def _best_num_vehicles(summary_df: pd.DataFrame) -> int:
-    """最小コストで成功したプランの num_vehicles_tried を返す。"""
+def _solved_strategies(summary_df: pd.DataFrame) -> list[str]:
+    """解が得られた戦略キーのリストを返す（コスト昇順）。"""
     solved = summary_df[summary_df["solve_status"].isin(["OPTIMAL", "FEASIBLE"])]
-    return int(solved.sort_values(["vehicles_used", "total_cost_yen", "num_vehicles_tried"]).iloc[0]["num_vehicles_tried"])
+    return solved.sort_values(["vehicles_used", "total_cost_yen"])["strategy"].tolist()
 
 
 def _road_coords(G, from_node: int, to_node: int) -> list[list[float]]:
@@ -271,7 +271,7 @@ def _vehicle_stats(routes_df: pd.DataFrame, od_matrix_df: pd.DataFrame, fixed_co
     return stats
 
 
-def main(plan_id: str | None = None) -> None:
+def main(plan_id: str | None = None, depot_id: str | None = None) -> None:
     plan_id = plan_id or _latest_plan_id()
     print(f"=== ルートマップ生成 ===")
     print(f"plan_id: {plan_id}")
@@ -281,46 +281,54 @@ def main(plan_id: str | None = None) -> None:
     detail_df = pd.read_csv(table_dir / "route_detail.csv")
     od_matrix_df = pd.read_csv(OUTPUTS_DIR / plan_id / "distance" / "od_matrix.csv")
     location_lookup = _build_location_lookup()
-    depot_row = pd.read_csv(DEPOT_PATH).iloc[0]
 
-    best_k = _best_num_vehicles(summary_df)
-    best_summary = summary_df[summary_df["num_vehicles_tried"] == best_k].iloc[0]
-    routes_df = detail_df[detail_df["num_vehicles"] == best_k]
+    depot_df = pd.read_csv(DEPOT_PATH)
+    depot_row = depot_df[depot_df["depot_id"] == depot_id].iloc[0] if depot_id else depot_df.iloc[0]
 
-    v_stats = _vehicle_stats(
-        routes_df, od_matrix_df,
-        float(depot_row["fixed_cost_per_vehicle"]),
-        float(depot_row["distance_unit_cost"]),
-    )
+    strategies = _solved_strategies(summary_df)
+    if not strategies:
+        print("解が得られた戦略がありません。マップ生成をスキップします。")
+        return
 
     out_dir = OUTPUTS_DIR / plan_id / "output" / "image"
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # 全体俯瞰マップ（直線・軽量）
-    overview = build_overview_map(plan_id, best_summary, routes_df, location_lookup)
-    overview_path = out_dir / "route_map.html"
-    overview.save(str(overview_path))
-    print(f"保存: {overview_path}")
-
-    # 車両別詳細マップ（道路沿い + AntPath）
     print("OSMnx グラフ読み込み中...")
     G = ox.load_graphml(GRAPH_PATH)
 
-    vehicle_ids = list(routes_df["vehicle_id"].unique())
-    v_idx_map = {vid: i for i, vid in enumerate(vehicle_ids)}
+    for strategy in strategies:
+        strategy_summary = summary_df[summary_df["strategy"] == strategy].iloc[0]
+        routes_df = detail_df[detail_df["strategy"] == strategy]
 
-    for vehicle_id, v_df in routes_df.groupby("vehicle_id"):
-        color = VEHICLE_COLORS[v_idx_map[vehicle_id] % len(VEHICLE_COLORS)]
-        stats = v_stats[vehicle_id]
-        vm = build_vehicle_map(
-            plan_id, G, vehicle_id, v_df, color, location_lookup,
-            stats["dist_km"], stats["cost_yen"],
+        v_stats = _vehicle_stats(
+            routes_df, od_matrix_df,
+            float(depot_row["fixed_cost_per_vehicle"]),
+            float(depot_row["distance_unit_cost"]),
         )
-        vm_path = out_dir / f"route_map_vehicle_{vehicle_id}.html"
-        vm.save(str(vm_path))
-        print(f"保存: {vm_path}")
+
+        # 全体俯瞰マップ（直線・軽量）
+        overview = build_overview_map(plan_id, strategy_summary, routes_df, location_lookup)
+        overview_path = out_dir / f"route_map_strategy_{strategy}.html"
+        overview.save(str(overview_path))
+        print(f"保存: {overview_path}")
+
+        # 車両別詳細マップ（道路沿い + AntPath）
+        vehicle_ids = list(routes_df["vehicle_id"].unique())
+        v_idx_map = {vid: i for i, vid in enumerate(vehicle_ids)}
+
+        for vehicle_id, v_df in routes_df.groupby("vehicle_id"):
+            color = VEHICLE_COLORS[v_idx_map[vehicle_id] % len(VEHICLE_COLORS)]
+            stats = v_stats[vehicle_id]
+            vm = build_vehicle_map(
+                plan_id, G, vehicle_id, v_df, color, location_lookup,
+                stats["dist_km"], stats["cost_yen"],
+            )
+            vm_path = out_dir / f"route_map_vehicle_{vehicle_id}_strategy_{strategy}.html"
+            vm.save(str(vm_path))
+            print(f"保存: {vm_path}")
 
 
 if __name__ == "__main__":
-    arg = sys.argv[1] if len(sys.argv) > 1 else None
-    main(arg)
+    _plan_id  = sys.argv[1] if len(sys.argv) > 1 else None
+    _depot_id = sys.argv[2] if len(sys.argv) > 2 else None
+    main(_plan_id, depot_id=_depot_id)

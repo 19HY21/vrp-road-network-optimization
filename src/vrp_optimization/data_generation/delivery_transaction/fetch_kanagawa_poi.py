@@ -33,16 +33,15 @@ import pandas as pd
 # --- 設定 ---
 PLACE = "Kanagawa, Japan"
 TAGS = {
-    "amenity": ["post_office", "pharmacy"],
-    "shop": ["convenience"],
+    "amenity": ["post_office", "pharmacy", "bank"],
+    "shop": ["convenience", "electronics"],
 }
-TARGET_COUNT = 20
-DEPOT_ID = "DEPOT_001"
-DELIVERY_DATE = "2026-05-20"
+TARGET_COUNT = 100
+DELIVERY_DATE = "2026-05-25"
 RANDOM_SEED = 42
 
 _ROOT = Path(__file__).parents[4]
-OUTPUT_PATH = _ROOT / "data" / "raw" / "delivery_transaction.csv"
+OUTPUT_PATH = _ROOT / "data" / "raw" / "delivery_transaction_100.csv"
 
 
 def _build_address(row: pd.Series) -> str:
@@ -87,11 +86,9 @@ def generate_transactions(gdf: pd.DataFrame, count: int) -> pd.DataFrame:
         records.append(
             {
                 "transaction_id": f"TXN_{str(uuid.UUID(int=rng.getrandbits(128)))[:8].upper()}",
-                "delivery_id": "",
                 "delivery_date": DELIVERY_DATE,
                 "destination_name": row.get("name", ""),
                 "destination_address": address,
-                "depot_id": DEPOT_ID,
                 "package_count": rng.randint(1, 5),
                 "delivery_time_slot_code": rng.choice([1, 2, 3]),
             }

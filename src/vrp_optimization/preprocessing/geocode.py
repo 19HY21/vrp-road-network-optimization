@@ -48,12 +48,25 @@ GSI_URL = "https://msearch.gsi.go.jp/address-search/AddressSearch"
 GSI_PAUSE = 0.2  # seconds between requests
 
 
-def _is_coarse_resolution(title: str) -> bool:
-    """市・区レベルで終わっている（丁目・町名がない）場合 True を返す。"""
-    return bool(re.search(r"[市区]$", title))
+def _extract_prefecture(address: str) -> str | None:
+    """住所文字列の先頭から都道府県名を抽出する。"""
+    m = re.match(r"^(東京都|大阪府|京都府|北海道|.{2,4}県)", str(address))
+    return m.group(1) if m else None
 
 
-def geocode_address(address: str) -> tuple[float, float, str] | None:
+def _is_geocode_valid(title: str, target_prefecture: str | None) -> bool:
+    """ジオコーディング結果が有効かチェックする。
+    - 市・区レベルで終わっている（丁目・町名がない）場合は粒度不足として無効
+    - target_prefecture が指定されており対象都道府県外の場合は無効
+    """
+    if re.search(r"[市区]$", title):
+        return False
+    if target_prefecture and not title.startswith(target_prefecture):
+        return False
+    return True
+
+
+def geocode_address(address: str, target_prefecture: str | None = None) -> tuple[float, float, str] | None:
     """国土地理院 API で住所をジオコーディングする。
     成功時は (lat, lon, resolved_title) を返す。失敗または精度不足時は None を返す。
     """
@@ -64,7 +77,7 @@ def geocode_address(address: str) -> tuple[float, float, str] | None:
         if results:
             lon, lat = results[0]["geometry"]["coordinates"]
             title = results[0]["properties"]["title"]
-            if _is_coarse_resolution(title):
+            if not _is_geocode_valid(title, target_prefecture):
                 return None
             return lat, lon, title
         return None
@@ -93,7 +106,30 @@ def _normalize(address: str) -> str:
     return str(address).strip()
 
 
-def geocode_transactions(df: pd.DataFrame, master: dict) -> tuple[pd.DataFrame, dict]:
+def _revalidate_cached_entries(master: dict, target_prefecture: str | None) -> int:
+    """キャッシュ済みエントリのうち現在のバリデーションに通らないものを無効化する。
+    geocode / snap 両方のフィールドをリセットして再スナップを強制する。
+    """
+    count = 0
+    now = datetime.now(timezone.utc).isoformat()
+    for r in master.values():
+        if r.get("geocode_status") != "success":
+            continue
+        title = r.get("geocode_resolved_title") or ""
+        if not _is_geocode_valid(title, target_prefecture):
+            print(f"  [再検証] 無効エントリを除外: {r['destination_address']} → {title}")
+            r["geocode_status"] = "failed"
+            r["destination_latitude"] = None
+            r["destination_longitude"] = None
+            r["network_node_id"] = None
+            r["snap_status"] = "invalid"
+            r["snap_distance"] = None
+            r["updated_at"] = now
+            count += 1
+    return count
+
+
+def geocode_transactions(df: pd.DataFrame, master: dict, target_prefecture: str | None = None) -> tuple[pd.DataFrame, dict]:
     """delivery_transaction の各行をジオコーディングし master を更新する。"""
     delivery_ids = []
     for _, row in df.iterrows():
@@ -103,7 +139,7 @@ def geocode_transactions(df: pd.DataFrame, master: dict) -> tuple[pd.DataFrame, 
             continue
 
         print(f"  ジオコーディング: {norm}")
-        result = geocode_address(norm)
+        result = geocode_address(norm, target_prefecture)
         now = datetime.now(timezone.utc).isoformat()
         did = str(uuid.uuid4())
         master[norm] = {
@@ -151,10 +187,21 @@ def main() -> None:
 
     print(f"配送先: {len(df)} 件 / キャッシュ済み: {len(master)} 件")
 
+    # デポ住所から対象都道府県を自動抽出（全デポが同一都道府県を想定）
+    target_prefecture = _extract_prefecture(depot_df["depot_address"].iloc[0])
+    if target_prefecture:
+        print(f"対象都道府県: {target_prefecture}（デポ住所より自動抽出）")
+    else:
+        print("[警告] デポ住所から都道府県を抽出できません。都道府県フィルタを無効化します。")
+
+    invalidated = _revalidate_cached_entries(master, target_prefecture)
+    if invalidated:
+        print(f"[再検証] {invalidated} 件のキャッシュエントリを無効化しました")
+
     depot_df = geocode_depot(depot_df)
     depot_df.to_csv(DEPOT_PATH, index=False, encoding="utf-8-sig")
 
-    df, master = geocode_transactions(df, master)
+    df, master = geocode_transactions(df, master, target_prefecture)
     df.to_csv(TRANSACTION_PATH, index=False, encoding="utf-8-sig")
     _save_master(MASTER_PATH, master)
 

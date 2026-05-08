@@ -45,34 +45,35 @@ def get_jobs() -> list:
     return list_jobs()
 
 
+@app.get("/depots")
+def get_depots() -> list:
+    import pandas as pd
+    depot_path = _ROOT / "data" / "raw" / "depot_master.csv"
+    df = pd.read_csv(depot_path)
+    return df[["depot_id", "depot_name"]].to_dict(orient="records")
+
+
 @app.post("/jobs")
 async def create_job(
     file: UploadFile = File(..., description="delivery_transaction.csv"),
-    v_min: int = Form(..., description="最小車両台数"),
-    v_max: int = Form(..., description="最大車両台数"),
+    depot_id: str = Form(..., description="使用するデポID"),
     output_dir: str = Form(..., description="出力先フォルダの絶対パス"),
+    vehicle_count: int = Form(..., description="最大稼働台数（UI 入力値）"),
+    solve_time_limit: int = Form(120, description="1戦略あたりのソルバー制限時間（秒）"),
 ) -> dict:
-    if v_min > v_max:
-        return JSONResponse(
-            status_code=422,
-            content={"error": f"v_min ({v_min}) は v_max ({v_max}) 以下にしてください"},
-        )
-
     job_id = str(uuid.uuid4())
     csv_bytes = await file.read()
 
-    # CSV を一時ファイルに保存（サブプロセスに渡すため）
     tmp_csv = Path(tempfile.mktemp(suffix=".csv"))
     tmp_csv.write_bytes(csv_bytes)
 
     init_job(job_id)
 
-    # OR-Tools CP-SAT はスレッドから呼ぶと macOS でデッドロックするため
-    # 別プロセスとして起動する
     subprocess.Popen(
         [
             sys.executable, "-m", "api.pipeline",
-            job_id, str(tmp_csv), output_dir, str(v_min), str(v_max),
+            job_id, str(tmp_csv), output_dir, depot_id,
+            str(vehicle_count), str(solve_time_limit),
         ],
         cwd=str(_ROOT),
     )

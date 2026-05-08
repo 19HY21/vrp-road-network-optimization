@@ -71,11 +71,17 @@ def run_pipeline(
     job_id: str,
     transaction_csv_path: Path,
     output_dir: Path,
-    v_min: int,
-    v_max: int,
+    depot_id: str,
+    solve_time_limit: int = 120,
+    vehicle_count: int | None = None,
 ) -> None:
     sys.path.insert(0, str(_ROOT / "src"))
     try:
+        import pandas as pd
+        depot_row = pd.read_csv(_ROOT / "data" / "raw" / "depot_master.csv")
+        depot_row = depot_row[depot_row["depot_id"] == depot_id].iloc[0]
+        k = vehicle_count if vehicle_count is not None else int(depot_row["vehicle_count"])
+
         _update(job_id, status="running", step="初期化中", progress=0.0)
 
         TRANSACTION_PATH.write_bytes(transaction_csv_path.read_bytes())
@@ -99,24 +105,26 @@ def run_pipeline(
 
         # Step 4: VRP ソルバー実行
         _update(job_id, step="ルート最適化中...", progress=0.55)
-        from vrp_optimization.solver.vrp import main as vrp_main
+        from vrp_optimization.solver.vrp_routing import main as vrp_main
 
-        k_total = v_max - v_min + 1
+        _STRATEGY_LABELS = {"A": "最近傍法", "B": "節約法", "C": "クリストフィデス法"}
 
-        def solver_progress(k: int, k_done: int, k_total: int = k_total) -> None:
-            pct = 0.55 + 0.25 * (k_done / k_total)
+        def solver_progress(strategy_key: str, i: int, total: int) -> None:
+            pct = 0.55 + 0.25 * (i / total)
+            label = _STRATEGY_LABELS.get(strategy_key, strategy_key)
             _update(
                 job_id,
-                step=f"ルート最適化中 — {k} 台で探索中（{k_done + 1} / {k_total} パターン）",
+                step=f"ルート最適化中 — 戦略 {strategy_key}（{label}）（{i + 1} / {total}）",
                 progress=round(pct, 3),
             )
 
-        vrp_main(plan_id=plan_id, v_min=v_min, v_max=v_max, progress_callback=solver_progress)
+        vrp_main(plan_id=plan_id, k=k, depot_id=depot_id,
+                 solve_time_limit=solve_time_limit, progress_callback=solver_progress)
 
         # Step 5: 評価
         _update(job_id, step="制約・コスト評価中", progress=0.80)
         from vrp_optimization.evaluation.evaluate import main as eval_main
-        eval_main(plan_id=plan_id)
+        eval_main(plan_id=plan_id, depot_id=depot_id)
 
         # Step 6: 可視化
         _update(job_id, step="ルートマップ生成中", progress=0.88)
@@ -127,6 +135,10 @@ def run_pipeline(
         _update(job_id, step="出力先フォルダへ保存中", progress=0.97)
         src = OUTPUTS_DIR / plan_id
         dst = Path(output_dir) / plan_id
+        if src.resolve() == dst.resolve():
+            # 出力先がプロジェクト内 outputs/ と同じ場合はコピー不要
+            _update(job_id, status="done", step="完了", progress=1.0, output_path=str(src))
+            return
         dst.parent.mkdir(parents=True, exist_ok=True)
         if dst.exists():
             shutil.rmtree(dst)
@@ -147,6 +159,9 @@ def run_pipeline(
 # ── サブプロセスとして直接実行 ──────────────────────────────
 
 if __name__ == "__main__":
-    # 引数: job_id csv_path output_dir v_min v_max
-    _, job_id, csv_path, output_dir, v_min, v_max = sys.argv
-    run_pipeline(job_id, Path(csv_path), Path(output_dir), int(v_min), int(v_max))
+    # 引数: job_id csv_path output_dir depot_id [vehicle_count] [solve_time_limit]
+    args = sys.argv[1:]
+    job_id, csv_path, output_dir, depot_id = args[:4]
+    vehicle_count = int(args[4]) if len(args) > 4 else None
+    solve_time_limit = int(args[5]) if len(args) > 5 else 120
+    run_pipeline(job_id, Path(csv_path), Path(output_dir), depot_id, solve_time_limit, vehicle_count)
