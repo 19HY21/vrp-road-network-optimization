@@ -54,22 +54,22 @@ prefecture_name = PLACE.split(',')[0].strip()
 LATEST_PATH = LATEST_NETWORK_DIR / f"{prefecture_name}_{NETWORK_TYPE}_latest.graphml"
 
 
-def load_graph() -> nx.MultiDiGraph:
+def load_graph() -> tuple[nx.MultiDiGraph, str]:
     """OSM 道路グラフを返す。キャッシュがあれば読み込み、なければ取得して保存する。"""
-    today_str = datetime.today().strftime("%Y%m%d")
+    today_str = datetime.today().strftime("%Y%m%d") #本日の日付文字列を生成する→キャッシュの鮮度判定とバージョン管理ファイル名に使用するため
 
-    # 以前のノード数とエッジ数を保持するための変数
+    #以前のノード数を初期化する→グラフ更新後に差分を出力しOSMデータの変化量を監視するため
     old_nodes_count = None
     old_edges_count = None
 
-    # 必要なディレクトリが存在することを確認
+    #保存先ディレクトリを事前作成する→ファイル保存時のFileNotFoundErrorを防ぐため
     OLD_NETWORK_DIR.mkdir(parents=True, exist_ok=True)
     LATEST_NETWORK_DIR.mkdir(parents=True, exist_ok=True)
 
-    # キャッシュファイルの鮮度チェックと条件付き削除
+    #キャッシュファイルの存在を確認する→当日取得済みであれば再利用しAPIへの不要なアクセスを防ぐため
     if LATEST_PATH.exists():
-        # 古いグラフのノードとエッジ数を取得（比較のために）
         try:
+            #既存キャッシュを読み込む→更新後にノード・エッジ数の差分を計算するため
             old_G = ox.load_graphml(LATEST_PATH)
             old_nodes_count = len(old_G.nodes)
             old_edges_count = len(old_G.edges)
@@ -77,46 +77,45 @@ def load_graph() -> nx.MultiDiGraph:
             print(f"既存のキャッシュファイル {LATEST_PATH} の読み込み中にエラーが発生しました: {e}")
             # エラーが発生しても処理を続行するために old_nodes_count, old_edges_count は None のまま
 
-        # キャッシュファイルの最終更新日を取得
         mod_timestamp = LATEST_PATH.stat().st_mtime
-        mod_date_str = datetime.fromtimestamp(mod_timestamp).strftime("%Y%m%d")
+        mod_date_str = datetime.fromtimestamp(mod_timestamp).strftime("%Y%m%d") #ファイルの最終更新日を取得する→当日と比較してキャッシュの鮮度を判定するため
 
         if mod_date_str != today_str:
             print(f"キャッシュファイル {LATEST_PATH} の日付が古いため削除します (最終更新日: {mod_date_str}, 本日: {today_str})")
-            LATEST_PATH.unlink() # 古いキャッシュファイルを削除
+            LATEST_PATH.unlink() #古いキャッシュを削除する→次の処理でAPIから最新データを再取得させるため
         else:
             print(f"キャッシュから読み込み: {LATEST_PATH}")
-            G = old_G # freshな場合は既にロードしたold_Gをそのまま使う
+            G = old_G #当日キャッシュをそのまま使用する→APIを呼ばずにグラフを返すことで処理コストを削減するため
             nodes, edges = len(G.nodes), len(G.edges)
             print(f"グラフ読み込み完了: nodes={nodes:,}, edges={edges:,} (キャッシュ)")
-            return G
+            return G, mod_date_str
 
 
     print(f"OSM からグラフを取得中: {PLACE} / network_type={NETWORK_TYPE}")
-    G = ox.graph_from_place(PLACE, network_type=NETWORK_TYPE)
+    G = ox.graph_from_place(PLACE, network_type=NETWORK_TYPE) #drive networkのみ取得する→歩道・自転車道を除外し配送車両の走行可能経路のみに絞り込むため
 
-    # versioned_path のファイル名に今日の日付を使用し、'old' ディレクトリに保存
-    versioned_path = OLD_NETWORK_DIR / f"{prefecture_name}_{NETWORK_TYPE}_{today_str}.graphml"
+    versioned_path = OLD_NETWORK_DIR / f"{prefecture_name}_{NETWORK_TYPE}_{today_str}.graphml" #日付付きファイル名で保存する→oldディレクトリで過去バージョンを管理し変化量を追跡できる
 
-    ox.save_graphml(G, versioned_path)
-    shutil.copy2(versioned_path, LATEST_PATH)
+    ox.save_graphml(G, versioned_path) #GraphML形式で保存する→再取得なしでネットワーク構造を完全に再現でき実験の再現性を確保できる
+    shutil.copy2(versioned_path, LATEST_PATH) #versioned_pathをlatestにコピーする→呼び出し元が常に同一パスを参照できシンプルな実装を維持するため
 
     nodes, edges = len(G.nodes), len(G.edges)
     print(f"保存完了: {versioned_path} (nodes={nodes:,}, edges={edges:,})")
     print(f"最新版としてコピー: {LATEST_PATH}")
 
-    # 以前のバージョンとの差分を表示
+    #前回取得値がある場合のみ差分を計算する→OSMデータの変化量を可視化しグラフ品質の監視に役立てる
     if old_nodes_count is not None and old_edges_count is not None:
         node_diff = nodes - old_nodes_count
         edge_diff = edges - old_edges_count
         print(f"ノード数の差分: {node_diff:,} (以前: {old_nodes_count:,}, 現在: {nodes:,})")
         print(f"エッジ数の差分: {edge_diff:,} (以前: {old_edges_count:,}, 現在: {edges:,})")
 
-    return G
+    return G, today_str
 
 
 def main() -> None:
-    G = load_graph()
+    #グラフを取得または読み込む→戻り値の日付文字列でキャッシュ利用か新規取得かを判別できる
+    G, graph_date_str = load_graph()
 
 
 if __name__ == "__main__":

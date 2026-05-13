@@ -32,6 +32,7 @@ _DEFAULT_OUTPUT_DIR = str(Path(__file__).parents[1] / "outputs")
 
 def _pick_folder() -> str:
     """別プロセスで tkinter ダイアログを開き、選択パスを返す。"""
+    # StreamlitはブラウザベースでありtkinterのGUIをメインスレッドで直接起動できないため、サブプロセス経由で開く
     import subprocess
     script = (
         "import tkinter as tk;"
@@ -138,7 +139,7 @@ def page_input() -> None:
     )
     if uploaded_file:
         preview = pd.read_csv(uploaded_file)
-        uploaded_file.seek(0)
+        uploaded_file.seek(0)  # プレビューで消費したカーソルを先頭に戻し、後続のAPI送信でファイルを再読み込みできるようにする
         st.dataframe(preview.head(5), width="stretch")
 
     st.divider()

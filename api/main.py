@@ -27,6 +27,7 @@ from api.pipeline import get_job, init_job, list_jobs
 _ROOT = Path(__file__).parents[1]
 app = FastAPI(title="VRP Optimization API", version="0.1.0")
 
+# StreamlitとFastAPIが異なるポートで動作するため、開発環境ではオリジン制限を緩和する（本番では限定すること）
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -64,6 +65,7 @@ async def create_job(
     job_id = str(uuid.uuid4())
     csv_bytes = await file.read()
 
+    # アップロードCSVを一時ファイルに保存することで、別プロセスのパイプラインへファイルパスとして渡せるようにする
     tmp_csv = Path(tempfile.mktemp(suffix=".csv"))
     tmp_csv.write_bytes(csv_bytes)
 

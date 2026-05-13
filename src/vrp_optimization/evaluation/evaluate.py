@@ -35,6 +35,7 @@ DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
 TRANSACTION_PATH = _ROOT / "data" / "raw" / "delivery_transaction.csv"
 OUTPUTS_DIR = _ROOT / "outputs"
 
+# 時間帯（午前/午後）の分岐点となる13:00を分単位の定数として定義し、ハードコードを排除する
 _NOON_ABSOLUTE_MIN = 13 * 60
 
 
@@ -46,6 +47,7 @@ def _latest_plan_id() -> str:
 
 
 def _best_strategy(summary_df: pd.DataFrame) -> str:
+    # 使用台数を第1優先（固定費に直結）、同台数の場合はコストで決定する
     solved = summary_df[summary_df["solve_status"].isin(["OPTIMAL", "FEASIBLE"])]
     return str(solved.sort_values(["vehicles_used", "total_cost_yen"]).iloc[0]["strategy"])
 

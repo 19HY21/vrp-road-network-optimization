@@ -21,6 +21,7 @@
 【実行方法】
     python -m vrp_optimization.network.snap
 """
+
 import json
 from pathlib import Path
 
@@ -28,7 +29,7 @@ import networkx as nx
 import osmnx as ox
 import pandas as pd
 
-from vrp_optimization.network.graph import load_graph
+from vrp_optimization.network.graph import load_graph 
 
 _ROOT = Path(__file__).parents[3]
 DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
@@ -54,34 +55,55 @@ def _snap_node(G: nx.MultiDiGraph, lat: float, lon: float) -> tuple[int, float]:
     return node_id, round(dist, 1)
 
 
-def snap_depot(G: nx.MultiDiGraph, depot_df: pd.DataFrame) -> pd.DataFrame:
+def snap_depot(G: nx.MultiDiGraph, depot_df: pd.DataFrame, graph_version: str) -> pd.DataFrame:
     """depot_master のデポをスナップし結果列を更新して返す。"""
     depot_df = depot_df.copy()
-    for col in ("depot_network_node_id", "depot_snap_status", "depot_snap_distance"):
-        depot_df[col] = depot_df[col].astype(object)
+
+    # 必要なカラムが存在することを確認し、なければNoneで初期化する
+    required_cols = ["depot_network_node_id", "depot_snap_status", "depot_snap_distance", "depot_snap_graph_date"]
+    for col in required_cols:
+        if col not in depot_df.columns:
+            depot_df[col] = None
+
     for idx, row in depot_df.iterrows():
         lat, lon = row.get("depot_latitude"), row.get("depot_longitude")
+
+        # 既に成功しており、かつ現在のグラフバージョンでスナップ済みならスキップ
+        if row.get("depot_snap_status") == "success" and row.get("depot_snap_graph_date") == graph_version:
+            print(f"  [スキップ] デポは現在の地図でスナップ済み: {row['depot_id']}")
+            continue
+
         if pd.isna(lat) or pd.isna(lon):
             depot_df.at[idx, "depot_snap_status"] = "failed"
+            depot_df.at[idx, "depot_snap_graph_date"] = graph_version
             print(f"  [スキップ] デポ緯度経度未設定: {row['depot_id']}")
             continue
+
         node_id, dist = _snap_node(G, float(lat), float(lon))
         depot_df.at[idx, "depot_network_node_id"] = str(node_id)
         depot_df.at[idx, "depot_snap_status"] = "success"
         depot_df.at[idx, "depot_snap_distance"] = dist
+        depot_df.at[idx, "depot_snap_graph_date"] = graph_version
         label = _snap_label(dist)
         print(f"  デポスナップ: {row['depot_id']} → node={node_id} ({dist}m){('  ' + label) if label else ''}")
     return depot_df
 
 
-def snap_destinations(G: nx.MultiDiGraph, master: list[dict]) -> list[dict]:
+def snap_destinations(G: nx.MultiDiGraph, master: list[dict], graph_version: str) -> list[dict]:
     """配送先マスタをスナップし結果フィールドを更新して返す。"""
     updated = []
-    for record in master:
+    for record in master: #masterのステータスに応じたアップデート処理
+        # 既に成功しており、かつ現在のグラフバージョンでスナップ済みならスキップ
+        if record.get("snap_status") == "success" and record.get("snap_graph_date") == graph_version:
+            print(f"  [スキップ] 配送先は現在の地図でスナップ済み: {record['destination_address'][:30]} ...")
+            updated.append(record)
+            continue
+
         if record.get("geocode_status") != "success":
             record["snap_status"] = "skipped"
             record["snap_distance"] = None
             record["network_node_id"] = None
+            record["snap_graph_date"] = graph_version
             updated.append(record)
             continue
 
@@ -91,6 +113,7 @@ def snap_destinations(G: nx.MultiDiGraph, master: list[dict]) -> list[dict]:
         record["network_node_id"] = str(node_id)
         record["snap_status"] = "success"
         record["snap_distance"] = dist
+        record["snap_graph_date"] = graph_version
         label = _snap_label(dist)
         print(f"  スナップ: {record['destination_address'][:30]} → node={node_id} ({dist}m)")
         if label:
@@ -102,15 +125,25 @@ def snap_destinations(G: nx.MultiDiGraph, master: list[dict]) -> list[dict]:
 def main() -> None:
     print("=== ノードスナップ開始 ===")
 
-    G = load_graph()
+    G, graph_version = load_graph() #地図データをAPIによって取得する。
+    print(f"地図データバージョン: {graph_version}")
 
-    depot_df = pd.read_csv(DEPOT_PATH)
-    depot_df = snap_depot(G, depot_df)
+    # csvファイルを読み込む際に、型を明示的に指定する
+    depot_dtypes = {
+        "depot_network_node_id": str,
+        "depot_snap_status": str,
+        "depot_snap_graph_date": str
+    }
+    depot_df = pd.read_csv(DEPOT_PATH, dtype=depot_dtypes)
+
+
+    depot_df = snap_depot(G, depot_df, graph_version)
     depot_df.to_csv(DEPOT_PATH, index=False, encoding="utf-8-sig")
 
     with open(MASTER_PATH, encoding="utf-8") as f:
         master = json.load(f)
-    master = snap_destinations(G, master)
+    # graph_versionをsnap_destinationsに渡す
+    master = snap_destinations(G, master, graph_version)
     with open(MASTER_PATH, "w", encoding="utf-8") as f:
         json.dump(master, f, ensure_ascii=False, indent=2)
 

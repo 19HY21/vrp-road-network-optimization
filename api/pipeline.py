@@ -22,6 +22,7 @@ from tempfile import gettempdir
 _ROOT = Path(__file__).parents[1]
 TRANSACTION_PATH = _ROOT / "data" / "raw" / "delivery_transaction.csv"
 OUTPUTS_DIR = _ROOT / "outputs"
+# DBを使わずTMP領域のJSONファイルでジョブ状態を管理し、PoC規模での外部依存を最小化する
 _JOBS_DIR = Path(gettempdir()) / "vrp_jobs"
 _JOBS_DIR.mkdir(exist_ok=True)
 
@@ -84,6 +85,7 @@ def run_pipeline(
 
         _update(job_id, status="running", step="初期化中", progress=0.0)
 
+        # 下流スクリプトが固定パスを参照するため、アップロードCSVで既存ファイルを上書きして互換性を維持する
         TRANSACTION_PATH.write_bytes(transaction_csv_path.read_bytes())
 
         # Step 1: ジオコーディング

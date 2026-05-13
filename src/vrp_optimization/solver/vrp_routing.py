@@ -25,6 +25,7 @@ SOLVE_TIME_LIMIT_SEC = 120
 
 _NOON_MIN = 13 * 60
 
+# ヒューリスティックごとに解品質が異なるため3戦略を探索し、最小コストを推奨プランとして採用する
 _STRATEGIES = [
     ("A", "PATH_CHEAPEST_ARC", routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC),
     ("B", "SAVINGS",           routing_enums_pb2.FirstSolutionStrategy.SAVINGS),
@@ -40,6 +41,7 @@ def _latest_plan_id() -> str:
 
 
 def _build_time_windows(work_start_hour: int, work_minutes: int) -> dict:
+    # ソルバーは業務開始からの相対分で制約を扱うため、時間帯コードを経過分の範囲に変換する
     ws = work_start_hour * 60
     return {
         1: (0, _NOON_MIN - ws),
