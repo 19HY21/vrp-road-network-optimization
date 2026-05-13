@@ -73,6 +73,7 @@ def run_pipeline(
     transaction_csv_path: Path,
     output_dir: Path,
     depot_id: str,
+    source_filename: str,
     solve_time_limit: int = 120,
     vehicle_count: int | None = None,
 ) -> None:
@@ -91,7 +92,7 @@ def run_pipeline(
         # Step 1: ジオコーディング
         _update(job_id, step="住所のジオコーディング中", progress=0.05)
         from vrp_optimization.preprocessing.geocode import main as geocode_main
-        geocode_main()
+        geocode_main(source_filename=source_filename)
 
         # Step 2: 道路ネットワークへのスナップ
         _update(job_id, step="道路ネットワークへのスナップ中", progress=0.20)
@@ -161,9 +162,9 @@ def run_pipeline(
 # ── サブプロセスとして直接実行 ──────────────────────────────
 
 if __name__ == "__main__":
-    # 引数: job_id csv_path output_dir depot_id [vehicle_count] [solve_time_limit]
+    # 引数: job_id csv_path output_dir depot_id source_filename [vehicle_count] [solve_time_limit]
     args = sys.argv[1:]
-    job_id, csv_path, output_dir, depot_id = args[:4]
-    vehicle_count = int(args[4]) if len(args) > 4 else None
-    solve_time_limit = int(args[5]) if len(args) > 5 else 120
-    run_pipeline(job_id, Path(csv_path), Path(output_dir), depot_id, solve_time_limit, vehicle_count)
+    job_id, csv_path, output_dir, depot_id, source_filename = args[:5]
+    vehicle_count = int(args[5]) if len(args) > 5 else None
+    solve_time_limit = int(args[6]) if len(args) > 6 else 120
+    run_pipeline(job_id, Path(csv_path), Path(output_dir), depot_id, source_filename, solve_time_limit, vehicle_count)

@@ -75,6 +75,7 @@ async def create_job(
         [
             sys.executable, "-m", "api.pipeline",
             job_id, str(tmp_csv), output_dir, depot_id,
+            file.filename or "unknown.csv",
             str(vehicle_count), str(solve_time_limit),
         ],
         cwd=str(_ROOT),
