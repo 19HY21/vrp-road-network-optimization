@@ -21,11 +21,12 @@ from folium.plugins import AntPath
 import osmnx as ox
 import pandas as pd
 
+from vrp_optimization.network.graph import load_graph
+
 _ROOT = Path(__file__).parents[3]
-MASTER_PATH = _ROOT / "data" / "processed" / "delivery_destination_master.json"
 DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
-GRAPH_PATH = _ROOT / "data" / "processed" / "osm_network" / "kanagawa_drive_latest.graphml"
 OUTPUTS_DIR = _ROOT / "outputs"
+_SNAP_DIR = _ROOT / "data" / "processed" / "snap"
 
 VEHICLE_COLORS = ["blue", "red", "green", "purple", "orange"]
 KANAGAWA_CENTER = [35.45, 139.55]
@@ -38,7 +39,7 @@ def _latest_plan_id() -> str:
     return plans[0].name
 
 
-def _build_location_lookup() -> dict[str, dict]:
+def _build_location_lookup(snap_master_path: Path) -> dict[str, dict]:
     """location_id → {lat, lon, address, node_id} の辞書を返す。"""
     lookup = {}
 
@@ -52,7 +53,7 @@ def _build_location_lookup() -> dict[str, dict]:
             "node_id": int(row["depot_network_node_id"]),
         }
 
-    with open(MASTER_PATH, encoding="utf-8") as f:
+    with open(snap_master_path, encoding="utf-8") as f:
         master = json.load(f)
     for r in master:
         if r.get("destination_latitude") is None or r.get("destination_longitude") is None:
@@ -271,16 +272,20 @@ def _vehicle_stats(routes_df: pd.DataFrame, od_matrix_df: pd.DataFrame, fixed_co
     return stats
 
 
-def main(plan_id: str | None = None, depot_id: str | None = None) -> None:
+def main(plan_id: str | None = None, depot_id: str | None = None, input_stem: str | None = None) -> None:
     plan_id = plan_id or _latest_plan_id()
     print(f"=== ルートマップ生成 ===")
     print(f"plan_id: {plan_id}")
 
+    snap_master_path = _SNAP_DIR / input_stem / "snap_destination_master.json" if input_stem else None
+    if snap_master_path is None or not snap_master_path.exists():
+        raise FileNotFoundError(f"スナップマスタが見つかりません: {snap_master_path}")
+
     table_dir = OUTPUTS_DIR / plan_id / "output" / "table"
     summary_df = pd.read_csv(table_dir / "route_summary.csv")
     detail_df = pd.read_csv(table_dir / "route_detail.csv")
-    od_matrix_df = pd.read_csv(OUTPUTS_DIR / plan_id / "distance" / "od_matrix.csv")
-    location_lookup = _build_location_lookup()
+    od_matrix_df = pd.read_csv(_ROOT / "data" / "processed" / "compute" / input_stem / depot_id / "od_matrix.csv")
+    location_lookup = _build_location_lookup(snap_master_path)
 
     depot_df = pd.read_csv(DEPOT_PATH)
     depot_row = depot_df[depot_df["depot_id"] == depot_id].iloc[0] if depot_id else depot_df.iloc[0]
@@ -294,7 +299,7 @@ def main(plan_id: str | None = None, depot_id: str | None = None) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     print("OSMnx グラフ読み込み中...")
-    G = ox.load_graphml(GRAPH_PATH)
+    G, _ = load_graph()
 
     for strategy in strategies:
         strategy_summary = summary_df[summary_df["strategy"] == strategy].iloc[0]
@@ -329,6 +334,7 @@ def main(plan_id: str | None = None, depot_id: str | None = None) -> None:
 
 
 if __name__ == "__main__":
-    _plan_id  = sys.argv[1] if len(sys.argv) > 1 else None
-    _depot_id = sys.argv[2] if len(sys.argv) > 2 else None
-    main(_plan_id, depot_id=_depot_id)
+    _plan_id    = sys.argv[1] if len(sys.argv) > 1 else None
+    _depot_id   = sys.argv[2] if len(sys.argv) > 2 else None
+    _input_stem = sys.argv[3] if len(sys.argv) > 3 else None
+    main(_plan_id, depot_id=_depot_id, input_stem=_input_stem)

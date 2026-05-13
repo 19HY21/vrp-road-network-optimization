@@ -1,7 +1,7 @@
 """
 【目的】
     delivery_transaction_1000.csv の配送先住所を緯度経度に変換し、
-    processed/delivery_destination_master.json にキャッシュする前処理スクリプト。
+    processed/geocode/{input_stem}/delivery_destination_master.json にキャッシュする前処理スクリプト。
     depot_master.csv のデポ住所も未設定の場合にジオコーディングする。
 
 【処理の流れ】
@@ -22,11 +22,11 @@
     8. 保存先ファイルパスをすべて logging で明示する
 
 【出力先】
-    data/processed/delivery_destination_master.json
+    data/processed/geocode/{input_stem}/delivery_destination_master.json
+    data/processed/geocode/{input_stem}/geocode_failures_delivery.csv  （失敗した配送先住所）
+    data/processed/geocode/{input_stem}/geocode_failures_depot.csv     （失敗したデポ住所）
     data/raw/delivery_transaction_1000.csv        （delivery_id 列を更新）
     data/raw/depot_master.csv                      （depot_latitude / depot_longitude を更新）
-    data/processed/geocode_failures_delivery.csv  （失敗した配送先住所）
-    data/processed/geocode_failures_depot.csv     （失敗したデポ住所）
 
 【注意事項】
     - 国土地理院 API は無料・API キー不要だが、過負荷を避けるため 0.2s 間隔を確保する
@@ -38,6 +38,7 @@
 
 【実行方法】
     python -m vrp_optimization.preprocessing.geocode
+    python -m vrp_optimization.preprocessing.geocode delivery_transaction_1000
 """
 import json
 import logging
@@ -53,9 +54,7 @@ import requests
 _ROOT = Path(__file__).parents[3]
 TRANSACTION_PATH = _ROOT / "data" / "raw" / "delivery_transaction_1000.csv"
 DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
-MASTER_PATH = _ROOT / "data" / "processed" / "delivery_destination_master.json"
-GEOCODE_FAILURES_DELIVERY_PATH = _ROOT / "data" / "processed" / "geocode_failures_delivery.csv"
-GEOCODE_FAILURES_DEPOT_PATH = _ROOT / "data" / "processed" / "geocode_failures_depot.csv"
+_GEOCODE_DIR = _ROOT / "data" / "processed" / "geocode"
 
 GSI_URL = "https://msearch.gsi.go.jp/address-search/AddressSearch"
 GSI_PAUSE = 0.2  # seconds between requests
@@ -63,6 +62,16 @@ GSI_PAUSE = 0.2  # seconds between requests
 CHECKPOINT_INTERVAL = 100  # API呼び出しがこの件数に達するたびにJSONへ中間保存する
 
 logger = logging.getLogger(__name__)
+
+
+def _geocode_paths(input_stem: str) -> tuple[Path, Path, Path]:
+    """input_stem に基づくジオコード出力パスを返す。(master, failures_delivery, failures_depot)"""
+    d = _GEOCODE_DIR / input_stem
+    return (
+        d / "delivery_destination_master.json",
+        d / "geocode_failures_delivery.csv",
+        d / "geocode_failures_depot.csv",
+    )
 
 
 def _extract_prefecture(address: str) -> str | None:
@@ -194,22 +203,24 @@ def _save_failures_delivery(
         for norm, r in master.items()
         if norm in unique_norms and r.get("geocode_status") == "failed"
     ]
-    if failed: # 失敗がある場合は CSV に保存する
+    if failed:  # 失敗がある場合は CSV に保存する
         path.parent.mkdir(parents=True, exist_ok=True)
         pd.DataFrame(failed).to_csv(path, index=False, encoding="utf-8-sig")
-    elif path.exists():# 失敗がない場合は既存のファイルを削除する
+    elif path.exists():  # 失敗がない場合は既存のファイルを削除する
         path.unlink()
     return len(failed)
 
 
-def _save_failures_depot(failures: list[dict]) -> None:
+def _save_failures_depot(failures: list[dict], path: Path) -> None:
     """ジオコーディング失敗デポを CSV に上書き保存する。"""
-    GEOCODE_FAILURES_DEPOT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    pd.DataFrame(failures).to_csv(GEOCODE_FAILURES_DEPOT_PATH, index=False, encoding="utf-8-sig")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    pd.DataFrame(failures).to_csv(path, index=False, encoding="utf-8-sig")
 
 
 def geocode_depot(
-    depot_df: pd.DataFrame, target_prefectures: set[str] | None = None
+    depot_df: pd.DataFrame,
+    target_prefectures: set[str] | None = None,
+    failures_depot_path: Path | None = None,
 ) -> pd.DataFrame:
     """
         depot_master の緯度経度が未設定の行をジオコーディングする。
@@ -243,10 +254,11 @@ def geocode_depot(
             logger.error("[エラー] デポ住所のジオコーディング失敗: %s (理由: %s)", address, reason)
 
     if failures:
-        _save_failures_depot(failures)
+        if failures_depot_path:
+            _save_failures_depot(failures, failures_depot_path)
         raise RuntimeError(
             f"デポのジオコーディングに失敗しました（{len(failures)} 件）。"
-            f"詳細は {GEOCODE_FAILURES_DEPOT_PATH} を確認してください。"
+            f"詳細は {failures_depot_path} を確認してください。"
         )
 
     return depot_df
@@ -326,7 +338,7 @@ def geocode_transactions(
         api_call_count += 1
 
         if is_retry:
-            if result: # 再試行成功 → 成功情報で上書き
+            if result:  # 再試行成功 → 成功情報で上書き
                 master[norm].update({
                     "geocode_status": "success",
                     "geocode_failure_reason": None,
@@ -339,10 +351,10 @@ def geocode_transactions(
                     "updated_at": now,
                 })
                 logger.info("再ジオコーディング成功: %s", norm)
-            else: # 再試行失敗 → 失敗理由と更新日時を更新
+            else:  # 再試行失敗 → 失敗理由と更新日時を更新
                 master[norm]["geocode_failure_reason"] = reason
                 master[norm]["updated_at"] = now
-        else: # 新規エントリは初回登録（失敗も含む）
+        else:  # 新規エントリは初回登録（失敗も含む）
             master[norm] = {
                 "delivery_id": str(uuid.uuid4()),
                 "destination_name": _normalize(row.get("destination_name", "")),
@@ -371,7 +383,7 @@ def geocode_transactions(
     return df, master
 
 
-def main(source_filename: str | None = None) -> None:
+def main(source_filename: str | None = None, input_stem: str | None = None) -> None:
     """ジオコーディング処理のメイン関数。"""
     logging.basicConfig(
         level=logging.INFO,
@@ -380,12 +392,17 @@ def main(source_filename: str | None = None) -> None:
     )
 
     source_filename = source_filename or TRANSACTION_PATH.name
+    input_stem = input_stem or Path(source_filename).stem
+
+    master_path, failures_delivery_path, failures_depot_path = _geocode_paths(input_stem)
 
     logger.info("=== ジオコーディング開始 (国土地理院 API) ===")
+    logger.info("入力ファイル: %s", TRANSACTION_PATH)
+    logger.info("出力ディレクトリ: %s", master_path.parent)
 
     df = pd.read_csv(TRANSACTION_PATH)
     depot_df = pd.read_csv(DEPOT_PATH)
-    master = _load_master(MASTER_PATH)
+    master = _load_master(master_path)
 
     target_prefectures = _extract_prefectures(depot_df)
 
@@ -395,7 +412,7 @@ def main(source_filename: str | None = None) -> None:
         logger.info("対象都道府県: %s（デポ住所より自動抽出）", "、".join(sorted(target_prefectures)))
     else:
         logger.warning("デポ住所から都道府県を抽出できません。都道府県フィルタを無効化します。")
-    depot_df = geocode_depot(depot_df, target_prefectures)
+    depot_df = geocode_depot(depot_df, target_prefectures, failures_depot_path)
     depot_df.to_csv(DEPOT_PATH, index=False, encoding="utf-8-sig")
 
     # Step 2: 配送先のキャッシュ状況を把握（配送件数 >= ユニーク件数 >= キャッシュ済み件数）
@@ -418,9 +435,9 @@ def main(source_filename: str | None = None) -> None:
 
     # Step 4: 配送先のジオコーディング
     logger.info("--- 配送先のジオコーディング ---")
-    df, master = geocode_transactions(df, master, MASTER_PATH, target_prefectures)
+    df, master = geocode_transactions(df, master, master_path, target_prefectures)
     df.to_csv(TRANSACTION_PATH, index=False, encoding="utf-8-sig")
-    _save_master(MASTER_PATH, master)
+    _save_master(master_path, master)
 
     # Step 5: 失敗レポートの保存（ユニーク住所ベースで Step 2 と軸を揃える）
     success = sum(
@@ -428,7 +445,7 @@ def main(source_filename: str | None = None) -> None:
         if master.get(norm, {}).get("geocode_status") == "success"
     )
     fail_count = _save_failures_delivery(
-        GEOCODE_FAILURES_DELIVERY_PATH, master, source_filename, unique_norms
+        failures_delivery_path, master, source_filename, unique_norms
     )
     logger.info(
         "ジオコーディング完了: ユニーク住所 %d 件 / 成功 %d 件 / 失敗 %d 件",
@@ -439,10 +456,12 @@ def main(source_filename: str | None = None) -> None:
     logger.info("保存先:")
     logger.info("  デポマスタ     : %s", DEPOT_PATH)
     logger.info("  配送データ     : %s", TRANSACTION_PATH)
-    logger.info("  JSON キャッシュ: %s", MASTER_PATH)
+    logger.info("  JSON キャッシュ: %s", master_path)
     if fail_count:
-        logger.info("  失敗レポート   : %s", GEOCODE_FAILURES_DELIVERY_PATH)
+        logger.info("  失敗レポート   : %s", failures_delivery_path)
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    _input_stem = sys.argv[1] if len(sys.argv) > 1 else None
+    main(input_stem=_input_stem)

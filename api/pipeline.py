@@ -15,7 +15,6 @@ import json
 import shutil
 import sys
 import traceback
-from datetime import datetime
 from pathlib import Path
 from tempfile import gettempdir
 
@@ -88,23 +87,23 @@ def run_pipeline(
 
         # 下流スクリプトが固定パスを参照するため、アップロードCSVで既存ファイルを上書きして互換性を維持する
         TRANSACTION_PATH.write_bytes(transaction_csv_path.read_bytes())
+        input_stem = Path(source_filename).stem
 
         # Step 1: ジオコーディング
         _update(job_id, step="住所のジオコーディング中", progress=0.05)
         from vrp_optimization.preprocessing.geocode import main as geocode_main
-        geocode_main(source_filename=source_filename)
+        geocode_main(source_filename=source_filename, input_stem=input_stem)
 
         # Step 2: 道路ネットワークへのスナップ
         _update(job_id, step="道路ネットワークへのスナップ中", progress=0.20)
         from vrp_optimization.network.snap import main as snap_main
-        snap_main()
+        snap_main(input_stem=input_stem)
 
         # Step 3: OD 行列計算
         _update(job_id, step="OD 行列計算中（数分かかります）", progress=0.35)
-        plan_id = f"PLAN_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-        _update(job_id, plan_id=plan_id)
         from vrp_optimization.distance_matrix.compute import main as compute_main
-        compute_main(plan_id=plan_id)
+        plan_id = compute_main(depot_id=depot_id, input_stem=input_stem)
+        _update(job_id, plan_id=plan_id)
 
         # Step 4: VRP ソルバー実行
         _update(job_id, step="ルート最適化中...", progress=0.55)
@@ -122,17 +121,18 @@ def run_pipeline(
             )
 
         vrp_main(plan_id=plan_id, k=k, depot_id=depot_id,
-                 solve_time_limit=solve_time_limit, progress_callback=solver_progress)
+                 solve_time_limit=solve_time_limit, progress_callback=solver_progress,
+                 input_stem=input_stem)
 
         # Step 5: 評価
         _update(job_id, step="制約・コスト評価中", progress=0.80)
         from vrp_optimization.evaluation.evaluate import main as eval_main
-        eval_main(plan_id=plan_id, depot_id=depot_id)
+        eval_main(plan_id=plan_id, depot_id=depot_id, input_stem=input_stem)
 
         # Step 6: 可視化
         _update(job_id, step="ルートマップ生成中", progress=0.88)
         from vrp_optimization.visualization.map import main as map_main
-        map_main(plan_id=plan_id)
+        map_main(plan_id=plan_id, depot_id=depot_id, input_stem=input_stem)
 
         # Step 7: 出力先フォルダへコピー
         _update(job_id, step="出力先フォルダへ保存中", progress=0.97)

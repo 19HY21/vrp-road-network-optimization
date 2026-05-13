@@ -4,14 +4,15 @@
     `old`ディレクトリで過去バージョンを管理しつつ、`latest`ディレクトリで最新版のキャッシュを再利用する。
 
 【処理の流れ】
-    1. `data/processed/osm_network/latest/kanagawa_drive_latest.graphml` が存在し、かつ日付が今日と一致すれば読み込んで返す。
-    2. `data/processed/osm_network/latest/kanagawa_drive_latest.graphml` の日付が古い場合、または存在しない場合は Overpass API（osmnx 経由）で神奈川県の drive ネットワークを取得する。
+    1. `data/processed/osm_network/latest/kanagawa_drive_YYYYMMDD_latest.graphml` が存在すれば読み込んで返す。
+    2. 存在しない場合は前日以前の stale な latest ファイルを削除し、Overpass API（osmnx 経由）で取得する。
     3. 取得したグラフは、日付付きファイル名（`kanagawa_drive_YYYYMMDD.graphml`）で `old` ディレクトリに保存し、
-       そのファイルを `latest` ディレクトリ内の `kanagawa_drive_latest.graphml` にもコピーする。
+       `kanagawa_drive_YYYYMMDD_latest.graphml` として `latest` ディレクトリにもコピーする。
 
 【出力先】
     - 過去バージョン: `data/processed/osm_network/old/kanagawa_drive_YYYYMMDD.graphml`
-    - 最新バージョン: `data/processed/osm_network/latest/kanagawa_drive_latest.graphml`
+    - 最新バージョン: `data/processed/osm_network/latest/kanagawa_drive_YYYYMMDD_latest.graphml`
+    - グラフメタデータ: `data/processed/osm_network/graph_metadata.csv`
 
 【注意事項】
     - 初回取得時は Overpass API へのネットワークアクセスが発生し数分かかる。
@@ -31,8 +32,10 @@
     python -m vrp_optimization.network.graph
 """
 
+import csv
+import logging
 import shutil
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import networkx as nx
@@ -44,78 +47,118 @@ NETWORK_TYPE = "drive"
 _ROOT = Path(__file__).parents[3]
 NETWORK_DIR = _ROOT / "data" / "processed" / "osm_network"
 
-
 OLD_NETWORK_DIR = NETWORK_DIR / "old"
 LATEST_NETWORK_DIR = NETWORK_DIR / "latest"
 
+GRAPH_METADATA_PATH = _ROOT / "data" / "processed" / "osm_network" / "graph_metadata.csv"
+_METADATA_COLUMNS = ["graph_name", "prefecture", "nodes", "edges", "created_at"]
 
 prefecture_name = PLACE.split(',')[0].strip()
+logger = logging.getLogger(__name__)
 
-LATEST_PATH = LATEST_NETWORK_DIR / f"{prefecture_name}_{NETWORK_TYPE}_latest.graphml"
+
+def _get_old_counts_from_metadata(graph_name: str) -> tuple[int, int] | None:
+    """
+        graph_metadata.csv から指定 graph_name のノード数・エッジ数を返す。
+        新しいエントリほど末尾にあるため末尾から検索する。見つからない場合は None を返す。
+    """
+    if not GRAPH_METADATA_PATH.exists():
+        return None
+    with open(GRAPH_METADATA_PATH, encoding="utf-8-sig") as f:
+        rows = list(csv.DictReader(f))
+    for row in reversed(rows):
+        if row["graph_name"] == graph_name:
+            return int(row["nodes"]), int(row["edges"])
+    return None
+
+
+def _ensure_graph_metadata(graph_name: str, prefecture: str, nodes: int, edges: int) -> None:
+    """graph_metadata.csv に指定 graph_name のエントリがなければ追記する。"""
+    GRAPH_METADATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+    file_exists = GRAPH_METADATA_PATH.exists()
+    if file_exists:
+        with open(GRAPH_METADATA_PATH, encoding="utf-8-sig") as f:
+            if graph_name in {row["graph_name"] for row in csv.DictReader(f)}:
+                return
+
+    with open(GRAPH_METADATA_PATH, "a", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=_METADATA_COLUMNS)
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow({
+            "graph_name": graph_name,
+            "prefecture": prefecture,
+            "nodes": nodes,
+            "edges": edges,
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        })
+    logger.info(f"グラフメタデータ保存: {GRAPH_METADATA_PATH}")
 
 
 def load_graph() -> tuple[nx.MultiDiGraph, str]:
     """OSM 道路グラフを返す。キャッシュがあれば読み込み、なければ取得して保存する。"""
-    today_str = datetime.today().strftime("%Y%m%d") #本日の日付文字列を生成する→キャッシュの鮮度判定とバージョン管理ファイル名に使用するため
+    today_str = datetime.today().strftime("%Y%m%d")
+    versioned_name = f"{prefecture_name}_{NETWORK_TYPE}_{today_str}.graphml"
+    latest_path = LATEST_NETWORK_DIR / f"{prefecture_name}_{NETWORK_TYPE}_{today_str}_latest.graphml"
 
-    #以前のノード数を初期化する→グラフ更新後に差分を出力しOSMデータの変化量を監視するため
-    old_nodes_count = None
-    old_edges_count = None
+    logger.info("--- 地図データ取得 ---")
+    logger.info("対象: %s / network_type=%s", PLACE, NETWORK_TYPE)
 
-    #保存先ディレクトリを事前作成する→ファイル保存時のFileNotFoundErrorを防ぐため
     OLD_NETWORK_DIR.mkdir(parents=True, exist_ok=True)
     LATEST_NETWORK_DIR.mkdir(parents=True, exist_ok=True)
 
-    #キャッシュファイルの存在を確認する→当日取得済みであれば再利用しAPIへの不要なアクセスを防ぐため
-    if LATEST_PATH.exists():
+    logger.info("キャッシュを確認中...")
+    if latest_path.exists():
+        logger.info("  → キャッシュが存在します")
         try:
-            #既存キャッシュを読み込む→更新後にノード・エッジ数の差分を計算するため
-            old_G = ox.load_graphml(LATEST_PATH)
-            old_nodes_count = len(old_G.nodes)
-            old_edges_count = len(old_G.edges)
+            G = ox.load_graphml(latest_path)
         except Exception as e:
-            print(f"既存のキャッシュファイル {LATEST_PATH} の読み込み中にエラーが発生しました: {e}")
-            # エラーが発生しても処理を続行するために old_nodes_count, old_edges_count は None のまま
-
-        mod_timestamp = LATEST_PATH.stat().st_mtime
-        mod_date_str = datetime.fromtimestamp(mod_timestamp).strftime("%Y%m%d") #ファイルの最終更新日を取得する→当日と比較してキャッシュの鮮度を判定するため
-
-        if mod_date_str != today_str:
-            print(f"キャッシュファイル {LATEST_PATH} の日付が古いため削除します (最終更新日: {mod_date_str}, 本日: {today_str})")
-            LATEST_PATH.unlink() #古いキャッシュを削除する→次の処理でAPIから最新データを再取得させるため
+            logger.error(f"既存のキャッシュファイル {latest_path} の読み込み中にエラーが発生しました: {e}")
+            latest_path.unlink()
         else:
-            print(f"キャッシュから読み込み: {LATEST_PATH}")
-            G = old_G #当日キャッシュをそのまま使用する→APIを呼ばずにグラフを返すことで処理コストを削減するため
             nodes, edges = len(G.nodes), len(G.edges)
-            print(f"グラフ読み込み完了: nodes={nodes:,}, edges={edges:,} (キャッシュ)")
-            return G, mod_date_str
+            logger.info(f"キャッシュから読み込み: {latest_path}")
+            logger.info(f"グラフ読み込み完了: nodes={nodes:,}, edges={edges:,} (キャッシュ)")
+            _ensure_graph_metadata(versioned_name, prefecture_name, nodes, edges)
+            return G, today_str
+    else:
+        logger.info("  → キャッシュが存在しません")
 
+    old_nodes_count = None
+    old_edges_count = None
+    for stale in LATEST_NETWORK_DIR.glob(f"{prefecture_name}_{NETWORK_TYPE}_*_latest.graphml"):
+        old_name = stale.name.replace("_latest.graphml", ".graphml")
+        counts = _get_old_counts_from_metadata(old_name)
+        if counts:
+            old_nodes_count, old_edges_count = counts
+        logger.info(f"古いキャッシュを削除します: {stale.name}")
+        stale.unlink()
 
-    print(f"OSM からグラフを取得中: {PLACE} / network_type={NETWORK_TYPE}")
-    G = ox.graph_from_place(PLACE, network_type=NETWORK_TYPE) #drive networkのみ取得する→歩道・自転車道を除外し配送車両の走行可能経路のみに絞り込むため
+    logger.info("OSM からグラフを取得中...")
+    G = ox.graph_from_place(PLACE, network_type=NETWORK_TYPE)
 
-    versioned_path = OLD_NETWORK_DIR / f"{prefecture_name}_{NETWORK_TYPE}_{today_str}.graphml" #日付付きファイル名で保存する→oldディレクトリで過去バージョンを管理し変化量を追跡できる
-
-    ox.save_graphml(G, versioned_path) #GraphML形式で保存する→再取得なしでネットワーク構造を完全に再現でき実験の再現性を確保できる
-    shutil.copy2(versioned_path, LATEST_PATH) #versioned_pathをlatestにコピーする→呼び出し元が常に同一パスを参照できシンプルな実装を維持するため
+    versioned_path = OLD_NETWORK_DIR / versioned_name
+    ox.save_graphml(G, versioned_path)
+    shutil.copy2(versioned_path, latest_path)
 
     nodes, edges = len(G.nodes), len(G.edges)
-    print(f"保存完了: {versioned_path} (nodes={nodes:,}, edges={edges:,})")
-    print(f"最新版としてコピー: {LATEST_PATH}")
+    logger.info(f"保存完了: {versioned_path} (nodes={nodes:,}, edges={edges:,})")
+    logger.info(f"最新版としてコピー: {latest_path}")
+    _ensure_graph_metadata(versioned_name, prefecture_name, nodes, edges)
 
-    #前回取得値がある場合のみ差分を計算する→OSMデータの変化量を可視化しグラフ品質の監視に役立てる
     if old_nodes_count is not None and old_edges_count is not None:
         node_diff = nodes - old_nodes_count
         edge_diff = edges - old_edges_count
-        print(f"ノード数の差分: {node_diff:,} (以前: {old_nodes_count:,}, 現在: {nodes:,})")
-        print(f"エッジ数の差分: {edge_diff:,} (以前: {old_edges_count:,}, 現在: {edges:,})")
+        logger.info(f"ノード数の差分: {node_diff:,} (以前: {old_nodes_count:,}, 現在: {nodes:,})")
+        logger.info(f"エッジ数の差分: {edge_diff:,} (以前: {old_edges_count:,}, 現在: {edges:,})")
 
     return G, today_str
 
 
 def main() -> None:
-    #グラフを取得または読み込む→戻り値の日付文字列でキャッシュ利用か新規取得かを判別できる
-    G, graph_date_str = load_graph()
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+    load_graph()
 
 
 if __name__ == "__main__":

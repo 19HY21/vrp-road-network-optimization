@@ -30,10 +30,10 @@ from pathlib import Path
 import pandas as pd
 
 _ROOT = Path(__file__).parents[3]
-MASTER_PATH = _ROOT / "data" / "processed" / "delivery_destination_master.json"
 DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
 TRANSACTION_PATH = _ROOT / "data" / "raw" / "delivery_transaction.csv"
 OUTPUTS_DIR = _ROOT / "outputs"
+_SNAP_DIR = _ROOT / "data" / "processed" / "snap"
 
 # 時間帯（午前/午後）の分岐点となる13:00を分単位の定数として定義し、ハードコードを排除する
 _NOON_ABSOLUTE_MIN = 13 * 60
@@ -59,7 +59,8 @@ def _check(name: str, passed: bool, detail: str = "") -> dict:
 
 
 
-def run_evaluation(plan_id: str, depot_id: str | None = None) -> pd.DataFrame:
+def run_evaluation(plan_id: str, depot_id: str | None = None, input_stem: str | None = None) -> pd.DataFrame:
+    snap_master_path = _SNAP_DIR / input_stem / "snap_destination_master.json" if input_stem else None
     table_dir = OUTPUTS_DIR / plan_id / "output" / "table"
     summary_df = pd.read_csv(table_dir / "route_summary.csv")
     detail_df = pd.read_csv(table_dir / "route_detail.csv")
@@ -67,7 +68,9 @@ def run_evaluation(plan_id: str, depot_id: str | None = None) -> pd.DataFrame:
     depot_row = depot_df[depot_df["depot_id"] == depot_id].iloc[0] if depot_id else depot_df.iloc[0]
     txn_df = pd.read_csv(TRANSACTION_PATH)
 
-    with open(MASTER_PATH, encoding="utf-8") as f:
+    if snap_master_path is None or not snap_master_path.exists():
+        raise FileNotFoundError(f"スナップマスタが見つかりません: {snap_master_path}")
+    with open(snap_master_path, encoding="utf-8") as f:
         master = json.load(f)
     valid_ids = {r["delivery_id"] for r in master if r.get("snap_status") == "success"}
 
@@ -187,10 +190,10 @@ def run_evaluation(plan_id: str, depot_id: str | None = None) -> pd.DataFrame:
     return pd.DataFrame(results)
 
 
-def main(plan_id: str | None = None, depot_id: str | None = None) -> None:
+def main(plan_id: str | None = None, depot_id: str | None = None, input_stem: str | None = None) -> None:
     plan_id = plan_id or _latest_plan_id()
 
-    results_df = run_evaluation(plan_id, depot_id=depot_id)
+    results_df = run_evaluation(plan_id, depot_id=depot_id, input_stem=input_stem)
 
     pass_count = (results_df["status"] == "PASS").sum()
     fail_count = (results_df["status"] == "FAIL").sum()
@@ -204,6 +207,7 @@ def main(plan_id: str | None = None, depot_id: str | None = None) -> None:
 
 
 if __name__ == "__main__":
-    _plan_id  = sys.argv[1] if len(sys.argv) > 1 else None
-    _depot_id = sys.argv[2] if len(sys.argv) > 2 else None
-    main(_plan_id, depot_id=_depot_id)
+    _plan_id    = sys.argv[1] if len(sys.argv) > 1 else None
+    _depot_id   = sys.argv[2] if len(sys.argv) > 2 else None
+    _input_stem = sys.argv[3] if len(sys.argv) > 3 else None
+    main(_plan_id, depot_id=_depot_id, input_stem=_input_stem)

@@ -18,9 +18,10 @@ from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 
 _ROOT = Path(__file__).parents[3]
 TRANSACTION_PATH = _ROOT / "data" / "raw" / "delivery_transaction.csv"
-MASTER_PATH = _ROOT / "data" / "processed" / "delivery_destination_master.json"
 DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
 OUTPUTS_DIR = _ROOT / "outputs"
+_SNAP_DIR = _ROOT / "data" / "processed" / "snap"
+_COMPUTE_DIR = _ROOT / "data" / "processed" / "compute"
 SOLVE_TIME_LIMIT_SEC = 120
 
 _NOON_MIN = 13 * 60
@@ -50,8 +51,9 @@ def _build_time_windows(work_start_hour: int, work_minutes: int) -> dict:
     }
 
 
-def _load_data(plan_id: str, depot_id: str | None = None) -> dict:
-    od_path = OUTPUTS_DIR / plan_id / "distance" / "od_matrix.csv"
+def _load_data(plan_id: str, depot_id: str | None = None, input_stem: str | None = None) -> dict:
+    snap_master_path = _SNAP_DIR / input_stem / "snap_destination_master.json"
+    od_path = _COMPUTE_DIR / input_stem / depot_id / "od_matrix.csv"
     od_df = pd.read_csv(od_path)
 
     depot_df = pd.read_csv(DEPOT_PATH)
@@ -62,7 +64,7 @@ def _load_data(plan_id: str, depot_id: str | None = None) -> dict:
     work_minutes    = (work_end_hour - work_start_hour) * 60
     time_windows_map = _build_time_windows(work_start_hour, work_minutes)
 
-    with open(MASTER_PATH, encoding="utf-8") as f:
+    with open(snap_master_path, encoding="utf-8") as f:
         master_records = json.load(f)
     txn_df = pd.read_csv(TRANSACTION_PATH)
 
@@ -259,12 +261,13 @@ def main(
     depot_id: str | None = None,
     solve_time_limit: int = SOLVE_TIME_LIMIT_SEC,
     progress_callback=None,
+    input_stem: str | None = None,
 ) -> None:
     plan_id = plan_id or _latest_plan_id()
     print("=== VRP ソルバー実行 (Routing Library) ===")
     print(f"plan_id: {plan_id}")
 
-    data = _load_data(plan_id, depot_id=depot_id)
+    data = _load_data(plan_id, depot_id=depot_id, input_stem=input_stem)
     if k is None:
         k = data["vehicle_count"]
 

@@ -36,7 +36,7 @@ from ortools.sat.python import cp_model
 
 _ROOT = Path(__file__).parents[3]
 TRANSACTION_PATH = _ROOT / "data" / "raw" / "delivery_transaction.csv"
-MASTER_PATH = _ROOT / "data" / "processed" / "delivery_destination_master.json"
+SNAP_MASTER_PATH = _ROOT / "data" / "processed" / "snap_destination_master.json"
 DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
 OUTPUTS_DIR = _ROOT / "outputs"
 
@@ -81,7 +81,7 @@ def _load_data(plan_id: str, depot_id: str | None = None) -> dict:
     work_minutes    = (work_end_hour - work_start_hour) * 60
     time_windows_map = _build_time_windows(work_start_hour, work_minutes)
 
-    with open(MASTER_PATH, encoding="utf-8") as f:
+    with open(SNAP_MASTER_PATH, encoding="utf-8") as f:
         master_records = json.load(f)
 
     txn_df = pd.read_csv(TRANSACTION_PATH)
