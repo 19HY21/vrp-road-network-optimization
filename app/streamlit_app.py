@@ -314,16 +314,23 @@ def page_done() -> None:
 
     # 推奨プランメトリクス
     eval_path = output_path / "output" / "table" / "evaluation_report.csv"
+    eval_df_best = None
+    if eval_path.exists():
+        eval_df_all = pd.read_csv(eval_path)
+        if "strategy" in eval_df_all.columns:
+            eval_df_best = eval_df_all[eval_df_all["strategy"] == best_strategy]
+        else:
+            eval_df_best = eval_df_all
+
     col1, col2, col3, col4, col5 = st.columns(5)
     col1.metric("推奨戦略", f"戦略 {best_strategy}")
     st.caption(f"戦略 A: 最近傍法 　戦略 B: 節約法 　戦略 C: クリストフィデス法")
     col2.metric("推奨使用台数", f"{int(best['vehicles_used'])} 台")
     col3.metric("総走行距離", f"{best['total_dist_km']:.2f} km")
     col4.metric("総コスト", f"¥{int(best['total_cost_yen']):,}")
-    if eval_path.exists():
-        eval_df = pd.read_csv(eval_path)
-        pass_count = (eval_df["status"] == "PASS").sum()
-        total_count = len(eval_df)
+    if eval_df_best is not None:
+        pass_count = (eval_df_best["status"] == "PASS").sum()
+        total_count = len(eval_df_best)
         col5.metric("制約充足", f"{pass_count} / {total_count} PASS")
 
     st.divider()
@@ -341,9 +348,9 @@ def page_done() -> None:
         )
 
     # 評価レポート（推奨戦略）
-    if eval_path.exists():
-        with st.expander("制約充足・評価レポート（推奨戦略）"):
-            st.dataframe(pd.read_csv(eval_path), width="stretch")
+    if eval_df_best is not None:
+        with st.expander(f"制約充足・評価レポート（推奨戦略: {best_strategy}）"):
+            st.dataframe(eval_df_best, width="stretch")
 
     st.divider()
 
