@@ -72,13 +72,15 @@ def _load_data(plan_id: str, depot_id: str | None = None, input_stem: str | None
 
     demands_by_id: dict[str, int] = {}
     windows_by_id: dict[str, tuple[int, int]] = {}
+    slot_code_by_id: dict[str, int] = {}
     for did in [r["delivery_id"] for r in valid_dests]:
         rows = txn_df[txn_df["delivery_id"] == did]
         demands_by_id[did] = int(rows["package_count"].sum())
-        codes = rows["delivery_time_slot_code"].unique().tolist()
+        codes = rows["delivery_time_slot_code"].dropna().unique().tolist()
         starts = [time_windows_map[c][0] for c in codes]
         ends   = [time_windows_map[c][1] for c in codes]
         windows_by_id[did] = (min(starts), max(ends))
+        slot_code_by_id[did] = int(codes[0]) if len(codes) == 1 else 3
 
     dep_id = depot_row["depot_id"]
     locations = [(dep_id, "depot")] + [(r["delivery_id"], r["destination_address"]) for r in valid_dests]
@@ -97,8 +99,10 @@ def _load_data(plan_id: str, depot_id: str | None = None, input_stem: str | None
     dist_matrix = [[dist_lookup.get((loc_ids[i], loc_ids[j]), 0) for j in range(n)] for i in range(n)]
     time_matrix = [[time_lookup.get((loc_ids[i], loc_ids[j]), 0) for j in range(n)] for i in range(n)]
 
-    demands     = [0] + [demands_by_id.get(did, 0) for did, _ in locations[1:]]
+    demands      = [0] + [demands_by_id.get(did, 0) for did, _ in locations[1:]]
     time_windows = [(0, work_minutes)] + [windows_by_id.get(did, (0, work_minutes)) for did, _ in locations[1:]]
+    slot_codes   = [0] + [slot_code_by_id.get(did, 3) for did, _ in locations[1:]]
+    morning_end_min = _NOON_MIN - work_start_hour * 60
 
     return {
         "locations": locations,
@@ -106,6 +110,8 @@ def _load_data(plan_id: str, depot_id: str | None = None, input_stem: str | None
         "time_matrix": time_matrix,
         "demands": demands,
         "time_windows": time_windows,
+        "slot_codes": slot_codes,
+        "morning_end_min": morning_end_min,
         "capacity": int(depot_row["capacity_per_vehicle"]),
         "fixed_cost_yen": float(depot_row["fixed_cost_per_vehicle"]),
         "dist_unit_cost_yen_per_km": float(depot_row["distance_unit_cost"]),
@@ -237,19 +243,33 @@ def _build_output(data: dict, results: list[dict]) -> tuple[pd.DataFrame, pd.Dat
             for seq, stop in enumerate(stops):
                 node = stop["node"]
                 loc_id, label = locations[node]
+                is_depot = (node == 0)
+                arrival = stop["arrival_min"]
+                slot = data["slot_codes"][node]
+                noon = data["morning_end_min"]
+                if is_depot:
+                    time_slot_ok = None
+                elif slot == 1:
+                    time_slot_ok = arrival <= noon
+                elif slot == 2:
+                    time_slot_ok = arrival >= noon
+                else:
+                    time_slot_ok = True
                 detail_rows.append({
-                    "strategy":     res["strategy"],
-                    "vehicle_id":   v_idx + 1,
-                    "stop_seq":     seq,
-                    "location_type": "depot" if node == 0 else "destination",
-                    "location_id":  loc_id,
-                    "address":      label,
-                    "arrival_min":  stop["arrival_min"],
-                    "arrival_time": (
-                        f"{data['work_start_hour'] + stop['arrival_min'] // 60:02d}"
-                        f":{stop['arrival_min'] % 60:02d}"
+                    "strategy":      res["strategy"],
+                    "vehicle_id":    v_idx + 1,
+                    "stop_seq":      seq,
+                    "location_type": "depot" if is_depot else "destination",
+                    "location_id":   loc_id,
+                    "address":       label,
+                    "arrival_min":   arrival,
+                    "arrival_time":  (
+                        f"{data['work_start_hour'] + arrival // 60:02d}"
+                        f":{arrival % 60:02d}"
                     ),
-                    "package_count": data["demands"][node],
+                    "package_count":  data["demands"][node],
+                    "time_slot_code": None if is_depot else slot,
+                    "time_slot_ok":   time_slot_ok,
                 })
 
     return pd.DataFrame(summary_rows), pd.DataFrame(detail_rows)

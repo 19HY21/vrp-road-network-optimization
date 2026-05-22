@@ -69,11 +69,11 @@ def _build_location_lookup(snap_master_path: Path) -> dict[str, dict]:
     with open(snap_master_path, encoding="utf-8") as f:
         master = json.load(f)
     for r in master:
-        if r.get("destination_latitude") is None or r.get("destination_longitude") is None:
+        if r.get("snap_latitude") is None or r.get("snap_longitude") is None:
             continue
         lookup[r["delivery_id"]] = {
-            "lat": float(r["destination_latitude"]),
-            "lon": float(r["destination_longitude"]),
+            "lat": float(r["snap_latitude"]),
+            "lon": float(r["snap_longitude"]),
             "address": r["destination_address"],
             "type": "destination",
             "node_id": int(r["network_node_id"]) if r.get("network_node_id") else None,
