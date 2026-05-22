@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c1823ab16ada07cc9260cdd4e88eaf1c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.1.2/dist/leaflet-ant-path.min.js"></script>
+</head>
+<body>
+    
+    
+    <div style="position:fixed; top:10px; left:60px; z-index:1000;
+                background:white; padding:10px; border-radius:6px;
+                border:2px solid #333; font-size:13px; font-family:sans-serif;">
+        <b>VRP 配送ルート - 車両 24</b><br>
+        plan_id: PLAN_delivery_transaction_1000_DEPOT_002<br>
+        配送先: 15 件 &nbsp;|&nbsp;
+        走行距離: 61.64 km &nbsp;|&nbsp;
+        コスト: ¥19,862
+    </div>
+    
+    
+            <div class="folium-map" id="map_c1823ab16ada07cc9260cdd4e88eaf1c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c1823ab16ada07cc9260cdd4e88eaf1c = L.map(
+                "map_c1823ab16ada07cc9260cdd4e88eaf1c",
+                {
+                    center: [35.469982941176475, 139.49147440000002],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3256404838a69069954b5e133903a512 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3256404838a69069954b5e133903a512.addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var marker_00e98998719047c487621d1046afd15a = L.marker(
+                [35.5306155, 139.7013529],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var icon_2bf1a01680039468f82435ef3d0d29e9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b1a3a310fbcf82ba405e3b2d14b7a2a1 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_60a25c5530cd85e1e1e708c2dea3e759 = $(`<div id="html_60a25c5530cd85e1e1e708c2dea3e759" style="width: 100.0%; height: 100.0%;"><b>川崎広域物流センター</b></div>`)[0];
+                popup_b1a3a310fbcf82ba405e3b2d14b7a2a1.setContent(html_60a25c5530cd85e1e1e708c2dea3e759);
+            
+        
+
+        marker_00e98998719047c487621d1046afd15a.bindPopup(popup_b1a3a310fbcf82ba405e3b2d14b7a2a1)
+        ;
+
+        
+    
+    
+            marker_00e98998719047c487621d1046afd15a.bindTooltip(
+                `<div>
+                     デポ（出発・帰着拠点）
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_00e98998719047c487621d1046afd15a.setIcon(icon_2bf1a01680039468f82435ef3d0d29e9);
+            
+    
+            var circle_marker_b25ca0a0e8cf240ecc6e8274dff512f5 = L.circleMarker(
+                [35.447262, 139.47348],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_21cff7c869e4819be2e273e7cf9bea2a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3028c14e2bf161262251fa9ea472340d = $(`<div id="html_3028c14e2bf161262251fa9ea472340d" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 1</b><br>神奈川県大和市上和田3<br>到着: 08:52<br>荷物: 4 個</div>`)[0];
+                popup_21cff7c869e4819be2e273e7cf9bea2a.setContent(html_3028c14e2bf161262251fa9ea472340d);
+            
+        
+
+        circle_marker_b25ca0a0e8cf240ecc6e8274dff512f5.bindPopup(popup_21cff7c869e4819be2e273e7cf9bea2a)
+        ;
+
+        
+    
+    
+            circle_marker_b25ca0a0e8cf240ecc6e8274dff512f5.bindTooltip(
+                `<div>
+                     車両24 | 08:52 | 神奈川県大和市上和田3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_57623c46f395f3f230068563aea19073 = L.marker(
+                [35.447262, 139.47348],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_585a099a082b3e854ad45526422a928a = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e1\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_57623c46f395f3f230068563aea19073.setIcon(div_icon_585a099a082b3e854ad45526422a928a);
+            
+    
+            var circle_marker_20799a4300ff32617235704bf14d0ee8 = L.circleMarker(
+                [35.447262, 139.47348],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_79e9cd60f9a090f99d87f299ef8e869a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_50ab3a8b2561bce846406467c9337dae = $(`<div id="html_50ab3a8b2561bce846406467c9337dae" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 2</b><br>神奈川県大和市上和田<br>到着: 08:52<br>荷物: 5 個</div>`)[0];
+                popup_79e9cd60f9a090f99d87f299ef8e869a.setContent(html_50ab3a8b2561bce846406467c9337dae);
+            
+        
+
+        circle_marker_20799a4300ff32617235704bf14d0ee8.bindPopup(popup_79e9cd60f9a090f99d87f299ef8e869a)
+        ;
+
+        
+    
+    
+            circle_marker_20799a4300ff32617235704bf14d0ee8.bindTooltip(
+                `<div>
+                     車両24 | 08:52 | 神奈川県大和市上和田
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1b14d7ae1b9a49019a3399cc3d68485d = L.marker(
+                [35.447262, 139.47348],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_71b4cfd63c71464b42407613856a6f0b = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e2\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_1b14d7ae1b9a49019a3399cc3d68485d.setIcon(div_icon_71b4cfd63c71464b42407613856a6f0b);
+            
+    
+            var circle_marker_741d2788881c477eb488e6d4f884c8dd = L.circleMarker(
+                [35.431953, 139.464081],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_107db35daf230d5871f1cf09a79a1fb3 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6391aa75f9e31f77cef4b490f6e80c44 = $(`<div id="html_6391aa75f9e31f77cef4b490f6e80c44" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 3</b><br>神奈川県大和市渋谷八丁目1<br>到着: 13:00<br>荷物: 5 個</div>`)[0];
+                popup_107db35daf230d5871f1cf09a79a1fb3.setContent(html_6391aa75f9e31f77cef4b490f6e80c44);
+            
+        
+
+        circle_marker_741d2788881c477eb488e6d4f884c8dd.bindPopup(popup_107db35daf230d5871f1cf09a79a1fb3)
+        ;
+
+        
+    
+    
+            circle_marker_741d2788881c477eb488e6d4f884c8dd.bindTooltip(
+                `<div>
+                     車両24 | 13:00 | 神奈川県大和市渋谷八丁目1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_fb694f74af473b0ced9d4feb1762c8b9 = L.marker(
+                [35.431953, 139.464081],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_d244f47a12f38b05cdddb9426b7c2126 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e3\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_fb694f74af473b0ced9d4feb1762c8b9.setIcon(div_icon_d244f47a12f38b05cdddb9426b7c2126);
+            
+    
+            var circle_marker_c987743fcfa7d58783f4e5227b123742 = L.circleMarker(
+                [35.434536, 139.46254],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_cccafc766493816332810bab90ea04a0 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8d0f12460f0f916b3e4f5d61c75fd057 = $(`<div id="html_8d0f12460f0f916b3e4f5d61c75fd057" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 4</b><br>神奈川県大和市渋谷五丁目<br>到着: 13:01<br>荷物: 2 個</div>`)[0];
+                popup_cccafc766493816332810bab90ea04a0.setContent(html_8d0f12460f0f916b3e4f5d61c75fd057);
+            
+        
+
+        circle_marker_c987743fcfa7d58783f4e5227b123742.bindPopup(popup_cccafc766493816332810bab90ea04a0)
+        ;
+
+        
+    
+    
+            circle_marker_c987743fcfa7d58783f4e5227b123742.bindTooltip(
+                `<div>
+                     車両24 | 13:01 | 神奈川県大和市渋谷五丁目
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_0abbd9d2746879bb360fb4ba8ab9751f = L.marker(
+                [35.434536, 139.46254],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_09a8745fac1efb2adb9886aaff63b83d = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e4\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_0abbd9d2746879bb360fb4ba8ab9751f.setIcon(div_icon_09a8745fac1efb2adb9886aaff63b83d);
+            
+    
+            var circle_marker_5ee32cb2aa9f5b95e0297b5ffb0924c9 = L.circleMarker(
+                [35.464985, 139.459396],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_b01994afce894b72ee0fdbc30545e939 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c4475d06374cf879559cee882864a36f = $(`<div id="html_c4475d06374cf879559cee882864a36f" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 5</b><br>神奈川県大和市中央六丁目2<br>到着: 13:09<br>荷物: 3 個</div>`)[0];
+                popup_b01994afce894b72ee0fdbc30545e939.setContent(html_c4475d06374cf879559cee882864a36f);
+            
+        
+
+        circle_marker_5ee32cb2aa9f5b95e0297b5ffb0924c9.bindPopup(popup_b01994afce894b72ee0fdbc30545e939)
+        ;
+
+        
+    
+    
+            circle_marker_5ee32cb2aa9f5b95e0297b5ffb0924c9.bindTooltip(
+                `<div>
+                     車両24 | 13:09 | 神奈川県大和市中央六丁目2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_763dbee2b94b087b1915f2433ef30db1 = L.marker(
+                [35.464985, 139.459396],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_0bc8a69481953f602529646ceec764e0 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e5\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_763dbee2b94b087b1915f2433ef30db1.setIcon(div_icon_0bc8a69481953f602529646ceec764e0);
+            
+    
+            var circle_marker_17236dc3cfec222b3a0343dd1e2ff5cf = L.circleMarker(
+                [35.469181, 139.457687],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_f654f92db007cfe502a3e80f988a6689 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_809b9b07f6efd1665d856daa6f97749c = $(`<div id="html_809b9b07f6efd1665d856daa6f97749c" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 6</b><br>神奈川県大和市中央四丁目24<br>到着: 13:11<br>荷物: 5 個</div>`)[0];
+                popup_f654f92db007cfe502a3e80f988a6689.setContent(html_809b9b07f6efd1665d856daa6f97749c);
+            
+        
+
+        circle_marker_17236dc3cfec222b3a0343dd1e2ff5cf.bindPopup(popup_f654f92db007cfe502a3e80f988a6689)
+        ;
+
+        
+    
+    
+            circle_marker_17236dc3cfec222b3a0343dd1e2ff5cf.bindTooltip(
+                `<div>
+                     車両24 | 13:11 | 神奈川県大和市中央四丁目24
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_964a32b4bb3ac853bd12779ef310b8d1 = L.marker(
+                [35.469181, 139.457687],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_d337257d539c350c19cd8e98bf8551fb = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e6\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_964a32b4bb3ac853bd12779ef310b8d1.setIcon(div_icon_d337257d539c350c19cd8e98bf8551fb);
+            
+    
+            var circle_marker_487717f196440cb481ce70f7c660265e = L.circleMarker(
+                [35.468964, 139.456085],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_348246096df1f557fc2ed51a47c7c833 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ac18865a833aa3c95f27863111f92a4b = $(`<div id="html_ac18865a833aa3c95f27863111f92a4b" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 7</b><br>神奈川県大和市中央四丁目12<br>到着: 13:12<br>荷物: 3 個</div>`)[0];
+                popup_348246096df1f557fc2ed51a47c7c833.setContent(html_ac18865a833aa3c95f27863111f92a4b);
+            
+        
+
+        circle_marker_487717f196440cb481ce70f7c660265e.bindPopup(popup_348246096df1f557fc2ed51a47c7c833)
+        ;
+
+        
+    
+    
+            circle_marker_487717f196440cb481ce70f7c660265e.bindTooltip(
+                `<div>
+                     車両24 | 13:12 | 神奈川県大和市中央四丁目12
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d88287d1f65562a2b5812cd702a5d0b3 = L.marker(
+                [35.468964, 139.456085],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_811badcc90a471f712caf5ba7d6821e7 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e7\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_d88287d1f65562a2b5812cd702a5d0b3.setIcon(div_icon_811badcc90a471f712caf5ba7d6821e7);
+            
+    
+            var circle_marker_8030011ab645816a4eb87148350ca84e = L.circleMarker(
+                [35.470402, 139.458282],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_253065029ba3c70bc31eae314bba3fd4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f6aacdb0763dc09910a1a457162461db = $(`<div id="html_f6aacdb0763dc09910a1a457162461db" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 8</b><br>神奈川県大和市中央二丁目2<br>到着: 13:13<br>荷物: 6 個</div>`)[0];
+                popup_253065029ba3c70bc31eae314bba3fd4.setContent(html_f6aacdb0763dc09910a1a457162461db);
+            
+        
+
+        circle_marker_8030011ab645816a4eb87148350ca84e.bindPopup(popup_253065029ba3c70bc31eae314bba3fd4)
+        ;
+
+        
+    
+    
+            circle_marker_8030011ab645816a4eb87148350ca84e.bindTooltip(
+                `<div>
+                     車両24 | 13:13 | 神奈川県大和市中央二丁目2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_60a9fc7a8899898b69db412ceb762b54 = L.marker(
+                [35.470402, 139.458282],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_1719307d45aa5c554eaf6d9554b42942 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e8\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_60a9fc7a8899898b69db412ceb762b54.setIcon(div_icon_1719307d45aa5c554eaf6d9554b42942);
+            
+    
+            var circle_marker_dbfa68015e490c5a70ed20c8b773d40c = L.circleMarker(
+                [35.47126, 139.461288],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_591a67f45c714f3e3fb0dd0ab39aa866 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b8330147816a2425e829cd34531d4d6d = $(`<div id="html_b8330147816a2425e829cd34531d4d6d" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 9</b><br>神奈川県大和市大和東二丁目1<br>到着: 13:14<br>荷物: 1 個</div>`)[0];
+                popup_591a67f45c714f3e3fb0dd0ab39aa866.setContent(html_b8330147816a2425e829cd34531d4d6d);
+            
+        
+
+        circle_marker_dbfa68015e490c5a70ed20c8b773d40c.bindPopup(popup_591a67f45c714f3e3fb0dd0ab39aa866)
+        ;
+
+        
+    
+    
+            circle_marker_dbfa68015e490c5a70ed20c8b773d40c.bindTooltip(
+                `<div>
+                     車両24 | 13:14 | 神奈川県大和市大和東二丁目1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_37a7bc720cb4e3029b57a99e1d48f842 = L.marker(
+                [35.47126, 139.461288],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_6534e091f79e79083945b193ac8a8200 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e9\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_37a7bc720cb4e3029b57a99e1d48f842.setIcon(div_icon_6534e091f79e79083945b193ac8a8200);
+            
+    
+            var circle_marker_dcc0e5b47dcec6754793632abd0189e3 = L.circleMarker(
+                [35.470688, 139.461411],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_dccd638f692912f64669a881c13561ce = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6589464ca0b04d9df4e980e80147adb3 = $(`<div id="html_6589464ca0b04d9df4e980e80147adb3" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 10</b><br>神奈川県大和市大和東一丁目2<br>到着: 13:15<br>荷物: 4 個</div>`)[0];
+                popup_dccd638f692912f64669a881c13561ce.setContent(html_6589464ca0b04d9df4e980e80147adb3);
+            
+        
+
+        circle_marker_dcc0e5b47dcec6754793632abd0189e3.bindPopup(popup_dccd638f692912f64669a881c13561ce)
+        ;
+
+        
+    
+    
+            circle_marker_dcc0e5b47dcec6754793632abd0189e3.bindTooltip(
+                `<div>
+                     車両24 | 13:15 | 神奈川県大和市大和東一丁目2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9bbed5213530112997811592ba7bf860 = L.marker(
+                [35.470688, 139.461411],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_8221fb95d554a73057efa0c2cb399ba5 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e10\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_9bbed5213530112997811592ba7bf860.setIcon(div_icon_8221fb95d554a73057efa0c2cb399ba5);
+            
+    
+            var circle_marker_e8da0c087155ba7e335001d46f06e381 = L.circleMarker(
+                [35.473259, 139.463943],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_ff32b44e754539d9fdc9a5f039ddce0c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a9148b209db545b9f458ac3058350a89 = $(`<div id="html_a9148b209db545b9f458ac3058350a89" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 11</b><br>神奈川県大和市大和東三丁目17<br>到着: 13:16<br>荷物: 5 個</div>`)[0];
+                popup_ff32b44e754539d9fdc9a5f039ddce0c.setContent(html_a9148b209db545b9f458ac3058350a89);
+            
+        
+
+        circle_marker_e8da0c087155ba7e335001d46f06e381.bindPopup(popup_ff32b44e754539d9fdc9a5f039ddce0c)
+        ;
+
+        
+    
+    
+            circle_marker_e8da0c087155ba7e335001d46f06e381.bindTooltip(
+                `<div>
+                     車両24 | 13:16 | 神奈川県大和市大和東三丁目17
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9c19317794d30f577a78c6e07e2e3162 = L.marker(
+                [35.473259, 139.463943],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_da52e7d29326a4bd53d110457bb79f56 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e11\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_9c19317794d30f577a78c6e07e2e3162.setIcon(div_icon_da52e7d29326a4bd53d110457bb79f56);
+            
+    
+            var circle_marker_30858809390b85f7b9dd40884896f3cb = L.circleMarker(
+                [35.470612, 139.464264],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_8a92f030c6741b4c9be66321367e68c5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b218fcdfecfaf16b98160d2e400d955f = $(`<div id="html_b218fcdfecfaf16b98160d2e400d955f" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 12</b><br>神奈川県大和市大和東17<br>到着: 13:17<br>荷物: 3 個</div>`)[0];
+                popup_8a92f030c6741b4c9be66321367e68c5.setContent(html_b218fcdfecfaf16b98160d2e400d955f);
+            
+        
+
+        circle_marker_30858809390b85f7b9dd40884896f3cb.bindPopup(popup_8a92f030c6741b4c9be66321367e68c5)
+        ;
+
+        
+    
+    
+            circle_marker_30858809390b85f7b9dd40884896f3cb.bindTooltip(
+                `<div>
+                     車両24 | 13:17 | 神奈川県大和市大和東17
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_a29738e79ba5ae295a2469a1474cbc03 = L.marker(
+                [35.470612, 139.464264],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_079c23aa44550a97638753b888234738 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e12\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_a29738e79ba5ae295a2469a1474cbc03.setIcon(div_icon_079c23aa44550a97638753b888234738);
+            
+    
+            var circle_marker_f028106deb782d375ae32470fe3b9db8 = L.circleMarker(
+                [35.468849, 139.464706],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_08fd447b0db7fb5432da4e681fabebff = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c957ac67d1f421777b05d05867fc7826 = $(`<div id="html_c957ac67d1f421777b05d05867fc7826" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 13</b><br>神奈川県大和市大和南116<br>到着: 13:18<br>荷物: 1 個</div>`)[0];
+                popup_08fd447b0db7fb5432da4e681fabebff.setContent(html_c957ac67d1f421777b05d05867fc7826);
+            
+        
+
+        circle_marker_f028106deb782d375ae32470fe3b9db8.bindPopup(popup_08fd447b0db7fb5432da4e681fabebff)
+        ;
+
+        
+    
+    
+            circle_marker_f028106deb782d375ae32470fe3b9db8.bindTooltip(
+                `<div>
+                     車両24 | 13:18 | 神奈川県大和市大和南116
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_aa9ba6a961a6a0cb629040b76c37b357 = L.marker(
+                [35.468849, 139.464706],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_0d429a005913a87bc05fe77bac6ae569 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e13\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_aa9ba6a961a6a0cb629040b76c37b357.setIcon(div_icon_0d429a005913a87bc05fe77bac6ae569);
+            
+    
+            var circle_marker_684cf35fe30f2bd184e97979f8b0e989 = L.circleMarker(
+                [35.468849, 139.464706],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_e68231a227609dc3c55560abd7a9afbe = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5fd4d9ea0eb8274c8601a7fb5a1cf52b = $(`<div id="html_5fd4d9ea0eb8274c8601a7fb5a1cf52b" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 14</b><br>神奈川県大和市大和南28<br>到着: 13:18<br>荷物: 2 個</div>`)[0];
+                popup_e68231a227609dc3c55560abd7a9afbe.setContent(html_5fd4d9ea0eb8274c8601a7fb5a1cf52b);
+            
+        
+
+        circle_marker_684cf35fe30f2bd184e97979f8b0e989.bindPopup(popup_e68231a227609dc3c55560abd7a9afbe)
+        ;
+
+        
+    
+    
+            circle_marker_684cf35fe30f2bd184e97979f8b0e989.bindTooltip(
+                `<div>
+                     車両24 | 13:18 | 神奈川県大和市大和南28
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_4eac26b7d4c2291c1568a6153faef376 = L.marker(
+                [35.468849, 139.464706],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_90f8553fe6b06ccb3eb1ab24fea1f65d = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e14\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_4eac26b7d4c2291c1568a6153faef376.setIcon(div_icon_90f8553fe6b06ccb3eb1ab24fea1f65d);
+            
+    
+            var circle_marker_793057489d55f7c50e80263617666651 = L.circleMarker(
+                [35.470417, 139.46701],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+        var popup_d31bb277d989bec203b118d6f0d00975 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_675ba8486a0435151253bd35501fcf1e = $(`<div id="html_675ba8486a0435151253bd35501fcf1e" style="width: 100.0%; height: 100.0%;"><b>車両 24 / 停留所 15</b><br>神奈川県大和市大和東一丁目12<br>到着: 13:19<br>荷物: 1 個</div>`)[0];
+                popup_d31bb277d989bec203b118d6f0d00975.setContent(html_675ba8486a0435151253bd35501fcf1e);
+            
+        
+
+        circle_marker_793057489d55f7c50e80263617666651.bindPopup(popup_d31bb277d989bec203b118d6f0d00975)
+        ;
+
+        
+    
+    
+            circle_marker_793057489d55f7c50e80263617666651.bindTooltip(
+                `<div>
+                     車両24 | 13:19 | 神奈川県大和市大和東一丁目12
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_17cf628bb12640e7c4bacca2f799c1f3 = L.marker(
+                [35.470417, 139.46701],
+                {
+}
+            ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            var div_icon_7fa3496a6664dcd487084319e50eabd4 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e15\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_17cf628bb12640e7c4bacca2f799c1f3.setIcon(div_icon_7fa3496a6664dcd487084319e50eabd4);
+            
+    
+            ant_path_354ffa702f18efb00392db1777fa655b = L.polyline.antPath(
+              [[35.53065, 139.7011268], [35.5310579, 139.6994561], [35.5301942, 139.69863], [35.5296023, 139.6980499], [35.5295405, 139.6979861], [35.5281738, 139.6966572], [35.5282218, 139.6965814], [35.528326, 139.6964099], [35.526945, 139.6950775], [35.5268071, 139.6949544], [35.5267192, 139.6948654], [35.526838, 139.6947689], [35.5264294, 139.693185], [35.5264085, 139.6931156], [35.5261994, 139.6921787], [35.5260272, 139.6909451], [35.5262235, 139.6906872], [35.526621, 139.6887605], [35.5279828, 139.6855221], [35.52824, 139.685163], [35.5280982, 139.68517], [35.5280902, 139.6843546], [35.5275582, 139.6840883], [35.5264814, 139.6831776], [35.5260441, 139.6826108], [35.5252595, 139.6809306], [35.5240216, 139.6775392], [35.5235641, 139.6762712], [35.5227527, 139.6740919], [35.5218553, 139.6725519], [35.5214652, 139.6720975], [35.5203991, 139.6709901], [35.519473, 139.670001], [35.5188404, 139.6693237], [35.5177887, 139.668233], [35.5170186, 139.667412], [35.5168473, 139.6672311], [35.5168387, 139.6670914], [35.5166753, 139.6662895], [35.5164863, 139.6655661], [35.5164603, 139.6654639], [35.5163102, 139.6648889], [35.5161967, 139.6644636], [35.5159662, 139.6643034], [35.5155624, 139.6640132], [35.5155266, 139.6639893], [35.5149451, 139.6635905], [35.5142731, 139.6625306], [35.5140831, 139.6618179], [35.5138535, 139.6609807], [35.5125304, 139.6594116], [35.51243, 139.6597804], [35.5118094, 139.6596676], [35.5118133, 139.6590289], [35.5118191, 139.6585929], [35.5118218, 139.6583873], [35.5114259, 139.6582328], [35.5113956, 139.6577141], [35.510888, 139.6575388], [35.5106934, 139.6565175], [35.5106518, 139.6563364], [35.5104775, 139.6554704], [35.5099329, 139.6543473], [35.5096464, 139.6540503], [35.5087476, 139.6532789], [35.5085905, 139.6531397], [35.5084695, 139.6530362], [35.5078707, 139.652118], [35.5075031, 139.6514602], [35.5073164, 139.6511875], [35.5072859, 139.6511486], [35.5070911, 139.6509003], [35.5070403, 139.65083], [35.5061586, 139.6496743], [35.5061131, 139.6496049], [35.5058561, 139.6492228], [35.505767, 139.6490735], [35.5056646, 139.6488506], [35.5055244, 139.6485621], [35.5051702, 139.6478698], [35.5047283, 139.6469566], [35.50443, 139.6463262], [35.504174, 139.6458083], [35.5036338, 139.6446889], [35.5031033, 139.6432278], [35.5031019, 139.6426642], [35.503105, 139.6425917], [35.5031514, 139.6420802], [35.5030023, 139.6410892], [35.5027416, 139.639745], [35.502655, 139.6394054], [35.5015718, 139.6375841], [35.5013813, 139.6372552], [35.5012541, 139.6369493], [35.500263, 139.6333129], [35.5001921, 139.6329182], [35.499983, 139.6318428], [35.4999196, 139.6314641], [35.4997974, 139.6308703], [35.4996488, 139.6301539], [35.4996253, 139.6300587], [35.4995178, 139.6295459], [35.4993441, 139.6287683], [35.4992114, 139.6281999], [35.4990716, 139.6275998], [35.4988875, 139.6268448], [35.498796, 139.6264716], [35.4987111, 139.6261092], [35.498707, 139.6260919], [35.4985777, 139.62554], [35.4982854, 139.6242926], [35.4981961, 139.624039], [35.4977075, 139.6232896], [35.4976913, 139.6232694], [35.4966204, 139.6217968], [35.4965436, 139.6216862], [35.4956269, 139.6203397], [35.4950919, 139.6192671], [35.4947139, 139.618385], [35.4946088, 139.6181475], [35.4937537, 139.6162143], [35.4936167, 139.6158828], [35.4933138, 139.6152604], [35.4931747, 139.6149972], [35.4930357, 139.6147458], [35.4926677, 139.6140803], [35.4924059, 139.6136089], [35.4922599, 139.6133387], [35.4922296, 139.6132847], [35.4918355, 139.6125818], [35.4918177, 139.6125484], [35.4916214, 139.6114093], [35.4916201, 139.6113506], [35.4916054, 139.6107246], [35.4915918, 139.6101476], [35.4915904, 139.6100877], [35.4915896, 139.6100544], [35.4915885, 139.6097163], [35.4916209, 139.6087476], [35.4916313, 139.6085164], [35.4909519, 139.6080964], [35.4910621, 139.6071683], [35.4908234, 139.6070799], [35.4907499, 139.6070263], [35.4908174, 139.6069725], [35.4912064, 139.6071345], [35.4913096, 139.6064937], [35.4913357, 139.6051483], [35.4915208, 139.6039382], [35.4915036, 139.6038301], [35.4916139, 139.6035813], [35.4916688, 139.6034454], [35.492422, 139.6024502], [35.4928761, 139.6020422], [35.492919, 139.6020037], [35.4926609, 139.6015813], [35.4925384, 139.6014082], [35.4921485, 139.6004895], [35.4912945, 139.5995025], [35.491325, 139.5987643], [35.4908856, 139.5985237], [35.4895442, 139.5971243], [35.488808, 139.5963301], [35.4870294, 139.5940209], [35.4869761, 139.5938981], [35.4866595, 139.5931551], [35.4857407, 139.5908514], [35.4833672, 139.5882441], [35.4815914, 139.5862453], [35.4805819, 139.5844894], [35.4798374, 139.5824397], [35.4796627, 139.5817015], [35.4792202, 139.5792634], [35.4789005, 139.5785693], [35.477214, 139.5767545], [35.4758886, 139.5762523], [35.4741301, 139.5755313], [35.4738196, 139.5755755], [35.4736447, 139.5754938], [35.473275, 139.5751914], [35.4734974, 139.5747624], [35.4732065, 139.5746022], [35.4731411, 139.5745407], [35.4733289, 139.5742017], [35.4735722, 139.5737708], [35.4731461, 139.5734789], [35.472534, 139.5731798], [35.4725206, 139.5730305], [35.4722241, 139.571832], [35.4734099, 139.5711435], [35.4733853, 139.5708711], [35.4726913, 139.5694198], [35.470517, 139.568272], [35.4704183, 139.5648548], [35.4702412, 139.5627157], [35.4702175, 139.5626902], [35.4690603, 139.5614392], [35.468134, 139.5605771], [35.4682857, 139.5601], [35.4679747, 139.5596185], [35.4679794, 139.5595508], [35.4679786, 139.5594919], [35.4679747, 139.5591872], [35.4678869, 139.5584346], [35.4678544, 139.5583065], [35.4677808, 139.558004], [35.4677195, 139.5578357], [35.4675859, 139.557497], [35.4673801, 139.556883], [35.4670773, 139.5557858], [35.46749, 139.5550778], [35.4675204, 139.5549331], [35.4673992, 139.5543913], [35.4675935, 139.5530307], [35.4676082, 139.5528294], [35.4676185, 139.5515168], [35.4676291, 139.5510608], [35.4676188, 139.550984], [35.4675807, 139.5504479], [35.4675764, 139.5489956], [35.4675753, 139.5488726], [35.4675202, 139.5485039], [35.4674187, 139.5480449], [35.467308, 139.5477329], [35.467275, 139.5476654], [35.4671349, 139.5473796], [35.4670545, 139.5472592], [35.4672433, 139.5467497], [35.467124, 139.5465226], [35.4667798, 139.5459388], [35.4662455, 139.5450289], [35.4656735, 139.5438943], [35.4651906, 139.5432668], [35.4651669, 139.543283], [35.4646997, 139.5424636], [35.4646781, 139.5423787], [35.4652385, 139.5418433], [35.4658322, 139.541384], [35.4659505, 139.541189], [35.4659869, 139.541125], [35.466213, 139.5407334], [35.4658579, 139.5400441], [35.4656907, 139.5397328], [35.4654046, 139.5392028], [35.4646098, 139.5375378], [35.4644017, 139.5368956], [35.4642792, 139.5365074], [35.4638172, 139.5350719], [35.4635667, 139.5343236], [35.4633136, 139.5336066], [35.4615313, 139.5311608], [35.4611052, 139.5305959], [35.4609837, 139.5303841], [35.460229, 139.5290166], [35.4600068, 139.5286389], [35.4597454, 139.5282095], [35.4592946, 139.5276096], [35.4592394, 139.5275451], [35.45898, 139.5273061], [35.4580648, 139.5266953], [35.4574637, 139.5264779], [35.4569372, 139.5257123], [35.4569013, 139.525678], [35.4560476, 139.5249525], [35.4558599, 139.5245629], [35.4552513, 139.5233399], [35.4549475, 139.5225976], [35.4543763, 139.520756], [35.4542562, 139.5206273], [35.4533057, 139.5199299], [35.452907, 139.5197676], [35.452548, 139.5196494], [35.4521554, 139.5194261], [35.451239, 139.5182613], [35.4508956, 139.5177336], [35.450813, 139.5175823], [35.4493887, 139.5136093], [35.449251, 139.5131507], [35.4492071, 139.5130139], [35.4489533, 139.5121775], [35.4487982, 139.5114692], [35.4487097, 139.5110533], [35.4486558, 139.5108223], [35.4484608, 139.5099943], [35.4481872, 139.5089334], [35.4476809, 139.5077706], [35.4475973, 139.5075526], [35.4475481, 139.5074013], [35.4474091, 139.5049981], [35.4474025, 139.5043481], [35.4473855, 139.5039322], [35.4471286, 139.5024773], [35.4470103, 139.501869], [35.4468532, 139.5014584], [35.4466699, 139.5011709], [35.4459479, 139.5001842], [35.4457944, 139.4998114], [35.4453089, 139.4982596], [35.4448956, 139.4969421], [35.4448584, 139.4968147], [35.4447418, 139.4964843], [35.4444838, 139.495907], [35.4440967, 139.4952113], [35.4434683, 139.4939465], [35.4431802, 139.4929578], [35.4430664, 139.49151], [35.4430618, 139.4913005], [35.4430616, 139.4911998], [35.4430335, 139.4903236], [35.4429783, 139.4874173], [35.4429629, 139.4866634], [35.4429681, 139.4858662], [35.4429398, 139.4844134], [35.4429171, 139.4833806], [35.4428779, 139.4825752], [35.4428223, 139.4804841], [35.4451266, 139.4810676], [35.4454974, 139.4791607], [35.445786, 139.477986], [35.4459592, 139.4775804], [35.4465212, 139.476717], [35.4467879, 139.4753919], [35.4470988, 139.4740933]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_354ffa702f18efb00392db1777fa655b.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 0 → 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_42a0d28608ce8ceb49a39cdad2ec5dc3 = L.polyline.antPath(
+              [[35.4470988, 139.4740933], [35.4448437, 139.4739436], [35.4447759, 139.4739348], [35.4427687, 139.4732492], [35.4424425, 139.4732588], [35.442347, 139.4732622], [35.4413441, 139.4733763], [35.4405711, 139.4728575], [35.4402721, 139.4727167], [35.4399168, 139.4725797], [35.439297, 139.4723094], [35.4389076, 139.4720885], [35.4371684, 139.4712009], [35.4368533, 139.4710073], [35.4358204, 139.4706265], [35.4353599, 139.4702121], [35.4348161, 139.4699581], [35.4355994, 139.4668888], [35.4356683, 139.4663174], [35.4356746, 139.4656556], [35.4353056, 139.4653027], [35.435325, 139.4649315], [35.4353336, 139.4647302], [35.4346656, 139.464687], [35.4336364, 139.4641566], [35.433629, 139.4637366], [35.4333684, 139.4637329], [35.433067, 139.463736], [35.43263, 139.4637376], [35.4321418, 139.4637518], [35.4321472, 139.4639403], [35.4322713, 139.464091], [35.4321416, 139.4641647]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_42a0d28608ce8ceb49a39cdad2ec5dc3.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 2 → 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_8d5e0c986d3e15c2931e3c1f1bfc51e9 = L.polyline.antPath(
+              [[35.4321416, 139.4641647], [35.4321472, 139.4639403], [35.4321418, 139.4637518], [35.43263, 139.4637376], [35.433067, 139.463736], [35.4333684, 139.4637329], [35.433629, 139.4637366], [35.4343519, 139.4637503], [35.4343592, 139.4633875], [35.4343655, 139.4630321], [35.4343788, 139.462328]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_8d5e0c986d3e15c2931e3c1f1bfc51e9.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 3 → 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_df33cc539d8ee5709c5bcfc0cf32ea90 = L.polyline.antPath(
+              [[35.4343788, 139.462328], [35.4343849, 139.4620089], [35.4347065, 139.4620208], [35.4347099, 139.4618278], [35.4350578, 139.4619044], [35.4358929, 139.4620891], [35.4362919, 139.4621773], [35.4363639, 139.4616846], [35.4369319, 139.4618142], [35.437529, 139.461944], [35.4381286, 139.462072], [35.4389032, 139.4622488], [35.4392975, 139.462326], [35.4397188, 139.4624218], [35.4404708, 139.4626129], [35.4413767, 139.4629827], [35.4417999, 139.4632154], [35.4425886, 139.4636685], [35.4426913, 139.4637117], [35.4433182, 139.4639025], [35.4449814, 139.4638133], [35.4455447, 139.4639437], [35.4457645, 139.4640063], [35.4460867, 139.4640977], [35.4462952, 139.4641767], [35.447031, 139.4644537], [35.4471639, 139.4644805], [35.4478411, 139.4645279], [35.4479876, 139.4645197], [35.4484028, 139.4645046], [35.4490317, 139.4644979], [35.4497638, 139.4644827], [35.4505024, 139.4644606], [35.451069, 139.4644364], [35.4512689, 139.4644288], [35.4517634, 139.4644089], [35.4518299, 139.4644036], [35.4520802, 139.4643905], [35.4522909, 139.4643824], [35.4531356, 139.4643534], [35.4539829, 139.4643211], [35.4544235, 139.4643137], [35.4547757, 139.4643092], [35.4554157, 139.4643639], [35.4560032, 139.4644326], [35.4565752, 139.4645008], [35.4569238, 139.4645384], [35.4573395, 139.4645832], [35.4582776, 139.4645773], [35.458703, 139.4645133], [35.4591935, 139.4643994], [35.4599071, 139.4641298], [35.4609565, 139.4634913], [35.4617527, 139.4627996], [35.4615326, 139.4623691], [35.4612267, 139.4617154], [35.4616196, 139.4616479], [35.4627866, 139.4615584], [35.4627579, 139.4609802], [35.464486, 139.4608389], [35.4644685, 139.4603182], [35.4644443, 139.4594918]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_df33cc539d8ee5709c5bcfc0cf32ea90.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 4 → 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_8623f92527e0a8d3ebf8e84363ebdbfc = L.polyline.antPath(
+              [[35.4644443, 139.4594918], [35.4644118, 139.4585878], [35.4654903, 139.4584193], [35.4664198, 139.4584013], [35.4668436, 139.4583791], [35.4671107, 139.4583692], [35.4677894, 139.4583519], [35.4684998, 139.4583177], [35.4684817, 139.4578481], [35.4687143, 139.4578622], [35.469268, 139.4578988]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_8623f92527e0a8d3ebf8e84363ebdbfc.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 5 → 6
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_00a14627aa5c34a3e142d639abc6990a = L.polyline.antPath(
+              [[35.469268, 139.4578988], [35.4687143, 139.4578622], [35.4686414, 139.4560017]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_00a14627aa5c34a3e142d639abc6990a.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 6 → 7
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_48e8a06cddb389438bf4b122ce601b80 = L.polyline.antPath(
+              [[35.4686414, 139.4560017], [35.4692671, 139.4559044], [35.4700913, 139.4559245], [35.4702643, 139.4559374], [35.4701825, 139.4579508], [35.4706405, 139.4579778]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_48e8a06cddb389438bf4b122ce601b80.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 7 → 8
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_5985be51d51d26b2f8dafaba613eb67b = L.polyline.antPath(
+              [[35.4706405, 139.4579778], [35.4710635, 139.4580027], [35.4709883, 139.4593867], [35.4709827, 139.4595362], [35.4709148, 139.4607113], [35.4709535, 139.4610382]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_5985be51d51d26b2f8dafaba613eb67b.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 8 → 9
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_a05aa5889a53b905643579a2c23a2fd3 = L.polyline.antPath(
+              [[35.4709535, 139.4610382], [35.4710014, 139.4616544]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_a05aa5889a53b905643579a2c23a2fd3.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 9 → 10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_b053b7bb2a3a0d1a25a1348a11fe30f1 = L.polyline.antPath(
+              [[35.4710014, 139.4616544], [35.47105, 139.4622186], [35.4721188, 139.4623993], [35.4729866, 139.4623739], [35.4730374, 139.4630046], [35.4731239, 139.4640802]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_b053b7bb2a3a0d1a25a1348a11fe30f1.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 10 → 11
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_f1c5a1d518765047b15fca04c6389614 = L.polyline.antPath(
+              [[35.4731239, 139.4640802], [35.4726886, 139.4641333], [35.4722594, 139.4641829], [35.4717297, 139.464252], [35.4712146, 139.4643052], [35.4706735, 139.464374]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_f1c5a1d518765047b15fca04c6389614.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 11 → 12
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_e9b7b0185b2f74d570da603e801ad1ef = L.polyline.antPath(
+              [[35.4706735, 139.464374], [35.4700651, 139.4644512], [35.4694359, 139.4646425], [35.4688419, 139.464574]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_e9b7b0185b2f74d570da603e801ad1ef.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 12 → 13
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_6203de5e4ae203b0d054ba9f49b60772 = L.polyline.antPath(
+              [[35.4688419, 139.464574], [35.4690445, 139.4659987], [35.4694706, 139.465961], [35.4698993, 139.4659356], [35.4698463, 139.4666113]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_6203de5e4ae203b0d054ba9f49b60772.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 14 → 15
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_527c3b111f91f0f2378eb49c78323c17 = L.polyline.antPath(
+              [[35.4698463, 139.4666113], [35.4698078, 139.468004], [35.4697559, 139.4698493], [35.4696859, 139.4715543], [35.469815, 139.4718531], [35.4697054, 139.4725474], [35.4705363, 139.4738201], [35.4706845, 139.4746269], [35.4707136, 139.4748159], [35.4700005, 139.4759986], [35.4695654, 139.4761051], [35.4691132, 139.4782285], [35.4691753, 139.4785301], [35.4693013, 139.4789316], [35.4694244, 139.4793024], [35.4694683, 139.479479], [35.4694878, 139.4795837], [35.4696553, 139.4804706], [35.4696887, 139.4805925], [35.4699172, 139.4821656], [35.4700162, 139.4825509], [35.4703597, 139.4845916], [35.4707316, 139.4845421], [35.4714562, 139.4858423], [35.4712436, 139.4871754], [35.4712148, 139.4871927], [35.4711641, 139.4878642], [35.4708217, 139.4886177], [35.4709063, 139.489952], [35.4706618, 139.4901354], [35.4704907, 139.4902319], [35.4694107, 139.4909664], [35.4693757, 139.491], [35.4692704, 139.4911365], [35.4679835, 139.4932013], [35.4682775, 139.4935792], [35.4686642, 139.4940308], [35.4689592, 139.4943897], [35.4693202, 139.4947982], [35.4694554, 139.4949722], [35.4713985, 139.4973735], [35.4722109, 139.4984049], [35.4726783, 139.4990112], [35.4743582, 139.5010589], [35.4803507, 139.509682], [35.4808049, 139.5105742], [35.4809271, 139.5108183], [35.4821763, 139.513242], [35.4825047, 139.513872], [35.4828107, 139.5145213], [35.4828942, 139.5147155], [35.483376, 139.5159703], [35.4836931, 139.5168167], [35.4838967, 139.5173102], [35.4840481, 139.5177021], [35.4847068, 139.5192909], [35.4855636, 139.5205699], [35.4860881, 139.5213218], [35.4860366, 139.5213918], [35.484336, 139.5241587], [35.4841828, 139.5245338], [35.4839321, 139.5253768], [35.4838213, 139.5257944], [35.4837787, 139.52595], [35.4848975, 139.5274701], [35.4850518, 139.5275306], [35.4850185, 139.5279276], [35.4851075, 139.5284494], [35.4852267, 139.5292537], [35.4852437, 139.5295146], [35.4852378, 139.5295468], [35.4852188, 139.5300944], [35.485302, 139.5310171], [35.485223, 139.5313138], [35.485137, 139.5315774], [35.4850076, 139.5319462], [35.484822, 139.5322371], [35.4845154, 139.532644], [35.4843931, 139.5332547], [35.4843782, 139.5339014], [35.4848819, 139.5344848], [35.4853216, 139.5349124], [35.4857339, 139.5352628], [35.4865072, 139.5365244], [35.4867787, 139.5368068], [35.4871189, 139.5369755], [35.4874846, 139.537051], [35.4875483, 139.5377659], [35.4876211, 139.538641], [35.487628, 139.5387687], [35.4876414, 139.5388901], [35.4876547, 139.5391416], [35.4876423, 139.5393348], [35.487632, 139.5398789], [35.4876196, 139.5404314], [35.4872781, 139.5407296], [35.4873052, 139.5411978], [35.4873306, 139.5415639], [35.4876755, 139.5420853], [35.4875096, 139.5422836], [35.4878086, 139.5427041], [35.487423, 139.5430119], [35.488053, 139.5437871], [35.488326, 139.5445795], [35.4885367, 139.5451686], [35.4887132, 139.5456537], [35.4883849, 139.5460611], [35.4882969, 139.546953], [35.488257, 139.5476208], [35.4882276, 139.5479245], [35.4879085, 139.5485474], [35.4880064, 139.5488835], [35.4881742, 139.5489644], [35.4886033, 139.549293], [35.4888316, 139.5494157], [35.4888864, 139.5500494], [35.4886299, 139.5507106], [35.4885864, 139.5509009], [35.488559, 139.5513964], [35.4885714, 139.5514659], [35.488731, 139.5517894], [35.4891839, 139.5524221], [35.4893228, 139.5529114], [35.4891334, 139.5530595], [35.4883152, 139.5537455], [35.4877678, 139.554189], [35.4876706, 139.5542755], [35.4865373, 139.5553273], [35.4863969, 139.5555144], [35.4854642, 139.5567868], [35.4865055, 139.5582025], [35.4867891, 139.5597238], [35.4863682, 139.5610428], [35.4863013, 139.5614877], [35.4866132, 139.5624065], [35.486638, 139.5627323], [35.4866579, 139.5630262], [35.4867169, 139.5633163], [35.4867893, 139.5636223], [35.4867159, 139.5637651], [35.4865757, 139.5640147], [35.4869399, 139.5647613], [35.4867859, 139.5650332], [35.4870862, 139.5652512], [35.4871256, 139.5655855], [35.4871763, 139.5656817], [35.4873003, 139.565919], [35.4871916, 139.5670315], [35.4873067, 139.5681109], [35.4872888, 139.5681657], [35.4872715, 139.5682186], [35.4867635, 139.5690016], [35.4866012, 139.5695481], [35.4865116, 139.5698249], [35.4864545, 139.570199], [35.4864055, 139.5704566], [35.4862529, 139.5713661], [35.4864492, 139.5715696], [35.4867125, 139.5719842], [35.4870407, 139.5724726], [35.4871555, 139.5725763], [35.4873394, 139.5729142], [35.4877711, 139.5734226], [35.488056, 139.573776], [35.4884352, 139.5742457], [35.4887107, 139.5746109], [35.4888183, 139.5747539], [35.4889645, 139.575086], [35.4890013, 139.5752304], [35.4890865, 139.5756477], [35.4891773, 139.5760686], [35.4893098, 139.5764698], [35.4903299, 139.5782016], [35.4903343, 139.5782793], [35.4903162, 139.5791523], [35.4903133, 139.5792598], [35.4900737, 139.5807704], [35.4901305, 139.5810733], [35.4902109, 139.5814552], [35.4910053, 139.583299], [35.491265, 139.5854455], [35.4912714, 139.5859034], [35.4913113, 139.5861858], [35.4913578, 139.5863313], [35.491387, 139.5864019], [35.4915094, 139.5866828], [35.4917572, 139.5874027], [35.491751, 139.588002], [35.4918213, 139.5884799], [35.4926686, 139.5912997], [35.4928241, 139.5919423], [35.4928293, 139.5919754], [35.4928497, 139.5924158], [35.4928293, 139.5925496], [35.4932274, 139.5948461], [35.4935865, 139.5956345], [35.4938496, 139.5992487], [35.4938328, 139.5994563], [35.4938228, 139.5995067], [35.4935956, 139.5999553], [35.493462, 139.6001839], [35.4934958, 139.6004954], [35.49314, 139.6003977], [35.4929348, 139.6005884], [35.4929053, 139.6009723], [35.4925384, 139.6014082], [35.4926609, 139.6015813], [35.492919, 139.6020037], [35.4928761, 139.6020422], [35.492422, 139.6024502], [35.4916688, 139.6034454], [35.4916139, 139.6035813], [35.4915036, 139.6038301], [35.4915208, 139.6039382], [35.4913357, 139.6051483], [35.4913096, 139.6064937], [35.4912064, 139.6071345], [35.4917235, 139.6072562], [35.4917188, 139.6073316], [35.4917057, 139.6074332], [35.4916313, 139.6085164], [35.4916209, 139.6087476], [35.4915885, 139.6097163], [35.4915896, 139.6100544], [35.4915904, 139.6100877], [35.4915918, 139.6101476], [35.4916054, 139.6107246], [35.4916201, 139.6113506], [35.4916214, 139.6114093], [35.4918177, 139.6125484], [35.4918355, 139.6125818], [35.4922296, 139.6132847], [35.4922599, 139.6133387], [35.4924059, 139.6136089], [35.4926677, 139.6140803], [35.4930357, 139.6147458], [35.4931747, 139.6149972], [35.4933138, 139.6152604], [35.4936167, 139.6158828], [35.4937537, 139.6162143], [35.4946088, 139.6181475], [35.4947139, 139.618385], [35.4950919, 139.6192671], [35.4956269, 139.6203397], [35.4965436, 139.6216862], [35.4966204, 139.6217968], [35.4976913, 139.6232694], [35.4977075, 139.6232896], [35.4981961, 139.624039], [35.4982854, 139.6242926], [35.4985777, 139.62554], [35.498707, 139.6260919], [35.4987111, 139.6261092], [35.498796, 139.6264716], [35.4988875, 139.6268448], [35.4990716, 139.6275998], [35.4992114, 139.6281999], [35.4993441, 139.6287683], [35.4995178, 139.6295459], [35.4996253, 139.6300587], [35.4996488, 139.6301539], [35.4997974, 139.6308703], [35.4999196, 139.6314641], [35.499983, 139.6318428], [35.5001921, 139.6329182], [35.500263, 139.6333129], [35.5012541, 139.6369493], [35.5013813, 139.6372552], [35.5015718, 139.6375841], [35.502655, 139.6394054], [35.5027416, 139.639745], [35.5030023, 139.6410892], [35.5031514, 139.6420802], [35.503105, 139.6425917], [35.5031019, 139.6426642], [35.5031033, 139.6432278], [35.5036338, 139.6446889], [35.504174, 139.6458083], [35.50443, 139.6463262], [35.5047283, 139.6469566], [35.5051702, 139.6478698], [35.5055244, 139.6485621], [35.5056646, 139.6488506], [35.505767, 139.6490735], [35.5058561, 139.6492228], [35.5061131, 139.6496049], [35.5061586, 139.6496743], [35.5070403, 139.65083], [35.5070911, 139.6509003], [35.5072859, 139.6511486], [35.5073164, 139.6511875], [35.5075031, 139.6514602], [35.5078707, 139.652118], [35.5084695, 139.6530362], [35.5085905, 139.6531397], [35.5087476, 139.6532789], [35.5096464, 139.6540503], [35.5099329, 139.6543473], [35.5104775, 139.6554704], [35.5106518, 139.6563364], [35.5106934, 139.6565175], [35.5114815, 139.6572103], [35.5115564, 139.6572271], [35.5119249, 139.6575025], [35.5121881, 139.6577879], [35.5123879, 139.6579928], [35.5130561, 139.6583875], [35.5135111, 139.6585934], [35.5140162, 139.6601173], [35.5141061, 139.6602291], [35.5143308, 139.6605308], [35.5148286, 139.6613229], [35.515097, 139.66175], [35.5154685, 139.6623405], [35.5159433, 139.6630314], [35.5159116, 139.6630754], [35.5160726, 139.6632767], [35.5161797, 139.6634185], [35.5164533, 139.664464], [35.5161967, 139.6644636], [35.5163102, 139.6648889], [35.5164603, 139.6654639], [35.5164863, 139.6655661], [35.5166753, 139.6662895], [35.5168387, 139.6670914], [35.5170724, 139.6673286], [35.5178234, 139.6681224], [35.5183249, 139.6686578], [35.5187772, 139.6691313], [35.5195921, 139.6699925], [35.519473, 139.670001], [35.5190504, 139.6701003], [35.5192222, 139.6713016], [35.5194118, 139.6726269], [35.519585, 139.6737977], [35.519736, 139.6748337], [35.5201151, 139.6771743], [35.5217521, 139.6799751], [35.5216875, 139.68133], [35.5216075, 139.6820915], [35.5214845, 139.6825517], [35.5212394, 139.6834627], [35.521159, 139.6837563], [35.5211111, 139.6839311], [35.5205739, 139.684532], [35.5203325, 139.6851087], [35.5200154, 139.6857794], [35.5195764, 139.6864745], [35.5214621, 139.6886703], [35.5221442, 139.6896712], [35.5230479, 139.6910703], [35.5234993, 139.691752], [35.5234142, 139.69207], [35.5234129, 139.692241], [35.5239862, 139.6925838], [35.5243948, 139.6933457], [35.5249135, 139.6942831], [35.5252585, 139.6949126], [35.5253161, 139.6950237], [35.525518, 139.6953909], [35.525671, 139.6956753], [35.5257358, 139.6957995], [35.5261167, 139.6965126], [35.5263615, 139.6969679], [35.526738, 139.6976673], [35.5270164, 139.6981919], [35.5272167, 139.6985632], [35.5274779, 139.6990318], [35.5277168, 139.6994774], [35.528095, 139.7002125], [35.5281536, 139.7003213], [35.5289132, 139.7005962], [35.5292651, 139.700712], [35.53065, 139.7011268]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_c1823ab16ada07cc9260cdd4e88eaf1c);
+        
+    
+            ant_path_527c3b111f91f0f2378eb49c78323c17.bindTooltip(
+                `<div>
+                     車両 24 | 停留所 15 → 16
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

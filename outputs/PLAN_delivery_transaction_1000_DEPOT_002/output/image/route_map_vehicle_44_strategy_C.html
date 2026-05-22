@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_50432bac2cb683fc561cce51ba6cebb8 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.1.2/dist/leaflet-ant-path.min.js"></script>
+</head>
+<body>
+    
+    
+    <div style="position:fixed; top:10px; left:60px; z-index:1000;
+                background:white; padding:10px; border-radius:6px;
+                border:2px solid #333; font-size:13px; font-family:sans-serif;">
+        <b>VRP 配送ルート - 車両 44</b><br>
+        plan_id: PLAN_delivery_transaction_1000_DEPOT_002<br>
+        配送先: 12 件 &nbsp;|&nbsp;
+        走行距離: 24.34 km &nbsp;|&nbsp;
+        コスト: ¥13,894
+    </div>
+    
+    
+            <div class="folium-map" id="map_50432bac2cb683fc561cce51ba6cebb8" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_50432bac2cb683fc561cce51ba6cebb8 = L.map(
+                "map_50432bac2cb683fc561cce51ba6cebb8",
+                {
+                    center: [35.50406278571428, 139.6527532],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ad1633798368f003731eddde663b3dfe = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_ad1633798368f003731eddde663b3dfe.addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var marker_a88e2e2a22742a18a5020328c8fbbd32 = L.marker(
+                [35.5306155, 139.7013529],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var icon_9ec57e04b8d09c4ba6a9c7e8d96a18de = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_055805d64a59f5ddf4998d9e23ffb691 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_0ff4861dccc08a2b1c50732aede1eb41 = $(`<div id="html_0ff4861dccc08a2b1c50732aede1eb41" style="width: 100.0%; height: 100.0%;"><b>川崎広域物流センター</b></div>`)[0];
+                popup_055805d64a59f5ddf4998d9e23ffb691.setContent(html_0ff4861dccc08a2b1c50732aede1eb41);
+            
+        
+
+        marker_a88e2e2a22742a18a5020328c8fbbd32.bindPopup(popup_055805d64a59f5ddf4998d9e23ffb691)
+        ;
+
+        
+    
+    
+            marker_a88e2e2a22742a18a5020328c8fbbd32.bindTooltip(
+                `<div>
+                     デポ（出発・帰着拠点）
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a88e2e2a22742a18a5020328c8fbbd32.setIcon(icon_9ec57e04b8d09c4ba6a9c7e8d96a18de);
+            
+    
+            var circle_marker_39481b7717b13434b4d6d1e2b1c5720d = L.circleMarker(
+                [35.531155, 139.700943],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_1654eb4d6a19e7d806651e060163712a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_dd7c6615c9c52334c465316ddff324bf = $(`<div id="html_dd7c6615c9c52334c465316ddff324bf" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 1</b><br>神奈川県川崎市川崎区砂子一丁目1<br>到着: 08:01<br>荷物: 13 個</div>`)[0];
+                popup_1654eb4d6a19e7d806651e060163712a.setContent(html_dd7c6615c9c52334c465316ddff324bf);
+            
+        
+
+        circle_marker_39481b7717b13434b4d6d1e2b1c5720d.bindPopup(popup_1654eb4d6a19e7d806651e060163712a)
+        ;
+
+        
+    
+    
+            circle_marker_39481b7717b13434b4d6d1e2b1c5720d.bindTooltip(
+                `<div>
+                     車両44 | 08:01 | 神奈川県川崎市川崎区砂子一丁目1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_7bc07aa3cd043c6a306ae0b15f4be57a = L.marker(
+                [35.531155, 139.700943],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_396fd8f328aa57606900d000c675c928 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e1\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_7bc07aa3cd043c6a306ae0b15f4be57a.setIcon(div_icon_396fd8f328aa57606900d000c675c928);
+            
+    
+            var circle_marker_1754a3bf4396b0751542272387e40b11 = L.circleMarker(
+                [35.531635, 139.710922],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_89295587a9aaa7f73fc0a04b351091e8 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c0995020806e04b9697a0370c3c4710d = $(`<div id="html_c0995020806e04b9697a0370c3c4710d" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 2</b><br>神奈川県川崎市川崎区富士見一丁目10<br>到着: 08:03<br>荷物: 5 個</div>`)[0];
+                popup_89295587a9aaa7f73fc0a04b351091e8.setContent(html_c0995020806e04b9697a0370c3c4710d);
+            
+        
+
+        circle_marker_1754a3bf4396b0751542272387e40b11.bindPopup(popup_89295587a9aaa7f73fc0a04b351091e8)
+        ;
+
+        
+    
+    
+            circle_marker_1754a3bf4396b0751542272387e40b11.bindTooltip(
+                `<div>
+                     車両44 | 08:03 | 神奈川県川崎市川崎区富士見一丁目10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_fe5859ecfd1a9a2885e406203b87aecf = L.marker(
+                [35.531635, 139.710922],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_4e322a92bf642403ef92cb0a0bf833d3 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e2\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_fe5859ecfd1a9a2885e406203b87aecf.setIcon(div_icon_4e322a92bf642403ef92cb0a0bf833d3);
+            
+    
+            var circle_marker_5b2befb557ba3b211638ab84d2df9a61 = L.circleMarker(
+                [35.477425, 139.634064],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_3a82b0d0700b479c056b8d3c9c18e94a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f991dad6067f6620e0469139d8474d7c = $(`<div id="html_f991dad6067f6620e0469139d8474d7c" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 3</b><br>神奈川県横浜市神奈川区東神奈川一丁目3<br>到着: 08:23<br>荷物: 3 個</div>`)[0];
+                popup_3a82b0d0700b479c056b8d3c9c18e94a.setContent(html_f991dad6067f6620e0469139d8474d7c);
+            
+        
+
+        circle_marker_5b2befb557ba3b211638ab84d2df9a61.bindPopup(popup_3a82b0d0700b479c056b8d3c9c18e94a)
+        ;
+
+        
+    
+    
+            circle_marker_5b2befb557ba3b211638ab84d2df9a61.bindTooltip(
+                `<div>
+                     車両44 | 08:23 | 神奈川県横浜市神奈川区東神奈川一丁目3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f657dd0fd489e050399b84318a5d9e2d = L.marker(
+                [35.477425, 139.634064],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_b763805053b27fccfec992b5df48d621 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e3\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_f657dd0fd489e050399b84318a5d9e2d.setIcon(div_icon_b763805053b27fccfec992b5df48d621);
+            
+    
+            var circle_marker_40dbc8e7d403445edd7fc2722f0f2371 = L.circleMarker(
+                [35.486671, 139.623505],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_2791390c4bd06ee19d9fc7f2cfdeda26 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_102c6748254bd25ae7a0b3a3f1740509 = $(`<div id="html_102c6748254bd25ae7a0b3a3f1740509" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 4</b><br>神奈川県横浜市神奈川区六角橋二丁目3<br>到着: 08:27<br>荷物: 1 個</div>`)[0];
+                popup_2791390c4bd06ee19d9fc7f2cfdeda26.setContent(html_102c6748254bd25ae7a0b3a3f1740509);
+            
+        
+
+        circle_marker_40dbc8e7d403445edd7fc2722f0f2371.bindPopup(popup_2791390c4bd06ee19d9fc7f2cfdeda26)
+        ;
+
+        
+    
+    
+            circle_marker_40dbc8e7d403445edd7fc2722f0f2371.bindTooltip(
+                `<div>
+                     車両44 | 08:27 | 神奈川県横浜市神奈川区六角橋二丁目3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_edd98be58f7d8c48cfa8fcbf5ee5e7d3 = L.marker(
+                [35.486671, 139.623505],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_02e43e245c0969fd7f65ec52973231a2 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e4\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_edd98be58f7d8c48cfa8fcbf5ee5e7d3.setIcon(div_icon_02e43e245c0969fd7f65ec52973231a2);
+            
+    
+            var circle_marker_4fd21e45aa4707c3c89a2eb8819a96dd = L.circleMarker(
+                [35.489468, 139.624985],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_ad0652ffa4f7e292950ba37aa3c672ad = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d71ceef057f2eb57ddfaac54e98514ea = $(`<div id="html_d71ceef057f2eb57ddfaac54e98514ea" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 5</b><br>神奈川県横浜市神奈川区六角橋418<br>到着: 08:28<br>荷物: 3 個</div>`)[0];
+                popup_ad0652ffa4f7e292950ba37aa3c672ad.setContent(html_d71ceef057f2eb57ddfaac54e98514ea);
+            
+        
+
+        circle_marker_4fd21e45aa4707c3c89a2eb8819a96dd.bindPopup(popup_ad0652ffa4f7e292950ba37aa3c672ad)
+        ;
+
+        
+    
+    
+            circle_marker_4fd21e45aa4707c3c89a2eb8819a96dd.bindTooltip(
+                `<div>
+                     車両44 | 08:28 | 神奈川県横浜市神奈川区六角橋418
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d51a50d873b9f2f153c237a3525cad55 = L.marker(
+                [35.489468, 139.624985],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_cf9f117958047dac7ed8010980e8982c = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e5\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_d51a50d873b9f2f153c237a3525cad55.setIcon(div_icon_cf9f117958047dac7ed8010980e8982c);
+            
+    
+            var circle_marker_725113cf5aeb7fc7a368667b1ed7a7d8 = L.circleMarker(
+                [35.49033, 139.628815],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_929603acff0421e7299e27af795c81e3 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_50a740923be35d6f4de906d0e6eba085 = $(`<div id="html_50a740923be35d6f4de906d0e6eba085" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 6</b><br>神奈川県横浜市神奈川区白幡上町1<br>到着: 08:30<br>荷物: 5 個</div>`)[0];
+                popup_929603acff0421e7299e27af795c81e3.setContent(html_50a740923be35d6f4de906d0e6eba085);
+            
+        
+
+        circle_marker_725113cf5aeb7fc7a368667b1ed7a7d8.bindPopup(popup_929603acff0421e7299e27af795c81e3)
+        ;
+
+        
+    
+    
+            circle_marker_725113cf5aeb7fc7a368667b1ed7a7d8.bindTooltip(
+                `<div>
+                     車両44 | 08:30 | 神奈川県横浜市神奈川区白幡上町1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_b1bd3511d1a1838d3f9da2c8c1ec6884 = L.marker(
+                [35.49033, 139.628815],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_2edd09ced59bfaa8ac1d4e379dbabc0b = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e6\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_b1bd3511d1a1838d3f9da2c8c1ec6884.setIcon(div_icon_2edd09ced59bfaa8ac1d4e379dbabc0b);
+            
+    
+            var circle_marker_d3b1496d0fb473d537406d5af4db31c0 = L.circleMarker(
+                [35.49041, 139.634933],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_4c390052b2d6ec8426b3948b26d92f24 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_38dfdf35b3b7ba204bf91355e2928e0e = $(`<div id="html_38dfdf35b3b7ba204bf91355e2928e0e" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 7</b><br>神奈川県横浜市神奈川区白幡向町16<br>到着: 08:32<br>荷物: 1 個</div>`)[0];
+                popup_4c390052b2d6ec8426b3948b26d92f24.setContent(html_38dfdf35b3b7ba204bf91355e2928e0e);
+            
+        
+
+        circle_marker_d3b1496d0fb473d537406d5af4db31c0.bindPopup(popup_4c390052b2d6ec8426b3948b26d92f24)
+        ;
+
+        
+    
+    
+            circle_marker_d3b1496d0fb473d537406d5af4db31c0.bindTooltip(
+                `<div>
+                     車両44 | 08:32 | 神奈川県横浜市神奈川区白幡向町16
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c3a1231a8bbe630f3900b8acceb9e0cc = L.marker(
+                [35.49041, 139.634933],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_cfbd9ab5739bf592eba10f78085928f6 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e7\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_c3a1231a8bbe630f3900b8acceb9e0cc.setIcon(div_icon_cfbd9ab5739bf592eba10f78085928f6);
+            
+    
+            var circle_marker_aff921d32c3219748ee05266fdd36b4f = L.circleMarker(
+                [35.497135, 139.633041],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_80a4a849a09c8334cfeb5132549ead0a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_10754455d0e16af2b7047c216b90dccb = $(`<div id="html_10754455d0e16af2b7047c216b90dccb" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 8</b><br>神奈川県横浜市港北区仲手原二丁目45<br>到着: 08:34<br>荷物: 1 個</div>`)[0];
+                popup_80a4a849a09c8334cfeb5132549ead0a.setContent(html_10754455d0e16af2b7047c216b90dccb);
+            
+        
+
+        circle_marker_aff921d32c3219748ee05266fdd36b4f.bindPopup(popup_80a4a849a09c8334cfeb5132549ead0a)
+        ;
+
+        
+    
+    
+            circle_marker_aff921d32c3219748ee05266fdd36b4f.bindTooltip(
+                `<div>
+                     車両44 | 08:34 | 神奈川県横浜市港北区仲手原二丁目45
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9fc8143f97bb0c6563d50bbad3204d58 = L.marker(
+                [35.497135, 139.633041],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_e43096780ba503e222ea2850ba60c2e1 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e8\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_9fc8143f97bb0c6563d50bbad3204d58.setIcon(div_icon_e43096780ba503e222ea2850ba60c2e1);
+            
+    
+            var circle_marker_4daf5d1f17bbfa6b78deb35ef4e4f21f = L.circleMarker(
+                [35.500862, 139.633636],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_78a33296d1c40316326de66b42607956 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d28200f054d58802467586ecb730e4af = $(`<div id="html_d28200f054d58802467586ecb730e4af" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 9</b><br>神奈川県横浜市港北区菊名一丁目11<br>到着: 08:35<br>荷物: 3 個</div>`)[0];
+                popup_78a33296d1c40316326de66b42607956.setContent(html_d28200f054d58802467586ecb730e4af);
+            
+        
+
+        circle_marker_4daf5d1f17bbfa6b78deb35ef4e4f21f.bindPopup(popup_78a33296d1c40316326de66b42607956)
+        ;
+
+        
+    
+    
+            circle_marker_4daf5d1f17bbfa6b78deb35ef4e4f21f.bindTooltip(
+                `<div>
+                     車両44 | 08:35 | 神奈川県横浜市港北区菊名一丁目11
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_2952f180d7eae3fcc60d9be635615a75 = L.marker(
+                [35.500862, 139.633636],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_fcdfa5f6f9fa8f7aafa21d32e048c761 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e9\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_2952f180d7eae3fcc60d9be635615a75.setIcon(div_icon_fcdfa5f6f9fa8f7aafa21d32e048c761);
+            
+    
+            var circle_marker_6be9f78512ba8b031ffb08ba51b3d99d = L.circleMarker(
+                [35.500813, 139.632751],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_5699b1ea8f336155d4007337bfea2dae = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_973cd81a1f0711cae86d61b4a25e5230 = $(`<div id="html_973cd81a1f0711cae86d61b4a25e5230" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 10</b><br>神奈川県横浜市港北区菊名一丁目12<br>到着: 08:36<br>荷物: 5 個</div>`)[0];
+                popup_5699b1ea8f336155d4007337bfea2dae.setContent(html_973cd81a1f0711cae86d61b4a25e5230);
+            
+        
+
+        circle_marker_6be9f78512ba8b031ffb08ba51b3d99d.bindPopup(popup_5699b1ea8f336155d4007337bfea2dae)
+        ;
+
+        
+    
+    
+            circle_marker_6be9f78512ba8b031ffb08ba51b3d99d.bindTooltip(
+                `<div>
+                     車両44 | 08:36 | 神奈川県横浜市港北区菊名一丁目12
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_21e5265cf49a618a02cdaa050ac4f8e0 = L.marker(
+                [35.500813, 139.632751],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_b0e64e77edfe233ad06fa15d4aee710b = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e10\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_21e5265cf49a618a02cdaa050ac4f8e0.setIcon(div_icon_b0e64e77edfe233ad06fa15d4aee710b);
+            
+    
+            var circle_marker_afd71664e2aca350bad9eef80d644203 = L.circleMarker(
+                [35.499527, 139.632965],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_83c53c02fc5cbb48ae2a9e6383ca1a3b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a6844dc3fc0f0d8cf37d055bc2e513d1 = $(`<div id="html_a6844dc3fc0f0d8cf37d055bc2e513d1" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 11</b><br>神奈川県横浜市港北区菊名一丁目9<br>到着: 13:00<br>荷物: 4 個</div>`)[0];
+                popup_83c53c02fc5cbb48ae2a9e6383ca1a3b.setContent(html_a6844dc3fc0f0d8cf37d055bc2e513d1);
+            
+        
+
+        circle_marker_afd71664e2aca350bad9eef80d644203.bindPopup(popup_83c53c02fc5cbb48ae2a9e6383ca1a3b)
+        ;
+
+        
+    
+    
+            circle_marker_afd71664e2aca350bad9eef80d644203.bindTooltip(
+                `<div>
+                     車両44 | 13:00 | 神奈川県横浜市港北区菊名一丁目9
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d354efc9ee63961539a4a0f023d35be1 = L.marker(
+                [35.499527, 139.632965],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_a51b6e57d035ec647be6d462799d957e = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e11\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_d354efc9ee63961539a4a0f023d35be1.setIcon(div_icon_a51b6e57d035ec647be6d462799d957e);
+            
+    
+            var circle_marker_d135d27b9efb5049441ea1403bad7bce = L.circleMarker(
+                [35.500217, 139.645279],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+        var popup_a83e7773497018000d09b10e1cbcd221 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9180e832da2cf3301d3ef79aad2784a8 = $(`<div id="html_9180e832da2cf3301d3ef79aad2784a8" style="width: 100.0%; height: 100.0%;"><b>車両 44 / 停留所 12</b><br>神奈川県横浜市神奈川区西寺尾一丁目2<br>到着: 13:03<br>荷物: 5 個</div>`)[0];
+                popup_a83e7773497018000d09b10e1cbcd221.setContent(html_9180e832da2cf3301d3ef79aad2784a8);
+            
+        
+
+        circle_marker_d135d27b9efb5049441ea1403bad7bce.bindPopup(popup_a83e7773497018000d09b10e1cbcd221)
+        ;
+
+        
+    
+    
+            circle_marker_d135d27b9efb5049441ea1403bad7bce.bindTooltip(
+                `<div>
+                     車両44 | 13:03 | 神奈川県横浜市神奈川区西寺尾一丁目2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_176742c28ab894233abc7af52f91a509 = L.marker(
+                [35.500217, 139.645279],
+                {
+}
+            ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            var div_icon_f760b340f914d027316d5d4c7841c0c5 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e12\u003c/div\u003e",
+  "iconSize": [16, 16],
+  "iconAnchor": [8, 8],
+  "className": "empty",
+});
+        
+    
+                marker_176742c28ab894233abc7af52f91a509.setIcon(div_icon_f760b340f914d027316d5d4c7841c0c5);
+            
+    
+            ant_path_391c576dda90e734e8e0e8d34f6796af = L.polyline.antPath(
+              [[35.53065, 139.7011268], [35.5307353, 139.7011573]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_391c576dda90e734e8e0e8d34f6796af.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 0 → 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_0256302e1933361302e987eb72e49c1e = L.polyline.antPath(
+              [[35.5307353, 139.7011573], [35.5306029, 139.7017108], [35.530417, 139.7024089], [35.5301925, 139.7033115], [35.5300332, 139.7039492], [35.5298763, 139.7045779], [35.5298195, 139.7048208], [35.5296184, 139.7056275], [35.5295295, 139.7059764], [35.5292636, 139.7072178], [35.5300343, 139.7071312], [35.5301703, 139.7090027]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_0256302e1933361302e987eb72e49c1e.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 1 → 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_89de740d7a32597fd460b0c675b9ea87 = L.polyline.antPath(
+              [[35.5301703, 139.7090027], [35.5313226, 139.7072877], [35.5313867, 139.7071723], [35.5315121, 139.7068435], [35.5317379, 139.7062065], [35.5316231, 139.7061204], [35.5313612, 139.7059475], [35.5311789, 139.7058148], [35.5307471, 139.705498], [35.5298195, 139.7048208], [35.5297254, 139.7047521], [35.5285816, 139.7038689], [35.5280091, 139.7034523], [35.527716, 139.7032407], [35.5272226, 139.7029139], [35.5267487, 139.7025398], [35.5266551, 139.7024265], [35.5264431, 139.7021191], [35.5258156, 139.7009951], [35.5252403, 139.6999031], [35.5247081, 139.6989093], [35.5243953, 139.6983311], [35.5242116, 139.6980393], [35.523811, 139.6973173], [35.523761, 139.6972098], [35.523609, 139.696907], [35.5230535, 139.6958197], [35.522482, 139.6948105], [35.5221173, 139.6941281], [35.521837, 139.693616], [35.5212218, 139.6924584], [35.5211384, 139.6923115], [35.5206669, 139.691429], [35.5206058, 139.6913092], [35.5199538, 139.6902746], [35.5192264, 139.6896557], [35.5187873, 139.6893468], [35.517711, 139.6886091], [35.5173295, 139.6883444], [35.5162562, 139.687549], [35.5146232, 139.6864429], [35.5144185, 139.6863041], [35.514072, 139.6861037], [35.5138904, 139.6860181], [35.5119589, 139.6846785], [35.5119051, 139.6846267], [35.5114289, 139.6841774], [35.5107338, 139.6836485], [35.5100002, 139.683018], [35.5092744, 139.6823892], [35.5085059, 139.6816851], [35.5075342, 139.6808267], [35.5074555, 139.6807726], [35.5061451, 139.679871], [35.5060464, 139.6798005], [35.5047173, 139.6784586], [35.5034833, 139.6773849], [35.5022551, 139.6763167], [35.5022251, 139.6762907], [35.5003368, 139.6746556], [35.4995872, 139.6740065], [35.4982698, 139.6725301], [35.4977598, 139.6719277], [35.4970687, 139.6711115], [35.4960143, 139.6698661], [35.495096, 139.668785], [35.495016, 139.6686879], [35.4949797, 139.6686438], [35.4948836, 139.6685271], [35.4937988, 139.6672433], [35.4926226, 139.6655042], [35.4917118, 139.6639255], [35.4901628, 139.6616997], [35.4884377, 139.65901], [35.4866121, 139.6565025], [35.4862954, 139.6556907], [35.4856103, 139.6533997], [35.4853161, 139.6521821], [35.4848408, 139.6489655], [35.484787, 139.6486447], [35.4842952, 139.6461921], [35.4840145, 139.6455679], [35.4832308, 139.6442015], [35.4820659, 139.6424515], [35.4821885, 139.6423676], [35.4824045, 139.6421676], [35.4824524, 139.6421211], [35.4821542, 139.6416811], [35.481898, 139.6412988], [35.4814633, 139.6406748], [35.481122, 139.6402551], [35.4808027, 139.6398625], [35.4806541, 139.6396524], [35.4808404, 139.6394596], [35.480452, 139.6388481], [35.4801349, 139.6384301], [35.4798693, 139.6380902], [35.4799873, 139.6379918], [35.4798412, 139.6377801], [35.4794568, 139.6372629], [35.4790701, 139.6367425], [35.4787029, 139.6362097], [35.4783783, 139.6357821], [35.4779703, 139.6352428], [35.4777404, 139.6349299], [35.4776743, 139.634807], [35.477642, 139.6347469], [35.4771093, 139.6340939], [35.4773585, 139.6338232]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_89de740d7a32597fd460b0c675b9ea87.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 2 → 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_ef7bf2b847da706fad853e9eb6ad1999 = L.polyline.antPath(
+              [[35.4773585, 139.6338232], [35.4791505, 139.6328968], [35.4791768, 139.6327232], [35.4791905, 139.632594], [35.4793759, 139.6324406], [35.4801019, 139.6318788], [35.4801771, 139.6318191], [35.4805678, 139.6314925], [35.4810655, 139.6311136], [35.4814711, 139.6307902], [35.4819073, 139.6304016], [35.4820896, 139.6302289], [35.4823753, 139.6299581], [35.4830492, 139.6293092], [35.4834183, 139.6289802], [35.4837379, 139.62868], [35.4839766, 139.6284334], [35.4846095, 139.6277942], [35.4848814, 139.6275362], [35.4851041, 139.6273123], [35.4853864, 139.6270265], [35.4856452, 139.6267795], [35.4861024, 139.6263543], [35.4863435, 139.6261244], [35.4862511, 139.62507], [35.4864971, 139.6237325], [35.486732, 139.6238045]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_ef7bf2b847da706fad853e9eb6ad1999.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 3 → 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_2a16d314c7fb710be3a9ea2693b3b0a6 = L.polyline.antPath(
+              [[35.486732, 139.6238045], [35.4869113, 139.6238508], [35.4869447, 139.6246215], [35.4872205, 139.6243958], [35.4875032, 139.6241725], [35.4881303, 139.6236781], [35.488235, 139.6243129], [35.4882818, 139.624376], [35.4887182, 139.6246312], [35.4890602, 139.624834], [35.4893883, 139.6250282]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_2a16d314c7fb710be3a9ea2693b3b0a6.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 4 → 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_2db32c17a3b6975921dcfa4bd2846ef3 = L.polyline.antPath(
+              [[35.4893883, 139.6250282], [35.4896024, 139.6251672], [35.4894459, 139.62586], [35.4894117, 139.6265616], [35.4890882, 139.6270275], [35.4895545, 139.6272708], [35.4888192, 139.6277504], [35.4903069, 139.628453]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_2db32c17a3b6975921dcfa4bd2846ef3.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 5 → 6
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_7fe29f6684b2bd8ba3ee7bd674467ee8 = L.polyline.antPath(
+              [[35.4903069, 139.628453], [35.4907482, 139.6289955], [35.491223, 139.6296015], [35.4913189, 139.6301961], [35.4912177, 139.6302369], [35.4913343, 139.6311536], [35.4907271, 139.6322588], [35.4900244, 139.632888], [35.4899047, 139.6330768], [35.4902352, 139.6348232], [35.4902463, 139.6348615]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_7fe29f6684b2bd8ba3ee7bd674467ee8.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 6 → 7
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_131659e2e4c5127a5a81a63ec2caab44 = L.polyline.antPath(
+              [[35.4902463, 139.6348615], [35.4902352, 139.6348232], [35.4908639, 139.6335093], [35.4913642, 139.6338796], [35.4914026, 139.6338247], [35.4925618, 139.6321719], [35.4927113, 139.6319887], [35.4932566, 139.6319003], [35.4936176, 139.6318116], [35.4936788, 139.6318399], [35.4939971, 139.6320332], [35.4948057, 139.6324037], [35.4951678, 139.6325866], [35.495415, 139.6326594], [35.4959894, 139.6327151], [35.4964887, 139.6327505], [35.497305, 139.6328352], [35.497283, 139.6330807]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_131659e2e4c5127a5a81a63ec2caab44.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 7 → 8
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_56a93d101618c6b95b4afcedaa557558 = L.polyline.antPath(
+              [[35.497283, 139.6330807], [35.497305, 139.6328352], [35.4979121, 139.6329366], [35.4979365, 139.6329406], [35.4982281, 139.6329158], [35.500263, 139.6333129]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_56a93d101618c6b95b4afcedaa557558.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 8 → 9
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_27820aa4cecc08af35a421090d82e3f3 = L.polyline.antPath(
+              [[35.500263, 139.6333129], [35.5015315, 139.6334458], [35.5016804, 139.6326826], [35.5014817, 139.6325941], [35.5008998, 139.6324055]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_27820aa4cecc08af35a421090d82e3f3.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 9 → 10
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_20c9b4480f98943d44df507718e6a0d3 = L.polyline.antPath(
+              [[35.5008998, 139.6324055], [35.499983, 139.6318428], [35.5001921, 139.6329182]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_20c9b4480f98943d44df507718e6a0d3.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 10 → 11
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_84e42fb6e072aa19c62bc6f97cc33d8c = L.polyline.antPath(
+              [[35.5001921, 139.6329182], [35.500263, 139.6333129], [35.5012541, 139.6369493], [35.5013813, 139.6372552], [35.5015718, 139.6375841], [35.502655, 139.6394054], [35.5027416, 139.639745], [35.5030023, 139.6410892], [35.5031514, 139.6420802], [35.503105, 139.6425917], [35.5031019, 139.6426642], [35.5021779, 139.6433543], [35.5014572, 139.6439845], [35.500953, 139.6444047], [35.5004027, 139.6448741], [35.4998583, 139.6453383]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_84e42fb6e072aa19c62bc6f97cc33d8c.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 11 → 12
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            ant_path_6a7392ea7cd45d2123b2f5cce6fe1d33 = L.polyline.antPath(
+              [[35.4998583, 139.6453383], [35.5004027, 139.6448741], [35.500953, 139.6444047], [35.5014572, 139.6439845], [35.5021779, 139.6433543], [35.503105, 139.6425917], [35.5031019, 139.6426642], [35.5031033, 139.6432278], [35.5036338, 139.6446889], [35.504174, 139.6458083], [35.50443, 139.6463262], [35.5047283, 139.6469566], [35.5051702, 139.6478698], [35.5055244, 139.6485621], [35.5056646, 139.6488506], [35.505767, 139.6490735], [35.5058561, 139.6492228], [35.5061131, 139.6496049], [35.5061586, 139.6496743], [35.5070403, 139.65083], [35.5070911, 139.6509003], [35.5072859, 139.6511486], [35.5073164, 139.6511875], [35.5075031, 139.6514602], [35.5078707, 139.652118], [35.5084695, 139.6530362], [35.5085905, 139.6531397], [35.5087476, 139.6532789], [35.5096464, 139.6540503], [35.5099329, 139.6543473], [35.5104775, 139.6554704], [35.5106518, 139.6563364], [35.5106934, 139.6565175], [35.5114815, 139.6572103], [35.5115564, 139.6572271], [35.5119249, 139.6575025], [35.5121881, 139.6577879], [35.5123879, 139.6579928], [35.5130561, 139.6583875], [35.5135111, 139.6585934], [35.5140162, 139.6601173], [35.5141061, 139.6602291], [35.5143308, 139.6605308], [35.5148286, 139.6613229], [35.515097, 139.66175], [35.5154685, 139.6623405], [35.5159433, 139.6630314], [35.5159116, 139.6630754], [35.5160726, 139.6632767], [35.5161797, 139.6634185], [35.5164533, 139.664464], [35.5161967, 139.6644636], [35.5163102, 139.6648889], [35.5164603, 139.6654639], [35.5164863, 139.6655661], [35.5166753, 139.6662895], [35.5168387, 139.6670914], [35.5170724, 139.6673286], [35.5178234, 139.6681224], [35.5183249, 139.6686578], [35.5187772, 139.6691313], [35.5195921, 139.6699925], [35.519473, 139.670001], [35.5190504, 139.6701003], [35.5192222, 139.6713016], [35.5194118, 139.6726269], [35.519585, 139.6737977], [35.519736, 139.6748337], [35.5201151, 139.6771743], [35.5217521, 139.6799751], [35.5216875, 139.68133], [35.5216075, 139.6820915], [35.5214845, 139.6825517], [35.5212394, 139.6834627], [35.521159, 139.6837563], [35.5211111, 139.6839311], [35.5205739, 139.684532], [35.5203325, 139.6851087], [35.5200154, 139.6857794], [35.5195764, 139.6864745], [35.5214621, 139.6886703], [35.5221442, 139.6896712], [35.5230479, 139.6910703], [35.5234993, 139.691752], [35.5234142, 139.69207], [35.5234129, 139.692241], [35.5239862, 139.6925838], [35.5243948, 139.6933457], [35.5249135, 139.6942831], [35.5252585, 139.6949126], [35.5253161, 139.6950237], [35.525518, 139.6953909], [35.525671, 139.6956753], [35.5257358, 139.6957995], [35.5261167, 139.6965126], [35.5263615, 139.6969679], [35.526738, 139.6976673], [35.5270164, 139.6981919], [35.5272167, 139.6985632], [35.5274779, 139.6990318], [35.5277168, 139.6994774], [35.528095, 139.7002125], [35.5281536, 139.7003213], [35.5289132, 139.7005962], [35.5292651, 139.700712], [35.53065, 139.7011268]],
+              {
+  "stroke": true,
+  "color": "purple",
+  "weight": 4,
+  "opacity": 0.9,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": [
+10,
+20,
+],
+  "dashOffset": null,
+  "fill": false,
+  "fillColor": "purple",
+  "fillOpacity": 0.2,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "smoothFactor": 1.0,
+  "noClip": false,
+  "paused": false,
+  "reverse": false,
+  "hardwareAcceleration": false,
+  "delay": 600,
+  "pulseColor": "#FFFFFF",
+}
+        ).addTo(map_50432bac2cb683fc561cce51ba6cebb8);
+        
+    
+            ant_path_6a7392ea7cd45d2123b2f5cce6fe1d33.bindTooltip(
+                `<div>
+                     車両 44 | 停留所 12 → 13
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
