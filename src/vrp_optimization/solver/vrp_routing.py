@@ -77,10 +77,14 @@ def _load_data(plan_id: str, depot_id: str | None = None, input_stem: str | None
         rows = txn_df[txn_df["delivery_id"] == did]
         demands_by_id[did] = int(rows["package_count"].sum())
         codes = rows["delivery_time_slot_code"].dropna().unique().tolist()
-        starts = [time_windows_map[c][0] for c in codes]
-        ends   = [time_windows_map[c][1] for c in codes]
-        windows_by_id[did] = (min(starts), max(ends))
-        slot_code_by_id[did] = int(codes[0]) if len(codes) == 1 else 3
+        if not codes:
+            windows_by_id[did] = (0, work_minutes)
+            slot_code_by_id[did] = 3
+        else:
+            starts = [time_windows_map[c][0] for c in codes]
+            ends   = [time_windows_map[c][1] for c in codes]
+            windows_by_id[did] = (min(starts), max(ends))
+            slot_code_by_id[did] = int(codes[0]) if len(codes) == 1 else 3
 
     dep_id = depot_row["depot_id"]
     locations = [(dep_id, "depot")] + [(r["delivery_id"], r["destination_address"]) for r in valid_dests]
