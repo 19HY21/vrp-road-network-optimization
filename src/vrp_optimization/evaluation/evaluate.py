@@ -63,6 +63,10 @@ def run_evaluation(plan_id: str, depot_id: str | None = None, input_stem: str | 
     snap_master_path = _SNAP_DIR / input_stem / "snap_destination_master.json" if input_stem else None
     table_dir = OUTPUTS_DIR / plan_id / "output" / "table"
     summary_df = pd.read_csv(table_dir / "route_summary.csv")
+    solved_summary = summary_df[summary_df["solve_status"].isin(["OPTIMAL", "FEASIBLE"])]
+    if solved_summary.empty:
+        raise ValueError("解が得られた戦略がありません。vrp_routing を再実行してください。")
+
     detail_df = pd.read_csv(table_dir / "route_detail.csv")
     depot_df = pd.read_csv(DEPOT_PATH)
     depot_row = depot_df[depot_df["depot_id"] == depot_id].iloc[0] if depot_id else depot_df.iloc[0]
@@ -73,10 +77,6 @@ def run_evaluation(plan_id: str, depot_id: str | None = None, input_stem: str | 
     with open(snap_master_path, encoding="utf-8") as f:
         master = json.load(f)
     valid_ids = {r["delivery_id"] for r in master if r.get("snap_status") == "success"}
-
-    solved_summary = summary_df[summary_df["solve_status"].isin(["OPTIMAL", "FEASIBLE"])]
-    if solved_summary.empty:
-        raise ValueError("解が得られた戦略がありません。vrp_routing を再実行してください。")
 
     best_strategy = _best_strategy(summary_df)
     best_summary = summary_df[summary_df["strategy"] == best_strategy].iloc[0]

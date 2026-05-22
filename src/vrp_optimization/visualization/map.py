@@ -21,7 +21,7 @@ from folium.plugins import AntPath
 import osmnx as ox
 import pandas as pd
 
-from vrp_optimization.network.graph import load_graph
+from vrp_optimization.network.graph import OLD_NETWORK_DIR
 
 _ROOT = Path(__file__).parents[3]
 DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
@@ -30,6 +30,19 @@ _SNAP_DIR = _ROOT / "data" / "processed" / "snap"
 
 VEHICLE_COLORS = ["blue", "red", "green", "purple", "orange"]
 KANAGAWA_CENTER = [35.45, 139.55]
+
+
+def _load_snap_graph(snap_master_path: Path):
+    with open(snap_master_path, encoding="utf-8") as f:
+        records = json.load(f)
+    if not records:
+        raise ValueError(f"スナップマスタが空です: {snap_master_path}")
+    snap_graph_name = records[0]["snap_graph_name"]
+    graph_path = OLD_NETWORK_DIR / snap_graph_name
+    if not graph_path.exists():
+        raise FileNotFoundError(f"スナップ時のグラフが見つかりません: {graph_path}")
+    print(f"スナップ時グラフ読み込み: {graph_path}")
+    return ox.load_graphml(graph_path)
 
 
 def _latest_plan_id() -> str:
@@ -298,8 +311,7 @@ def main(plan_id: str | None = None, depot_id: str | None = None, input_stem: st
     out_dir = OUTPUTS_DIR / plan_id / "output" / "image"
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    print("OSMnx グラフ読み込み中...")
-    G, _ = load_graph()
+    G = _load_snap_graph(snap_master_path)
 
     for strategy in strategies:
         strategy_summary = summary_df[summary_df["strategy"] == strategy].iloc[0]

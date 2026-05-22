@@ -36,9 +36,10 @@ import sys
 from pathlib import Path
 
 import networkx as nx
+import osmnx as ox
 import pandas as pd
 
-from vrp_optimization.network.graph import load_graph
+from vrp_optimization.network.graph import OLD_NETWORK_DIR
 
 _ROOT = Path(__file__).parents[3]
 DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
@@ -49,6 +50,19 @@ _COMPUTE_DIR = _ROOT / "data" / "processed" / "compute"
 AVG_SPEED_KPH = 30
 
 logger = logging.getLogger(__name__)
+
+
+def _load_snap_graph(snap_master_path: Path) -> nx.MultiDiGraph:
+    with open(snap_master_path, encoding="utf-8") as f:
+        records = json.load(f)
+    if not records:
+        raise ValueError(f"スナップマスタが空です: {snap_master_path}")
+    snap_graph_name = records[0]["snap_graph_name"]
+    graph_path = OLD_NETWORK_DIR / snap_graph_name
+    if not graph_path.exists():
+        raise FileNotFoundError(f"スナップ時のグラフが見つかりません: {graph_path}")
+    logger.info("スナップ時グラフ読み込み: %s", graph_path)
+    return ox.load_graphml(graph_path)
 
 
 def load_locations(depot_id: str, snap_master_path: Path) -> tuple[list[tuple[str, str, int]], list[dict]]:
@@ -166,7 +180,7 @@ def main(plan_id: str | None = None, depot_id: str | None = None, input_stem: st
         plan_id = f"PLAN_{input_stem}_{depot_id}"
     logger.info("plan_id   : %s", plan_id)
 
-    G, _ = load_graph()
+    G = _load_snap_graph(snap_master_path)
 
     logger.info("OD 行列計算中...")
     df, no_path_count = compute_od_matrix(G, locations)
