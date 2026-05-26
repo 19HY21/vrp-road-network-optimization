@@ -18,6 +18,8 @@ from pathlib import Path
 
 import folium
 from folium.plugins import AntPath
+import matplotlib
+import matplotlib.colors as mcolors
 import osmnx as ox
 import pandas as pd
 
@@ -28,8 +30,17 @@ DEPOT_PATH = _ROOT / "data" / "raw" / "depot_master.csv"
 OUTPUTS_DIR = _ROOT / "outputs"
 _SNAP_DIR = _ROOT / "data" / "processed" / "snap"
 
-VEHICLE_COLORS = ["blue", "red", "green", "purple", "orange"]
-KANAGAWA_CENTER = [35.45, 139.55]
+_FALLBACK_CENTER = [35.45, 139.55]
+
+
+def _vehicle_colors(n: int) -> list[str]:
+    """n 台分の識別色リストを生成する。20台以下は qualitative、21台以上は turbo グラデーション。"""
+    n = max(n, 1)
+    if n <= 20:
+        cmap = matplotlib.colormaps.get_cmap("tab20" if n > 10 else "tab10")
+        return [mcolors.to_hex(cmap.colors[i]) for i in range(n)]
+    cmap = matplotlib.colormaps.get_cmap("turbo")
+    return [mcolors.to_hex(cmap(i / (n - 1))) for i in range(n)]
 
 
 def _load_snap_graph(snap_master_path: Path):
@@ -141,10 +152,10 @@ def _add_stop_markers(m: folium.Map, v_df: pd.DataFrame, vehicle_id, color: str,
             ).add_to(m)
 
 
-def _add_legend(m: folium.Map, vehicle_ids: list, v_idx_map: dict) -> None:
+def _add_legend(m: folium.Map, vehicle_ids: list, palette: list[str]) -> None:
     legend_items = ""
-    for vehicle_id in vehicle_ids:
-        c = VEHICLE_COLORS[v_idx_map[vehicle_id] % len(VEHICLE_COLORS)]
+    for i, vehicle_id in enumerate(vehicle_ids):
+        c = palette[i]
         legend_items += f'<span style="color:{c};">■</span> 車両 {vehicle_id}&nbsp;&nbsp;'
     legend_html = f"""
     <div style="position:fixed; bottom:30px; left:60px; z-index:1000;
@@ -159,7 +170,13 @@ def _add_legend(m: folium.Map, vehicle_ids: list, v_idx_map: dict) -> None:
 
 def build_overview_map(plan_id: str, best_summary: pd.Series, routes_df: pd.DataFrame, location_lookup: dict) -> folium.Map:
     """全車両を直線で俯瞰するマップ。"""
-    m = folium.Map(location=KANAGAWA_CENTER, zoom_start=11, tiles="OpenStreetMap")
+    depot_rows = routes_df[routes_df["location_type"] == "depot"]
+    if not depot_rows.empty:
+        depot_loc = location_lookup.get(depot_rows.iloc[0]["location_id"])
+        center = [depot_loc["lat"], depot_loc["lon"]] if depot_loc else _FALLBACK_CENTER
+    else:
+        center = _FALLBACK_CENTER
+    m = folium.Map(location=center, zoom_start=11, tiles="OpenStreetMap")
 
     title_html = f"""
     <div style="position:fixed; top:10px; left:60px; z-index:1000;
@@ -175,10 +192,11 @@ def build_overview_map(plan_id: str, best_summary: pd.Series, routes_df: pd.Data
     m.get_root().html.add_child(folium.Element(title_html))
 
     vehicle_ids = list(routes_df["vehicle_id"].unique())
+    palette = _vehicle_colors(len(vehicle_ids))
     v_idx_map = {vid: i for i, vid in enumerate(vehicle_ids)}
 
     for vehicle_id, v_df in routes_df.groupby("vehicle_id"):
-        color = VEHICLE_COLORS[v_idx_map[vehicle_id] % len(VEHICLE_COLORS)]
+        color = palette[v_idx_map[vehicle_id]]
         v_df = v_df.sort_values("stop_seq")
 
         _add_stop_markers(m, v_df, vehicle_id, color, location_lookup)
@@ -197,7 +215,7 @@ def build_overview_map(plan_id: str, best_summary: pd.Series, routes_df: pd.Data
                 tooltip=f"車両 {vehicle_id}",
             ).add_to(m)
 
-    _add_legend(m, vehicle_ids, v_idx_map)
+    _add_legend(m, vehicle_ids, palette)
     return m
 
 
@@ -331,10 +349,11 @@ def main(plan_id: str | None = None, depot_id: str | None = None, input_stem: st
 
         # 車両別詳細マップ（道路沿い + AntPath）
         vehicle_ids = list(routes_df["vehicle_id"].unique())
+        palette = _vehicle_colors(len(vehicle_ids))
         v_idx_map = {vid: i for i, vid in enumerate(vehicle_ids)}
 
         for vehicle_id, v_df in routes_df.groupby("vehicle_id"):
-            color = VEHICLE_COLORS[v_idx_map[vehicle_id] % len(VEHICLE_COLORS)]
+            color = palette[v_idx_map[vehicle_id]]
             stats = v_stats[vehicle_id]
             vm = build_vehicle_map(
                 plan_id, G, vehicle_id, v_df, color, location_lookup,

@@ -205,7 +205,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:40:56.387641+00:00",
-    "updated_at": "2026-05-22T08:13:18.654801+00:00"
+    "updated_at": "2026-05-26T05:16:56.091749+00:00"
   },
   {
     "delivery_id": "3836f21c-bcf2-4b01-8b7f-de23e60aacc6",
@@ -374,7 +374,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:41:01.280880+00:00",
-    "updated_at": "2026-05-22T08:13:19.083350+00:00"
+    "updated_at": "2026-05-26T05:16:56.654285+00:00"
   },
   {
     "delivery_id": "5f1bc1df-491c-448c-9f34-81cd129792fb",
@@ -465,7 +465,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:41:03.879458+00:00",
-    "updated_at": "2026-05-22T08:13:19.455099+00:00"
+    "updated_at": "2026-05-26T05:16:57.179517+00:00"
   },
   {
     "delivery_id": "1efacd60-12d5-484c-b7e6-87859e2843b4",
@@ -1180,7 +1180,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:41:26.144164+00:00",
-    "updated_at": "2026-05-22T08:13:19.805830+00:00"
+    "updated_at": "2026-05-26T05:16:57.634954+00:00"
   },
   {
     "delivery_id": "30865892-39b9-4a17-88b7-b13a6cf3e344",
@@ -1856,7 +1856,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:41:45.592732+00:00",
-    "updated_at": "2026-05-22T08:13:20.171233+00:00"
+    "updated_at": "2026-05-26T05:16:58.120914+00:00"
   },
   {
     "delivery_id": "d0592578-2322-42fd-afad-f35cd68717d8",
@@ -2064,7 +2064,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:41:51.571563+00:00",
-    "updated_at": "2026-05-22T08:13:20.513754+00:00"
+    "updated_at": "2026-05-26T05:16:58.565058+00:00"
   },
   {
     "delivery_id": "78cd2d42-0944-4137-96af-43369631ba37",
@@ -2311,7 +2311,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:41:59.080375+00:00",
-    "updated_at": "2026-05-22T08:13:20.886668+00:00"
+    "updated_at": "2026-05-26T05:16:59.021464+00:00"
   },
   {
     "delivery_id": "afa77022-c7e4-498a-814e-59d3722cc1fa",
@@ -2324,7 +2324,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:41:59.443986+00:00",
-    "updated_at": "2026-05-22T08:13:21.250652+00:00"
+    "updated_at": "2026-05-26T05:16:59.486951+00:00"
   },
   {
     "delivery_id": "7aaafabf-4226-4394-9c4c-1f600d9f73ef",
@@ -2506,7 +2506,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:42:04.691181+00:00",
-    "updated_at": "2026-05-22T08:13:21.614026+00:00"
+    "updated_at": "2026-05-26T05:16:59.981754+00:00"
   },
   {
     "delivery_id": "d3fec033-b75a-44c4-a7d6-5757049825de",
@@ -2662,7 +2662,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:42:09.109960+00:00",
-    "updated_at": "2026-05-22T08:13:21.978758+00:00"
+    "updated_at": "2026-05-26T05:17:00.523936+00:00"
   },
   {
     "delivery_id": "ae8165d9-28d2-414b-92c9-298b148fee53",
@@ -3559,7 +3559,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:42:38.792361+00:00",
-    "updated_at": "2026-05-22T08:13:22.333160+00:00"
+    "updated_at": "2026-05-26T05:17:00.993507+00:00"
   },
   {
     "delivery_id": "68bcd0d0-9b32-427c-97ec-a4fad9a6ecf5",
@@ -3598,7 +3598,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:42:39.935303+00:00",
-    "updated_at": "2026-05-22T08:13:22.693037+00:00"
+    "updated_at": "2026-05-26T05:17:01.500285+00:00"
   },
   {
     "delivery_id": "c8780aa4-30bc-4a1c-b7f9-3ebfba06c3c2",
@@ -3936,7 +3936,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:42:49.776626+00:00",
-    "updated_at": "2026-05-22T08:13:23.062082+00:00"
+    "updated_at": "2026-05-26T05:17:01.967527+00:00"
   },
   {
     "delivery_id": "dd9ceaf4-de7b-4efc-82e8-40688e891544",
@@ -4495,7 +4495,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:43:06.547846+00:00",
-    "updated_at": "2026-05-22T08:13:23.442462+00:00"
+    "updated_at": "2026-05-26T05:17:02.470914+00:00"
   },
   {
     "delivery_id": "0d2ccbd8-402f-423d-8eb3-8624cd8ed37f",
@@ -4742,7 +4742,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:43:13.629010+00:00",
-    "updated_at": "2026-05-22T08:13:23.801111+00:00"
+    "updated_at": "2026-05-26T05:17:02.945457+00:00"
   },
   {
     "delivery_id": "3657bbe5-cda9-4e29-9bfc-a76b86830126",
@@ -5249,7 +5249,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:43:28.187712+00:00",
-    "updated_at": "2026-05-22T08:13:24.172649+00:00"
+    "updated_at": "2026-05-26T05:17:03.475771+00:00"
   },
   {
     "delivery_id": "8a1adade-ffee-4724-b171-609d04cd70c4",
@@ -6770,7 +6770,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:12.443084+00:00",
-    "updated_at": "2026-05-22T08:13:25.329225+00:00"
+    "updated_at": "2026-05-26T05:17:05.869553+00:00"
   },
   {
     "delivery_id": "d7153044-bdce-488c-a2b8-a7822a58670e",
@@ -6926,7 +6926,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:16.895324+00:00",
-    "updated_at": "2026-05-22T08:13:25.684290+00:00"
+    "updated_at": "2026-05-26T05:17:06.329108+00:00"
   },
   {
     "delivery_id": "5c7fee19-ae85-4e7c-a0db-3bfe9cab3d4b",
@@ -7004,7 +7004,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:19.126013+00:00",
-    "updated_at": "2026-05-22T08:13:26.044188+00:00"
+    "updated_at": "2026-05-26T05:17:06.819224+00:00"
   },
   {
     "delivery_id": "45c369ed-4e5a-4d67-b9d1-a6ae4cdee1f1",
@@ -7056,7 +7056,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:20.621439+00:00",
-    "updated_at": "2026-05-22T08:13:26.424158+00:00"
+    "updated_at": "2026-05-26T05:17:07.298895+00:00"
   },
   {
     "delivery_id": "730b473c-ccd3-4701-9451-aae53ae22da6",
@@ -7160,7 +7160,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:23.621547+00:00",
-    "updated_at": "2026-05-22T08:13:26.779646+00:00"
+    "updated_at": "2026-05-26T05:17:07.836594+00:00"
   },
   {
     "delivery_id": "3186d75d-924a-4ab0-865e-82fb2cc14e81",
@@ -7173,7 +7173,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:23.987055+00:00",
-    "updated_at": "2026-05-22T08:13:27.141530+00:00"
+    "updated_at": "2026-05-26T05:17:08.327723+00:00"
   },
   {
     "delivery_id": "89f7f885-f993-44e0-9b53-0fd1d201a218",
@@ -7316,7 +7316,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:28.076757+00:00",
-    "updated_at": "2026-05-22T08:13:27.502742+00:00"
+    "updated_at": "2026-05-26T05:17:08.861749+00:00"
   },
   {
     "delivery_id": "d9af336d-f9a4-45cc-b515-8265cd215971",
@@ -7394,7 +7394,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:31.335701+00:00",
-    "updated_at": "2026-05-22T08:13:27.926896+00:00"
+    "updated_at": "2026-05-26T05:17:09.780165+00:00"
   },
   {
     "delivery_id": "32b122a2-e231-4172-8891-6c0054b05bd7",
@@ -7446,7 +7446,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:32.796491+00:00",
-    "updated_at": "2026-05-22T08:13:28.292224+00:00"
+    "updated_at": "2026-05-26T05:17:10.461074+00:00"
   },
   {
     "delivery_id": "5774c835-c632-4ae0-a0a7-71855322dd63",
@@ -7797,7 +7797,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:42.892852+00:00",
-    "updated_at": "2026-05-22T08:13:28.661667+00:00"
+    "updated_at": "2026-05-26T05:17:10.958465+00:00"
   },
   {
     "delivery_id": "215c5144-fc72-41df-adff-72820e47e39c",
@@ -7862,7 +7862,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:44.762606+00:00",
-    "updated_at": "2026-05-22T08:13:29.017366+00:00"
+    "updated_at": "2026-05-26T05:17:11.455285+00:00"
   },
   {
     "delivery_id": "462e24a5-c9bd-4fe9-a8b2-ac6b2f0ed58b",
@@ -8135,7 +8135,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:52.507460+00:00",
-    "updated_at": "2026-05-22T08:13:29.372910+00:00"
+    "updated_at": "2026-05-26T05:17:11.909668+00:00"
   },
   {
     "delivery_id": "40732712-6dc8-4b8a-8a4e-2d2fe102f538",
@@ -8161,7 +8161,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:53.244294+00:00",
-    "updated_at": "2026-05-22T08:13:29.740368+00:00"
+    "updated_at": "2026-05-26T05:17:12.442953+00:00"
   },
   {
     "delivery_id": "75925e2d-f15b-4ae7-84ec-e17a8b1545b2",
@@ -8330,7 +8330,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:58.251877+00:00",
-    "updated_at": "2026-05-22T08:13:30.156408+00:00"
+    "updated_at": "2026-05-26T05:17:12.856899+00:00"
   },
   {
     "delivery_id": "ae2ca464-79e3-4143-b0fe-9131d18ac8b6",
@@ -8382,7 +8382,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:44:59.733170+00:00",
-    "updated_at": "2026-05-22T08:13:30.608384+00:00"
+    "updated_at": "2026-05-26T05:17:13.368005+00:00"
   },
   {
     "delivery_id": "ff7c24a7-91bb-48d0-9568-78f69ff7da6c",
@@ -8525,7 +8525,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:45:03.880208+00:00",
-    "updated_at": "2026-05-22T08:13:31.013779+00:00"
+    "updated_at": "2026-05-26T05:17:13.830199+00:00"
   },
   {
     "delivery_id": "e36e4722-7b46-4bab-be20-bd01304578ef",
@@ -8798,7 +8798,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:45:11.671175+00:00",
-    "updated_at": "2026-05-22T08:13:31.537220+00:00"
+    "updated_at": "2026-05-26T05:17:14.279214+00:00"
   },
   {
     "delivery_id": "8994fe14-96a6-41b8-bb16-72cea8960cb3",
@@ -8811,7 +8811,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:45:12.061443+00:00",
-    "updated_at": "2026-05-22T08:13:32.062972+00:00"
+    "updated_at": "2026-05-26T05:17:14.753943+00:00"
   },
   {
     "delivery_id": "26e18f78-6d93-4dac-8956-22ef9a08b093",
@@ -9695,7 +9695,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:45:37.160444+00:00",
-    "updated_at": "2026-05-22T08:13:32.581637+00:00"
+    "updated_at": "2026-05-26T05:17:15.243397+00:00"
   },
   {
     "delivery_id": "d6af5940-80e8-42f9-8366-bbffac1a1c30",
@@ -9786,7 +9786,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:45:39.771977+00:00",
-    "updated_at": "2026-05-22T08:13:33.023437+00:00"
+    "updated_at": "2026-05-26T05:17:15.718942+00:00"
   },
   {
     "delivery_id": "6390d8ba-9095-472f-9467-be9d85554b6b",
@@ -9812,7 +9812,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:45:40.557203+00:00",
-    "updated_at": "2026-05-22T08:13:33.441658+00:00"
+    "updated_at": "2026-05-26T05:17:16.222961+00:00"
   },
   {
     "delivery_id": "c97e1b65-e20c-4347-aa44-9f7364b33350",
@@ -9825,7 +9825,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:45:40.924119+00:00",
-    "updated_at": "2026-05-22T08:13:33.797101+00:00"
+    "updated_at": "2026-05-26T05:17:16.684650+00:00"
   },
   {
     "delivery_id": "faf98928-6564-4c1c-be3a-9443f3f8355c",
@@ -10020,7 +10020,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:45:49.540922+00:00",
-    "updated_at": "2026-05-22T08:13:34.267870+00:00"
+    "updated_at": "2026-05-26T05:17:17.134333+00:00"
   },
   {
     "delivery_id": "5a478acd-5372-48e4-a560-a39189356e11",
@@ -10345,7 +10345,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:45:59.102693+00:00",
-    "updated_at": "2026-05-22T08:13:34.678026+00:00"
+    "updated_at": "2026-05-26T05:17:17.634906+00:00"
   },
   {
     "delivery_id": "ccedda7c-c21c-412f-bc58-a5a05d43beae",
@@ -10904,7 +10904,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:46:15.172142+00:00",
-    "updated_at": "2026-05-22T08:13:35.111305+00:00"
+    "updated_at": "2026-05-26T05:17:18.092199+00:00"
   },
   {
     "delivery_id": "e0491bf4-d3df-4180-bc43-19a18ddf6505",
@@ -11021,7 +11021,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:46:18.539957+00:00",
-    "updated_at": "2026-05-22T08:13:35.540907+00:00"
+    "updated_at": "2026-05-26T05:17:18.504073+00:00"
   },
   {
     "delivery_id": "a900afdf-891d-4e74-8b70-18fcab07683e",
@@ -11177,7 +11177,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:46:22.985358+00:00",
-    "updated_at": "2026-05-22T08:13:35.916079+00:00"
+    "updated_at": "2026-05-26T05:17:18.964811+00:00"
   },
   {
     "delivery_id": "bc58d348-f857-45f3-b221-5b8dba19f012",
@@ -11190,7 +11190,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:46:23.355016+00:00",
-    "updated_at": "2026-05-22T08:13:36.357639+00:00"
+    "updated_at": "2026-05-26T05:17:19.427131+00:00"
   },
   {
     "delivery_id": "304b4ca7-8149-4427-89c0-2eda7cb6a542",
@@ -11268,7 +11268,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:46:25.554204+00:00",
-    "updated_at": "2026-05-22T08:13:36.775998+00:00"
+    "updated_at": "2026-05-26T05:17:19.924706+00:00"
   },
   {
     "delivery_id": "39d619e0-2d83-429d-a362-8ec78143d7ba",
@@ -11359,7 +11359,7 @@
     "destination_latitude": null,
     "destination_longitude": null,
     "created_at": "2026-05-22T07:46:28.180543+00:00",
-    "updated_at": "2026-05-22T08:13:37.216502+00:00"
+    "updated_at": "2026-05-26T05:17:20.427035+00:00"
   },
   {
     "delivery_id": "670d2bbb-c24a-4c36-ab7d-25801fb2523a",

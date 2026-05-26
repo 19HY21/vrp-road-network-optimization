@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_e52af9da5982230a283f70ee3385983b {
+                #map_11b0dcec443bdcf18844214d6e6b24ff {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -60,22 +60,22 @@
                 border:2px solid #333; font-size:13px; font-family:sans-serif;">
         <b>VRP 配送ルート - 車両 31</b><br>
         plan_id: PLAN_delivery_transaction_1000_DEPOT_002<br>
-        配送先: 18 件 &nbsp;|&nbsp;
-        走行距離: 217.73 km &nbsp;|&nbsp;
-        コスト: ¥44,836
+        配送先: 15 件 &nbsp;|&nbsp;
+        走行距離: 153.47 km &nbsp;|&nbsp;
+        コスト: ¥34,555
     </div>
     
     
-            <div class="folium-map" id="map_e52af9da5982230a283f70ee3385983b" ></div>
+            <div class="folium-map" id="map_11b0dcec443bdcf18844214d6e6b24ff" ></div>
         
 </body>
 <script>
     
     
-            var map_e52af9da5982230a283f70ee3385983b = L.map(
-                "map_e52af9da5982230a283f70ee3385983b",
+            var map_11b0dcec443bdcf18844214d6e6b24ff = L.map(
+                "map_11b0dcec443bdcf18844214d6e6b24ff",
                 {
-                    center: [35.3474163, 139.27207474],
+                    center: [35.39371958823529, 139.34122669411764],
                     crs: L.CRS.EPSG3857,
                     ...{
   "zoom": 11,
@@ -90,7 +90,7 @@
 
         
     
-            var tile_layer_95e3c66873e6bf096d020d6100060222 = L.tileLayer(
+            var tile_layer_400f9c7eed3004be7950fc2ea06b90b1 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -107,17 +107,17 @@
             );
         
     
-            tile_layer_95e3c66873e6bf096d020d6100060222.addTo(map_e52af9da5982230a283f70ee3385983b);
+            tile_layer_400f9c7eed3004be7950fc2ea06b90b1.addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var marker_3b8e4cc7655afc5234f0ffe281905054 = L.marker(
+            var marker_c2384384f6961208494e0fc8a7c8fcd8 = L.marker(
                 [35.5306155, 139.7013529],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var icon_87a3071505e27e55a2b5c277c8ec92d3 = L.AwesomeMarkers.icon(
+            var icon_548e93b7fff11494a9ef33f60cc4a667 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "black",
   "iconColor": "white",
@@ -128,24 +128,24 @@
             );
         
     
-        var popup_d8123fb48100e91b4ed57738f02325c0 = L.popup({
+        var popup_0232e056c690d3b02a26559976926dcf = L.popup({
   "maxWidth": 200,
 });
 
         
             
-                var html_1156f75e19e553411661e2161f050952 = $(`<div id="html_1156f75e19e553411661e2161f050952" style="width: 100.0%; height: 100.0%;"><b>川崎広域物流センター</b></div>`)[0];
-                popup_d8123fb48100e91b4ed57738f02325c0.setContent(html_1156f75e19e553411661e2161f050952);
+                var html_2624ef3fc4a51fe92066b79d1ea1ae15 = $(`<div id="html_2624ef3fc4a51fe92066b79d1ea1ae15" style="width: 100.0%; height: 100.0%;"><b>川崎広域物流センター</b></div>`)[0];
+                popup_0232e056c690d3b02a26559976926dcf.setContent(html_2624ef3fc4a51fe92066b79d1ea1ae15);
             
         
 
-        marker_3b8e4cc7655afc5234f0ffe281905054.bindPopup(popup_d8123fb48100e91b4ed57738f02325c0)
+        marker_c2384384f6961208494e0fc8a7c8fcd8.bindPopup(popup_0232e056c690d3b02a26559976926dcf)
         ;
 
         
     
     
-            marker_3b8e4cc7655afc5234f0ffe281905054.bindTooltip(
+            marker_c2384384f6961208494e0fc8a7c8fcd8.bindTooltip(
                 `<div>
                      デポ（出発・帰着拠点）
                  </div>`,
@@ -155,35 +155,35 @@
             );
         
     
-                marker_3b8e4cc7655afc5234f0ffe281905054.setIcon(icon_87a3071505e27e55a2b5c277c8ec92d3);
+                marker_c2384384f6961208494e0fc8a7c8fcd8.setIcon(icon_548e93b7fff11494a9ef33f60cc4a667);
             
     
-            var circle_marker_a9ae82f5bdd3a791c1671677bdc00845 = L.circleMarker(
-                [35.321228, 139.103455],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_7cdc706242e8bf0b78caa9b9f5dd9d23 = L.circleMarker(
+                [35.329128, 139.412247],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_7be2f3efdbbcb41c58fb1c71e6c1c5c5 = L.popup({
+        var popup_3521ffaa8bca3b020b4e14eadfe7435f = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_54ee3c16f75ade63855fcd6494aa1cc2 = $(`<div id="html_54ee3c16f75ade63855fcd6494aa1cc2" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 1</b><br>神奈川県南足柄市関本<br>到着: 10:14<br>荷物: 1 個</div>`)[0];
-                popup_7be2f3efdbbcb41c58fb1c71e6c1c5c5.setContent(html_54ee3c16f75ade63855fcd6494aa1cc2);
+                var html_50b05d4a881c009af7e78700f51e9de7 = $(`<div id="html_50b05d4a881c009af7e78700f51e9de7" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 1</b><br>神奈川県茅ヶ崎市東海岸北三丁目20<br>到着: 09:16<br>荷物: 4 個</div>`)[0];
+                popup_3521ffaa8bca3b020b4e14eadfe7435f.setContent(html_50b05d4a881c009af7e78700f51e9de7);
             
         
 
-        circle_marker_a9ae82f5bdd3a791c1671677bdc00845.bindPopup(popup_7be2f3efdbbcb41c58fb1c71e6c1c5c5)
+        circle_marker_7cdc706242e8bf0b78caa9b9f5dd9d23.bindPopup(popup_3521ffaa8bca3b020b4e14eadfe7435f)
         ;
 
         
     
     
-            circle_marker_a9ae82f5bdd3a791c1671677bdc00845.bindTooltip(
+            circle_marker_7cdc706242e8bf0b78caa9b9f5dd9d23.bindTooltip(
                 `<div>
-                     車両31 | 10:14 | 神奈川県南足柄市関本
+                     車両31 | 09:16 | 神奈川県茅ヶ崎市東海岸北三丁目20
                  </div>`,
                 {
   "sticky": true,
@@ -191,14 +191,14 @@
             );
         
     
-            var marker_d83baf5296dc26c730af20056fecd52d = L.marker(
-                [35.321228, 139.103455],
+            var marker_f494b468de74e1e0d654e644cfcf1d47 = L.marker(
+                [35.329128, 139.412247],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_b9fe26652dce49515ca524d921613fa9 = L.divIcon({
+            var div_icon_d137ca18b238c11daef0d7b4c38d5e55 = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e1\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -206,35 +206,35 @@
 });
         
     
-                marker_d83baf5296dc26c730af20056fecd52d.setIcon(div_icon_b9fe26652dce49515ca524d921613fa9);
+                marker_f494b468de74e1e0d654e644cfcf1d47.setIcon(div_icon_d137ca18b238c11daef0d7b4c38d5e55);
             
     
-            var circle_marker_164b545558b2cc17dadd54864dc44c47 = L.circleMarker(
-                [35.315979, 139.121063],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_c2974be20e9a4c6e375559b1d76637cb = L.circleMarker(
+                [35.35268, 139.406433],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_0fff112b15649a589de82a13ae7a54a9 = L.popup({
+        var popup_f97b5c17b0758b04fb86c88fe8eba6c9 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_2ffb63ed57fc7d0483d350ee201bbcd9 = $(`<div id="html_2ffb63ed57fc7d0483d350ee201bbcd9" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 2</b><br>神奈川県南足柄市和田河原1<br>到着: 10:19<br>荷物: 3 個</div>`)[0];
-                popup_0fff112b15649a589de82a13ae7a54a9.setContent(html_2ffb63ed57fc7d0483d350ee201bbcd9);
+                var html_a7d292a1000f6da4e3f47c18cbeec052 = $(`<div id="html_a7d292a1000f6da4e3f47c18cbeec052" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 2</b><br>神奈川県茅ヶ崎市香川410<br>到着: 09:23<br>荷物: 5 個</div>`)[0];
+                popup_f97b5c17b0758b04fb86c88fe8eba6c9.setContent(html_a7d292a1000f6da4e3f47c18cbeec052);
             
         
 
-        circle_marker_164b545558b2cc17dadd54864dc44c47.bindPopup(popup_0fff112b15649a589de82a13ae7a54a9)
+        circle_marker_c2974be20e9a4c6e375559b1d76637cb.bindPopup(popup_f97b5c17b0758b04fb86c88fe8eba6c9)
         ;
 
         
     
     
-            circle_marker_164b545558b2cc17dadd54864dc44c47.bindTooltip(
+            circle_marker_c2974be20e9a4c6e375559b1d76637cb.bindTooltip(
                 `<div>
-                     車両31 | 10:19 | 神奈川県南足柄市和田河原1
+                     車両31 | 09:23 | 神奈川県茅ヶ崎市香川410
                  </div>`,
                 {
   "sticky": true,
@@ -242,14 +242,14 @@
             );
         
     
-            var marker_7e2897e4cb543a81ade5490ba3f217b6 = L.marker(
-                [35.315979, 139.121063],
+            var marker_56fa6050c7f9972c92ad053dfe7f9401 = L.marker(
+                [35.35268, 139.406433],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_34722e3535438c8e67fb5e99352e478f = L.divIcon({
+            var div_icon_2e42b9b1d48d24fbd5da34e7faa838de = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e2\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -257,35 +257,35 @@
 });
         
     
-                marker_7e2897e4cb543a81ade5490ba3f217b6.setIcon(div_icon_34722e3535438c8e67fb5e99352e478f);
+                marker_56fa6050c7f9972c92ad053dfe7f9401.setIcon(div_icon_2e42b9b1d48d24fbd5da34e7faa838de);
             
     
-            var circle_marker_d2b4a36d1bc3b28d3be3e2643a50c11f = L.circleMarker(
-                [35.248638, 139.039078],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_26e403bb66a8c64e9c1138f32777065a = L.circleMarker(
+                [35.339634, 139.351944],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_6f658715c6fbdaf3d1f3fdf9c7356865 = L.popup({
+        var popup_687b4cc63147b1e68f2047a2f23ecab4 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_0492287562cbccca81f6c170cbfa3cd6 = $(`<div id="html_0492287562cbccca81f6c170cbfa3cd6" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 3</b><br>神奈川県箱根町強羅556<br>到着: 11:04<br>荷物: 3 個</div>`)[0];
-                popup_6f658715c6fbdaf3d1f3fdf9c7356865.setContent(html_0492287562cbccca81f6c170cbfa3cd6);
+                var html_9a06c1e120684adcb73a4e9ccf7f279d = $(`<div id="html_9a06c1e120684adcb73a4e9ccf7f279d" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 3</b><br>神奈川県平塚市東八幡1丁目2<br>到着: 09:36<br>荷物: 4 個</div>`)[0];
+                popup_687b4cc63147b1e68f2047a2f23ecab4.setContent(html_9a06c1e120684adcb73a4e9ccf7f279d);
             
         
 
-        circle_marker_d2b4a36d1bc3b28d3be3e2643a50c11f.bindPopup(popup_6f658715c6fbdaf3d1f3fdf9c7356865)
+        circle_marker_26e403bb66a8c64e9c1138f32777065a.bindPopup(popup_687b4cc63147b1e68f2047a2f23ecab4)
         ;
 
         
     
     
-            circle_marker_d2b4a36d1bc3b28d3be3e2643a50c11f.bindTooltip(
+            circle_marker_26e403bb66a8c64e9c1138f32777065a.bindTooltip(
                 `<div>
-                     車両31 | 11:04 | 神奈川県箱根町強羅556
+                     車両31 | 09:36 | 神奈川県平塚市東八幡1丁目2
                  </div>`,
                 {
   "sticky": true,
@@ -293,14 +293,14 @@
             );
         
     
-            var marker_5169ded937c6641ca7e08ab24ae5fce4 = L.marker(
-                [35.248638, 139.039078],
+            var marker_87a9a8af5b672663cd92a2a434c7ba16 = L.marker(
+                [35.339634, 139.351944],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_47f84091f46de35bda07240e0d1dffec = L.divIcon({
+            var div_icon_cbf33d0a6220d86579292d43f8280cac = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e3\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -308,35 +308,35 @@
 });
         
     
-                marker_5169ded937c6641ca7e08ab24ae5fce4.setIcon(div_icon_47f84091f46de35bda07240e0d1dffec);
+                marker_87a9a8af5b672663cd92a2a434c7ba16.setIcon(div_icon_cbf33d0a6220d86579292d43f8280cac);
             
     
-            var circle_marker_fe6c8cad5b2f3c7a6982a75a793e822b = L.circleMarker(
-                [35.14743, 139.11171],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_a4971136de8966f110601ebc372fe660 = L.circleMarker(
+                [35.350712, 139.331131],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_cca4e71ce0f9093f87cc792e1362146a = L.popup({
+        var popup_481cb454c97ee165cd1c91dd9ff3ac29 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_21854bf565b04eb6bc9bd13000124671 = $(`<div id="html_21854bf565b04eb6bc9bd13000124671" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 4</b><br>神奈川県湯河原町中央二丁目15<br>到着: 12:00<br>荷物: 4 個</div>`)[0];
-                popup_cca4e71ce0f9093f87cc792e1362146a.setContent(html_21854bf565b04eb6bc9bd13000124671);
+                var html_3b6a64815de9fa07253943eb732a0f28 = $(`<div id="html_3b6a64815de9fa07253943eb732a0f28" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 4</b><br>神奈川県平塚市中原三丁目17<br>到着: 09:43<br>荷物: 4 個</div>`)[0];
+                popup_481cb454c97ee165cd1c91dd9ff3ac29.setContent(html_3b6a64815de9fa07253943eb732a0f28);
             
         
 
-        circle_marker_fe6c8cad5b2f3c7a6982a75a793e822b.bindPopup(popup_cca4e71ce0f9093f87cc792e1362146a)
+        circle_marker_a4971136de8966f110601ebc372fe660.bindPopup(popup_481cb454c97ee165cd1c91dd9ff3ac29)
         ;
 
         
     
     
-            circle_marker_fe6c8cad5b2f3c7a6982a75a793e822b.bindTooltip(
+            circle_marker_a4971136de8966f110601ebc372fe660.bindTooltip(
                 `<div>
-                     車両31 | 12:00 | 神奈川県湯河原町中央二丁目15
+                     車両31 | 09:43 | 神奈川県平塚市中原三丁目17
                  </div>`,
                 {
   "sticky": true,
@@ -344,14 +344,14 @@
             );
         
     
-            var marker_a3fb5ebb6fc73576b474fa60f41632e4 = L.marker(
-                [35.14743, 139.11171],
+            var marker_0ab7f3275530d0c82dac09967461adc7 = L.marker(
+                [35.350712, 139.331131],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_220f8da8e318ac24c1ce110854ba0ace = L.divIcon({
+            var div_icon_b010caa73fc4fd40a09c9e73c8520e4d = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e4\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -359,35 +359,35 @@
 });
         
     
-                marker_a3fb5ebb6fc73576b474fa60f41632e4.setIcon(div_icon_220f8da8e318ac24c1ce110854ba0ace);
+                marker_0ab7f3275530d0c82dac09967461adc7.setIcon(div_icon_b010caa73fc4fd40a09c9e73c8520e4d);
             
     
-            var circle_marker_214fe8fe38e6d985e71805d7851a87c2 = L.circleMarker(
-                [35.152756, 139.138397],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_8cf49613712fe00f1ca4b2f3e5ee45cd = L.circleMarker(
+                [35.330833, 139.218887],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_d4c10b2a6167c26b88c381c7c9b626f4 = L.popup({
+        var popup_fb7a2c8bbf1533200320cf0df8741c39 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_ac8012d2ae53c64918155611c3670d48 = $(`<div id="html_ac8012d2ae53c64918155611c3670d48" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 5</b><br>神奈川県真鶴町真鶴<br>到着: 13:00<br>荷物: 3 個</div>`)[0];
-                popup_d4c10b2a6167c26b88c381c7c9b626f4.setContent(html_ac8012d2ae53c64918155611c3670d48);
+                var html_b76ab40571e8b44868e590e9658c9cd7 = $(`<div id="html_b76ab40571e8b44868e590e9658c9cd7" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 5</b><br>神奈川県中井町<br>到着: 10:10<br>荷物: 7 個</div>`)[0];
+                popup_fb7a2c8bbf1533200320cf0df8741c39.setContent(html_b76ab40571e8b44868e590e9658c9cd7);
             
         
 
-        circle_marker_214fe8fe38e6d985e71805d7851a87c2.bindPopup(popup_d4c10b2a6167c26b88c381c7c9b626f4)
+        circle_marker_8cf49613712fe00f1ca4b2f3e5ee45cd.bindPopup(popup_fb7a2c8bbf1533200320cf0df8741c39)
         ;
 
         
     
     
-            circle_marker_214fe8fe38e6d985e71805d7851a87c2.bindTooltip(
+            circle_marker_8cf49613712fe00f1ca4b2f3e5ee45cd.bindTooltip(
                 `<div>
-                     車両31 | 13:00 | 神奈川県真鶴町真鶴
+                     車両31 | 10:10 | 神奈川県中井町
                  </div>`,
                 {
   "sticky": true,
@@ -395,14 +395,14 @@
             );
         
     
-            var marker_c984e12da7ab6774546be3e4b3510e70 = L.marker(
-                [35.152756, 139.138397],
+            var marker_95a5ac499f32e345ec7ce0562087a16f = L.marker(
+                [35.330833, 139.218887],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_818a843df2d521b08e41cbc2b65a4947 = L.divIcon({
+            var div_icon_49f1212556a1f12309151e608cc576e4 = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e5\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -410,35 +410,35 @@
 });
         
     
-                marker_c984e12da7ab6774546be3e4b3510e70.setIcon(div_icon_818a843df2d521b08e41cbc2b65a4947);
+                marker_95a5ac499f32e345ec7ce0562087a16f.setIcon(div_icon_49f1212556a1f12309151e608cc576e4);
             
     
-            var circle_marker_50fd44beca31d61b555ae3afbe217c9b = L.circleMarker(
-                [35.253136, 139.158981],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_9afd3c3ff493496e4539f769c28f64a5 = L.circleMarker(
+                [35.359695, 139.103058],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_54b3a8988407ef3884db3684d7b5a93c = L.popup({
+        var popup_42da5f44e9d7dc4a436f1bc5a74086a0 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_9df50814489bcd04a04528918c6ee22d = $(`<div id="html_9df50814489bcd04a04528918c6ee22d" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 6</b><br>神奈川県小田原市栄町一丁目15<br>到着: 13:27<br>荷物: 2 個</div>`)[0];
-                popup_54b3a8988407ef3884db3684d7b5a93c.setContent(html_9df50814489bcd04a04528918c6ee22d);
+                var html_0444fbc548c64d8e9d727505092e7f84 = $(`<div id="html_0444fbc548c64d8e9d727505092e7f84" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 6</b><br>神奈川県山北町向原<br>到着: 10:36<br>荷物: 5 個</div>`)[0];
+                popup_42da5f44e9d7dc4a436f1bc5a74086a0.setContent(html_0444fbc548c64d8e9d727505092e7f84);
             
         
 
-        circle_marker_50fd44beca31d61b555ae3afbe217c9b.bindPopup(popup_54b3a8988407ef3884db3684d7b5a93c)
+        circle_marker_9afd3c3ff493496e4539f769c28f64a5.bindPopup(popup_42da5f44e9d7dc4a436f1bc5a74086a0)
         ;
 
         
     
     
-            circle_marker_50fd44beca31d61b555ae3afbe217c9b.bindTooltip(
+            circle_marker_9afd3c3ff493496e4539f769c28f64a5.bindTooltip(
                 `<div>
-                     車両31 | 13:27 | 神奈川県小田原市栄町一丁目15
+                     車両31 | 10:36 | 神奈川県山北町向原
                  </div>`,
                 {
   "sticky": true,
@@ -446,14 +446,14 @@
             );
         
     
-            var marker_0f4eba56df16c06ca20ad712eefb7c35 = L.marker(
-                [35.253136, 139.158981],
+            var marker_29661d84ed4a807e54be18923309fa26 = L.marker(
+                [35.359695, 139.103058],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_c61a3345f8da2f3ae2e9270e8b8437c7 = L.divIcon({
+            var div_icon_9edf32d0d7a3e8a523d47aeb9f127089 = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e6\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -461,35 +461,35 @@
 });
         
     
-                marker_0f4eba56df16c06ca20ad712eefb7c35.setIcon(div_icon_c61a3345f8da2f3ae2e9270e8b8437c7);
+                marker_29661d84ed4a807e54be18923309fa26.setIcon(div_icon_9edf32d0d7a3e8a523d47aeb9f127089);
             
     
-            var circle_marker_74e8f72ad042b2a6abcbc112722efc0f = L.circleMarker(
-                [35.276043, 139.168442],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_904ebdf57d82b1996f6230704d6c2505 = L.circleMarker(
+                [35.361237, 139.081055],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_d06b90f9323253eacd640e7db84f7b7e = L.popup({
+        var popup_f4d9f128c8ab1a114b60df997650cdd4 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_a57046fd77b71c389db73272600de954 = $(`<div id="html_a57046fd77b71c389db73272600de954" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 7</b><br>神奈川県小田原市飯泉８５７－１<br>到着: 13:34<br>荷物: 2 個</div>`)[0];
-                popup_d06b90f9323253eacd640e7db84f7b7e.setContent(html_a57046fd77b71c389db73272600de954);
+                var html_5ab3db358e6519a0a22d1b82e472f3b7 = $(`<div id="html_5ab3db358e6519a0a22d1b82e472f3b7" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 7</b><br>神奈川県山北町山北<br>到着: 10:41<br>荷物: 4 個</div>`)[0];
+                popup_f4d9f128c8ab1a114b60df997650cdd4.setContent(html_5ab3db358e6519a0a22d1b82e472f3b7);
             
         
 
-        circle_marker_74e8f72ad042b2a6abcbc112722efc0f.bindPopup(popup_d06b90f9323253eacd640e7db84f7b7e)
+        circle_marker_904ebdf57d82b1996f6230704d6c2505.bindPopup(popup_f4d9f128c8ab1a114b60df997650cdd4)
         ;
 
         
     
     
-            circle_marker_74e8f72ad042b2a6abcbc112722efc0f.bindTooltip(
+            circle_marker_904ebdf57d82b1996f6230704d6c2505.bindTooltip(
                 `<div>
-                     車両31 | 13:34 | 神奈川県小田原市飯泉８５７－１
+                     車両31 | 10:41 | 神奈川県山北町山北
                  </div>`,
                 {
   "sticky": true,
@@ -497,14 +497,14 @@
             );
         
     
-            var marker_ae9a05b40b715ba79722d3953c91a818 = L.marker(
-                [35.276043, 139.168442],
+            var marker_982e0d9e31aa17d6500a909c97f0d173 = L.marker(
+                [35.361237, 139.081055],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_4186b3a7121a1256a9ffc9f5ebbb20aa = L.divIcon({
+            var div_icon_cfacbc6b086202294ec658f72ca1ea1d = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e7\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -512,35 +512,35 @@
 });
         
     
-                marker_ae9a05b40b715ba79722d3953c91a818.setIcon(div_icon_4186b3a7121a1256a9ffc9f5ebbb20aa);
+                marker_982e0d9e31aa17d6500a909c97f0d173.setIcon(div_icon_cfacbc6b086202294ec658f72ca1ea1d);
             
     
-            var circle_marker_7dc1ef4021712c3a0060a05cec2dfcc3 = L.circleMarker(
-                [35.300774, 139.188843],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_a1345a73f6d7419f217e9a43b9d3e8ec = L.circleMarker(
+                [35.373554, 139.211624],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_1d51df144bf9bf3bf937d999347b935e = L.popup({
+        var popup_42a44f32e2b0cc125c02c12787ff6985 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_08f00e51607e0022d63f6fcd3d90fa51 = $(`<div id="html_08f00e51607e0022d63f6fcd3d90fa51" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 8</b><br>神奈川県小田原市曽我原<br>到着: 13:43<br>荷物: 5 個</div>`)[0];
-                popup_1d51df144bf9bf3bf937d999347b935e.setContent(html_08f00e51607e0022d63f6fcd3d90fa51);
+                var html_9e6f7ec823e5e5cb1f5a74a14694a622 = $(`<div id="html_9e6f7ec823e5e5cb1f5a74a14694a622" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 8</b><br>神奈川県秦野市緑町3<br>到着: 11:11<br>荷物: 2 個</div>`)[0];
+                popup_42a44f32e2b0cc125c02c12787ff6985.setContent(html_9e6f7ec823e5e5cb1f5a74a14694a622);
             
         
 
-        circle_marker_7dc1ef4021712c3a0060a05cec2dfcc3.bindPopup(popup_1d51df144bf9bf3bf937d999347b935e)
+        circle_marker_a1345a73f6d7419f217e9a43b9d3e8ec.bindPopup(popup_42a44f32e2b0cc125c02c12787ff6985)
         ;
 
         
     
     
-            circle_marker_7dc1ef4021712c3a0060a05cec2dfcc3.bindTooltip(
+            circle_marker_a1345a73f6d7419f217e9a43b9d3e8ec.bindTooltip(
                 `<div>
-                     車両31 | 13:43 | 神奈川県小田原市曽我原
+                     車両31 | 11:11 | 神奈川県秦野市緑町3
                  </div>`,
                 {
   "sticky": true,
@@ -548,14 +548,14 @@
             );
         
     
-            var marker_a225adb929874267c77efb774ef33dd8 = L.marker(
-                [35.300774, 139.188843],
+            var marker_1a6a8496200705fd9aedd77f1c6c2065 = L.marker(
+                [35.373554, 139.211624],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_6b41d0617190a39a2a5297b4639135c6 = L.divIcon({
+            var div_icon_b0aad09ed99c15d6b23899008204c7eb = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e8\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -563,35 +563,35 @@
 });
         
     
-                marker_a225adb929874267c77efb774ef33dd8.setIcon(div_icon_6b41d0617190a39a2a5297b4639135c6);
+                marker_1a6a8496200705fd9aedd77f1c6c2065.setIcon(div_icon_b0aad09ed99c15d6b23899008204c7eb);
             
     
-            var circle_marker_e609a0793c9e851c0e6f4f79d9c7cffd = L.circleMarker(
-                [35.310291, 139.194138],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_aca9ccf702410b660edddf2a9148c6e4 = L.circleMarker(
+                [35.362583, 139.269943],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_b9a95642955d62b9bb1f81af384d23a2 = L.popup({
+        var popup_18678ddafe8e6c1c4179a7c119ec46a5 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_975edceaebdf74b5aa18617560b55b37 = $(`<div id="html_975edceaebdf74b5aa18617560b55b37" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 9</b><br>神奈川県小田原市曽我谷津<br>到着: 13:48<br>荷物: 3 個</div>`)[0];
-                popup_b9a95642955d62b9bb1f81af384d23a2.setContent(html_975edceaebdf74b5aa18617560b55b37);
+                var html_f28952dc106c80a8630cf376b9886d58 = $(`<div id="html_f28952dc106c80a8630cf376b9886d58" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 9</b><br>神奈川県秦野市南矢名318<br>到着: 13:00<br>荷物: 5 個</div>`)[0];
+                popup_18678ddafe8e6c1c4179a7c119ec46a5.setContent(html_f28952dc106c80a8630cf376b9886d58);
             
         
 
-        circle_marker_e609a0793c9e851c0e6f4f79d9c7cffd.bindPopup(popup_b9a95642955d62b9bb1f81af384d23a2)
+        circle_marker_aca9ccf702410b660edddf2a9148c6e4.bindPopup(popup_18678ddafe8e6c1c4179a7c119ec46a5)
         ;
 
         
     
     
-            circle_marker_e609a0793c9e851c0e6f4f79d9c7cffd.bindTooltip(
+            circle_marker_aca9ccf702410b660edddf2a9148c6e4.bindTooltip(
                 `<div>
-                     車両31 | 13:48 | 神奈川県小田原市曽我谷津
+                     車両31 | 13:00 | 神奈川県秦野市南矢名318
                  </div>`,
                 {
   "sticky": true,
@@ -599,14 +599,14 @@
             );
         
     
-            var marker_5476c0d70e616a18bb8b01398e110c0e = L.marker(
-                [35.310291, 139.194138],
+            var marker_c956dbab17e6e3b9ceb7099bfa886a45 = L.marker(
+                [35.362583, 139.269943],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_15559a5ebbe626dbc799dc40e19efc88 = L.divIcon({
+            var div_icon_ad1982de9ca687aa4f47e032bb872d6c = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e9\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -614,35 +614,35 @@
 });
         
     
-                marker_5476c0d70e616a18bb8b01398e110c0e.setIcon(div_icon_15559a5ebbe626dbc799dc40e19efc88);
+                marker_c956dbab17e6e3b9ceb7099bfa886a45.setIcon(div_icon_ad1982de9ca687aa4f47e032bb872d6c);
             
     
-            var circle_marker_c917a6cf6d30a6a2479d57aea90b797e = L.circleMarker(
-                [35.330833, 139.218887],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_5132ca71fa76ce02f437aab3e76e2aa3 = L.circleMarker(
+                [35.379696, 139.276947],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_657d86ec32f8cb6948f98adb98bec0a6 = L.popup({
+        var popup_75045133fe41c07af3ffb9245c6d7a94 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_5e1cf35f8d1e9253fb67e1c6c7a1c4d6 = $(`<div id="html_5e1cf35f8d1e9253fb67e1c6c7a1c4d6" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 10</b><br>神奈川県中井町<br>到着: 14:08<br>荷物: 7 個</div>`)[0];
-                popup_657d86ec32f8cb6948f98adb98bec0a6.setContent(html_5e1cf35f8d1e9253fb67e1c6c7a1c4d6);
+                var html_65036c6ce9d4834dae73a916499c1a40 = $(`<div id="html_65036c6ce9d4834dae73a916499c1a40" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 10</b><br>神奈川県秦野市鶴巻南1丁目3<br>到着: 13:06<br>荷物: 2 個</div>`)[0];
+                popup_75045133fe41c07af3ffb9245c6d7a94.setContent(html_65036c6ce9d4834dae73a916499c1a40);
             
         
 
-        circle_marker_c917a6cf6d30a6a2479d57aea90b797e.bindPopup(popup_657d86ec32f8cb6948f98adb98bec0a6)
+        circle_marker_5132ca71fa76ce02f437aab3e76e2aa3.bindPopup(popup_75045133fe41c07af3ffb9245c6d7a94)
         ;
 
         
     
     
-            circle_marker_c917a6cf6d30a6a2479d57aea90b797e.bindTooltip(
+            circle_marker_5132ca71fa76ce02f437aab3e76e2aa3.bindTooltip(
                 `<div>
-                     車両31 | 14:08 | 神奈川県中井町
+                     車両31 | 13:06 | 神奈川県秦野市鶴巻南1丁目3
                  </div>`,
                 {
   "sticky": true,
@@ -650,14 +650,14 @@
             );
         
     
-            var marker_afb106df03b943728bf6b96f35cdae52 = L.marker(
-                [35.330833, 139.218887],
+            var marker_39494bc8567db1487e943a4ff9fae923 = L.marker(
+                [35.379696, 139.276947],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_b4b54b03ade8b7c679cefb7522f4568e = L.divIcon({
+            var div_icon_dd7c6b73f3ee872001b11117f4e203ae = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e10\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -665,35 +665,35 @@
 });
         
     
-                marker_afb106df03b943728bf6b96f35cdae52.setIcon(div_icon_b4b54b03ade8b7c679cefb7522f4568e);
+                marker_39494bc8567db1487e943a4ff9fae923.setIcon(div_icon_dd7c6b73f3ee872001b11117f4e203ae);
             
     
-            var circle_marker_3e86b0e579fc8fa867181f11b515f167 = L.circleMarker(
-                [35.362583, 139.269943],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_6b583b8190bdc36db585cf008ec65569 = L.circleMarker(
+                [35.381058, 139.277039],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_57c2779385d2f51930e930b3473501a9 = L.popup({
+        var popup_90acea1e64a13a5ec0e993e7af0023b9 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_8d64be0a7aa325c15afcbaeef39fcbbc = $(`<div id="html_8d64be0a7aa325c15afcbaeef39fcbbc" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 11</b><br>神奈川県秦野市南矢名318<br>到着: 14:24<br>荷物: 5 個</div>`)[0];
-                popup_57c2779385d2f51930e930b3473501a9.setContent(html_8d64be0a7aa325c15afcbaeef39fcbbc);
+                var html_ddece35aed970bbe29fe7a4c1b0aa5fd = $(`<div id="html_ddece35aed970bbe29fe7a4c1b0aa5fd" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 11</b><br>神奈川県秦野市鶴巻北二丁目1-101<br>到着: 13:08<br>荷物: 1 個</div>`)[0];
+                popup_90acea1e64a13a5ec0e993e7af0023b9.setContent(html_ddece35aed970bbe29fe7a4c1b0aa5fd);
             
         
 
-        circle_marker_3e86b0e579fc8fa867181f11b515f167.bindPopup(popup_57c2779385d2f51930e930b3473501a9)
+        circle_marker_6b583b8190bdc36db585cf008ec65569.bindPopup(popup_90acea1e64a13a5ec0e993e7af0023b9)
         ;
 
         
     
     
-            circle_marker_3e86b0e579fc8fa867181f11b515f167.bindTooltip(
+            circle_marker_6b583b8190bdc36db585cf008ec65569.bindTooltip(
                 `<div>
-                     車両31 | 14:24 | 神奈川県秦野市南矢名318
+                     車両31 | 13:08 | 神奈川県秦野市鶴巻北二丁目1-101
                  </div>`,
                 {
   "sticky": true,
@@ -701,14 +701,14 @@
             );
         
     
-            var marker_28399ebfd039391cf38d1c3e8412d617 = L.marker(
-                [35.362583, 139.269943],
+            var marker_3de7528a4b821e0e9c51efcd74853148 = L.marker(
+                [35.381058, 139.277039],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_fc8a4ae356ac3757c70d24c53a8c6c52 = L.divIcon({
+            var div_icon_5745546d446c8c48ed7561ea7cba63b8 = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e11\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -716,35 +716,35 @@
 });
         
     
-                marker_28399ebfd039391cf38d1c3e8412d617.setIcon(div_icon_fc8a4ae356ac3757c70d24c53a8c6c52);
+                marker_3de7528a4b821e0e9c51efcd74853148.setIcon(div_icon_5745546d446c8c48ed7561ea7cba63b8);
             
     
-            var circle_marker_9a1c2911af9e81a4bcb9a45d1c54a6e5 = L.circleMarker(
-                [35.379696, 139.276947],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_a37c4476532d92c8ef08ff7da7509b2a = L.circleMarker(
+                [35.413921, 139.326431],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_2f623b1de843743f47ea850054321f82 = L.popup({
+        var popup_757bae62096d4af68678bbf3105fa62f = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_8d3de29302b26ed06c48aa34ba7283a3 = $(`<div id="html_8d3de29302b26ed06c48aa34ba7283a3" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 12</b><br>神奈川県秦野市鶴巻南1丁目3<br>到着: 14:30<br>荷物: 2 個</div>`)[0];
-                popup_2f623b1de843743f47ea850054321f82.setContent(html_8d3de29302b26ed06c48aa34ba7283a3);
+                var html_f81b69d315655c12339b8ee5bc74842a = $(`<div id="html_f81b69d315655c12339b8ee5bc74842a" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 12</b><br>神奈川県伊勢原市高森三丁目59<br>到着: 13:22<br>荷物: 2 個</div>`)[0];
+                popup_757bae62096d4af68678bbf3105fa62f.setContent(html_f81b69d315655c12339b8ee5bc74842a);
             
         
 
-        circle_marker_9a1c2911af9e81a4bcb9a45d1c54a6e5.bindPopup(popup_2f623b1de843743f47ea850054321f82)
+        circle_marker_a37c4476532d92c8ef08ff7da7509b2a.bindPopup(popup_757bae62096d4af68678bbf3105fa62f)
         ;
 
         
     
     
-            circle_marker_9a1c2911af9e81a4bcb9a45d1c54a6e5.bindTooltip(
+            circle_marker_a37c4476532d92c8ef08ff7da7509b2a.bindTooltip(
                 `<div>
-                     車両31 | 14:30 | 神奈川県秦野市鶴巻南1丁目3
+                     車両31 | 13:22 | 神奈川県伊勢原市高森三丁目59
                  </div>`,
                 {
   "sticky": true,
@@ -752,14 +752,14 @@
             );
         
     
-            var marker_d3d35ed7c0c288c1eb6031c9c3a5afdb = L.marker(
-                [35.379696, 139.276947],
+            var marker_c5155f30238a1754d2338f27a3661a9a = L.marker(
+                [35.413921, 139.326431],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_8d45c6a96f276e6c1f8e95a5c690e73b = L.divIcon({
+            var div_icon_cb082cbafda4679d5a32aae9950bce00 = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e12\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -767,35 +767,35 @@
 });
         
     
-                marker_d3d35ed7c0c288c1eb6031c9c3a5afdb.setIcon(div_icon_8d45c6a96f276e6c1f8e95a5c690e73b);
+                marker_c5155f30238a1754d2338f27a3661a9a.setIcon(div_icon_cb082cbafda4679d5a32aae9950bce00);
             
     
-            var circle_marker_de11eab6f4faf98f6db1da96a6d663ef = L.circleMarker(
-                [35.381058, 139.277039],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_5695c31d2f684151c09d3531f7f26230 = L.circleMarker(
+                [35.425964, 139.333115],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_cb74b959de59f442c394e065b2f5029f = L.popup({
+        var popup_62b4a4c4e6329de4ca44e1c636c6fda1 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_c3970ba8c3a10bd52de5ba19adbdcd7e = $(`<div id="html_c3970ba8c3a10bd52de5ba19adbdcd7e" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 13</b><br>神奈川県秦野市鶴巻北二丁目1-101<br>到着: 14:32<br>荷物: 1 個</div>`)[0];
-                popup_cb74b959de59f442c394e065b2f5029f.setContent(html_c3970ba8c3a10bd52de5ba19adbdcd7e);
+                var html_86e03bf95ff391c1554c662bcaec3fbc = $(`<div id="html_86e03bf95ff391c1554c662bcaec3fbc" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 13</b><br>神奈川県厚木市愛甲西3丁目14<br>到着: 13:27<br>荷物: 2 個</div>`)[0];
+                popup_62b4a4c4e6329de4ca44e1c636c6fda1.setContent(html_86e03bf95ff391c1554c662bcaec3fbc);
             
         
 
-        circle_marker_de11eab6f4faf98f6db1da96a6d663ef.bindPopup(popup_cb74b959de59f442c394e065b2f5029f)
+        circle_marker_5695c31d2f684151c09d3531f7f26230.bindPopup(popup_62b4a4c4e6329de4ca44e1c636c6fda1)
         ;
 
         
     
     
-            circle_marker_de11eab6f4faf98f6db1da96a6d663ef.bindTooltip(
+            circle_marker_5695c31d2f684151c09d3531f7f26230.bindTooltip(
                 `<div>
-                     車両31 | 14:32 | 神奈川県秦野市鶴巻北二丁目1-101
+                     車両31 | 13:27 | 神奈川県厚木市愛甲西3丁目14
                  </div>`,
                 {
   "sticky": true,
@@ -803,14 +803,14 @@
             );
         
     
-            var marker_30d87be82dacaa9e6d5c41525614e8f8 = L.marker(
-                [35.381058, 139.277039],
+            var marker_12abf360d6f37a63c8893df797692169 = L.marker(
+                [35.425964, 139.333115],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_ebe9fc332efec1dd3d6eebca885a57c8 = L.divIcon({
+            var div_icon_60cb235e93e8453e69c0326070075d49 = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e13\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -818,35 +818,35 @@
 });
         
     
-                marker_30d87be82dacaa9e6d5c41525614e8f8.setIcon(div_icon_ebe9fc332efec1dd3d6eebca885a57c8);
+                marker_12abf360d6f37a63c8893df797692169.setIcon(div_icon_60cb235e93e8453e69c0326070075d49);
             
     
-            var circle_marker_16aee9d3d7c20eadb0d78fb2c5fcbe8b = L.circleMarker(
-                [35.395458, 139.314026],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_75094c3f5fa8af0845a0a4fef253b18e = L.circleMarker(
+                [35.432117, 139.336487],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_47e7822866de8d6ed3d289f69feb968f = L.popup({
+        var popup_0e6b9473b09c5a69f872113631b012a5 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_d0b24ae18c046dd02835034097454fe3 = $(`<div id="html_d0b24ae18c046dd02835034097454fe3" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 14</b><br>神奈川県伊勢原市桜台一丁目3<br>到着: 14:42<br>荷物: 2 個</div>`)[0];
-                popup_47e7822866de8d6ed3d289f69feb968f.setContent(html_d0b24ae18c046dd02835034097454fe3);
+                var html_fb80b4e747d4248d48a3239002c12225 = $(`<div id="html_fb80b4e747d4248d48a3239002c12225" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 14</b><br>神奈川県厚木市長谷402<br>到着: 13:30<br>荷物: 2 個</div>`)[0];
+                popup_0e6b9473b09c5a69f872113631b012a5.setContent(html_fb80b4e747d4248d48a3239002c12225);
             
         
 
-        circle_marker_16aee9d3d7c20eadb0d78fb2c5fcbe8b.bindPopup(popup_47e7822866de8d6ed3d289f69feb968f)
+        circle_marker_75094c3f5fa8af0845a0a4fef253b18e.bindPopup(popup_0e6b9473b09c5a69f872113631b012a5)
         ;
 
         
     
     
-            circle_marker_16aee9d3d7c20eadb0d78fb2c5fcbe8b.bindTooltip(
+            circle_marker_75094c3f5fa8af0845a0a4fef253b18e.bindTooltip(
                 `<div>
-                     車両31 | 14:42 | 神奈川県伊勢原市桜台一丁目3
+                     車両31 | 13:30 | 神奈川県厚木市長谷402
                  </div>`,
                 {
   "sticky": true,
@@ -854,14 +854,14 @@
             );
         
     
-            var marker_377ff3f2e906844b67fbab8686297afb = L.marker(
-                [35.395458, 139.314026],
+            var marker_b86bbaee183e856a711236cdc03364bb = L.marker(
+                [35.432117, 139.336487],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_f0074816d6eada539972b066214b0d8f = L.divIcon({
+            var div_icon_59ae9fab30eaa8423bb95221b4d73430 = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e14\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -869,35 +869,35 @@
 });
         
     
-                marker_377ff3f2e906844b67fbab8686297afb.setIcon(div_icon_f0074816d6eada539972b066214b0d8f);
+                marker_b86bbaee183e856a711236cdc03364bb.setIcon(div_icon_59ae9fab30eaa8423bb95221b4d73430);
             
     
-            var circle_marker_abc2e7828b07e4b2ae6b4c837303d298 = L.circleMarker(
-                [35.413921, 139.326431],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            var circle_marker_2f63ef1e6455bc12ecb9ad5ae8e56379 = L.circleMarker(
+                [35.43919, 139.461807],
+                {"bubblingMouseEvents": true, "color": "#b4f836", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b4f836", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-        var popup_8256fb24bb5f48152576082cd5e033f6 = L.popup({
+        var popup_bf51069800c53af746adee55cb77a8c2 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_426e80c5773502ed71ace24fe5e60fad = $(`<div id="html_426e80c5773502ed71ace24fe5e60fad" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 15</b><br>神奈川県伊勢原市高森三丁目59<br>到着: 14:49<br>荷物: 2 個</div>`)[0];
-                popup_8256fb24bb5f48152576082cd5e033f6.setContent(html_426e80c5773502ed71ace24fe5e60fad);
+                var html_c0914b6ae0cf92947f0c098cc03ee325 = $(`<div id="html_c0914b6ae0cf92947f0c098cc03ee325" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 15</b><br>神奈川県大和市渋谷三丁目1<br>到着: 13:57<br>荷物: 1 個</div>`)[0];
+                popup_bf51069800c53af746adee55cb77a8c2.setContent(html_c0914b6ae0cf92947f0c098cc03ee325);
             
         
 
-        circle_marker_abc2e7828b07e4b2ae6b4c837303d298.bindPopup(popup_8256fb24bb5f48152576082cd5e033f6)
+        circle_marker_2f63ef1e6455bc12ecb9ad5ae8e56379.bindPopup(popup_bf51069800c53af746adee55cb77a8c2)
         ;
 
         
     
     
-            circle_marker_abc2e7828b07e4b2ae6b4c837303d298.bindTooltip(
+            circle_marker_2f63ef1e6455bc12ecb9ad5ae8e56379.bindTooltip(
                 `<div>
-                     車両31 | 14:49 | 神奈川県伊勢原市高森三丁目59
+                     車両31 | 13:57 | 神奈川県大和市渋谷三丁目1
                  </div>`,
                 {
   "sticky": true,
@@ -905,14 +905,14 @@
             );
         
     
-            var marker_234d957deb93d4a5f1f3d5f62033783d = L.marker(
-                [35.413921, 139.326431],
+            var marker_277f5bc4aec8ff42470af257eef2cd03 = L.marker(
+                [35.43919, 139.461807],
                 {
 }
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
+            ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            var div_icon_55d11210f9a30c9f93f8d6fde1bbd300 = L.divIcon({
+            var div_icon_75c32831618dde57c559f003e39c318f = L.divIcon({
   "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e15\u003c/div\u003e",
   "iconSize": [16, 16],
   "iconAnchor": [8, 8],
@@ -920,167 +920,14 @@
 });
         
     
-                marker_234d957deb93d4a5f1f3d5f62033783d.setIcon(div_icon_55d11210f9a30c9f93f8d6fde1bbd300);
+                marker_277f5bc4aec8ff42470af257eef2cd03.setIcon(div_icon_75c32831618dde57c559f003e39c318f);
             
     
-            var circle_marker_e8d9abf9f131d51f6ea1d0fc7e6eee7d = L.circleMarker(
-                [35.425964, 139.333115],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
-        
-    
-        var popup_65fe3778dae830fb90d80876d22c7ab6 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_5f4a1f338447618f833070e6ecf8cd0c = $(`<div id="html_5f4a1f338447618f833070e6ecf8cd0c" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 16</b><br>神奈川県厚木市愛甲西3丁目14<br>到着: 14:54<br>荷物: 2 個</div>`)[0];
-                popup_65fe3778dae830fb90d80876d22c7ab6.setContent(html_5f4a1f338447618f833070e6ecf8cd0c);
-            
-        
-
-        circle_marker_e8d9abf9f131d51f6ea1d0fc7e6eee7d.bindPopup(popup_65fe3778dae830fb90d80876d22c7ab6)
-        ;
-
-        
-    
-    
-            circle_marker_e8d9abf9f131d51f6ea1d0fc7e6eee7d.bindTooltip(
-                `<div>
-                     車両31 | 14:54 | 神奈川県厚木市愛甲西3丁目14
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-            var marker_1822e621165b7830f02621d395d48f41 = L.marker(
-                [35.425964, 139.333115],
-                {
-}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
-        
-    
-            var div_icon_c5ec979f97fff82d7156227b43fce026 = L.divIcon({
-  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e16\u003c/div\u003e",
-  "iconSize": [16, 16],
-  "iconAnchor": [8, 8],
-  "className": "empty",
-});
-        
-    
-                marker_1822e621165b7830f02621d395d48f41.setIcon(div_icon_c5ec979f97fff82d7156227b43fce026);
-            
-    
-            var circle_marker_4203022e4deecc23c33a25357eede756 = L.circleMarker(
-                [35.432117, 139.336487],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
-        
-    
-        var popup_579201d26475f1bac2d0797a3e4d29db = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_8577badb67b3071f18381c8e5f9d4b8e = $(`<div id="html_8577badb67b3071f18381c8e5f9d4b8e" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 17</b><br>神奈川県厚木市長谷402<br>到着: 14:57<br>荷物: 2 個</div>`)[0];
-                popup_579201d26475f1bac2d0797a3e4d29db.setContent(html_8577badb67b3071f18381c8e5f9d4b8e);
-            
-        
-
-        circle_marker_4203022e4deecc23c33a25357eede756.bindPopup(popup_579201d26475f1bac2d0797a3e4d29db)
-        ;
-
-        
-    
-    
-            circle_marker_4203022e4deecc23c33a25357eede756.bindTooltip(
-                `<div>
-                     車両31 | 14:57 | 神奈川県厚木市長谷402
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-            var marker_d9e6ab11e1752d0c52b187361b887384 = L.marker(
-                [35.432117, 139.336487],
-                {
-}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
-        
-    
-            var div_icon_0d2536a2beab51ebed771811812a4fbf = L.divIcon({
-  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e17\u003c/div\u003e",
-  "iconSize": [16, 16],
-  "iconAnchor": [8, 8],
-  "className": "empty",
-});
-        
-    
-                marker_d9e6ab11e1752d0c52b187361b887384.setIcon(div_icon_0d2536a2beab51ebed771811812a4fbf);
-            
-    
-            var circle_marker_6e2a4641e4094935baf2578e35304950 = L.circleMarker(
-                [35.43919, 139.461807],
-                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
-        
-    
-        var popup_f560fdabc17707767aa0ccc96169fa87 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_1baf06503f35e2f5e74ab8bae37c8492 = $(`<div id="html_1baf06503f35e2f5e74ab8bae37c8492" style="width: 100.0%; height: 100.0%;"><b>車両 31 / 停留所 18</b><br>神奈川県大和市渋谷三丁目1<br>到着: 15:24<br>荷物: 1 個</div>`)[0];
-                popup_f560fdabc17707767aa0ccc96169fa87.setContent(html_1baf06503f35e2f5e74ab8bae37c8492);
-            
-        
-
-        circle_marker_6e2a4641e4094935baf2578e35304950.bindPopup(popup_f560fdabc17707767aa0ccc96169fa87)
-        ;
-
-        
-    
-    
-            circle_marker_6e2a4641e4094935baf2578e35304950.bindTooltip(
-                `<div>
-                     車両31 | 15:24 | 神奈川県大和市渋谷三丁目1
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-            var marker_491b56f516998023ac64a6fb30e5ea12 = L.marker(
-                [35.43919, 139.461807],
-                {
-}
-            ).addTo(map_e52af9da5982230a283f70ee3385983b);
-        
-    
-            var div_icon_4fac729f9a705a704fa05603173848fc = L.divIcon({
-  "html": "\u003cdiv style=\"font-size:10px; font-weight:bold; color:white;\"\u003e18\u003c/div\u003e",
-  "iconSize": [16, 16],
-  "iconAnchor": [8, 8],
-  "className": "empty",
-});
-        
-    
-                marker_491b56f516998023ac64a6fb30e5ea12.setIcon(div_icon_4fac729f9a705a704fa05603173848fc);
-            
-    
-            ant_path_b6e57c393eeca44f053dd14eabdc1b01 = L.polyline.antPath(
-              [[35.53065, 139.7011268], [35.5310579, 139.6994561], [35.5301942, 139.69863], [35.5296023, 139.6980499], [35.5295405, 139.6979861], [35.5281738, 139.6966572], [35.5282218, 139.6965814], [35.528326, 139.6964099], [35.526945, 139.6950775], [35.5268071, 139.6949544], [35.5267192, 139.6948654], [35.526838, 139.6947689], [35.5264294, 139.693185], [35.5264085, 139.6931156], [35.5261994, 139.6921787], [35.5260272, 139.6909451], [35.5262235, 139.6906872], [35.526621, 139.6887605], [35.5279828, 139.6855221], [35.52824, 139.685163], [35.5280982, 139.68517], [35.5280902, 139.6843546], [35.5275582, 139.6840883], [35.5264814, 139.6831776], [35.5260441, 139.6826108], [35.5252595, 139.6809306], [35.5240216, 139.6775392], [35.5235641, 139.6762712], [35.5227527, 139.6740919], [35.5218553, 139.6725519], [35.5214652, 139.6720975], [35.5203991, 139.6709901], [35.519473, 139.670001], [35.5188404, 139.6693237], [35.5177887, 139.668233], [35.5170186, 139.667412], [35.5168473, 139.6672311], [35.5168387, 139.6670914], [35.5166753, 139.6662895], [35.5164863, 139.6655661], [35.5164603, 139.6654639], [35.5163102, 139.6648889], [35.5161967, 139.6644636], [35.5159662, 139.6643034], [35.5155624, 139.6640132], [35.5155266, 139.6639893], [35.5149451, 139.6635905], [35.5142731, 139.6625306], [35.5140831, 139.6618179], [35.5138535, 139.6609807], [35.5125304, 139.6594116], [35.51243, 139.6597804], [35.5118094, 139.6596676], [35.5118133, 139.6590289], [35.5118191, 139.6585929], [35.5118218, 139.6583873], [35.5114259, 139.6582328], [35.5113956, 139.6577141], [35.510888, 139.6575388], [35.5106934, 139.6565175], [35.5106518, 139.6563364], [35.5104775, 139.6554704], [35.5099329, 139.6543473], [35.5096464, 139.6540503], [35.5087476, 139.6532789], [35.5085905, 139.6531397], [35.5084695, 139.6530362], [35.5078707, 139.652118], [35.5075031, 139.6514602], [35.5073164, 139.6511875], [35.5072859, 139.6511486], [35.5070911, 139.6509003], [35.5070403, 139.65083], [35.5061586, 139.6496743], [35.5061131, 139.6496049], [35.5058561, 139.6492228], [35.505767, 139.6490735], [35.5056646, 139.6488506], [35.5055244, 139.6485621], [35.5051702, 139.6478698], [35.5047283, 139.6469566], [35.50443, 139.6463262], [35.504174, 139.6458083], [35.5036338, 139.6446889], [35.5031033, 139.6432278], [35.5031019, 139.6426642], [35.503105, 139.6425917], [35.5031514, 139.6420802], [35.5030023, 139.6410892], [35.5027416, 139.639745], [35.502655, 139.6394054], [35.5015718, 139.6375841], [35.5013813, 139.6372552], [35.5012541, 139.6369493], [35.500263, 139.6333129], [35.5001921, 139.6329182], [35.499983, 139.6318428], [35.4999196, 139.6314641], [35.4997974, 139.6308703], [35.4996488, 139.6301539], [35.4996253, 139.6300587], [35.4995178, 139.6295459], [35.4993441, 139.6287683], [35.4992114, 139.6281999], [35.4990716, 139.6275998], [35.4988875, 139.6268448], [35.498796, 139.6264716], [35.4987111, 139.6261092], [35.498707, 139.6260919], [35.4985777, 139.62554], [35.4982854, 139.6242926], [35.4981961, 139.624039], [35.4977075, 139.6232896], [35.4976913, 139.6232694], [35.4966204, 139.6217968], [35.4965436, 139.6216862], [35.4956269, 139.6203397], [35.4950919, 139.6192671], [35.4947139, 139.618385], [35.4946088, 139.6181475], [35.4937537, 139.6162143], [35.4936167, 139.6158828], [35.4933138, 139.6152604], [35.4931747, 139.6149972], [35.4930357, 139.6147458], [35.4926677, 139.6140803], [35.4924059, 139.6136089], [35.4922599, 139.6133387], [35.4928731, 139.6128999], [35.4932113, 139.6126579], [35.4931604, 139.6122957], [35.4932595, 139.6119766], [35.4936869, 139.611397], [35.4938563, 139.6107935], [35.4935993, 139.6107312], [35.4936013, 139.6101363], [35.4938474, 139.6090606], [35.4940249, 139.6075578], [35.4940234, 139.6075248], [35.494103, 139.6072294], [35.4942914, 139.607014], [35.4947897, 139.6062708], [35.4951647, 139.6046196], [35.4954119, 139.603956], [35.495459, 139.6038573], [35.4943463, 139.60275], [35.4942569, 139.602599], [35.4939963, 139.6022771], [35.4938066, 139.6015204], [35.4934958, 139.6004954], [35.493462, 139.6001839], [35.4935956, 139.5999553], [35.4938228, 139.5995067], [35.4938328, 139.5994563], [35.4938496, 139.5992487], [35.4935865, 139.5956345], [35.4932274, 139.5948461], [35.4928293, 139.5925496], [35.4928497, 139.5924158], [35.4928293, 139.5919754], [35.4928241, 139.5919423], [35.4926686, 139.5912997], [35.4918213, 139.5884799], [35.491751, 139.588002], [35.4917572, 139.5874027], [35.4915094, 139.5866828], [35.491387, 139.5864019], [35.4913578, 139.5863313], [35.4913113, 139.5861858], [35.4912714, 139.5859034], [35.491265, 139.5854455], [35.4910053, 139.583299], [35.4902109, 139.5814552], [35.4901305, 139.5810733], [35.4900737, 139.5807704], [35.4903133, 139.5792598], [35.4903162, 139.5791523], [35.4903343, 139.5782793], [35.4903299, 139.5782016], [35.4893098, 139.5764698], [35.4891773, 139.5760686], [35.4890865, 139.5756477], [35.4890013, 139.5752304], [35.4889645, 139.575086], [35.4888183, 139.5747539], [35.4887107, 139.5746109], [35.4884352, 139.5742457], [35.488056, 139.573776], [35.4877711, 139.5734226], [35.4873394, 139.5729142], [35.4871555, 139.5725763], [35.4870407, 139.5724726], [35.4867125, 139.5719842], [35.4864492, 139.5715696], [35.4862529, 139.5713661], [35.4864055, 139.5704566], [35.4864545, 139.570199], [35.4865116, 139.5698249], [35.4866915, 139.5690599], [35.4867635, 139.5690016], [35.4872715, 139.5682186], [35.4872888, 139.5681657], [35.4873067, 139.5681109], [35.4871916, 139.5670315], [35.4873003, 139.565919], [35.4871763, 139.5656817], [35.4871256, 139.5655855], [35.4870862, 139.5652512], [35.4867859, 139.5650332], [35.4869399, 139.5647613], [35.4865757, 139.5640147], [35.4867159, 139.5637651], [35.4867893, 139.5636223], [35.4867169, 139.5633163], [35.4866579, 139.5630262], [35.486638, 139.5627323], [35.4866132, 139.5624065], [35.4863013, 139.5614877], [35.4863682, 139.5610428], [35.4867891, 139.5597238], [35.4865055, 139.5582025], [35.4854642, 139.5567868], [35.4863969, 139.5555144], [35.4865373, 139.5553273], [35.4876706, 139.5542755], [35.4877678, 139.554189], [35.4883152, 139.5537455], [35.4891334, 139.5530595], [35.4893228, 139.5529114], [35.4891839, 139.5524221], [35.488731, 139.5517894], [35.4885714, 139.5514659], [35.488559, 139.5513964], [35.4885864, 139.5509009], [35.4886299, 139.5507106], [35.4888864, 139.5500494], [35.4888316, 139.5494157], [35.4886033, 139.549293], [35.4881742, 139.5489644], [35.4880064, 139.5488835], [35.4879085, 139.5485474], [35.4882276, 139.5479245], [35.488257, 139.5476208], [35.4882969, 139.546953], [35.4883849, 139.5460611], [35.4887132, 139.5456537], [35.4885367, 139.5451686], [35.488326, 139.5445795], [35.488053, 139.5437871], [35.487423, 139.5430119], [35.4878086, 139.5427041], [35.4875096, 139.5422836], [35.4876755, 139.5420853], [35.4873306, 139.5415639], [35.4873052, 139.5411978], [35.4872781, 139.5407296], [35.4876196, 139.5404314], [35.487632, 139.5398789], [35.4876423, 139.5393348], [35.4876547, 139.5391416], [35.4876414, 139.5388901], [35.487628, 139.5387687], [35.4876211, 139.538641], [35.4875483, 139.5377659], [35.4874846, 139.537051], [35.4871189, 139.5369755], [35.4867787, 139.5368068], [35.4865072, 139.5365244], [35.4857339, 139.5352628], [35.4853216, 139.5349124], [35.4848819, 139.5344848], [35.4843782, 139.5339014], [35.4843931, 139.5332547], [35.4845154, 139.532644], [35.484822, 139.5322371], [35.4850076, 139.5319462], [35.485137, 139.5315774], [35.485223, 139.5313138], [35.485302, 139.5310171], [35.4852188, 139.5300944], [35.4852378, 139.5295468], [35.4852437, 139.5295146], [35.4852267, 139.5292537], [35.4851075, 139.5284494], [35.4850185, 139.5279276], [35.4850518, 139.5275306], [35.4848975, 139.5274701], [35.4837787, 139.52595], [35.4838213, 139.5257944], [35.4839321, 139.5253768], [35.4841828, 139.5245338], [35.484336, 139.5241587], [35.4860366, 139.5213918], [35.4855295, 139.5206763], [35.4852938, 139.5203341], [35.4846523, 139.5193488], [35.4843422, 139.5186925], [35.4840001, 139.5177685], [35.4837946, 139.5172652], [35.4828071, 139.5147735], [35.4827199, 139.514562], [35.4824382, 139.5139855], [35.4821, 139.5133448], [35.4807494, 139.5106117], [35.4742598, 139.501089], [35.4726195, 139.4990679], [35.4723046, 139.4986505], [35.4722295, 139.4985544], [35.4718744, 139.4981046], [35.4713903, 139.4975038], [35.4693703, 139.4950366], [35.4691892, 139.4947901], [35.4689064, 139.4944306], [35.4682132, 139.4936319], [35.4680152, 139.4933723], [35.4669974, 139.4918943], [35.4666142, 139.4913256], [35.4664196, 139.4910319], [35.465765, 139.4901421], [35.4652463, 139.4895193], [35.4638705, 139.4878533], [35.4624637, 139.4860637], [35.461661, 139.484943], [35.4606427, 139.483523], [35.4601435, 139.482812], [35.4600922, 139.4827425], [35.4595082, 139.4819456], [35.4587156, 139.4807543], [35.4585031, 139.4804557], [35.4580677, 139.4797605], [35.4579987, 139.4796661], [35.4575339, 139.4790366], [35.4572615, 139.4786559], [35.4566535, 139.477814], [35.4559375, 139.4768055], [35.4558343, 139.4766602], [35.4555841, 139.4762295], [35.4551152, 139.4757536], [35.4548232, 139.4755038], [35.454232, 139.4750175], [35.4529341, 139.4733775], [35.452131, 139.4720758], [35.4515231, 139.4710857], [35.450904, 139.4700304], [35.4506464, 139.4695848], [35.4504646, 139.4692695], [35.4503803, 139.4691311], [35.4499286, 139.4683896], [35.4494299, 139.4676015], [35.4490354, 139.4668978], [35.4484547, 139.4657465], [35.4482339, 139.4653015], [35.4480526, 139.4649672], [35.4478411, 139.4645279], [35.4475629, 139.4639442], [35.4472911, 139.4632148], [35.4472831, 139.4631595], [35.4468938, 139.4616922], [35.4465147, 139.4609568], [35.446367, 139.4606952], [35.445667, 139.4597445], [35.445333, 139.4586024], [35.4447219, 139.4574032], [35.4444136, 139.4567663], [35.4440658, 139.4560732], [35.4431602, 139.4546184], [35.4426139, 139.4538089], [35.4419153, 139.4536517], [35.4409175, 139.4534626], [35.4395626, 139.4530656], [35.4396424, 139.4527022], [35.4399582, 139.4474271], [35.4409721, 139.4437721], [35.4409995, 139.442541], [35.4409853, 139.4412921], [35.4409821, 139.4400577], [35.4409732, 139.4388025], [35.4409645, 139.4375845], [35.4408994, 139.4365702], [35.4408495, 139.4363101], [35.4406904, 139.4357077], [35.4410151, 139.4354684], [35.4413451, 139.4352029], [35.4416544, 139.4349724], [35.441825, 139.4348013], [35.4421904, 139.4346253], [35.4420801, 139.4339482], [35.4419871, 139.4336816], [35.4417469, 139.4328908], [35.4416999, 139.4327146], [35.4414859, 139.4318575], [35.4413563, 139.4313107], [35.442099, 139.4307853], [35.4419582, 139.430202], [35.44216, 139.4299736], [35.4417046, 139.4284612], [35.4416289, 139.4279537], [35.4414635, 139.4271513], [35.4413619, 139.4266592], [35.4410998, 139.4256686], [35.4410766, 139.425581], [35.4415608, 139.4253719], [35.4438443, 139.4234219], [35.4450275, 139.4223257], [35.4455456, 139.4219743], [35.446101, 139.4216107], [35.446421, 139.4214259], [35.446147, 139.4206292], [35.4463034, 139.4192572], [35.4457966, 139.415122], [35.4346035, 139.4028554], [35.4286606, 139.396884], [35.4229867, 139.383187], [35.4231341, 139.3669684], [35.4226453, 139.3631222], [35.4224476, 139.3630578], [35.421626, 139.3626747], [35.4207033, 139.3624034], [35.4197328, 139.361571], [35.4188823, 139.3586018], [35.4191051, 139.3552175], [35.419083, 139.3547952], [35.4188372, 139.3536402], [35.4184543, 139.3528076], [35.4182572, 139.3524951], [35.4177981, 139.3519178], [35.4169507, 139.3511654], [35.4170333, 139.3507692], [35.4170788, 139.3505607], [35.4171654, 139.3501712], [35.4174035, 139.3491823], [35.4176177, 139.3483271], [35.4177466, 139.3478498], [35.4178453, 139.3474904], [35.417963, 139.3470825], [35.417975, 139.3470403], [35.4180584, 139.3467423], [35.4176077, 139.3451981], [35.4174858, 139.3443787], [35.4170691, 139.3435075], [35.4168129, 139.3431272], [35.4166933, 139.3428767], [35.4166614, 139.3421402], [35.4162715, 139.3414875], [35.4159436, 139.3408136], [35.4152766, 139.3394046], [35.4151986, 139.3392247], [35.4147306, 139.3382251], [35.4145934, 139.3379394], [35.4145017, 139.3377432], [35.4143253, 139.3373671], [35.4141816, 139.3370475], [35.4135876, 139.3357615], [35.4134612, 139.3354803], [35.4129506, 139.3343793], [35.4126799, 139.3337346], [35.4126552, 139.3336755], [35.4121959, 139.3325761], [35.4121801, 139.3325381], [35.4121105, 139.3323488], [35.4117338, 139.3314702], [35.4114835, 139.3308956], [35.4112482, 139.3303604], [35.410953, 139.3296193], [35.4094916, 139.3261744], [35.408367, 139.3235336], [35.4083182, 139.3234226], [35.4073984, 139.321248], [35.406245, 139.3185101], [35.4057681, 139.317378], [35.4050225, 139.3156109], [35.4048703, 139.3152508], [35.4044671, 139.3143135], [35.4040365, 139.3132882], [35.4035533, 139.3121387], [35.4030104, 139.3108812], [35.4023646, 139.3093467], [35.4022857, 139.3091527], [35.4021773, 139.3089061], [35.4019887, 139.3084497], [35.4019744, 139.3084121], [35.4016898, 139.3077277], [35.4014525, 139.3071187], [35.4008246, 139.3050671], [35.4007094, 139.3046746], [35.4004853, 139.3039004], [35.4001434, 139.3027803], [35.3997214, 139.3014612], [35.3996533, 139.3012601], [35.3995053, 139.300815], [35.399458, 139.3006748], [35.3992517, 139.3000624], [35.3991549, 139.2997512], [35.3990952, 139.2995772], [35.3988836, 139.2989216], [35.3986741, 139.2982655], [35.3986107, 139.2980358], [35.3984793, 139.297504], [35.3983159, 139.2966704], [35.3982499, 139.296318], [35.3980716, 139.2953391], [35.3978337, 139.2944647], [35.3974262, 139.2934903], [35.3974007, 139.2934434], [35.3968011, 139.2923434], [35.3963012, 139.2914183], [35.3962366, 139.2913014], [35.3960972, 139.2910463], [35.3954979, 139.2899477], [35.3954271, 139.2898181], [35.3950396, 139.2891029], [35.3945598, 139.2882318], [35.3941759, 139.2875198], [35.3935102, 139.2863108], [35.393165, 139.2856838], [35.3927806, 139.285012], [35.3926035, 139.2846986], [35.3923306, 139.2842301], [35.3917981, 139.2833807], [35.3913325, 139.2826038], [35.3912203, 139.2824144], [35.3907151, 139.2811866], [35.3904744, 139.2793151], [35.3901499, 139.2754361], [35.39011, 139.2749706], [35.3900143, 139.2739164], [35.3899659, 139.2733222], [35.3899342, 139.2729295], [35.3899002, 139.2725531], [35.3897558, 139.2710605], [35.3896932, 139.2704435], [35.3895806, 139.2692775], [35.3895229, 139.2686643], [35.3893566, 139.2669969], [35.389284, 139.2665217], [35.3889778, 139.265223], [35.3889157, 139.2650102], [35.3879513, 139.2623136], [35.3877856, 139.2618526], [35.3873355, 139.2606732], [35.3863384, 139.2588391], [35.3851105, 139.2569482], [35.3845087, 139.2547497], [35.3844943, 139.2545637], [35.3840792, 139.2496131], [35.3840738, 139.2495565], [35.383887, 139.2473882], [35.3838775, 139.2472656], [35.3838199, 139.2465777], [35.3835117, 139.2439858], [35.3834213, 139.2435791], [35.3828686, 139.2418169], [35.3825087, 139.240989], [35.382404, 139.2407701], [35.3822619, 139.240511], [35.3820595, 139.240152], [35.3813249, 139.2389524], [35.3812922, 139.2388973], [35.3809272, 139.2383226], [35.3799876, 139.2367798], [35.3798217, 139.2364462], [35.379284, 139.2355865], [35.378815, 139.2348334], [35.3783631, 139.2339622], [35.3782428, 139.2336498], [35.378091, 139.2332503], [35.3780633, 139.2331739], [35.378029, 139.2330782], [35.3777411, 139.2322965], [35.3768853, 139.2302523], [35.3767525, 139.2300946], [35.3764397, 139.2297134], [35.3762518, 139.2294843], [35.3756981, 139.2290114], [35.3750489, 139.2283656], [35.3749844, 139.2282737], [35.3744448, 139.2274674], [35.3739767, 139.2268249], [35.373793, 139.2265582], [35.3733714, 139.2258151], [35.3733289, 139.2256793], [35.3726848, 139.2246469], [35.372429, 139.2242686], [35.3723493, 139.2240932], [35.3724322, 139.2234001], [35.3728136, 139.2210563], [35.3728552, 139.2207866], [35.3729374, 139.220253], [35.3731173, 139.2191562], [35.3731457, 139.2186509], [35.3729412, 139.2177292], [35.3727852, 139.2160099], [35.3727834, 139.2159911], [35.3727272, 139.2150755], [35.3727477, 139.2147808], [35.3727545, 139.2146839], [35.3728846, 139.2128016], [35.3729351, 139.2120562], [35.3730092, 139.2110141], [35.3730462, 139.2106998], [35.3729881, 139.2083423], [35.3728789, 139.2078197], [35.3722725, 139.2064777], [35.3721769, 139.2063673], [35.3714814, 139.2054766], [35.3712081, 139.2047729], [35.3710331, 139.2040132], [35.3709944, 139.2037874], [35.3709143, 139.2029838], [35.37092, 139.2011508], [35.3703355, 139.2013745], [35.3701948, 139.2014663], [35.3699965, 139.2014783], [35.3699672, 139.2014765], [35.3693887, 139.2015355], [35.3693435, 139.2011931], [35.3688161, 139.2007009], [35.3687401, 139.2004661], [35.3686464, 139.2001165], [35.3685046, 139.1995827], [35.3680218, 139.1983215], [35.3677448, 139.1971869], [35.3676006, 139.1967176], [35.3674022, 139.1960845], [35.3670204, 139.1938101], [35.3668971, 139.1933624], [35.3668503, 139.1923799], [35.3668048, 139.1908674], [35.3667803, 139.1903401], [35.3667149, 139.1892418], [35.3661831, 139.1870165], [35.3660387, 139.1869486], [35.3661499, 139.1865934], [35.3655325, 139.1862544], [35.3658864, 139.1849714], [35.3655806, 139.1838111], [35.365932, 139.1830308], [35.3652258, 139.1829547], [35.3644564, 139.1823963], [35.3636607, 139.1815581], [35.3636276, 139.1815222], [35.3631568, 139.1804675], [35.3599781, 139.1790044], [35.3579311, 139.1768035], [35.3562132, 139.1758665], [35.3517384, 139.174295], [35.3492136, 139.16948], [35.3486535, 139.1674294], [35.3444759, 139.160156], [35.3455579, 139.1589795], [35.3455606, 139.1547932], [35.346393, 139.1540096], [35.3472197, 139.1530166], [35.3478672, 139.1527897], [35.3480511, 139.1513121], [35.3480098, 139.15127], [35.3478674, 139.1511076], [35.3471074, 139.1502254], [35.3468651, 139.1499595], [35.3450655, 139.1488766], [35.3450194, 139.1488014], [35.3444372, 139.1479226], [35.3441523, 139.1475463], [35.3440492, 139.1474242], [35.3438632, 139.1471898], [35.3436824, 139.1469814], [35.3433251, 139.1463917], [35.3430709, 139.1464104], [35.3430497, 139.1463919], [35.3427096, 139.1461826], [35.3421225, 139.1457937], [35.3416063, 139.1453337], [35.3407538, 139.1444621], [35.3406368, 139.1443167], [35.3397308, 139.1433872], [35.3394838, 139.1435876], [35.3389712, 139.1429163], [35.3383627, 139.1431582], [35.3370813, 139.1418914], [35.3369468, 139.142129], [35.3368115, 139.1418331], [35.3360907, 139.1402364], [35.3359476, 139.1398861], [35.3330649, 139.1328717], [35.3324126, 139.1312741], [35.3323346, 139.1310718], [35.3321059, 139.1305433], [35.3318557, 139.1299472], [35.3317055, 139.1295935], [35.3313588, 139.1288151], [35.3308063, 139.1275946], [35.330208, 139.1261643], [35.3295548, 139.1247135], [35.3292607, 139.1240497], [35.3284981, 139.1222875], [35.3280742, 139.1213215], [35.3277941, 139.1206833], [35.3272577, 139.1194678], [35.3265318, 139.1178237], [35.3260013, 139.1165441], [35.3254363, 139.1148072], [35.3251495, 139.1139341], [35.3248546, 139.1130449], [35.3246646, 139.112465], [35.3244293, 139.1118725], [35.3229524, 139.1074729], [35.322799, 139.106925], [35.3224572, 139.1056998], [35.3221962, 139.1050486], [35.3221504, 139.1049618], [35.3215002, 139.1044], [35.320876, 139.1039333]],
+            ant_path_2a618741ab04b79862ada61151d52f9a = L.polyline.antPath(
+              [[35.53065, 139.7011268], [35.5292651, 139.700712], [35.5289132, 139.7005962], [35.5281536, 139.7003213], [35.528095, 139.7002125], [35.5277168, 139.6994774], [35.5274779, 139.6990318], [35.5272167, 139.6985632], [35.5270164, 139.6981919], [35.526738, 139.6976673], [35.5263615, 139.6969679], [35.5261167, 139.6965126], [35.5257358, 139.6957995], [35.525671, 139.6956753], [35.525518, 139.6953909], [35.5253161, 139.6950237], [35.5252585, 139.6949126], [35.5249135, 139.6942831], [35.5243948, 139.6933457], [35.5239862, 139.6925838], [35.5234129, 139.692241], [35.5234142, 139.69207], [35.5225865, 139.6913694], [35.522052, 139.6909522], [35.5216468, 139.69109], [35.5212517, 139.6912255], [35.5208857, 139.6913529], [35.5207421, 139.6913711], [35.5206058, 139.6913092], [35.5199538, 139.6902746], [35.5192264, 139.6896557], [35.5187873, 139.6893468], [35.517711, 139.6886091], [35.5173295, 139.6883444], [35.5162562, 139.687549], [35.5146232, 139.6864429], [35.5144185, 139.6863041], [35.514072, 139.6861037], [35.5138904, 139.6860181], [35.5119589, 139.6846785], [35.5119051, 139.6846267], [35.5114289, 139.6841774], [35.5107338, 139.6836485], [35.5100002, 139.683018], [35.5092744, 139.6823892], [35.5085059, 139.6816851], [35.5075342, 139.6808267], [35.5074555, 139.6807726], [35.5061451, 139.679871], [35.5060464, 139.6798005], [35.5047173, 139.6784586], [35.5034833, 139.6773849], [35.5022551, 139.6763167], [35.5022251, 139.6762907], [35.5003368, 139.6746556], [35.4995872, 139.6740065], [35.4982698, 139.6725301], [35.4977598, 139.6719277], [35.4970687, 139.6711115], [35.4960143, 139.6698661], [35.495096, 139.668785], [35.495016, 139.6686879], [35.4949797, 139.6686438], [35.4948836, 139.6685271], [35.4937988, 139.6672433], [35.4926226, 139.6655042], [35.4917118, 139.6639255], [35.4901628, 139.6616997], [35.4884377, 139.65901], [35.4866121, 139.6565025], [35.4862954, 139.6556907], [35.4856103, 139.6533997], [35.4853161, 139.6521821], [35.4848408, 139.6489655], [35.484787, 139.6486447], [35.4842952, 139.6461921], [35.4840145, 139.6455679], [35.4832308, 139.6442015], [35.4820659, 139.6424515], [35.4805003, 139.6403378], [35.4802258, 139.6400226], [35.4797993, 139.6395753], [35.4792166, 139.6389954], [35.478503, 139.638337], [35.4784418, 139.6382806], [35.4776962, 139.6375265], [35.4772032, 139.6370111], [35.4766045, 139.6364386], [35.4757768, 139.6356902], [35.4706186, 139.6308424], [35.4687604, 139.6270755], [35.467921, 139.6212049], [35.4679909, 139.6205312], [35.4677934, 139.6155007], [35.4680007, 139.6152995], [35.4669214, 139.614162], [35.4662524, 139.6137304], [35.4664993, 139.6131277], [35.4659175, 139.6126486], [35.4657323, 139.6124466], [35.4654249, 139.6121375], [35.4653529, 139.6120784], [35.4654129, 139.6119793], [35.4657003, 139.6115982], [35.4659099, 139.6114328], [35.465989, 139.6103768], [35.4659951, 139.6103317], [35.4660245, 139.6089432], [35.4662916, 139.6078382], [35.4663995, 139.6075056], [35.4664939, 139.6072141], [35.4666828, 139.6062781], [35.4662182, 139.6056129], [35.4660034, 139.6052779], [35.4659569, 139.6045617], [35.4658848, 139.604156], [35.4659555, 139.6035555], [35.4663001, 139.602915], [35.4663648, 139.6025391], [35.4661679, 139.6024], [35.4660804, 139.6019004], [35.465882, 139.6014706], [35.4656824, 139.6001056], [35.4656735, 139.6000036], [35.4656392, 139.5994867], [35.4651114, 139.5996469], [35.4649049, 139.5989609], [35.4650542, 139.5989025], [35.4636083, 139.5963071], [35.4633669, 139.5961965], [35.4631456, 139.5958473], [35.4626104, 139.5955527], [35.4621357, 139.5952184], [35.4619559, 139.5951172], [35.4618925, 139.5950774], [35.4622355, 139.5944066], [35.4624539, 139.5939807], [35.4625036, 139.5938906], [35.4622482, 139.593157], [35.4617439, 139.5916427], [35.4616081, 139.5912653], [35.4611039, 139.5902379], [35.4609803, 139.590094], [35.4603498, 139.5883938], [35.4602829, 139.588254], [35.4596308, 139.5868151], [35.4534612, 139.5789423], [35.4499578, 139.569118], [35.448572, 139.5675264], [35.4445519, 139.563175], [35.4423709, 139.559845], [35.4331148, 139.5535019], [35.4292033, 139.5484215], [35.4237602, 139.5399483], [35.4219523, 139.5389079], [35.4168579, 139.53703], [35.4133762, 139.5344275], [35.4126293, 139.5333152], [35.4125607, 139.5331754], [35.4088978, 139.5304007], [35.4083272, 139.5299759], [35.4070558, 139.5290046], [35.4038023, 139.5275717], [35.4028117, 139.5273839], [35.3988018, 139.5280302], [35.3924238, 139.5236782], [35.3909919, 139.5218253], [35.3896926, 139.5207877], [35.3878898, 139.5190291], [35.3871092, 139.5182041], [35.3860084, 139.5173758], [35.3848159, 139.5159444], [35.3834904, 139.5147657], [35.3810257, 139.5124947], [35.3798921, 139.5110348], [35.3795701, 139.5103421], [35.3790295, 139.5091853], [35.3780708, 139.5073237], [35.3774414, 139.5060323], [35.377356, 139.5058838], [35.3770265, 139.5054241], [35.3766317, 139.5050363], [35.3757107, 139.504413], [35.3752106, 139.5040687], [35.3744489, 139.5035527], [35.3739168, 139.5032284], [35.3737616, 139.5031181], [35.3732598, 139.5027868], [35.3726196, 139.5023656], [35.3714018, 139.5015534], [35.3705618, 139.5010414], [35.3698966, 139.5006678], [35.3698807, 139.500661], [35.3688189, 139.5001123], [35.3673051, 139.4992838], [35.3669545, 139.4990777], [35.3660182, 139.4984981], [35.364149, 139.4973703], [35.3615231, 139.4951881], [35.3589239, 139.4924927], [35.3586732, 139.49217], [35.3504727, 139.4767327], [35.34944, 139.4701146], [35.3494291, 139.4700378], [35.3489457, 139.4626053], [35.3488894, 139.4612292], [35.3485509, 139.4567082], [35.3482525, 139.4555724], [35.3480722, 139.4547022], [35.3480142, 139.4540636], [35.3478871, 139.453008], [35.3475079, 139.4514273], [35.3471945, 139.4507645], [35.346526, 139.4496987], [35.3462907, 139.4493351], [35.3458007, 139.4485735], [35.3457478, 139.4484819], [35.345564, 139.4481929], [35.345476, 139.4480427], [35.3448063, 139.4468434], [35.3446687, 139.4465174], [35.3444936, 139.4460035], [35.3443234, 139.4453664], [35.3441439, 139.4443112], [35.3440856, 139.4433998], [35.344083, 139.4432889], [35.3439109, 139.4423682], [35.3435147, 139.4411], [35.3433053, 139.440569], [35.3428131, 139.4396497], [35.3425444, 139.4392824], [35.3423555, 139.4390499], [35.3419127, 139.4385282], [35.3414402, 139.4378689], [35.3412708, 139.4376269], [35.339703, 139.4355045], [35.3394543, 139.4351633], [35.3394317, 139.435131], [35.3387791, 139.4342394], [35.3383386, 139.4335542], [35.3379207, 139.4329121], [35.3377898, 139.4326969], [35.3374439, 139.4320752], [35.3372648, 139.4313266], [35.3370404, 139.4289974], [35.3360413, 139.4283629], [35.3356247, 139.428297], [35.3353396, 139.4276192], [35.3344092, 139.4271455], [35.3340979, 139.4269766], [35.3336612, 139.4267426], [35.3328494, 139.4264651], [35.3329563, 139.4242748], [35.332957, 139.4238091], [35.3329576, 139.4230997], [35.3329571, 139.4225532], [35.3329506, 139.4220154], [35.332914, 139.4215416], [35.3328792, 139.4211053], [35.3328547, 139.4207892], [35.3327562, 139.4195384], [35.3327534, 139.4194514], [35.3327355, 139.4187988], [35.3327358, 139.4187482], [35.3325563, 139.4186783], [35.3321645, 139.4183259], [35.3319084, 139.4182268], [35.33159, 139.4180523], [35.33141, 139.4177733], [35.3310396, 139.417396], [35.3308094, 139.4172389], [35.3304765, 139.4169314], [35.3299612, 139.4165925], [35.329711, 139.416371], [35.3287013, 139.4144868], [35.3288805, 139.4144766], [35.3292701, 139.4142623], [35.3287889, 139.413035], [35.3287883, 139.412408], [35.3291995, 139.4125204]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1091,7 +938,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1103,10 +950,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_b6e57c393eeca44f053dd14eabdc1b01.bindTooltip(
+            ant_path_2a618741ab04b79862ada61151d52f9a.bindTooltip(
                 `<div>
                      車両 31 | 停留所 0 → 1
                  </div>`,
@@ -1116,11 +963,11 @@
             );
         
     
-            ant_path_fccfc67c63e8c1a3f5b9539617858134 = L.polyline.antPath(
-              [[35.320876, 139.1039333], [35.3215002, 139.1044], [35.3206656, 139.106186], [35.3202801, 139.1071486], [35.3199413, 139.1081547], [35.3198578, 139.1084223], [35.3193822, 139.1103173], [35.3195907, 139.111097], [35.3195901, 139.1115101], [35.3194822, 139.1118092], [35.3184427, 139.1136239], [35.3178334, 139.1141163], [35.315388, 139.116476], [35.3147332, 139.1170957], [35.3152498, 139.1179907], [35.3156485, 139.118662], [35.3157454, 139.118823], [35.3160091, 139.1192683], [35.3164121, 139.1199493], [35.3166908, 139.1204014], [35.3155012, 139.1210518]],
+            ant_path_2cb350653fbbd3f32a5727edd9bd8f14 = L.polyline.antPath(
+              [[35.3291995, 139.4125204], [35.3287883, 139.412408], [35.3287889, 139.413035], [35.3292701, 139.4142623], [35.3296077, 139.4140959], [35.3299369, 139.4139304], [35.3306844, 139.4135247], [35.3309575, 139.4133201], [35.3315098, 139.4146174], [35.3320571, 139.4146455], [35.3321449, 139.4146588], [35.3322203, 139.4146703], [35.3345775, 139.4149112], [35.3348253, 139.4148369], [35.3352696, 139.4146958], [35.3357104, 139.4145586], [35.3363329, 139.4143591], [35.3366212, 139.4142787], [35.336691, 139.414257], [35.3377511, 139.4139022], [35.3382207, 139.4137443], [35.338921, 139.4135271], [35.3404159, 139.4130402], [35.3406046, 139.4129761], [35.3413943, 139.4127079], [35.3429613, 139.4122064], [35.3436647, 139.4119874], [35.3446546, 139.4116743], [35.345349, 139.4114509], [35.3461804, 139.4111761], [35.3476374, 139.4107279], [35.349284, 139.4102082], [35.3498418, 139.4100061], [35.3500773, 139.4099308], [35.3501248, 139.4099171], [35.3504281, 139.4098336], [35.3504229, 139.4097514], [35.3505835, 139.4093774], [35.3511671, 139.4088321], [35.3525851, 139.4080255], [35.3524326, 139.4074143], [35.3525071, 139.405925]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1131,7 +978,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1143,10 +990,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_fccfc67c63e8c1a3f5b9539617858134.bindTooltip(
+            ant_path_2cb350653fbbd3f32a5727edd9bd8f14.bindTooltip(
                 `<div>
                      車両 31 | 停留所 1 → 2
                  </div>`,
@@ -1156,11 +1003,11 @@
             );
         
     
-            ant_path_967e032b103d4cee0ba6b92735a71907 = L.polyline.antPath(
-              [[35.3155012, 139.1210518], [35.3166908, 139.1204014], [35.3169769, 139.1209049], [35.3149364, 139.1220513], [35.3146837, 139.1215115], [35.3134222, 139.1224234], [35.3125502, 139.123036], [35.3109077, 139.1240422], [35.3106052, 139.1242211], [35.310583, 139.124313], [35.3099679, 139.1250285], [35.3098681, 139.1250239], [35.3088501, 139.1245378], [35.3066941, 139.1239478], [35.3066156, 139.1234996], [35.3058824, 139.1237946], [35.3040511, 139.1245694], [35.3032616, 139.1249199], [35.3030137, 139.1250149], [35.3029479, 139.1250526], [35.3021325, 139.1253892], [35.3016764, 139.1258123], [35.3007373, 139.1267966], [35.3002345, 139.1272639], [35.2991233, 139.1279851], [35.2981607, 139.1288046], [35.2968772, 139.1299036], [35.2957606, 139.1308762], [35.2956731, 139.1309488], [35.2948224, 139.1315055], [35.2943282, 139.1318189], [35.2936885, 139.1322112], [35.2926973, 139.132934], [35.2919381, 139.1334244], [35.2910848, 139.1341416], [35.2903747, 139.1353024], [35.2873225, 139.1376618], [35.2871992, 139.1374754], [35.2834136, 139.1324038], [35.2798119, 139.1306747], [35.2797621, 139.1274209], [35.2784359, 139.1274933], [35.2783176, 139.1290427], [35.2746704, 139.1272857], [35.2751251, 139.1245655], [35.2726949, 139.1225598], [35.2719884, 139.1254209], [35.2673035, 139.1247936], [35.2645407, 139.1255007], [35.2588308, 139.1158623], [35.2585768, 139.1144381], [35.2548031, 139.1097087], [35.2559551, 139.1045973], [35.248897, 139.0579776], [35.2489239, 139.0569521], [35.24893, 139.0558653], [35.2501391, 139.0550301], [35.2501471, 139.055023], [35.2506658, 139.0545079], [35.2510311, 139.0539708], [35.2516894, 139.0530715], [35.2520071, 139.0521297], [35.2516105, 139.0520245], [35.2521576, 139.0512659], [35.2513659, 139.0518021], [35.2495847, 139.0510566], [35.2500346, 139.0504601], [35.2503571, 139.0502745], [35.2501443, 139.0490126], [35.250093, 139.0487467], [35.2499925, 139.0483707], [35.2493987, 139.0467925], [35.249136, 139.0458933], [35.2495543, 139.0456826], [35.2488055, 139.0432746], [35.2513204, 139.0416278], [35.2502391, 139.0398055], [35.2501667, 139.0398505], [35.2486974, 139.0389632]],
+            ant_path_71ba2848951e8b13295ff15220089251 = L.polyline.antPath(
+              [[35.3525071, 139.405925], [35.3527009, 139.405651], [35.3523214, 139.4049198], [35.3525346, 139.4039173], [35.3526645, 139.4035131], [35.3519123, 139.4027783], [35.3516486, 139.4022761], [35.3515596, 139.4020895], [35.351353, 139.4016734], [35.3511681, 139.4014609], [35.3511829, 139.400932], [35.3511894, 139.4002626], [35.3512141, 139.3997292], [35.3512775, 139.3990058], [35.3513491, 139.398204], [35.3514827, 139.3972513], [35.3517188, 139.396569], [35.350764, 139.3966055], [35.3507086, 139.3966211], [35.3506341, 139.3957732], [35.3504799, 139.3948329], [35.3503908, 139.3932041], [35.3506615, 139.3920646], [35.3513158, 139.3861598], [35.3515236, 139.3848189], [35.3517637, 139.3833191], [35.3519288, 139.3822674], [35.352034, 139.3815888], [35.3522796, 139.3800791], [35.3523748, 139.379483], [35.3525018, 139.378836], [35.3525596, 139.3784609], [35.3526864, 139.3776499], [35.352894, 139.3760182], [35.3530009, 139.3751897], [35.354042, 139.3646483], [35.3541433, 139.3637961], [35.3540731, 139.3637843], [35.353959, 139.3636082], [35.3539934, 139.3628254], [35.3538269, 139.3620339], [35.3536314, 139.3614412], [35.3535259, 139.3611884], [35.3531026, 139.3602375], [35.3530751, 139.3597112], [35.3530088, 139.3596254], [35.3525249, 139.3590827], [35.3522223, 139.3589778], [35.351923, 139.3588805], [35.3514769, 139.3586813], [35.351184, 139.3585421], [35.3500144, 139.3579578], [35.3497016, 139.3577819], [35.3488056, 139.3569975], [35.3486224, 139.3567987], [35.3484992, 139.356672], [35.3482908, 139.3564501], [35.3482023, 139.356363], [35.3480715, 139.3562005], [35.3479998, 139.3561227], [35.3478868, 139.356], [35.3468422, 139.3547891], [35.3460713, 139.353861], [35.3458876, 139.3538019], [35.3449379, 139.3534936], [35.3445355, 139.3533614], [35.3444331, 139.3533334], [35.3439882, 139.3532019], [35.343544, 139.3530887], [35.3427424, 139.3528275], [35.342606, 139.3527831], [35.3416515, 139.3524275], [35.3413338, 139.3523268], [35.3408337, 139.3521487], [35.3399378, 139.3518077], [35.3399155, 139.3517949]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1171,7 +1018,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1183,10 +1030,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_967e032b103d4cee0ba6b92735a71907.bindTooltip(
+            ant_path_71ba2848951e8b13295ff15220089251.bindTooltip(
                 `<div>
                      車両 31 | 停留所 2 → 3
                  </div>`,
@@ -1196,11 +1043,11 @@
             );
         
     
-            ant_path_dde2ccda21d62997f51bbd317cd6537a = L.polyline.antPath(
-              [[35.2486974, 139.0389632], [35.2501667, 139.0398505], [35.2502391, 139.0398055], [35.2513204, 139.0416278], [35.2488055, 139.0432746], [35.2495543, 139.0456826], [35.249136, 139.0458933], [35.2493987, 139.0467925], [35.2499925, 139.0483707], [35.250093, 139.0487467], [35.2501443, 139.0490126], [35.2503571, 139.0502745], [35.2500346, 139.0504601], [35.2495847, 139.0510566], [35.2513659, 139.0518021], [35.2506543, 139.0522052], [35.2452386, 139.0571031], [35.2449632, 139.0577359], [35.2449449, 139.0593051], [35.2436413, 139.0613381], [35.2431419, 139.0622172], [35.242724, 139.0629769], [35.2385028, 139.0714496], [35.2383722, 139.0724692], [35.2380865, 139.0730905], [35.2374213, 139.07333], [35.237336, 139.0742002], [35.2350577, 139.076322], [35.2347088, 139.0805406], [35.2323629, 139.0914562], [35.2320936, 139.0991625], [35.2319003, 139.1000792], [35.2316474, 139.1006448], [35.2316475, 139.1008201], [35.2318941, 139.1020788], [35.2320695, 139.1023686], [35.2323914, 139.1028355], [35.2326437, 139.1031755], [35.2337095, 139.1050143], [35.2337719, 139.1088294], [35.2339007, 139.1114355], [35.2341247, 139.1122029], [35.2349783, 139.1138561], [35.2352522, 139.114325], [35.2368524, 139.1157415], [35.2370271, 139.1159186], [35.2373322, 139.1163564], [35.238201, 139.1175562], [35.2383238, 139.117722], [35.2390632, 139.1186909], [35.2409981, 139.1220124], [35.2410395, 139.1220833], [35.2419544, 139.1235767], [35.2423297, 139.1242053], [35.2433926, 139.1260427], [35.2439455, 139.1269981], [35.2443986, 139.1277442], [35.2446698, 139.128232], [35.2448276, 139.1285095], [35.2453755, 139.1294378], [35.2463753, 139.1311382], [35.2452651, 139.1319635], [35.2450196, 139.1322763], [35.2448118, 139.1335972], [35.2447787, 139.1339361], [35.2447371, 139.1343836], [35.2446171, 139.1353964], [35.2445673, 139.1357397], [35.2445227, 139.1360104], [35.2443454, 139.13689], [35.2440763, 139.1382449], [35.2438099, 139.1395848], [35.24363, 139.1404644], [35.2433457, 139.1412343], [35.2432292, 139.1415337], [35.2431389, 139.1417512], [35.2430781, 139.1419], [35.2428064, 139.1425699], [35.2423489, 139.1437009], [35.2420561, 139.1444234], [35.2419033, 139.1447997], [35.2418847, 139.1448378], [35.2417004, 139.1447073], [35.2416515, 139.1446707], [35.2405707, 139.1448208], [35.240233, 139.1448182], [35.2401585, 139.1447774], [35.239255, 139.1444769], [35.2388149, 139.1444196], [35.2369923, 139.143864], [35.236859, 139.1443659], [35.2366216, 139.1451462], [35.2362244, 139.1447702], [35.2333273, 139.1427855], [35.2328898, 139.142909], [35.2325543, 139.1427747], [35.2275471, 139.1424348], [35.2273007, 139.1423477], [35.2266484, 139.1420208], [35.2251089, 139.1415372], [35.2242076, 139.1416354], [35.2234658, 139.1418322], [35.2170548, 139.1420698], [35.2161159, 139.141518], [35.2087522, 139.141422], [35.2049923, 139.140631], [35.2027122, 139.1397786], [35.2004243, 139.1381515], [35.1939455, 139.1374338], [35.1936011, 139.1373523], [35.192729, 139.1370887], [35.1907954, 139.1380282], [35.1904888, 139.1386248], [35.1847196, 139.1362912], [35.1743684, 139.1411133], [35.1724385, 139.142927], [35.1715741, 139.1430264], [35.1704161, 139.142964], [35.1600533, 139.1437063], [35.1599162, 139.1437661], [35.150546, 139.1295829], [35.1462971, 139.1152601], [35.1459855, 139.1149034], [35.1464317, 139.1144161], [35.1464337, 139.1137973], [35.1466377, 139.1136446], [35.1472759, 139.1133728], [35.1471226, 139.1128226], [35.1471488, 139.1119333]],
+            ant_path_69f0aee5a0955a3cbdb28321fbc56ada = L.polyline.antPath(
+              [[35.3399155, 139.3517949], [35.3399085, 139.3505062], [35.3408963, 139.350441], [35.341005, 139.349445], [35.3416201, 139.3493368], [35.3416067, 139.3491739], [35.3415616, 139.3486242], [35.3415202, 139.3481201], [35.3422697, 139.3479758], [35.3429867, 139.3478338], [35.3438283, 139.3476567], [35.3446986, 139.3474763], [35.3455455, 139.3473008], [35.3459682, 139.3472132], [35.3464042, 139.3471229], [35.3463936, 139.347058], [35.3460187, 139.3443794], [35.3456204, 139.3414101], [35.3454758, 139.3403176], [35.3452912, 139.3388779], [35.3451692, 139.3380414], [35.3448359, 139.3368135], [35.3447333, 139.3364414], [35.3444641, 139.3354657], [35.3441561, 139.3343551], [35.344837, 139.3340291], [35.3448468, 139.3340244], [35.3454121, 139.3337606], [35.3463043, 139.333337], [35.3470464, 139.3330003], [35.3478307, 139.3326542], [35.3486864, 139.332251], [35.3494811, 139.3318562], [35.349776, 139.3316743], [35.3502544, 139.3313267], [35.3502862, 139.3314672], [35.3510782, 139.3311131]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1211,7 +1058,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1223,10 +1070,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_dde2ccda21d62997f51bbd317cd6537a.bindTooltip(
+            ant_path_69f0aee5a0955a3cbdb28321fbc56ada.bindTooltip(
                 `<div>
                      車両 31 | 停留所 3 → 4
                  </div>`,
@@ -1236,11 +1083,11 @@
             );
         
     
-            ant_path_cdc32aed329dcea789f1f9f6d693080f = L.polyline.antPath(
-              [[35.1471488, 139.1119333], [35.1471226, 139.1128226], [35.1472759, 139.1133728], [35.1474216, 139.1137103], [35.1475225, 139.113973], [35.1475397, 139.1140177], [35.1477716, 139.1145477], [35.1480043, 139.1149429], [35.1480185, 139.1152424], [35.1476109, 139.1152287], [35.1476475, 139.1154417], [35.1474323, 139.1160149], [35.1471647, 139.1166174], [35.1476407, 139.1172721], [35.1485924, 139.1184772], [35.1494041, 139.119667], [35.1496131, 139.1199538], [35.1498863, 139.1203253], [35.1499611, 139.1204317], [35.150188, 139.1208293], [35.1503047, 139.1211888], [35.1507275, 139.1225132], [35.1516786, 139.1225288], [35.1520164, 139.1243291], [35.1520621, 139.1245327], [35.1522094, 139.1252288], [35.1522575, 139.1254461], [35.1523334, 139.1256997], [35.1524986, 139.1258776], [35.1526974, 139.1259275], [35.1527058, 139.1259616], [35.1535175, 139.1263694], [35.1537755, 139.1265098], [35.1547626, 139.1270726], [35.1551548, 139.1272211], [35.1554095, 139.1282375], [35.1550216, 139.1284429], [35.154973, 139.1284827], [35.1553653, 139.1296039], [35.1553851, 139.1296693], [35.1557955, 139.1310997], [35.1560543, 139.1319638], [35.1564336, 139.1326616], [35.1564517, 139.1326882], [35.156513, 139.1327847], [35.155915, 139.1341593], [35.1557741, 139.1346957], [35.155538, 139.1356271], [35.1559006, 139.1378416], [35.1558715, 139.137878], [35.1525483, 139.1376754]],
+            ant_path_8026f0660612c87a573d8e01efc3fddb = L.polyline.antPath(
+              [[35.3510782, 139.3311131], [35.3509965, 139.3307828], [35.3507043, 139.3298155], [35.3512417, 139.3294522], [35.3516834, 139.3291114], [35.351698, 139.3290985], [35.3512782, 139.3279216], [35.3512898, 139.3266026], [35.3512943, 139.3258962], [35.3512873, 139.3254145], [35.3512477, 139.324701], [35.3508734, 139.3244098], [35.3506223, 139.323454], [35.3507554, 139.3226938], [35.3509577, 139.322283], [35.3510759, 139.3220651], [35.3510089, 139.3213667], [35.3509452, 139.3203576], [35.3510184, 139.320195], [35.35097, 139.3189071], [35.3509672, 139.3187801], [35.3512402, 139.3176121], [35.3516361, 139.316588], [35.3520458, 139.3155282], [35.3526967, 139.3138211], [35.3536724, 139.3113213], [35.3541049, 139.3102289], [35.3554291, 139.3092548], [35.3569268, 139.3048582], [35.3577801, 139.3038816], [35.3584454, 139.3032785], [35.3584774, 139.3032405], [35.3586192, 139.3030169], [35.3587557, 139.3026156], [35.3587887, 139.3024545], [35.3588016, 139.3023284], [35.3588281, 139.3020629], [35.3588581, 139.3018033], [35.3590326, 139.3005432], [35.3593004, 139.2991012], [35.3595051, 139.2980185], [35.3596297, 139.2969805], [35.3597212, 139.295504], [35.3593629, 139.2939206], [35.3592618, 139.2936425], [35.3591728, 139.2931985], [35.3591506, 139.2922767], [35.3591562, 139.2921137], [35.3591964, 139.2917059], [35.3592317, 139.2911249], [35.3592302, 139.2907501], [35.3592711, 139.2891448], [35.3592781, 139.2887144], [35.3592691, 139.2883045], [35.3592673, 139.2877025], [35.3592905, 139.287379], [35.3597302, 139.2864811], [35.3592484, 139.2819444], [35.3588712, 139.279552], [35.3588425, 139.2793084], [35.3586953, 139.2781518], [35.3584394, 139.2773489], [35.3581939, 139.2765952], [35.3580241, 139.2759345], [35.3579893, 139.2757805], [35.3576597, 139.2743856], [35.3576379, 139.2743273], [35.357161, 139.2732176], [35.3562719, 139.2715076], [35.3561927, 139.269934], [35.356759, 139.2681951], [35.3569508, 139.2671001], [35.3573033, 139.2650473], [35.3577316, 139.2633314], [35.3577824, 139.263109], [35.3575367, 139.2604169], [35.3580302, 139.2537544], [35.3587336, 139.2518379], [35.3603503, 139.2501955], [35.3598046, 139.2490407], [35.3594602, 139.2481773], [35.3590507, 139.2467712], [35.3586222, 139.2458101], [35.3574785, 139.2434521], [35.3569999, 139.2438205], [35.3561904, 139.2425803], [35.3540412, 139.239118], [35.352454, 139.2360553], [35.3503363, 139.2353873], [35.3503606, 139.2352953], [35.3504463, 139.2330635], [35.3494509, 139.2301305], [35.348524, 139.2274227], [35.3484019, 139.2266806], [35.3481897, 139.2254314], [35.3476161, 139.2227343], [35.3465444, 139.2217695], [35.344644, 139.2219343], [35.3423993, 139.2217886], [35.3413454, 139.2219361], [35.3380572, 139.2226449], [35.3370933, 139.2221773], [35.3367907, 139.2217871], [35.3361255, 139.2197331], [35.3352094, 139.2194658], [35.3319827, 139.2193395], [35.331481, 139.2183626], [35.3304969, 139.2185267]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1251,7 +1098,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1263,10 +1110,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_cdc32aed329dcea789f1f9f6d693080f.bindTooltip(
+            ant_path_8026f0660612c87a573d8e01efc3fddb.bindTooltip(
                 `<div>
                      車両 31 | 停留所 4 → 5
                  </div>`,
@@ -1276,11 +1123,11 @@
             );
         
     
-            ant_path_f30a8bb98bfcc80daf41ed0e855d5880 = L.polyline.antPath(
-              [[35.1525483, 139.1376754], [35.1558715, 139.137878], [35.1555489, 139.1393191], [35.1555834, 139.1396478], [35.1562883, 139.1406501], [35.1565094, 139.1413421], [35.1565362, 139.1415769], [35.1578586, 139.1433304], [35.1600533, 139.1437063], [35.1704161, 139.142964], [35.1720466, 139.1429502], [35.1724385, 139.142927], [35.1743684, 139.1411133], [35.1847196, 139.1362912], [35.1904888, 139.1386248], [35.1907954, 139.1380282], [35.192729, 139.1370887], [35.1936011, 139.1373523], [35.1939455, 139.1374338], [35.2004243, 139.1381515], [35.2027122, 139.1397786], [35.2049923, 139.140631], [35.2087522, 139.141422], [35.2161159, 139.141518], [35.2170548, 139.1420698], [35.2234658, 139.1418322], [35.2242076, 139.1416354], [35.2251089, 139.1415372], [35.2266484, 139.1420208], [35.2273007, 139.1423477], [35.2284376, 139.1423286], [35.2325543, 139.1427747], [35.2328898, 139.142909], [35.2364431, 139.1454595], [35.2370707, 139.1461313], [35.2377243, 139.1466409], [35.2379494, 139.146634], [35.2380645, 139.1466043], [35.2386589, 139.1462444], [35.2388882, 139.1461002], [35.2392377, 139.1459318], [35.2396251, 139.1458498], [35.2400434, 139.1458628], [35.2404879, 139.1460112], [35.2412834, 139.1463613], [35.2413188, 139.1463817], [35.2418278, 139.1466819], [35.2432291, 139.1475516], [35.2433459, 139.1476217], [35.2436423, 139.147802], [35.2438231, 139.1479181], [35.2441229, 139.1481028], [35.2447837, 139.1485046], [35.2450172, 139.1486356], [35.2456365, 139.1489833], [35.2465471, 139.1495184], [35.2473057, 139.1500379], [35.252564, 139.1534351], [35.253345, 139.1546435], [35.2532798, 139.1551034], [35.2530038, 139.1555669], [35.252798, 139.1559124], [35.2524646, 139.1564403], [35.2522649, 139.1567518], [35.2521869, 139.1571429], [35.2521777, 139.1572095], [35.2521167, 139.1575831], [35.2521167, 139.1592737], [35.2522895, 139.1592732], [35.2527165, 139.1592635], [35.2527231, 139.1587693]],
+            ant_path_448759f5bbba5d811303800d91c5835c = L.polyline.antPath(
+              [[35.3304969, 139.2185267], [35.3304677, 139.2178456], [35.3311687, 139.2177144], [35.3317145, 139.2173304], [35.3320331, 139.2157704], [35.3318024, 139.2140218], [35.3316272, 139.2077667], [35.3318974, 139.2066817], [35.3324969, 139.2051438], [35.3343039, 139.2003386], [35.3372113, 139.1977798], [35.3381873, 139.1966839], [35.3382026, 139.1966668], [35.3408931, 139.1944781], [35.3410338, 139.1944625], [35.3417626, 139.1942592], [35.3422735, 139.1937274], [35.3425638, 139.1926298], [35.3417129, 139.1849338], [35.3393773, 139.1813615], [35.3392332, 139.1806584], [35.3392596, 139.1791071], [35.3400957, 139.1774903], [35.3400189, 139.1760424], [35.3403624, 139.1730685], [35.3403988, 139.1716695], [35.340665, 139.1629526], [35.341007, 139.1613353], [35.3426489, 139.1583682], [35.3455606, 139.1547932], [35.346393, 139.1540096], [35.3472197, 139.1530166], [35.3478672, 139.1527897], [35.3480511, 139.1513121], [35.3480098, 139.15127], [35.3478674, 139.1511076], [35.3471074, 139.1502254], [35.3474393, 139.1493476], [35.347675, 139.1482797], [35.3476916, 139.1481992], [35.3479376, 139.1483092], [35.3481408, 139.1481522], [35.3481952, 139.1480648], [35.3485538, 139.1439545], [35.3488434, 139.1428555], [35.3490414, 139.1409229], [35.348991, 139.1403239], [35.3505608, 139.131882], [35.3513919, 139.1249451], [35.3514569, 139.124637], [35.3516069, 139.1240612], [35.3521777, 139.1220325], [35.3525787, 139.1206945], [35.3528784, 139.1196454], [35.3540752, 139.1155185], [35.3542212, 139.1149953], [35.3543516, 139.1145281], [35.3549138, 139.1125921], [35.3549605, 139.1124381], [35.3547679, 139.1118957], [35.3562925, 139.1089283], [35.3559136, 139.1084444], [35.3563639, 139.1077278], [35.356378, 139.1077101], [35.3570921, 139.107039], [35.3571317, 139.107002], [35.3572535, 139.106858], [35.357437, 139.1066676], [35.3575357, 139.1065653], [35.3573261, 139.1063045], [35.3582126, 139.1055131], [35.3584184, 139.1053687], [35.3594554, 139.1046425], [35.35927, 139.1040093], [35.3591637, 139.1037989], [35.3595565, 139.1034964]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1291,7 +1138,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1303,10 +1150,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_f30a8bb98bfcc80daf41ed0e855d5880.bindTooltip(
+            ant_path_448759f5bbba5d811303800d91c5835c.bindTooltip(
                 `<div>
                      車両 31 | 停留所 5 → 6
                  </div>`,
@@ -1316,11 +1163,11 @@
             );
         
     
-            ant_path_c690d5dc0656a61bbc6c858c0b19ae02 = L.polyline.antPath(
-              [[35.2527231, 139.1587693], [35.2527165, 139.1592635], [35.2537964, 139.1587874], [35.2539785, 139.1586305], [35.2539939, 139.1597654], [35.2558558, 139.1597742], [35.2562167, 139.1597744], [35.2573438, 139.1597825], [35.2576009, 139.1597879], [35.2585619, 139.1597947], [35.2585872, 139.1597939], [35.2598057, 139.1597568], [35.2598835, 139.1597429], [35.2599652, 139.1597235], [35.2604546, 139.1596075], [35.2606159, 139.1602699], [35.2615356, 139.1603086], [35.2620736, 139.1603296], [35.2621605, 139.1603316], [35.262263, 139.1603266], [35.2629486, 139.1603436], [35.2634239, 139.1602327], [35.2637833, 139.1601], [35.2642266, 139.1598119], [35.2655153, 139.1594725], [35.2667055, 139.159317], [35.2670199, 139.1592811], [35.2677617, 139.1591593], [35.2683069, 139.1590771], [35.2694322, 139.1589373], [35.2699769, 139.1588569], [35.271288, 139.1586731], [35.27152, 139.1586405], [35.2715921, 139.1586519], [35.2719719, 139.159467], [35.2733522, 139.1618206], [35.2734014, 139.1618645], [35.2758644, 139.1647685], [35.2763907, 139.1653829], [35.2763288, 139.1654718], [35.2764331, 139.1674974], [35.276492, 139.1685807]],
+            ant_path_24ae4747045d2178e4c2193ae74602a2 = L.polyline.antPath(
+              [[35.3595565, 139.1034964], [35.3599043, 139.102533], [35.362525, 139.0998564], [35.3629408, 139.1003357], [35.3636827, 139.1002416], [35.3641995, 139.0985353], [35.364312, 139.0981314], [35.3643919, 139.0978059], [35.3643172, 139.0973615], [35.3636455, 139.0942329], [35.363561, 139.0938096], [35.3630635, 139.0910957], [35.362686, 139.0893251], [35.3625525, 139.088703], [35.3618835, 139.0843884], [35.3615902, 139.0823338], [35.3614469, 139.0814075]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1331,7 +1178,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1343,10 +1190,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_c690d5dc0656a61bbc6c858c0b19ae02.bindTooltip(
+            ant_path_24ae4747045d2178e4c2193ae74602a2.bindTooltip(
                 `<div>
                      車両 31 | 停留所 6 → 7
                  </div>`,
@@ -1356,11 +1203,11 @@
             );
         
     
-            ant_path_c54097355f261008406ced8141fd2d7b = L.polyline.antPath(
-              [[35.276492, 139.1685807], [35.2764331, 139.1674974], [35.2782734, 139.1676063], [35.2783898, 139.167733], [35.2788005, 139.1682167], [35.2798983, 139.1693498], [35.2809338, 139.1694576], [35.2818318, 139.1695533], [35.2828208, 139.1696672], [35.2828642, 139.1696737], [35.2838325, 139.1697746], [35.2848603, 139.1698943], [35.284888, 139.1698962], [35.2855252, 139.1699245], [35.2858222, 139.1699049], [35.286099, 139.1698772], [35.2863649, 139.1697926], [35.286638, 139.1696756], [35.2866818, 139.1696564], [35.2871459, 139.1694072], [35.2872758, 139.1693292], [35.28881, 139.1697494], [35.2897082, 139.1699595], [35.2898025, 139.169992], [35.2907405, 139.1702535], [35.2908314, 139.1704804], [35.2913495, 139.1705893], [35.2921896, 139.1706744], [35.2928649, 139.1709774], [35.2935646, 139.1713333], [35.2937288, 139.1728244], [35.2937239, 139.1728797], [35.2937243, 139.1732765], [35.2937542, 139.1743072], [35.2937649, 139.1746691], [35.2938098, 139.1759742], [35.2947382, 139.1775774], [35.2958079, 139.1801798], [35.2958201, 139.1801928], [35.2961569, 139.1805297], [35.2964568, 139.1808064], [35.296713, 139.1824689], [35.2968771, 139.1829885], [35.2971184, 139.1838382], [35.2972348, 139.184548], [35.2972931, 139.1849746], [35.2970433, 139.1850206], [35.2971585, 139.1856503], [35.2972176, 139.1859467], [35.2972559, 139.1862392], [35.2972851, 139.1867104], [35.2973209, 139.1870353], [35.2973622, 139.1872431], [35.2975124, 139.1878118], [35.2976797, 139.1880667], [35.2977174, 139.1882411], [35.2980565, 139.1881441], [35.2986387, 139.1888437], [35.2989807, 139.1892324], [35.2996701, 139.1892919], [35.3003536, 139.1889327], [35.3011097, 139.1888454]],
+            ant_path_2c64f24f967c363486d29a2b153fe6cc = L.polyline.antPath(
+              [[35.3614469, 139.0814075], [35.3615044, 139.084376], [35.3618835, 139.0843884], [35.3625525, 139.088703], [35.362686, 139.0893251], [35.3630635, 139.0910957], [35.363561, 139.0938096], [35.3636455, 139.0942329], [35.3636458, 139.0974301], [35.3631957, 139.1007361], [35.3608267, 139.1038813], [35.3589354, 139.106301], [35.3556029, 139.110758], [35.3549605, 139.1124381], [35.3549138, 139.1125921], [35.3543516, 139.1145281], [35.3542212, 139.1149953], [35.3540752, 139.1155185], [35.3528784, 139.1196454], [35.3525787, 139.1206945], [35.3521777, 139.1220325], [35.3516069, 139.1240612], [35.3515842, 139.1249279], [35.3516729, 139.12563], [35.3514221, 139.1268247], [35.3508176, 139.127972], [35.3503248, 139.1291907], [35.3502207, 139.1295014], [35.3501123, 139.1302146], [35.3496014, 139.1318336], [35.348956, 139.1333766], [35.3488171, 139.1339735], [35.3485878, 139.135137], [35.3483098, 139.1361963], [35.3481538, 139.136569], [35.3476482, 139.1377576], [35.3476212, 139.1378668], [35.3476032, 139.1380839], [35.3475639, 139.1385143], [35.3475497, 139.1386311], [35.3474762, 139.1393751], [35.3474785, 139.1395875], [35.3474843, 139.1401057], [35.3473436, 139.1409807], [35.3473329, 139.141515], [35.3473641, 139.1424883], [35.3475854, 139.1440686], [35.3475966, 139.1441411], [35.3475819, 139.1455603], [35.3476966, 139.1479299], [35.3476916, 139.1481992], [35.347675, 139.1482797], [35.3474393, 139.1493476], [35.3471074, 139.1502254], [35.3478674, 139.1511076], [35.3480098, 139.15127], [35.3480511, 139.1513121], [35.3478672, 139.1527897], [35.3472197, 139.1530166], [35.346393, 139.1540096], [35.3455606, 139.1547932], [35.3455579, 139.1589795], [35.3444759, 139.160156], [35.3486535, 139.1674294], [35.3492136, 139.16948], [35.3517384, 139.174295], [35.3562132, 139.1758665], [35.3579311, 139.1768035], [35.3599781, 139.1790044], [35.3631568, 139.1804675], [35.3636276, 139.1815222], [35.3636607, 139.1815581], [35.3644564, 139.1823963], [35.3652258, 139.1829547], [35.365932, 139.1830308], [35.3655806, 139.1838111], [35.3658864, 139.1849714], [35.3655325, 139.1862544], [35.3661499, 139.1865934], [35.3660387, 139.1869486], [35.3661831, 139.1870165], [35.3667149, 139.1892418], [35.3667803, 139.1903401], [35.3668048, 139.1908674], [35.3668503, 139.1923799], [35.3668971, 139.1933624], [35.3670204, 139.1938101], [35.3674022, 139.1960845], [35.3676006, 139.1967176], [35.3677448, 139.1971869], [35.3680218, 139.1983215], [35.3685046, 139.1995827], [35.3686464, 139.2001165], [35.3687401, 139.2004661], [35.3688161, 139.2007009], [35.3693435, 139.2011931], [35.3693887, 139.2015355], [35.3699672, 139.2014765], [35.3699965, 139.2014783], [35.3701948, 139.2014663], [35.3703355, 139.2013745], [35.37092, 139.2011508], [35.3709143, 139.2029838], [35.3709944, 139.2037874], [35.3710331, 139.2040132], [35.3712081, 139.2047729], [35.3714814, 139.2054766], [35.3721769, 139.2063673], [35.3722725, 139.2064777], [35.3728789, 139.2078197], [35.3729881, 139.2083423], [35.3730462, 139.2106998], [35.3730092, 139.2110141], [35.3735739, 139.2109758], [35.3735951, 139.211335], [35.3736211, 139.211743]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1371,7 +1218,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1383,10 +1230,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_c54097355f261008406ced8141fd2d7b.bindTooltip(
+            ant_path_2c64f24f967c363486d29a2b153fe6cc.bindTooltip(
                 `<div>
                      車両 31 | 停留所 7 → 8
                  </div>`,
@@ -1396,11 +1243,11 @@
             );
         
     
-            ant_path_10ec3d2551e3b9068590520f14524dc1 = L.polyline.antPath(
-              [[35.3011097, 139.1888454], [35.3013377, 139.1897153], [35.3019252, 139.1900216], [35.3018918, 139.1901719], [35.3033103, 139.1900502], [35.3035054, 139.1900552], [35.3047375, 139.1900656], [35.3066567, 139.191036], [35.3065693, 139.1914879], [35.3075119, 139.1906025], [35.3077868, 139.1906794], [35.308158, 139.1906122], [35.3125664, 139.1925192], [35.3109063, 139.1914724]],
+            ant_path_9b77f88b574731bd11fff362a71bc790 = L.polyline.antPath(
+              [[35.3736211, 139.211743], [35.3734561, 139.211761], [35.3732982, 139.2122379], [35.3729351, 139.2120562], [35.3728846, 139.2128016], [35.3727545, 139.2146839], [35.3727477, 139.2147808], [35.3727272, 139.2150755], [35.3727834, 139.2159911], [35.3727852, 139.2160099], [35.3729412, 139.2177292], [35.3731457, 139.2186509], [35.3731173, 139.2191562], [35.3729374, 139.220253], [35.3728552, 139.2207866], [35.3728136, 139.2210563], [35.3724322, 139.2234001], [35.3723493, 139.2240932], [35.372429, 139.2242686], [35.3726848, 139.2246469], [35.3733289, 139.2256793], [35.3733714, 139.2258151], [35.3729256, 139.2264965], [35.3726213, 139.2270167], [35.3720539, 139.2277935], [35.3715038, 139.2288317], [35.3709642, 139.2303133], [35.3709101, 139.2303796], [35.3707715, 139.2306194], [35.3701165, 139.2321738], [35.3694216, 139.2339888], [35.369293, 139.234352], [35.3690144, 139.2351892], [35.3688657, 139.2356692], [35.3683005, 139.2376718], [35.3681516, 139.2381965], [35.368032, 139.2386183], [35.3678877, 139.2391223], [35.367691, 139.2410517], [35.3674984, 139.2427809], [35.3668575, 139.2437111], [35.3666466, 139.2453745], [35.3654473, 139.2472108], [35.3651915, 139.2494629], [35.364875, 139.2517581], [35.3639672, 139.2524862], [35.3638379, 139.2528445], [35.3633099, 139.2546785], [35.3633229, 139.2551466], [35.3632814, 139.2550935], [35.363322, 139.2564606], [35.3633235, 139.2566062], [35.3625609, 139.2604621], [35.3624412, 139.2610252], [35.3623501, 139.2610502], [35.3623067, 139.2610646], [35.3621112, 139.2623138], [35.3620577, 139.2626436], [35.3619428, 139.2639014], [35.3618239, 139.2646964], [35.3613796, 139.267029], [35.3611505, 139.2684935], [35.3611414, 139.2685587], [35.3617788, 139.2688362], [35.3616121, 139.2691915], [35.3617563, 139.2693009], [35.3622333, 139.2696631]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1411,7 +1258,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1423,10 +1270,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_10ec3d2551e3b9068590520f14524dc1.bindTooltip(
+            ant_path_9b77f88b574731bd11fff362a71bc790.bindTooltip(
                 `<div>
                      車両 31 | 停留所 8 → 9
                  </div>`,
@@ -1436,11 +1283,11 @@
             );
         
     
-            ant_path_d030692642e7d844c732649ea18f79f1 = L.polyline.antPath(
-              [[35.3109063, 139.1914724], [35.3125664, 139.1925192], [35.308158, 139.1906122], [35.3077868, 139.1906794], [35.3075119, 139.1906025], [35.3065693, 139.1914879], [35.306335, 139.1922954], [35.3060437, 139.1928875], [35.30468, 139.1930203], [35.303911, 139.1925638], [35.3030153, 139.1938414], [35.3025435, 139.1938673], [35.3019683, 139.1940604], [35.2952044, 139.2022212], [35.2991798, 139.2095977], [35.304526, 139.2097698], [35.3053944, 139.2116642], [35.3087281, 139.2179822], [35.3091134, 139.2176744], [35.3103496, 139.2189184], [35.3104503, 139.2190614], [35.3112168, 139.2205764], [35.3113029, 139.220786], [35.3160634, 139.2189665], [35.3162351, 139.2188515], [35.316256, 139.2187959], [35.3178167, 139.2189977], [35.3181969, 139.2186753], [35.3191218, 139.2202589], [35.3196365, 139.219755], [35.3212136, 139.2186456], [35.3216807, 139.2184261], [35.3221573, 139.2182378], [35.3225216, 139.2181175], [35.3229225, 139.2180646], [35.3233555, 139.2181658], [35.3238328, 139.2183408], [35.324479, 139.2187631], [35.3267349, 139.2192702], [35.3273768, 139.2189989], [35.3278747, 139.2186239], [35.3287735, 139.2179223], [35.3304677, 139.2178456], [35.3304969, 139.2185267]],
+            ant_path_b99085a0286234c9c9185c3b8da481a0 = L.polyline.antPath(
+              [[35.3622333, 139.2696631], [35.3617563, 139.2693009], [35.3616121, 139.2691915], [35.3617788, 139.2688362], [35.3624184, 139.2689616], [35.362922, 139.268965], [35.3636603, 139.2689699], [35.3642565, 139.2705765], [35.364474, 139.2708393], [35.3657807, 139.2706737], [35.3658267, 139.2707569], [35.3665954, 139.2704731], [35.3679551, 139.2706758], [35.3686999, 139.2710877], [35.3688586, 139.2711422], [35.3709786, 139.2721971], [35.3715778, 139.2720766], [35.3721692, 139.2729084], [35.3724365, 139.2731136], [35.3727888, 139.2739199], [35.373243, 139.2749885], [35.3736948, 139.2758549], [35.3744803, 139.2761968], [35.3747878, 139.276234], [35.374842, 139.2762436], [35.3753973, 139.2763453], [35.3758252, 139.2764971], [35.3768909, 139.2768626], [35.377806, 139.2771778], [35.378281, 139.2773446], [35.3783501, 139.2770595], [35.3784288, 139.2761883], [35.3790152, 139.2757361], [35.3801587, 139.2767126], [35.3795977, 139.276557]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1451,7 +1298,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1463,10 +1310,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_d030692642e7d844c732649ea18f79f1.bindTooltip(
+            ant_path_b99085a0286234c9c9185c3b8da481a0.bindTooltip(
                 `<div>
                      車両 31 | 停留所 9 → 10
                  </div>`,
@@ -1476,11 +1323,11 @@
             );
         
     
-            ant_path_4094f6df52c971b3064942c942717890 = L.polyline.antPath(
-              [[35.3304969, 139.2185267], [35.331481, 139.2183626], [35.3319827, 139.2193395], [35.3352094, 139.2194658], [35.3361255, 139.2197331], [35.3367907, 139.2217871], [35.3370933, 139.2221773], [35.3380572, 139.2226449], [35.3413454, 139.2219361], [35.3423993, 139.2217886], [35.344644, 139.2219343], [35.3465444, 139.2217695], [35.3476161, 139.2227343], [35.3481897, 139.2254314], [35.3484019, 139.2266806], [35.348524, 139.2274227], [35.3494509, 139.2301305], [35.3504463, 139.2330635], [35.3503606, 139.2352953], [35.3535119, 139.2362506], [35.3538449, 139.236331], [35.3538313, 139.2364247], [35.352454, 139.2360553], [35.3540412, 139.239118], [35.3561904, 139.2425803], [35.3569999, 139.2438205], [35.3574785, 139.2434521], [35.3586222, 139.2458101], [35.3590507, 139.2467712], [35.3594602, 139.2481773], [35.3598046, 139.2490407], [35.3603503, 139.2501955], [35.3605154, 139.2505605], [35.3608681, 139.2513058], [35.3616777, 139.25262], [35.3611896, 139.2530332], [35.3614624, 139.253632], [35.361361, 139.2545742], [35.3613411, 139.2551313], [35.3612916, 139.2555202], [35.3612586, 139.2557348], [35.3612402, 139.2571021], [35.3614134, 139.257701], [35.3616791, 139.2593194], [35.3619308, 139.2605311], [35.3623501, 139.2610502], [35.3623067, 139.2610646], [35.3621112, 139.2623138], [35.3620577, 139.2626436], [35.3619428, 139.2639014], [35.3618239, 139.2646964], [35.3613796, 139.267029], [35.3611505, 139.2684935], [35.3611414, 139.2685587], [35.3617788, 139.2688362], [35.3616121, 139.2691915], [35.3617563, 139.2693009], [35.3622333, 139.2696631]],
+            ant_path_34e65800ce9cd228a0a4d773ae4e6893 = L.polyline.antPath(
+              [[35.3795977, 139.276557], [35.3801587, 139.2767126], [35.3798188, 139.2778688], [35.3800394, 139.2779375], [35.3803123, 139.2780211], [35.3809107, 139.2782458], [35.3810966, 139.2783079], [35.3813834, 139.2784], [35.3813291, 139.2778909], [35.3812923, 139.2776219], [35.3812147, 139.2770491]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1491,7 +1338,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1503,10 +1350,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_4094f6df52c971b3064942c942717890.bindTooltip(
+            ant_path_34e65800ce9cd228a0a4d773ae4e6893.bindTooltip(
                 `<div>
                      車両 31 | 停留所 10 → 11
                  </div>`,
@@ -1516,11 +1363,11 @@
             );
         
     
-            ant_path_d16e1355cf7bc361dba181913ed6c8b9 = L.polyline.antPath(
-              [[35.3622333, 139.2696631], [35.3617563, 139.2693009], [35.3616121, 139.2691915], [35.3617788, 139.2688362], [35.3624184, 139.2689616], [35.362922, 139.268965], [35.3636603, 139.2689699], [35.3642565, 139.2705765], [35.364474, 139.2708393], [35.3657807, 139.2706737], [35.3658267, 139.2707569], [35.3665954, 139.2704731], [35.3679551, 139.2706758], [35.3686999, 139.2710877], [35.3688586, 139.2711422], [35.3709786, 139.2721971], [35.3715778, 139.2720766], [35.3721692, 139.2729084], [35.3724365, 139.2731136], [35.3727888, 139.2739199], [35.373243, 139.2749885], [35.3736948, 139.2758549], [35.3744803, 139.2761968], [35.3747878, 139.276234], [35.374842, 139.2762436], [35.3753973, 139.2763453], [35.3758252, 139.2764971], [35.3768909, 139.2768626], [35.377806, 139.2771778], [35.378281, 139.2773446], [35.3783501, 139.2770595], [35.3784288, 139.2761883], [35.3790152, 139.2757361], [35.3801587, 139.2767126], [35.3795977, 139.276557]],
+            ant_path_04a59439b00c742be2a436f93ed15c32 = L.polyline.antPath(
+              [[35.3812147, 139.2770491], [35.3812923, 139.2776219], [35.3813291, 139.2778909], [35.3813834, 139.2784], [35.3817576, 139.2785411], [35.3824665, 139.2787961], [35.3827396, 139.278888], [35.3838096, 139.2792579], [35.3844869, 139.2794923], [35.3846603, 139.2796613], [35.3858802, 139.2801995], [35.3860035, 139.2802706], [35.3862183, 139.2805017], [35.3862805, 139.2805699], [35.3868772, 139.2808076], [35.3873273, 139.2808326], [35.3876131, 139.280846], [35.3880119, 139.2808646], [35.3884723, 139.2808858], [35.3895125, 139.2809314], [35.3903663, 139.2811707], [35.390454, 139.2812085], [35.3907151, 139.2811866], [35.3912203, 139.2824144], [35.3913325, 139.2826038], [35.3917981, 139.2833807], [35.3923306, 139.2842301], [35.3926035, 139.2846986], [35.3927806, 139.285012], [35.393165, 139.2856838], [35.3935102, 139.2863108], [35.3941759, 139.2875198], [35.3945598, 139.2882318], [35.3950396, 139.2891029], [35.3954271, 139.2898181], [35.3954979, 139.2899477], [35.3960972, 139.2910463], [35.3962366, 139.2913014], [35.3963012, 139.2914183], [35.3968011, 139.2923434], [35.3974007, 139.2934434], [35.3974262, 139.2934903], [35.3978337, 139.2944647], [35.3980716, 139.2953391], [35.3982499, 139.296318], [35.3983159, 139.2966704], [35.3984793, 139.297504], [35.3986107, 139.2980358], [35.3986741, 139.2982655], [35.3988836, 139.2989216], [35.3990952, 139.2995772], [35.3991549, 139.2997512], [35.3992517, 139.3000624], [35.399458, 139.3006748], [35.3995053, 139.300815], [35.3996533, 139.3012601], [35.3997214, 139.3014612], [35.4001434, 139.3027803], [35.4004853, 139.3039004], [35.4007094, 139.3046746], [35.4008246, 139.3050671], [35.4014525, 139.3071187], [35.4016898, 139.3077277], [35.4019744, 139.3084121], [35.4019887, 139.3084497], [35.4021773, 139.3089061], [35.4022857, 139.3091527], [35.4023646, 139.3093467], [35.4030104, 139.3108812], [35.4035533, 139.3121387], [35.4040365, 139.3132882], [35.4044671, 139.3143135], [35.4048703, 139.3152508], [35.4050225, 139.3156109], [35.4057681, 139.317378], [35.4062202, 139.3174121], [35.4062242, 139.3174376], [35.4064746, 139.3177567], [35.406687, 139.3177139], [35.4077772, 139.3179428], [35.4086559, 139.3181276], [35.4088533, 139.3181748], [35.4091215, 139.3182446], [35.409927, 139.3183728], [35.409999, 139.3203511], [35.4103709, 139.3202842], [35.4105597, 139.3212394], [35.4108855, 139.321311], [35.4112048, 139.3213808], [35.4115322, 139.3214584], [35.4114509, 139.3219608], [35.4113924, 139.3223603], [35.4117519, 139.3223392], [35.4125465, 139.3225266], [35.4139714, 139.3236139], [35.4135679, 139.3249981], [35.4135342, 139.3253814], [35.4135149, 139.3257862], [35.4134865, 139.3261764], [35.4134642, 139.3265806], [35.413785, 139.3266189]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1531,7 +1378,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1543,10 +1390,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_d16e1355cf7bc361dba181913ed6c8b9.bindTooltip(
+            ant_path_04a59439b00c742be2a436f93ed15c32.bindTooltip(
                 `<div>
                      車両 31 | 停留所 11 → 12
                  </div>`,
@@ -1556,11 +1403,11 @@
             );
         
     
-            ant_path_65f14fda8cd5ea8e2de6c735d8c23c5e = L.polyline.antPath(
-              [[35.3795977, 139.276557], [35.3801587, 139.2767126], [35.3798188, 139.2778688], [35.3800394, 139.2779375], [35.3803123, 139.2780211], [35.3809107, 139.2782458], [35.3810966, 139.2783079], [35.3813834, 139.2784], [35.3813291, 139.2778909], [35.3812923, 139.2776219], [35.3812147, 139.2770491]],
+            ant_path_a2f31f7c66c42081505e860dad24cf30 = L.polyline.antPath(
+              [[35.413785, 139.3266189], [35.4142257, 139.3266671], [35.4143686, 139.3266801], [35.4150543, 139.3267836], [35.4156423, 139.327581], [35.416074, 139.3282692], [35.4160176, 139.3290853], [35.4163411, 139.329123], [35.4162451, 139.3305701], [35.416565, 139.3306097], [35.4164484, 139.3310173], [35.4163147, 139.3313936], [35.4163937, 139.331848], [35.4167076, 139.3317461], [35.4170044, 139.3316582], [35.417702, 139.3314026], [35.4180719, 139.3312576], [35.4184302, 139.3311181], [35.4189835, 139.3309235], [35.4190307, 139.3305428], [35.419314, 139.3300301], [35.4193902, 139.3299725], [35.4197465, 139.329791], [35.4209451, 139.3297183], [35.4218024, 139.3295724], [35.4221965, 139.3292086], [35.4231551, 139.3293381], [35.4234259, 139.3290593], [35.4236029, 139.3291791], [35.4238513, 139.3293455], [35.4238703, 139.329366], [35.4241404, 139.3295516], [35.4241475, 139.3295596], [35.4244422, 139.3297615], [35.4247123, 139.3299601], [35.424982, 139.3301498], [35.4252513, 139.3303386], [35.4255222, 139.3305308], [35.4258378, 139.3307522], [35.4257552, 139.3309206], [35.4264296, 139.331408], [35.4258578, 139.3324948], [35.425596, 139.3331864], [35.4258, 139.3333574], [35.4259408, 139.3334436], [35.4259643, 139.3333932]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1571,7 +1418,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1583,10 +1430,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_65f14fda8cd5ea8e2de6c735d8c23c5e.bindTooltip(
+            ant_path_a2f31f7c66c42081505e860dad24cf30.bindTooltip(
                 `<div>
                      車両 31 | 停留所 12 → 13
                  </div>`,
@@ -1596,11 +1443,11 @@
             );
         
     
-            ant_path_f6c03d37dd54f221a0d6c28b0ef8bca9 = L.polyline.antPath(
-              [[35.3812147, 139.2770491], [35.3812923, 139.2776219], [35.3813291, 139.2778909], [35.3813834, 139.2784], [35.3810966, 139.2783079], [35.381527, 139.2795655], [35.3815657, 139.2797528], [35.3814172, 139.280643], [35.3813492, 139.2806752], [35.381003, 139.2811798], [35.3807677, 139.28167], [35.3803921, 139.2824524], [35.3800006, 139.2832789], [35.3795892, 139.2841613], [35.3795348, 139.2845195], [35.3795589, 139.2846169], [35.3793418, 139.2889718], [35.3792942, 139.2898053], [35.3792791, 139.2919138], [35.3792311, 139.2944435], [35.3787107, 139.2959518], [35.378894, 139.2988919], [35.3807207, 139.3003156], [35.3828255, 139.301251], [35.3849547, 139.3013558], [35.385047, 139.3030271], [35.389211, 139.3053503], [35.3890901, 139.3068532], [35.3897265, 139.3078691], [35.3899669, 139.3083114], [35.3909765, 139.3092405], [35.3913715, 139.309594], [35.3917403, 139.3098731], [35.3925141, 139.3106501], [35.3927168, 139.311066], [35.3928781, 139.3113549], [35.3932528, 139.3119583], [35.3934373, 139.3119371], [35.3936177, 139.3120265], [35.3936862, 139.3120735], [35.3939351, 139.3123314], [35.3943616, 139.3128645], [35.3946722, 139.31339], [35.3949741, 139.3138729], [35.3952541, 139.3143184]],
+            ant_path_1670d34afffd0d7c4cdb333cf42b8422 = L.polyline.antPath(
+              [[35.4259643, 139.3333932], [35.4259408, 139.3334436], [35.4258, 139.3333574], [35.425596, 139.3331864], [35.4258578, 139.3324948], [35.4264296, 139.331408], [35.4272963, 139.3319424], [35.4276899, 139.3320822], [35.428457, 139.3323508], [35.4293215, 139.3325104], [35.4301666, 139.3324819], [35.430739, 139.3324606], [35.4307673, 139.333701], [35.4307917, 139.3349442], [35.4307898, 139.3350645], [35.4308023, 139.3361762], [35.4316464, 139.336129], [35.4319407, 139.336119]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1611,7 +1458,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1623,10 +1470,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_f6c03d37dd54f221a0d6c28b0ef8bca9.bindTooltip(
+            ant_path_1670d34afffd0d7c4cdb333cf42b8422.bindTooltip(
                 `<div>
                      車両 31 | 停留所 13 → 14
                  </div>`,
@@ -1636,11 +1483,11 @@
             );
         
     
-            ant_path_38edde48ba79dc9072b7839a41de45eb = L.polyline.antPath(
-              [[35.3952541, 139.3143184], [35.3955231, 139.3145983], [35.3963377, 139.3154798], [35.3967007, 139.3152443], [35.3969019, 139.3151113], [35.3972233, 139.314966], [35.3976452, 139.315034], [35.3982699, 139.3151876], [35.3986218, 139.3152152], [35.3989328, 139.315085], [35.3992616, 139.3149007], [35.399574, 139.3147267], [35.3997397, 139.3146327], [35.4002873, 139.3147048], [35.4004172, 139.3147552], [35.4007391, 139.3155788], [35.4008113, 139.3158406], [35.4018515, 139.315773], [35.4026768, 139.3157328], [35.4041632, 139.3156509], [35.4050225, 139.3156109], [35.4057681, 139.317378], [35.4062202, 139.3174121], [35.4062242, 139.3174376], [35.4064746, 139.3177567], [35.406687, 139.3177139], [35.4077772, 139.3179428], [35.4086559, 139.3181276], [35.4088533, 139.3181748], [35.4091215, 139.3182446], [35.409927, 139.3183728], [35.409999, 139.3203511], [35.4103709, 139.3202842], [35.4105597, 139.3212394], [35.4108855, 139.321311], [35.4112048, 139.3213808], [35.4115322, 139.3214584], [35.4114509, 139.3219608], [35.4113924, 139.3223603], [35.4117519, 139.3223392], [35.4125465, 139.3225266], [35.4139714, 139.3236139], [35.4135679, 139.3249981], [35.4135342, 139.3253814], [35.4135149, 139.3257862], [35.4134865, 139.3261764], [35.4134642, 139.3265806], [35.413785, 139.3266189]],
+            ant_path_74b231957eb8984e8348c752cff07dad = L.polyline.antPath(
+              [[35.4319407, 139.336119], [35.431817, 139.3370253], [35.4323676, 139.33715], [35.4329587, 139.3362294], [35.4331436, 139.3360247], [35.4335519, 139.3365798], [35.4341718, 139.3369982], [35.4344601, 139.3371816], [35.4354183, 139.3378214], [35.4360241, 139.3382758], [35.4371091, 139.3398122], [35.4373036, 139.3402141], [35.4373574, 139.3403326], [35.4375171, 139.3406621], [35.4381608, 139.3419854], [35.4386519, 139.3425002], [35.439011, 139.3428085], [35.4390531, 139.3428461], [35.4398371, 139.343495], [35.4400823, 139.3438208], [35.4402846, 139.344328], [35.4403467, 139.3445061], [35.4404943, 139.3449211], [35.4406848, 139.3454647], [35.4408999, 139.3460784], [35.4413686, 139.3472228], [35.4418764, 139.3478398], [35.442537, 139.3483017], [35.4429032, 139.3485159], [35.4431505, 139.3486753], [35.4437267, 139.3491229], [35.4441322, 139.349926], [35.4445579, 139.3510953], [35.4446085, 139.3512637], [35.4446663, 139.3523804], [35.4443247, 139.3541419], [35.444128, 139.3549756], [35.4440579, 139.3553014], [35.4438354, 139.356437], [35.4437767, 139.3572986], [35.4437506, 139.3577987], [35.4437341, 139.3580882], [35.4436703, 139.3590557], [35.4436443, 139.3594845], [35.4435576, 139.3608398], [35.4434952, 139.3618618], [35.4433898, 139.3635074], [35.4434177, 139.3649197], [35.4434987, 139.3662813], [35.4435344, 139.3669778], [35.4435704, 139.3678999], [35.4435949, 139.3687037], [35.443544, 139.369599], [35.4446875, 139.3765705], [35.4445039, 139.3767073], [35.4444951, 139.3773299], [35.4441589, 139.3773994], [35.4438104, 139.3774696], [35.4439115, 139.378185], [35.443071, 139.3782975], [35.4427498, 139.3783588], [35.4427332, 139.3785755], [35.4427368, 139.3787676], [35.4428294, 139.3808903], [35.4428547, 139.3815339], [35.4428589, 139.3816481], [35.4429129, 139.3829308], [35.442953, 139.3841287], [35.4429573, 139.3842233], [35.4430078, 139.3854541], [35.4430531, 139.3865477], [35.4430538, 139.3865694], [35.4430589, 139.3866603], [35.4431045, 139.3879096], [35.4431567, 139.3891398], [35.4432403, 139.3910205], [35.4432813, 139.3919696], [35.4423097, 139.3932434], [35.4408868, 139.3951087], [35.4404542, 139.3956766], [35.4405643, 139.39579], [35.4402717, 139.3966237], [35.440131, 139.3969163], [35.4400782, 139.3972231], [35.4399067, 139.3982238], [35.4398806, 139.398438], [35.4398495, 139.3986944], [35.4398396, 139.3988153], [35.4397729, 139.399325], [35.4397601, 139.3996519], [35.4390515, 139.4001229], [35.4392589, 139.4010095], [35.4386168, 139.4012931], [35.4374707, 139.4022219], [35.4372467, 139.4023728], [35.4364852, 139.4037589], [35.4367976, 139.4039246], [35.436488, 139.404571], [35.4361544, 139.4052632], [35.4359701, 139.4056451], [35.4355093, 139.4066006], [35.4350459, 139.4075753], [35.4344034, 139.408883], [35.43424, 139.409218], [35.4339475, 139.4098563], [35.4336497, 139.4108638], [35.4335155, 139.4120418], [35.433576, 139.4131421], [35.4336826, 139.4139884], [35.4337672, 139.4146245], [35.4339659, 139.4161287], [35.434108, 139.4172309], [35.434196, 139.4182616], [35.4343632, 139.4204122], [35.4343749, 139.4205315], [35.4345474, 139.4217028], [35.4351685, 139.4237832], [35.4355234, 139.4247674], [35.4364613, 139.4273047], [35.4364905, 139.4273747], [35.4365751, 139.4275624], [35.4366278, 139.4276759], [35.4374325, 139.429089], [35.4377395, 139.4296128], [35.4380038, 139.4300636], [35.4382411, 139.4304568], [35.4384884, 139.4308224], [35.4390854, 139.4320391], [35.4391325, 139.4321489], [35.4391843, 139.4322758], [35.4395313, 139.4330728], [35.4397685, 139.4336067], [35.440264, 139.434715], [35.4406904, 139.4357077], [35.4408495, 139.4363101], [35.4408994, 139.4365702], [35.4409645, 139.4375845], [35.4409732, 139.4388025], [35.4409821, 139.4400577], [35.4409853, 139.4412921], [35.4409995, 139.442541], [35.4409721, 139.4437721], [35.4399582, 139.4474271], [35.4396424, 139.4527022], [35.4395626, 139.4530656], [35.4394872, 139.4533928], [35.4394198, 139.453713], [35.439349, 139.4540492], [35.439189, 139.454811], [35.4390718, 139.4553302], [35.439001, 139.4559678], [35.4390285, 139.4562608], [35.4390364, 139.4563304], [35.4388172, 139.4567727], [35.4393891, 139.4579477], [35.4391591, 139.4583406], [35.4395675, 139.4585684], [35.4396763, 139.4586492], [35.4404605, 139.459113], [35.4402504, 139.4594109], [35.4400664, 139.4596719], [35.4399101, 139.4598934], [35.439756, 139.4601209], [35.4396108, 139.4603222], [35.439411, 139.460599], [35.439239, 139.4612651], [35.4390211, 139.461395], [35.4389733, 139.4617561]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1651,7 +1498,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1663,10 +1510,10 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_38edde48ba79dc9072b7839a41de45eb.bindTooltip(
+            ant_path_74b231957eb8984e8348c752cff07dad.bindTooltip(
                 `<div>
                      車両 31 | 停留所 14 → 15
                  </div>`,
@@ -1676,131 +1523,11 @@
             );
         
     
-            ant_path_1d89160c3b84a1e434c3e2005f0ec864 = L.polyline.antPath(
-              [[35.413785, 139.3266189], [35.4142257, 139.3266671], [35.4143686, 139.3266801], [35.4150543, 139.3267836], [35.4156423, 139.327581], [35.416074, 139.3282692], [35.4160176, 139.3290853], [35.4163411, 139.329123], [35.4162451, 139.3305701], [35.416565, 139.3306097], [35.4164484, 139.3310173], [35.4163147, 139.3313936], [35.4163937, 139.331848], [35.4167076, 139.3317461], [35.4170044, 139.3316582], [35.417702, 139.3314026], [35.4180719, 139.3312576], [35.4184302, 139.3311181], [35.4189835, 139.3309235], [35.4190307, 139.3305428], [35.419314, 139.3300301], [35.4193902, 139.3299725], [35.4197465, 139.329791], [35.4209451, 139.3297183], [35.4218024, 139.3295724], [35.4221965, 139.3292086], [35.4231551, 139.3293381], [35.4234259, 139.3290593], [35.4236029, 139.3291791], [35.4238513, 139.3293455], [35.4238703, 139.329366], [35.4241404, 139.3295516], [35.4241475, 139.3295596], [35.4244422, 139.3297615], [35.4247123, 139.3299601], [35.424982, 139.3301498], [35.4252513, 139.3303386], [35.4255222, 139.3305308], [35.4258378, 139.3307522], [35.4257552, 139.3309206], [35.4264296, 139.331408], [35.4258578, 139.3324948], [35.425596, 139.3331864], [35.4258, 139.3333574], [35.4259408, 139.3334436], [35.4259643, 139.3333932]],
-              {
-  "stroke": true,
-  "color": "blue",
-  "weight": 4,
-  "opacity": 0.9,
-  "lineCap": "round",
-  "lineJoin": "round",
-  "dashArray": [
-10,
-20,
-],
-  "dashOffset": null,
-  "fill": false,
-  "fillColor": "blue",
-  "fillOpacity": 0.2,
-  "fillRule": "evenodd",
-  "bubblingMouseEvents": true,
-  "smoothFactor": 1.0,
-  "noClip": false,
-  "paused": false,
-  "reverse": false,
-  "hardwareAcceleration": false,
-  "delay": 600,
-  "pulseColor": "#FFFFFF",
-}
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
-        
-    
-            ant_path_1d89160c3b84a1e434c3e2005f0ec864.bindTooltip(
-                `<div>
-                     車両 31 | 停留所 15 → 16
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-            ant_path_62d654f24ab714e6bcdffdb439943400 = L.polyline.antPath(
-              [[35.4259643, 139.3333932], [35.4259408, 139.3334436], [35.4258, 139.3333574], [35.425596, 139.3331864], [35.4258578, 139.3324948], [35.4264296, 139.331408], [35.4272963, 139.3319424], [35.4276899, 139.3320822], [35.428457, 139.3323508], [35.4293215, 139.3325104], [35.4301666, 139.3324819], [35.430739, 139.3324606], [35.4307673, 139.333701], [35.4307917, 139.3349442], [35.4307898, 139.3350645], [35.4308023, 139.3361762], [35.4316464, 139.336129], [35.4319407, 139.336119]],
-              {
-  "stroke": true,
-  "color": "blue",
-  "weight": 4,
-  "opacity": 0.9,
-  "lineCap": "round",
-  "lineJoin": "round",
-  "dashArray": [
-10,
-20,
-],
-  "dashOffset": null,
-  "fill": false,
-  "fillColor": "blue",
-  "fillOpacity": 0.2,
-  "fillRule": "evenodd",
-  "bubblingMouseEvents": true,
-  "smoothFactor": 1.0,
-  "noClip": false,
-  "paused": false,
-  "reverse": false,
-  "hardwareAcceleration": false,
-  "delay": 600,
-  "pulseColor": "#FFFFFF",
-}
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
-        
-    
-            ant_path_62d654f24ab714e6bcdffdb439943400.bindTooltip(
-                `<div>
-                     車両 31 | 停留所 16 → 17
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-            ant_path_f33dff7d88376d70aeb1d30a2fa9f578 = L.polyline.antPath(
-              [[35.4319407, 139.336119], [35.431817, 139.3370253], [35.4323676, 139.33715], [35.4329587, 139.3362294], [35.4331436, 139.3360247], [35.4335519, 139.3365798], [35.4341718, 139.3369982], [35.4344601, 139.3371816], [35.4354183, 139.3378214], [35.4360241, 139.3382758], [35.4371091, 139.3398122], [35.4373036, 139.3402141], [35.4373574, 139.3403326], [35.4375171, 139.3406621], [35.4381608, 139.3419854], [35.4386519, 139.3425002], [35.439011, 139.3428085], [35.4390531, 139.3428461], [35.4398371, 139.343495], [35.4400823, 139.3438208], [35.4402846, 139.344328], [35.4403467, 139.3445061], [35.4404943, 139.3449211], [35.4406848, 139.3454647], [35.4408999, 139.3460784], [35.4413686, 139.3472228], [35.4418764, 139.3478398], [35.442537, 139.3483017], [35.4429032, 139.3485159], [35.4431505, 139.3486753], [35.4437267, 139.3491229], [35.4441322, 139.349926], [35.4445579, 139.3510953], [35.4446085, 139.3512637], [35.4446663, 139.3523804], [35.4443247, 139.3541419], [35.444128, 139.3549756], [35.4440579, 139.3553014], [35.4438354, 139.356437], [35.4437767, 139.3572986], [35.4437506, 139.3577987], [35.4437341, 139.3580882], [35.4436703, 139.3590557], [35.4436443, 139.3594845], [35.4435576, 139.3608398], [35.4434952, 139.3618618], [35.4433898, 139.3635074], [35.4434177, 139.3649197], [35.4434987, 139.3662813], [35.4435344, 139.3669778], [35.4435704, 139.3678999], [35.4435949, 139.3687037], [35.443544, 139.369599], [35.4446875, 139.3765705], [35.4445039, 139.3767073], [35.4444951, 139.3773299], [35.4441589, 139.3773994], [35.4438104, 139.3774696], [35.4439115, 139.378185], [35.443071, 139.3782975], [35.4427498, 139.3783588], [35.4427332, 139.3785755], [35.4427368, 139.3787676], [35.4428294, 139.3808903], [35.4428547, 139.3815339], [35.4428589, 139.3816481], [35.4429129, 139.3829308], [35.442953, 139.3841287], [35.4429573, 139.3842233], [35.4430078, 139.3854541], [35.4430531, 139.3865477], [35.4430538, 139.3865694], [35.4430589, 139.3866603], [35.4431045, 139.3879096], [35.4431567, 139.3891398], [35.4432403, 139.3910205], [35.4432813, 139.3919696], [35.4423097, 139.3932434], [35.4408868, 139.3951087], [35.4404542, 139.3956766], [35.4405643, 139.39579], [35.4402717, 139.3966237], [35.440131, 139.3969163], [35.4400782, 139.3972231], [35.4399067, 139.3982238], [35.4398806, 139.398438], [35.4398495, 139.3986944], [35.4398396, 139.3988153], [35.4397729, 139.399325], [35.4397601, 139.3996519], [35.4390515, 139.4001229], [35.4392589, 139.4010095], [35.4386168, 139.4012931], [35.4374707, 139.4022219], [35.4372467, 139.4023728], [35.4364852, 139.4037589], [35.4367976, 139.4039246], [35.436488, 139.404571], [35.4361544, 139.4052632], [35.4359701, 139.4056451], [35.4355093, 139.4066006], [35.4350459, 139.4075753], [35.4344034, 139.408883], [35.43424, 139.409218], [35.4339475, 139.4098563], [35.4336497, 139.4108638], [35.4335155, 139.4120418], [35.433576, 139.4131421], [35.4336826, 139.4139884], [35.4337672, 139.4146245], [35.4339659, 139.4161287], [35.434108, 139.4172309], [35.434196, 139.4182616], [35.4343632, 139.4204122], [35.4343749, 139.4205315], [35.4345474, 139.4217028], [35.4351685, 139.4237832], [35.4355234, 139.4247674], [35.4364613, 139.4273047], [35.4364905, 139.4273747], [35.4365751, 139.4275624], [35.4366278, 139.4276759], [35.4374325, 139.429089], [35.4377395, 139.4296128], [35.4380038, 139.4300636], [35.4382411, 139.4304568], [35.4384884, 139.4308224], [35.4390854, 139.4320391], [35.4391325, 139.4321489], [35.4391843, 139.4322758], [35.4395313, 139.4330728], [35.4397685, 139.4336067], [35.440264, 139.434715], [35.4406904, 139.4357077], [35.4408495, 139.4363101], [35.4408994, 139.4365702], [35.4409645, 139.4375845], [35.4409732, 139.4388025], [35.4409821, 139.4400577], [35.4409853, 139.4412921], [35.4409995, 139.442541], [35.4409721, 139.4437721], [35.4399582, 139.4474271], [35.4396424, 139.4527022], [35.4395626, 139.4530656], [35.4394872, 139.4533928], [35.4394198, 139.453713], [35.439349, 139.4540492], [35.439189, 139.454811], [35.4390718, 139.4553302], [35.439001, 139.4559678], [35.4390285, 139.4562608], [35.4390364, 139.4563304], [35.4388172, 139.4567727], [35.4393891, 139.4579477], [35.4391591, 139.4583406], [35.4395675, 139.4585684], [35.4396763, 139.4586492], [35.4404605, 139.459113], [35.4402504, 139.4594109], [35.4400664, 139.4596719], [35.4399101, 139.4598934], [35.439756, 139.4601209], [35.4396108, 139.4603222], [35.439411, 139.460599], [35.439239, 139.4612651], [35.4390211, 139.461395], [35.4389733, 139.4617561]],
-              {
-  "stroke": true,
-  "color": "blue",
-  "weight": 4,
-  "opacity": 0.9,
-  "lineCap": "round",
-  "lineJoin": "round",
-  "dashArray": [
-10,
-20,
-],
-  "dashOffset": null,
-  "fill": false,
-  "fillColor": "blue",
-  "fillOpacity": 0.2,
-  "fillRule": "evenodd",
-  "bubblingMouseEvents": true,
-  "smoothFactor": 1.0,
-  "noClip": false,
-  "paused": false,
-  "reverse": false,
-  "hardwareAcceleration": false,
-  "delay": 600,
-  "pulseColor": "#FFFFFF",
-}
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
-        
-    
-            ant_path_f33dff7d88376d70aeb1d30a2fa9f578.bindTooltip(
-                `<div>
-                     車両 31 | 停留所 17 → 18
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-            ant_path_184286203c1f79dfe2434678b8d525c8 = L.polyline.antPath(
+            ant_path_e03c7c51fcd96743b170320330032a83 = L.polyline.antPath(
               [[35.4389733, 139.4617561], [35.4389032, 139.4622488], [35.4392975, 139.462326], [35.4392096, 139.4630835], [35.4392663, 139.4637789], [35.4393362, 139.4640042], [35.4394323, 139.4644368], [35.4395183, 139.464984], [35.4403628, 139.4650267], [35.4402988, 139.4652348], [35.4402318, 139.4654091], [35.4402154, 139.4654709], [35.4401495, 139.4659665], [35.4402047, 139.4659749], [35.4402802, 139.466467], [35.4404837, 139.4671237], [35.4406496, 139.4684713], [35.4404879, 139.4687852], [35.4395775, 139.4699574], [35.4393795, 139.4703589], [35.4391402, 139.4714565], [35.4391222, 139.4716787], [35.439297, 139.4723094], [35.4399168, 139.4725797], [35.4398808, 139.47324], [35.4400929, 139.4736787], [35.4401179, 139.475334], [35.4402758, 139.4754274], [35.4401634, 139.4757719], [35.4427791, 139.4787154], [35.4428223, 139.4804841], [35.4428779, 139.4825752], [35.4429171, 139.4833806], [35.4429398, 139.4844134], [35.4429681, 139.4858662], [35.4429629, 139.4866634], [35.4429783, 139.4874173], [35.4430335, 139.4903236], [35.4430616, 139.4911998], [35.4430618, 139.4913005], [35.4430664, 139.49151], [35.4431802, 139.4929578], [35.4434683, 139.4939465], [35.4440967, 139.4952113], [35.4444838, 139.495907], [35.4447418, 139.4964843], [35.4448584, 139.4968147], [35.4448956, 139.4969421], [35.4453089, 139.4982596], [35.4457944, 139.4998114], [35.4459479, 139.5001842], [35.4466699, 139.5011709], [35.4468532, 139.5014584], [35.4470103, 139.501869], [35.4471286, 139.5024773], [35.4473855, 139.5039322], [35.4474025, 139.5043481], [35.4474091, 139.5049981], [35.4475481, 139.5074013], [35.4475973, 139.5075526], [35.4476809, 139.5077706], [35.4481872, 139.5089334], [35.4484608, 139.5099943], [35.4486558, 139.5108223], [35.4487097, 139.5110533], [35.4487982, 139.5114692], [35.4489533, 139.5121775], [35.4492071, 139.5130139], [35.449251, 139.5131507], [35.4493887, 139.5136093], [35.450813, 139.5175823], [35.4508956, 139.5177336], [35.451239, 139.5182613], [35.4521554, 139.5194261], [35.452548, 139.5196494], [35.452907, 139.5197676], [35.4533057, 139.5199299], [35.4542562, 139.5206273], [35.4543763, 139.520756], [35.4549475, 139.5225976], [35.4552513, 139.5233399], [35.4558599, 139.5245629], [35.4560476, 139.5249525], [35.4569013, 139.525678], [35.4569372, 139.5257123], [35.4574637, 139.5264779], [35.4580648, 139.5266953], [35.45898, 139.5273061], [35.4592394, 139.5275451], [35.4592946, 139.5276096], [35.4597454, 139.5282095], [35.4600068, 139.5286389], [35.460229, 139.5290166], [35.4609837, 139.5303841], [35.4611052, 139.5305959], [35.4615313, 139.5311608], [35.4633136, 139.5336066], [35.4635667, 139.5343236], [35.4638172, 139.5350719], [35.4642792, 139.5365074], [35.4644017, 139.5368956], [35.4646098, 139.5375378], [35.4654046, 139.5392028], [35.4656907, 139.5397328], [35.4658579, 139.5400441], [35.466213, 139.5407334], [35.4659869, 139.541125], [35.4659505, 139.541189], [35.4658322, 139.541384], [35.4652385, 139.5418433], [35.4646781, 139.5423787], [35.4646997, 139.5424636], [35.4651669, 139.543283], [35.4651906, 139.5432668], [35.4656735, 139.5438943], [35.4662455, 139.5450289], [35.4667798, 139.5459388], [35.467124, 139.5465226], [35.4672433, 139.5467497], [35.4670545, 139.5472592], [35.4671349, 139.5473796], [35.467275, 139.5476654], [35.467308, 139.5477329], [35.4674187, 139.5480449], [35.4675202, 139.5485039], [35.4675753, 139.5488726], [35.4675764, 139.5489956], [35.4675807, 139.5504479], [35.4676188, 139.550984], [35.4676291, 139.5510608], [35.4676185, 139.5515168], [35.4676082, 139.5528294], [35.4675935, 139.5530307], [35.4673992, 139.5543913], [35.4675204, 139.5549331], [35.46749, 139.5550778], [35.4670773, 139.5557858], [35.4673801, 139.556883], [35.4675859, 139.557497], [35.4677195, 139.5578357], [35.4677808, 139.558004], [35.4678544, 139.5583065], [35.4678869, 139.5584346], [35.4679747, 139.5591872], [35.4679786, 139.5594919], [35.4679794, 139.5595508], [35.4679747, 139.5596185], [35.4682857, 139.5601], [35.468134, 139.5605771], [35.4690603, 139.5614392], [35.4702175, 139.5626902], [35.4702412, 139.5627157], [35.4704183, 139.5648548], [35.470517, 139.568272], [35.4726913, 139.5694198], [35.4733853, 139.5708711], [35.4734099, 139.5711435], [35.4739486, 139.5711781], [35.4733615, 139.5719328], [35.4725206, 139.5730305], [35.472534, 139.5731798], [35.4731461, 139.5734789], [35.4735722, 139.5737708], [35.4736194, 139.5738052], [35.4741724, 139.5742237], [35.4744064, 139.5743439], [35.4746055, 139.5743881], [35.4753369, 139.5757286], [35.4753374, 139.5758609], [35.4772467, 139.5766048], [35.4791792, 139.5788639], [35.4793416, 139.5792726], [35.4796179, 139.580086], [35.4798384, 139.5809228], [35.4802532, 139.5822863], [35.4803366, 139.5826018], [35.4812686, 139.5842559], [35.4814107, 139.5850263], [35.4827916, 139.58714], [35.4829974, 139.5873783], [35.4840361, 139.5884368], [35.484403, 139.5888051], [35.4851359, 139.5895696], [35.4859614, 139.5906806], [35.4871798, 139.5937943], [35.4875236, 139.5943755], [35.4879286, 139.5949596], [35.4881217, 139.5952214], [35.4930719, 139.5993473], [35.4935956, 139.5999553], [35.493462, 139.6001839], [35.4934958, 139.6004954], [35.49314, 139.6003977], [35.4929348, 139.6005884], [35.4929053, 139.6009723], [35.4925384, 139.6014082], [35.4926609, 139.6015813], [35.492919, 139.6020037], [35.4928761, 139.6020422], [35.492422, 139.6024502], [35.4916688, 139.6034454], [35.4916139, 139.6035813], [35.4915036, 139.6038301], [35.4915208, 139.6039382], [35.4913357, 139.6051483], [35.4913096, 139.6064937], [35.4912064, 139.6071345], [35.4917235, 139.6072562], [35.4917188, 139.6073316], [35.4917057, 139.6074332], [35.4916313, 139.6085164], [35.4916209, 139.6087476], [35.4915885, 139.6097163], [35.4915896, 139.6100544], [35.4915904, 139.6100877], [35.4915918, 139.6101476], [35.4916054, 139.6107246], [35.4916201, 139.6113506], [35.4916214, 139.6114093], [35.4918177, 139.6125484], [35.4918355, 139.6125818], [35.4922296, 139.6132847], [35.4922599, 139.6133387], [35.4924059, 139.6136089], [35.4926677, 139.6140803], [35.4930357, 139.6147458], [35.4931747, 139.6149972], [35.4933138, 139.6152604], [35.4936167, 139.6158828], [35.4937537, 139.6162143], [35.4946088, 139.6181475], [35.4947139, 139.618385], [35.4950919, 139.6192671], [35.4956269, 139.6203397], [35.4965436, 139.6216862], [35.4966204, 139.6217968], [35.4976913, 139.6232694], [35.4977075, 139.6232896], [35.4981961, 139.624039], [35.4982854, 139.6242926], [35.4985777, 139.62554], [35.498707, 139.6260919], [35.4987111, 139.6261092], [35.498796, 139.6264716], [35.4988875, 139.6268448], [35.4990716, 139.6275998], [35.4992114, 139.6281999], [35.4993441, 139.6287683], [35.4995178, 139.6295459], [35.4996253, 139.6300587], [35.4996488, 139.6301539], [35.4997974, 139.6308703], [35.4999196, 139.6314641], [35.499983, 139.6318428], [35.5001921, 139.6329182], [35.500263, 139.6333129], [35.5012541, 139.6369493], [35.5013813, 139.6372552], [35.5015718, 139.6375841], [35.502655, 139.6394054], [35.5027416, 139.639745], [35.5030023, 139.6410892], [35.5031514, 139.6420802], [35.503105, 139.6425917], [35.5031019, 139.6426642], [35.5031033, 139.6432278], [35.5036338, 139.6446889], [35.504174, 139.6458083], [35.50443, 139.6463262], [35.5047283, 139.6469566], [35.5051702, 139.6478698], [35.5055244, 139.6485621], [35.5056646, 139.6488506], [35.505767, 139.6490735], [35.5058561, 139.6492228], [35.5061131, 139.6496049], [35.5061586, 139.6496743], [35.5070403, 139.65083], [35.5070911, 139.6509003], [35.5072859, 139.6511486], [35.5073164, 139.6511875], [35.5075031, 139.6514602], [35.5078707, 139.652118], [35.5084695, 139.6530362], [35.5085905, 139.6531397], [35.5087476, 139.6532789], [35.5096464, 139.6540503], [35.5099329, 139.6543473], [35.5104775, 139.6554704], [35.5106518, 139.6563364], [35.5106934, 139.6565175], [35.5114815, 139.6572103], [35.5115564, 139.6572271], [35.5119249, 139.6575025], [35.5121881, 139.6577879], [35.5123879, 139.6579928], [35.5130561, 139.6583875], [35.5135111, 139.6585934], [35.5140162, 139.6601173], [35.5141061, 139.6602291], [35.5143308, 139.6605308], [35.5148286, 139.6613229], [35.515097, 139.66175], [35.5154685, 139.6623405], [35.5159433, 139.6630314], [35.5159116, 139.6630754], [35.5160726, 139.6632767], [35.5161797, 139.6634185], [35.5164533, 139.664464], [35.5161967, 139.6644636], [35.5163102, 139.6648889], [35.5164603, 139.6654639], [35.5164863, 139.6655661], [35.5166753, 139.6662895], [35.5168387, 139.6670914], [35.5170724, 139.6673286], [35.5178234, 139.6681224], [35.5183249, 139.6686578], [35.5187772, 139.6691313], [35.5195921, 139.6699925], [35.519473, 139.670001], [35.5190504, 139.6701003], [35.5192222, 139.6713016], [35.5194118, 139.6726269], [35.519585, 139.6737977], [35.519736, 139.6748337], [35.5201151, 139.6771743], [35.5217521, 139.6799751], [35.5216875, 139.68133], [35.5216075, 139.6820915], [35.5214845, 139.6825517], [35.5212394, 139.6834627], [35.521159, 139.6837563], [35.5211111, 139.6839311], [35.5205739, 139.684532], [35.5203325, 139.6851087], [35.5200154, 139.6857794], [35.5195764, 139.6864745], [35.5214621, 139.6886703], [35.5221442, 139.6896712], [35.5230479, 139.6910703], [35.5234993, 139.691752], [35.5234142, 139.69207], [35.5234129, 139.692241], [35.5239862, 139.6925838], [35.5243948, 139.6933457], [35.5249135, 139.6942831], [35.5252585, 139.6949126], [35.5253161, 139.6950237], [35.525518, 139.6953909], [35.525671, 139.6956753], [35.5257358, 139.6957995], [35.5261167, 139.6965126], [35.5263615, 139.6969679], [35.526738, 139.6976673], [35.5270164, 139.6981919], [35.5272167, 139.6985632], [35.5274779, 139.6990318], [35.5277168, 139.6994774], [35.528095, 139.7002125], [35.5281536, 139.7003213], [35.5289132, 139.7005962], [35.5292651, 139.700712], [35.53065, 139.7011268]],
               {
   "stroke": true,
-  "color": "blue",
+  "color": "#b4f836",
   "weight": 4,
   "opacity": 0.9,
   "lineCap": "round",
@@ -1811,7 +1538,7 @@
 ],
   "dashOffset": null,
   "fill": false,
-  "fillColor": "blue",
+  "fillColor": "#b4f836",
   "fillOpacity": 0.2,
   "fillRule": "evenodd",
   "bubblingMouseEvents": true,
@@ -1823,12 +1550,12 @@
   "delay": 600,
   "pulseColor": "#FFFFFF",
 }
-        ).addTo(map_e52af9da5982230a283f70ee3385983b);
+        ).addTo(map_11b0dcec443bdcf18844214d6e6b24ff);
         
     
-            ant_path_184286203c1f79dfe2434678b8d525c8.bindTooltip(
+            ant_path_e03c7c51fcd96743b170320330032a83.bindTooltip(
                 `<div>
-                     車両 31 | 停留所 18 → 19
+                     車両 31 | 停留所 15 → 16
                  </div>`,
                 {
   "sticky": true,
